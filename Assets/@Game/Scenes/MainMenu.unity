@@ -1791,7 +1791,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01e7de05b0699e44cb6ffdcc8edf5737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playButton: {fileID: 0}
+  playButton: {fileID: 431007734}
+  quitButton: {fileID: 1097798606}
 --- !u!114 &1536710537
 MonoBehaviour:
   m_ObjectHideFlags: 0

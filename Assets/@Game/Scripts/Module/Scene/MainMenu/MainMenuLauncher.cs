@@ -51,14 +51,19 @@ namespace ProjectTA.Scene.MainMenu
 
             yield return StartCoroutine(_levelData.SetCurrentLevel(_saveSystem.Model.SaveData.CurrentLevelName));
 
-            _view.SetButtonCallback(GoToGameplay);
+            _view.SetButtonCallback(OnPlay, OnQuit);
 
             yield return null;
         }
 
-        private void GoToGameplay()
+        private void OnPlay()
         {
-            SceneLoader.Instance.LoadScene("Gameplay");
+            SceneLoader.Instance.LoadScene(TagManager.SCENE_GAMEPLAY);
+        }
+
+        private void OnQuit()
+        {
+            Application.Quit();
         }
     }
 }

@@ -11,6 +11,10 @@ using ProjectTA.Module.SaveSystem;
 using ProjectTA.Utility;
 using ProjectTA.Module.GameSettings;
 using ProjectTA.Module.CharacterData;
+using ProjectTA.Module.GamePause;
+using ProjectTA.Module.GameWin;
+using ProjectTA.Module.GameOver;
+using System;
 
 namespace ProjectTA.Scene.Gameplay
 {
@@ -24,15 +28,25 @@ namespace ProjectTA.Scene.Gameplay
         private CharacterDataController _characterData;
         private GameSettingsController _gameSettings;
 
+        private GamePauseController _gamePause;
+        private GameWinController _gameWin;
+        private GameOverController _gameOver;
+
         protected override IController[] GetSceneDependencies()
         {
             return new IController[] {
+                new GamePauseController(),
+                new GameWinController(),
+                new GameOverController(),
             };
         }
 
         protected override IConnector[] GetSceneConnectors()
         {
             return new IConnector[] {
+                new GamePauseConnector(),
+                new GameWinConnector(),
+                new GameOverConnector(),
             };
         }
 
@@ -45,13 +59,29 @@ namespace ProjectTA.Scene.Gameplay
         {
             Time.timeScale = 1;
 
-            Publish(new GameStateMessage(Utility.EnumManager.GameState.PreGame));
+            Publish(new GameStateMessage(EnumManager.GameState.PreGame));
 
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneName));
 
             yield return StartCoroutine(_levelData.SetCurrentLevel(_saveSystem.Model.SaveData.CurrentLevelName));
 
+            _view.SetTestCallbacks(TestGameOver, TestGameWin);
+
+            _gamePause.SetView(_view.GamePauseView);
+            _gameWin.SetView(_view.GameWinView);
+            _gameOver.SetView(_view.GameOverView);
+
             yield return null;
+        }
+
+        private void TestGameOver()
+        {
+            Publish(new GameOverMessage());
+        }
+
+        private void TestGameWin()
+        {
+            Publish(new GameWinMessage());
         }
     }
 }
