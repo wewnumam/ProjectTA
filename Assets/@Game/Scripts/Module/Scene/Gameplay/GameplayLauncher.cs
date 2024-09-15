@@ -15,6 +15,8 @@ using ProjectTA.Module.GamePause;
 using ProjectTA.Module.GameWin;
 using ProjectTA.Module.GameOver;
 using System;
+using ProjectTA.Module.Input;
+using ProjectTA.Module.PlayerCharacter;
 
 namespace ProjectTA.Scene.Gameplay
 {
@@ -31,6 +33,7 @@ namespace ProjectTA.Scene.Gameplay
         private GamePauseController _gamePause;
         private GameWinController _gameWin;
         private GameOverController _gameOver;
+        private PlayerCharacterController _playerCharacter;
 
         protected override IController[] GetSceneDependencies()
         {
@@ -38,6 +41,8 @@ namespace ProjectTA.Scene.Gameplay
                 new GamePauseController(),
                 new GameWinController(),
                 new GameOverController(),
+                new InputController(),
+                new PlayerCharacterController(),
             };
         }
 
@@ -47,6 +52,7 @@ namespace ProjectTA.Scene.Gameplay
                 new GamePauseConnector(),
                 new GameWinConnector(),
                 new GameOverConnector(),
+                new PlayerCharacterConnector(),
             };
         }
 
@@ -70,6 +76,8 @@ namespace ProjectTA.Scene.Gameplay
             _gamePause.SetView(_view.GamePauseView);
             _gameWin.SetView(_view.GameWinView);
             _gameOver.SetView(_view.GameOverView);
+
+            _playerCharacter.SetView(_view.PlayerCharacterView);
 
             yield return null;
         }

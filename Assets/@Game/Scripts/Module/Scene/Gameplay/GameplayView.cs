@@ -3,6 +3,7 @@ using NaughtyAttributes;
 using ProjectTA.Module.GameOver;
 using ProjectTA.Module.GamePause;
 using ProjectTA.Module.GameWin;
+using ProjectTA.Module.PlayerCharacter;
 using UnityEngine.Events;
 
 namespace ProjectTA.Scene.Gameplay
@@ -12,6 +13,7 @@ namespace ProjectTA.Scene.Gameplay
         public GamePauseView GamePauseView;
         public GameWinView GameWinView;
         public GameOverView GameOverView;
+        public PlayerCharacterView PlayerCharacterView;
 
         private UnityAction onGameOver, onGameWin;
 

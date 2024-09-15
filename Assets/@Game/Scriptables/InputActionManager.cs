@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-namespace ProjectAdvergame.Module.Input
+namespace ProjectTA.Module.Input
 {
     public partial class @InputActionManager: IInputActionCollection2, IDisposable
     {
@@ -30,48 +30,70 @@ namespace ProjectAdvergame.Module.Input
             ""id"": ""7d9c80cc-1c09-4ae4-8144-f02b5a0be64c"",
             ""actions"": [
                 {
-                    ""name"": ""Tap"",
-                    ""type"": ""Button"",
-                    ""id"": ""60aae4ad-caf4-4927-af64-e46368eaeea1"",
-                    ""expectedControlType"": ""Button"",
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""06533a2d-f2fb-43a0-983f-4e8992c83a9f"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
                 {
-                    ""name"": """",
-                    ""id"": ""56f520bb-70dd-440f-b8bd-d2a6dc241135"",
-                    ""path"": ""<Touchscreen>/Press"",
+                    ""name"": ""2D Vector"",
+                    ""id"": ""2c84b8ab-b990-4486-9cd1-c9929f23c802"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Tap"",
-                    ""isComposite"": false,
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""35c6cb4f-80ff-4827-b6bc-6a38c05f69b0"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""name"": ""up"",
+                    ""id"": ""93e0b822-a9bb-480c-a7a9-5e64235bcd04"",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Tap"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""43f2d341-5913-46b3-89cc-5557543bd5d8"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""name"": ""down"",
+                    ""id"": ""f2b779cd-9856-419b-8ac0-8b67c9e4f4f2"",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Tap"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""31d4e1c4-7e43-48b9-949b-e4202a8c7a9f"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""ae1d7931-6c19-49ec-b1b7-4b2d153a3061"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -189,7 +211,7 @@ namespace ProjectAdvergame.Module.Input
 }");
             // Character
             m_Character = asset.FindActionMap("Character", throwIfNotFound: true);
-            m_Character_Tap = m_Character.FindAction("Tap", throwIfNotFound: true);
+            m_Character_Move = m_Character.FindAction("Move", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_TapStart = m_UI.FindAction("TapStart", throwIfNotFound: true);
@@ -258,12 +280,12 @@ namespace ProjectAdvergame.Module.Input
         // Character
         private readonly InputActionMap m_Character;
         private List<ICharacterActions> m_CharacterActionsCallbackInterfaces = new List<ICharacterActions>();
-        private readonly InputAction m_Character_Tap;
+        private readonly InputAction m_Character_Move;
         public struct CharacterActions
         {
             private @InputActionManager m_Wrapper;
             public CharacterActions(@InputActionManager wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Tap => m_Wrapper.m_Character_Tap;
+            public InputAction @Move => m_Wrapper.m_Character_Move;
             public InputActionMap Get() { return m_Wrapper.m_Character; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -273,16 +295,16 @@ namespace ProjectAdvergame.Module.Input
             {
                 if (instance == null || m_Wrapper.m_CharacterActionsCallbackInterfaces.Contains(instance)) return;
                 m_Wrapper.m_CharacterActionsCallbackInterfaces.Add(instance);
-                @Tap.started += instance.OnTap;
-                @Tap.performed += instance.OnTap;
-                @Tap.canceled += instance.OnTap;
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
             }
 
             private void UnregisterCallbacks(ICharacterActions instance)
             {
-                @Tap.started -= instance.OnTap;
-                @Tap.performed -= instance.OnTap;
-                @Tap.canceled -= instance.OnTap;
+                @Move.started -= instance.OnMove;
+                @Move.performed -= instance.OnMove;
+                @Move.canceled -= instance.OnMove;
             }
 
             public void RemoveCallbacks(ICharacterActions instance)
@@ -402,7 +424,7 @@ namespace ProjectAdvergame.Module.Input
         public MainMenuActions @MainMenu => new MainMenuActions(this);
         public interface ICharacterActions
         {
-            void OnTap(InputAction.CallbackContext context);
+            void OnMove(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

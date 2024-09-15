@@ -1,12 +1,14 @@
+using UnityEngine;
+
 namespace ProjectTA.Message
 {
     public struct MovePlayerCharacterMessage 
     {
-        public float MoveAmount { get; }
+        public Vector2 Direction { get; }
 
-        public MovePlayerCharacterMessage(float moveAmount = 1)
+        public MovePlayerCharacterMessage(Vector2 direction)
         {
-            MoveAmount = moveAmount;
+            Direction = direction;
         }
     }
 }

@@ -9,12 +9,14 @@ namespace ProjectTA.Module.PlayerCharacter
 
         protected override void Connect()
         {
+            Subscribe<MovePlayerCharacterMessage>(_playerCharacter.OnMove);
             Subscribe<GameOverMessage>(_playerCharacter.OnGameOver);
             Subscribe<GameWinMessage>(_playerCharacter.OnGameWin);
         }
 
         protected override void Disconnect()
         {
+            Unsubscribe<MovePlayerCharacterMessage>(_playerCharacter.OnMove);
             Unsubscribe<GameOverMessage>(_playerCharacter.OnGameOver);
             Unsubscribe<GameWinMessage>(_playerCharacter.OnGameWin);
         }

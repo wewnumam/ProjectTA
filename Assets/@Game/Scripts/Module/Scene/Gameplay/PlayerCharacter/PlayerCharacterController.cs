@@ -1,9 +1,5 @@
 using Agate.MVC.Base;
-using DG.Tweening;
 using ProjectTA.Message;
-using ProjectTA.Module.CharacterData;
-using ProjectTA.Utility;
-using UnityEngine;
 
 namespace ProjectTA.Module.PlayerCharacter
 {
@@ -15,6 +11,11 @@ namespace ProjectTA.Module.PlayerCharacter
 
         internal void OnGameWin(GameWinMessage message)
         {
+        }
+
+        internal void OnMove(MovePlayerCharacterMessage message)
+        {
+            _view.direction = message.Direction;
         }
     }
 }
