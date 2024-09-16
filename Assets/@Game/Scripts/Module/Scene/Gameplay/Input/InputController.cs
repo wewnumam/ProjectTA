@@ -19,6 +19,7 @@ namespace ProjectTA.Module.Input
             inputActions.Character.Enable();
             inputActions.Character.Move.performed += OnStartMove;
             inputActions.Character.Move.canceled += OnEndMove;
+            inputActions.Character.Shoot.performed += OnShoot;
         }
 
         public override IEnumerator Terminate()
@@ -26,6 +27,7 @@ namespace ProjectTA.Module.Input
 
             inputActions.Character.Move.performed -= OnStartMove;
             inputActions.Character.Move.canceled -= OnEndMove;
+            inputActions.Character.Shoot.performed -= OnShoot;
             inputActions.Character.Disable();
             
             yield return base.Terminate();
@@ -39,6 +41,11 @@ namespace ProjectTA.Module.Input
         private void OnEndMove(InputAction.CallbackContext context)
         {
             Publish(new MovePlayerCharacterMessage(Vector2.zero));
+        }
+
+        private void OnShoot(InputAction.CallbackContext context)
+        {
+            Publish(new PlayerCharacterShootMessage());
         }
     }
 }

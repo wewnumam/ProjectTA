@@ -1,9 +1,11 @@
 using Agate.MVC.Base;
 using NaughtyAttributes;
+using ProjectTA.Module.BulletManager;
 using ProjectTA.Module.GameOver;
 using ProjectTA.Module.GamePause;
 using ProjectTA.Module.GameWin;
 using ProjectTA.Module.PlayerCharacter;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace ProjectTA.Scene.Gameplay
@@ -14,6 +16,7 @@ namespace ProjectTA.Scene.Gameplay
         public GameWinView GameWinView;
         public GameOverView GameOverView;
         public PlayerCharacterView PlayerCharacterView;
+        public BulletManagerView BulletManagerView;
 
         private UnityAction onGameOver, onGameWin;
 

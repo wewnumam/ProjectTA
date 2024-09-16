@@ -37,6 +37,15 @@ namespace ProjectTA.Module.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""32768ae3-b500-408f-a373-bcb29d2ffc84"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -94,6 +103,17 @@ namespace ProjectTA.Module.Input
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f69d273b-8fcd-45fd-8b63-4003ccc8678a"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -212,6 +232,7 @@ namespace ProjectTA.Module.Input
             // Character
             m_Character = asset.FindActionMap("Character", throwIfNotFound: true);
             m_Character_Move = m_Character.FindAction("Move", throwIfNotFound: true);
+            m_Character_Shoot = m_Character.FindAction("Shoot", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_TapStart = m_UI.FindAction("TapStart", throwIfNotFound: true);
@@ -281,11 +302,13 @@ namespace ProjectTA.Module.Input
         private readonly InputActionMap m_Character;
         private List<ICharacterActions> m_CharacterActionsCallbackInterfaces = new List<ICharacterActions>();
         private readonly InputAction m_Character_Move;
+        private readonly InputAction m_Character_Shoot;
         public struct CharacterActions
         {
             private @InputActionManager m_Wrapper;
             public CharacterActions(@InputActionManager wrapper) { m_Wrapper = wrapper; }
             public InputAction @Move => m_Wrapper.m_Character_Move;
+            public InputAction @Shoot => m_Wrapper.m_Character_Shoot;
             public InputActionMap Get() { return m_Wrapper.m_Character; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -298,6 +321,9 @@ namespace ProjectTA.Module.Input
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @Shoot.started += instance.OnShoot;
+                @Shoot.performed += instance.OnShoot;
+                @Shoot.canceled += instance.OnShoot;
             }
 
             private void UnregisterCallbacks(ICharacterActions instance)
@@ -305,6 +331,9 @@ namespace ProjectTA.Module.Input
                 @Move.started -= instance.OnMove;
                 @Move.performed -= instance.OnMove;
                 @Move.canceled -= instance.OnMove;
+                @Shoot.started -= instance.OnShoot;
+                @Shoot.performed -= instance.OnShoot;
+                @Shoot.canceled -= instance.OnShoot;
             }
 
             public void RemoveCallbacks(ICharacterActions instance)
@@ -425,6 +454,7 @@ namespace ProjectTA.Module.Input
         public interface ICharacterActions
         {
             void OnMove(InputAction.CallbackContext context);
+            void OnShoot(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

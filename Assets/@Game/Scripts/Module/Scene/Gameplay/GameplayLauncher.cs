@@ -17,6 +17,7 @@ using ProjectTA.Module.GameOver;
 using System;
 using ProjectTA.Module.Input;
 using ProjectTA.Module.PlayerCharacter;
+using ProjectTA.Module.BulletManager;
 
 namespace ProjectTA.Scene.Gameplay
 {
@@ -34,6 +35,7 @@ namespace ProjectTA.Scene.Gameplay
         private GameWinController _gameWin;
         private GameOverController _gameOver;
         private PlayerCharacterController _playerCharacter;
+        private BulletManagerController _bulletManager;
 
         protected override IController[] GetSceneDependencies()
         {
@@ -43,6 +45,7 @@ namespace ProjectTA.Scene.Gameplay
                 new GameOverController(),
                 new InputController(),
                 new PlayerCharacterController(),
+                new BulletManagerController(),
             };
         }
 
@@ -53,6 +56,7 @@ namespace ProjectTA.Scene.Gameplay
                 new GameWinConnector(),
                 new GameOverConnector(),
                 new PlayerCharacterConnector(),
+                new BulletManagerConnector(),
             };
         }
 
@@ -78,6 +82,8 @@ namespace ProjectTA.Scene.Gameplay
             _gameOver.SetView(_view.GameOverView);
 
             _playerCharacter.SetView(_view.PlayerCharacterView);
+
+            _bulletManager.SetView(_view.BulletManagerView);
 
             yield return null;
         }
