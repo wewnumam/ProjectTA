@@ -7,5 +7,6 @@ namespace ProjectTA.Module.BulletManager
     {
         public GameObject bulletPrefab;
         public Transform bulletSpawnPoint;
+        public Vector3 rotationOffset;
     }
 }

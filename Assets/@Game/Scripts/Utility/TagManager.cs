@@ -7,6 +7,8 @@
         public const string SCENE_SPLASHSCREEN = "SplashScreen";
 
         public const string TAG_PLAYER = "Player";
+        public const string TAG_ENEMY = "Enemy";
+        public const string TAG_BULLET = "Bullet";
 
         public const string ANIM_IDLE = "Idle";
         public static readonly string[] ANIM_POSE = { "Pose1", "Pose2" };

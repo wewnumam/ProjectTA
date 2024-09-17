@@ -1,4 +1,5 @@
 using Agate.MVC.Base;
+using ProjectTA.Utility;
 using UnityEngine;
 
 namespace ProjectTA.Module.Enemy
@@ -99,6 +100,19 @@ namespace ProjectTA.Module.Enemy
                 // Smoothly rotate towards the target rotation using Lerp
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
             }
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.CompareTag(TagManager.TAG_BULLET))
+            {
+                Invoke(nameof(Kill), 2f);
+            }
+        }
+
+        private void Kill()
+        {
+            Destroy(gameObject);
         }
 
         // Draw Gizmos in the scene to visualize rays for debugging
