@@ -18,6 +18,7 @@ using System;
 using ProjectTA.Module.Input;
 using ProjectTA.Module.PlayerCharacter;
 using ProjectTA.Module.BulletManager;
+using ProjectTA.Module.EnemyManager;
 
 namespace ProjectTA.Scene.Gameplay
 {
@@ -36,6 +37,7 @@ namespace ProjectTA.Scene.Gameplay
         private GameOverController _gameOver;
         private PlayerCharacterController _playerCharacter;
         private BulletManagerController _bulletManager;
+        private EnemyManagerController _enemyManager;
 
         protected override IController[] GetSceneDependencies()
         {
@@ -46,6 +48,7 @@ namespace ProjectTA.Scene.Gameplay
                 new InputController(),
                 new PlayerCharacterController(),
                 new BulletManagerController(),
+                new EnemyManagerController(),
             };
         }
 
@@ -57,6 +60,7 @@ namespace ProjectTA.Scene.Gameplay
                 new GameOverConnector(),
                 new PlayerCharacterConnector(),
                 new BulletManagerConnector(),
+                new EnemyManagerConnector(),
             };
         }
 
@@ -84,6 +88,8 @@ namespace ProjectTA.Scene.Gameplay
             _playerCharacter.SetView(_view.PlayerCharacterView);
 
             _bulletManager.SetView(_view.BulletManagerView);
+
+            _enemyManager.SetView(_view.EnemyManagerView);
 
             yield return null;
         }
