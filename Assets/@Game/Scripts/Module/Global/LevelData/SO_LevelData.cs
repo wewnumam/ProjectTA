@@ -10,16 +10,8 @@ namespace ProjectTA.Module.LevelData
     {
         [Header("Display")]
         public string title;
-        public Sprite artwork;
-
-        [Header("Price")]
-        public int cost;
-        public bool isUnlockByStar;
-        [ShowIf(nameof(isUnlockByStar))] public int starAmount;
 
         [Header("Environment")]
         public GameObject environmentPrefab;
-        public AudioClip musicClip;
-        public AudioClip skybox;
     }
 }

@@ -9,7 +9,7 @@ using ProjectTA.Module.SaveSystem;
 using UnityEngine;
 using ProjectTA.Utility;
 using ProjectTA.Module.GameSettings;
-using ProjectTA.Module.CharacterData;
+using ProjectTA.Module.LevelSelection;
 
 namespace ProjectTA.Scene.MainMenu
 {
@@ -19,20 +19,21 @@ namespace ProjectTA.Scene.MainMenu
 
         private SaveSystemController _saveSystem;
         private LevelDataController _levelData;
-        private CharacterDataController _characterData;
         private GameSettingsController _gameSettings;
+
+        private LevelSelectionController _levelSelection;
 
         protected override IController[] GetSceneDependencies()
         {
             return new IController[] {
-
+                new LevelSelectionController(),
             };
         }
 
         protected override IConnector[] GetSceneConnectors()
         {
             return new IConnector[] {
-
+                new LevelSelectionConnector(),
             };
         }
 
@@ -45,13 +46,17 @@ namespace ProjectTA.Scene.MainMenu
         {
             Time.timeScale = 1;
 
-            Publish(new GameStateMessage(Utility.EnumManager.GameState.PreGame));
+            Publish(new GameStateMessage(EnumManager.GameState.PreGame));
 
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneName));
 
             yield return StartCoroutine(_levelData.SetCurrentLevel(_saveSystem.Model.SaveData.CurrentLevelName));
 
             _view.SetButtonCallback(OnPlay, OnQuit);
+
+            _levelSelection.SetLevelCollection(_levelData.Model.LevelCollection);
+            _levelSelection.SetCurrentLevelData(_levelData.Model.CurrentLevelData);
+            _levelSelection.SetView(_view.LevelSelectionView);
 
             yield return null;
         }

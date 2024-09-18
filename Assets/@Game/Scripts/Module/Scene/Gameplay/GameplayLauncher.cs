@@ -10,7 +10,6 @@ using ProjectTA.Message;
 using ProjectTA.Module.SaveSystem;
 using ProjectTA.Utility;
 using ProjectTA.Module.GameSettings;
-using ProjectTA.Module.CharacterData;
 using ProjectTA.Module.GamePause;
 using ProjectTA.Module.GameWin;
 using ProjectTA.Module.GameOver;
@@ -30,7 +29,6 @@ namespace ProjectTA.Scene.Gameplay
         private SaveSystemController _saveSystem;
         private GameConstantsController _gameConstants;
         private LevelDataController _levelData;
-        private CharacterDataController _characterData;
         private GameSettingsController _gameSettings;
 
         private GamePauseController _gamePause;
@@ -81,6 +79,8 @@ namespace ProjectTA.Scene.Gameplay
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneName));
 
             yield return StartCoroutine(_levelData.SetCurrentLevel(_saveSystem.Model.SaveData.CurrentLevelName));
+
+            Instantiate(_levelData.Model.CurrentEnvironmentPrefab);
 
             _view.SetTestCallbacks(TestGameOver, TestGameWin);
 

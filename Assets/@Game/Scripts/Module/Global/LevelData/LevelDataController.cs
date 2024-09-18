@@ -23,9 +23,7 @@ namespace ProjectTA.Module.LevelData
         {
             SO_LevelData levelData = Resources.Load<SO_LevelData>(@"LevelData/" + levelName);
             _model.SetCurrentLevelData(levelData);
-            _model.ResetStonePrefabs();
-
-            Publish(new LoadLevelCompleteMessage(levelName, _model.CurrentArtwork, _model.CurrentMusicClip, _model.CurrentSkybox));
+            _model.SetCurrentEnvironmentPrefab(levelData.environmentPrefab);
 
             yield return null;
         }

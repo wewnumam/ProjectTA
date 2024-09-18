@@ -80,12 +80,6 @@ namespace ProjectTA.Module.SaveSystem
             SaveGame(_model.SaveData);
         }
 
-        public void SetCurrentCharacterName(string characterName)
-        {
-            _model.SetCurrentCharacterName(characterName);
-            SaveGame(_model.SaveData);
-        }
-
         internal void SaveHeartResult(GameResultHeartMessage message)
         {
             _model.AddHeart(message.HeartAmount);
@@ -112,15 +106,7 @@ namespace ProjectTA.Module.SaveSystem
 
         internal void UnlockLevel(UnlockLevelMessage message)
         {
-            _model.SubtractHeart(message.LevelItem.cost);
             _model.AddStarRecord(message.LevelItem.name);
-            SaveGame(_model.SaveData);
-        }
-
-        internal void UnlockCharacter(UnlockCharacterMessage message)
-        {
-            _model.SubtractHeart(message.CharacterData.cost);
-            _model.AddUnlockedCharacter(message.CharacterData.name);
             SaveGame(_model.SaveData);
         }
 
@@ -128,12 +114,6 @@ namespace ProjectTA.Module.SaveSystem
         {
             DeleteSaveFile();
             _model.SetSaveData(LoadGame());
-        }
-
-        internal void FullStar(FullStarMessage message)
-        {
-            _model.FullStar();
-            SaveGame(_model.SaveData);
         }
     }
 }

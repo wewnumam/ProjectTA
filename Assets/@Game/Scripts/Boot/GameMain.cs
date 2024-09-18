@@ -1,6 +1,5 @@
 using Agate.MVC.Base;
 using Agate.MVC.Core;
-using ProjectTA.Module.CharacterData;
 using ProjectTA.Module.GameConstants;
 using ProjectTA.Module.GameSettings;
 using ProjectTA.Module.GameState;
@@ -18,7 +17,6 @@ namespace ProjectTA.Boot
             return new IConnector[] {
                 new SaveSystemConnector(),
                 new LevelDataConnector(),
-                new CharacterDataConnector(),
                 new GameStateConnector(),
                 new GameSettingsConnector(),
             };
@@ -29,7 +27,6 @@ namespace ProjectTA.Boot
             return new IController[] {
                 new SaveSystemController(),
                 new LevelDataController(),
-                new CharacterDataController(),
                 new GameConstantsController(),
                 new GameStateController(),
                 new GameSettingsController(),

@@ -9,10 +9,6 @@ namespace ProjectTA.Module.LevelData
         SO_LevelData CurrentLevelData { get; }
         SO_LevelCollection LevelCollection { get; }
 
-        Sprite CurrentArtwork { get; }
-        List<GameObject> CurrentStonePrefabs { get; }
         GameObject CurrentEnvironmentPrefab { get; }
-        AudioClip CurrentMusicClip { get; }
-        Material CurrentSkybox { get; }
     }
 }
