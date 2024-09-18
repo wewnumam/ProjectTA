@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: GameConstants
   m_EditorClassIdentifier: 
   isJoystickActive: 0
+  initialHealth: 10

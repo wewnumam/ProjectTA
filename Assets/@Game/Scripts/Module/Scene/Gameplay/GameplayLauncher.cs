@@ -19,6 +19,8 @@ using ProjectTA.Module.PlayerCharacter;
 using ProjectTA.Module.BulletManager;
 using ProjectTA.Module.EnemyManager;
 using ProjectTA.Module.CheatFeature;
+using ProjectTA.Module.Health;
+using ProjectTA.Module.HUD;
 
 namespace ProjectTA.Scene.Gameplay
 {
@@ -38,6 +40,8 @@ namespace ProjectTA.Scene.Gameplay
         private BulletManagerController _bulletManager;
         private EnemyManagerController _enemyManager;
         private CheatFeatureController _cheatFeature;
+        private HealthController _health;
+        private HUDController _hud;
 
         protected override IController[] GetSceneDependencies()
         {
@@ -50,6 +54,8 @@ namespace ProjectTA.Scene.Gameplay
                 new BulletManagerController(),
                 new EnemyManagerController(),
                 new CheatFeatureController(),
+                new HealthController(),
+                new HUDController(),
             };
         }
 
@@ -62,6 +68,8 @@ namespace ProjectTA.Scene.Gameplay
                 new PlayerCharacterConnector(),
                 new BulletManagerConnector(),
                 new EnemyManagerConnector(),
+                new HealthConnector(),
+                new HUDConnector(),
             };
         }
 
@@ -82,8 +90,6 @@ namespace ProjectTA.Scene.Gameplay
 
             Instantiate(_levelData.Model.CurrentEnvironmentPrefab);
 
-            _view.SetTestCallbacks(TestGameOver, TestGameWin);
-
             _gamePause.SetView(_view.GamePauseView);
             _gameWin.SetView(_view.GameWinView);
             _gameOver.SetView(_view.GameOverView);
@@ -97,17 +103,12 @@ namespace ProjectTA.Scene.Gameplay
 
             _cheatFeature.SetView(_view.CheatFeatureView);
 
+            _health.SetInitialHealth(_gameConstants.Model.GameConstants.initialHealth);
+
+            _hud.SetView(_view.HUDView);
+            _hud.SetInitialHealth(_health.Model.InitialHealth);
+
             yield return null;
-        }
-
-        private void TestGameOver()
-        {
-            Publish(new GameOverMessage());
-        }
-
-        private void TestGameWin()
-        {
-            Publish(new GameWinMessage());
         }
     }
 }

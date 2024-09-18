@@ -6,5 +6,6 @@ namespace ProjectTA.Module.GameConstants
     public class SO_GameConstants : ScriptableObject
     {
         public bool isJoystickActive;
+        public int initialHealth;
     }
 }
