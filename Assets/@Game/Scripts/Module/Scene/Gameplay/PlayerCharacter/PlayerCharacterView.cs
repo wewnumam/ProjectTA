@@ -1,12 +1,8 @@
 using Agate.MVC.Base;
-using Agate.MVC.Core;
 using NaughtyAttributes;
-using ProjectTA.Module.Input;
 using ProjectTA.Utility;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 namespace ProjectTA.Module.PlayerCharacter
 {
@@ -16,6 +12,8 @@ namespace ProjectTA.Module.PlayerCharacter
         public Rigidbody rb;
         public Camera mainCamera;
         [ReadOnly] public Vector2 direction;
+        [ReadOnly] public Vector2 aim;
+        [ReadOnly] public bool isJoystickActive;
 
         public float rayDistance = 100f;  // Distance of the raycast
         public LayerMask enemyLayer;      // Assign layer for enemies
@@ -57,13 +55,30 @@ namespace ProjectTA.Module.PlayerCharacter
 
         private void FixedUpdate()
         {
-            RotateTowardsMouse();
+            if (isJoystickActive)
+                RotatePlayerCharacter();
+            else
+                RotateTowardsMouse();
+            
             MovePlayerCharacter();
         }
 
         private void MovePlayerCharacter()
         {
             rb.velocity = new Vector3(direction.x, 0, direction.y).normalized * speed;
+        }
+
+        private void RotatePlayerCharacter()
+        {
+            if (aim.sqrMagnitude > 0.1f)
+            {
+                // Calculate the angle to rotate the player
+                float targetAngle = Mathf.Atan2(aim.x, aim.y) * Mathf.Rad2Deg;
+
+                // Smoothly rotate the player towards the target angle
+                Quaternion targetRotation = Quaternion.Euler(0, targetAngle, 0);
+                transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, speed * Time.deltaTime);
+            }
         }
 
         void RotateTowardsMouse()

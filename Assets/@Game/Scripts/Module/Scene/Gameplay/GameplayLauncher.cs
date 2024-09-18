@@ -19,6 +19,7 @@ using ProjectTA.Module.Input;
 using ProjectTA.Module.PlayerCharacter;
 using ProjectTA.Module.BulletManager;
 using ProjectTA.Module.EnemyManager;
+using ProjectTA.Module.CheatFeature;
 
 namespace ProjectTA.Scene.Gameplay
 {
@@ -38,6 +39,7 @@ namespace ProjectTA.Scene.Gameplay
         private PlayerCharacterController _playerCharacter;
         private BulletManagerController _bulletManager;
         private EnemyManagerController _enemyManager;
+        private CheatFeatureController _cheatFeature;
 
         protected override IController[] GetSceneDependencies()
         {
@@ -49,6 +51,7 @@ namespace ProjectTA.Scene.Gameplay
                 new PlayerCharacterController(),
                 new BulletManagerController(),
                 new EnemyManagerController(),
+                new CheatFeatureController(),
             };
         }
 
@@ -86,10 +89,13 @@ namespace ProjectTA.Scene.Gameplay
             _gameOver.SetView(_view.GameOverView);
 
             _playerCharacter.SetView(_view.PlayerCharacterView);
+            _playerCharacter.SetInitialActivateJoystick(_gameConstants.Model.GameConstants.isJoystickActive);
 
             _bulletManager.SetView(_view.BulletManagerView);
 
             _enemyManager.SetView(_view.EnemyManagerView);
+
+            _cheatFeature.SetView(_view.CheatFeatureView);
 
             yield return null;
         }

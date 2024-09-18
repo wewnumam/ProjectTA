@@ -10,6 +10,8 @@ namespace ProjectTA.Module.PlayerCharacter
         protected override void Connect()
         {
             Subscribe<MovePlayerCharacterMessage>(_playerCharacter.OnMove);
+            Subscribe<RotatePlayerCharacterMessage>(_playerCharacter.OnRotate);
+            Subscribe<ActivateJoystickMessage>(_playerCharacter.OnActivateJoystick);
             Subscribe<GameOverMessage>(_playerCharacter.OnGameOver);
             Subscribe<GameWinMessage>(_playerCharacter.OnGameWin);
         }
@@ -17,6 +19,8 @@ namespace ProjectTA.Module.PlayerCharacter
         protected override void Disconnect()
         {
             Unsubscribe<MovePlayerCharacterMessage>(_playerCharacter.OnMove);
+            Unsubscribe<RotatePlayerCharacterMessage>(_playerCharacter.OnRotate);
+            Unsubscribe<ActivateJoystickMessage>(_playerCharacter.OnActivateJoystick);
             Unsubscribe<GameOverMessage>(_playerCharacter.OnGameOver);
             Unsubscribe<GameWinMessage>(_playerCharacter.OnGameWin);
         }

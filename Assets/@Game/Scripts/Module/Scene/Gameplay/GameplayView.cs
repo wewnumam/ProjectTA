@@ -1,6 +1,7 @@
 using Agate.MVC.Base;
 using NaughtyAttributes;
 using ProjectTA.Module.BulletManager;
+using ProjectTA.Module.CheatFeature;
 using ProjectTA.Module.EnemyManager;
 using ProjectTA.Module.GameOver;
 using ProjectTA.Module.GamePause;
@@ -19,6 +20,7 @@ namespace ProjectTA.Scene.Gameplay
         public PlayerCharacterView PlayerCharacterView;
         public BulletManagerView BulletManagerView;
         public EnemyManagerView EnemyManagerView;
+        public CheatFeatureView CheatFeatureView;
 
         private UnityAction onGameOver, onGameWin;
 

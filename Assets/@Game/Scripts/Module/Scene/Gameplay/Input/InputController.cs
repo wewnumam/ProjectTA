@@ -20,6 +20,8 @@ namespace ProjectTA.Module.Input
             inputActions.Character.Move.performed += OnStartMove;
             inputActions.Character.Move.canceled += OnEndMove;
             inputActions.Character.Shoot.performed += OnShoot;
+            inputActions.Character.Aim.performed += OnStartAim;
+            inputActions.Character.Aim.canceled += OnEndAim;
         }
 
         public override IEnumerator Terminate()
@@ -28,6 +30,8 @@ namespace ProjectTA.Module.Input
             inputActions.Character.Move.performed -= OnStartMove;
             inputActions.Character.Move.canceled -= OnEndMove;
             inputActions.Character.Shoot.performed -= OnShoot;
+            inputActions.Character.Aim.performed -= OnStartAim;
+            inputActions.Character.Aim.canceled -= OnEndAim;
             inputActions.Character.Disable();
             
             yield return base.Terminate();
@@ -46,6 +50,16 @@ namespace ProjectTA.Module.Input
         private void OnShoot(InputAction.CallbackContext context)
         {
             Publish(new PlayerCharacterShootMessage());
+        }
+
+        private void OnStartAim(InputAction.CallbackContext context)
+        {
+            Publish(new RotatePlayerCharacterMessage(context.ReadValue<Vector2>()));
+        }
+
+        private void OnEndAim(InputAction.CallbackContext context)
+        {
+            Publish(new RotatePlayerCharacterMessage(Vector2.zero));
         }
     }
 }

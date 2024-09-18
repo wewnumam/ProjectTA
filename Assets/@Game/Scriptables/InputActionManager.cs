@@ -46,6 +46,15 @@ namespace ProjectTA.Module.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Value"",
+                    ""id"": ""b353573e-222b-482b-8bcc-99158e2d7536"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -105,6 +114,61 @@ namespace ProjectTA.Module.Input
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""69e9b34c-b7c0-41f5-bad3-37122e01963d"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""82fe64c7-1b99-4568-bda3-376da2e7d58f"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""544f0067-fd9b-434c-bdd4-54e6fd94cac3"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""b0b1dc94-c4b2-4dbf-843a-9f43e78e990a"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""fbe4de82-effc-4ef8-95f1-bb29e903adca"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""f69d273b-8fcd-45fd-8b63-4003ccc8678a"",
                     ""path"": ""<Mouse>/leftButton"",
@@ -114,6 +178,61 @@ namespace ProjectTA.Module.Input
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""912ee433-af12-4476-9373-865686d64ccf"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""5a6376a6-be14-4f8c-be23-e3757493a317"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""44436e21-e204-4b04-a89e-12374ef237e0"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""1c6befeb-c258-46ca-9935-77bfe3283c72"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""128566ae-27b0-4f7d-a9e0-0fcdea8fc870"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -233,6 +352,7 @@ namespace ProjectTA.Module.Input
             m_Character = asset.FindActionMap("Character", throwIfNotFound: true);
             m_Character_Move = m_Character.FindAction("Move", throwIfNotFound: true);
             m_Character_Shoot = m_Character.FindAction("Shoot", throwIfNotFound: true);
+            m_Character_Aim = m_Character.FindAction("Aim", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_TapStart = m_UI.FindAction("TapStart", throwIfNotFound: true);
@@ -303,12 +423,14 @@ namespace ProjectTA.Module.Input
         private List<ICharacterActions> m_CharacterActionsCallbackInterfaces = new List<ICharacterActions>();
         private readonly InputAction m_Character_Move;
         private readonly InputAction m_Character_Shoot;
+        private readonly InputAction m_Character_Aim;
         public struct CharacterActions
         {
             private @InputActionManager m_Wrapper;
             public CharacterActions(@InputActionManager wrapper) { m_Wrapper = wrapper; }
             public InputAction @Move => m_Wrapper.m_Character_Move;
             public InputAction @Shoot => m_Wrapper.m_Character_Shoot;
+            public InputAction @Aim => m_Wrapper.m_Character_Aim;
             public InputActionMap Get() { return m_Wrapper.m_Character; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -324,6 +446,9 @@ namespace ProjectTA.Module.Input
                 @Shoot.started += instance.OnShoot;
                 @Shoot.performed += instance.OnShoot;
                 @Shoot.canceled += instance.OnShoot;
+                @Aim.started += instance.OnAim;
+                @Aim.performed += instance.OnAim;
+                @Aim.canceled += instance.OnAim;
             }
 
             private void UnregisterCallbacks(ICharacterActions instance)
@@ -334,6 +459,9 @@ namespace ProjectTA.Module.Input
                 @Shoot.started -= instance.OnShoot;
                 @Shoot.performed -= instance.OnShoot;
                 @Shoot.canceled -= instance.OnShoot;
+                @Aim.started -= instance.OnAim;
+                @Aim.performed -= instance.OnAim;
+                @Aim.canceled -= instance.OnAim;
             }
 
             public void RemoveCallbacks(ICharacterActions instance)
@@ -455,6 +583,7 @@ namespace ProjectTA.Module.Input
         {
             void OnMove(InputAction.CallbackContext context);
             void OnShoot(InputAction.CallbackContext context);
+            void OnAim(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {
