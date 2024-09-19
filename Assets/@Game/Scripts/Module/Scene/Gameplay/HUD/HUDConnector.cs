@@ -9,14 +9,16 @@ namespace ProjectTA.Module.HUD
 
         protected override void Connect()
         {
-            Subscribe<AddHealthMessage>(_hud.OnAddHealth);
-            Subscribe<SubtractHealthMessage>(_hud.OnSubtractHealth);
+            Subscribe<UpdateHealthMessage>(_hud.OnUpdateHealth);
+            Subscribe<UpdatePuzzleCountMessage>(_hud.OnUpdatePuzzleCount);
+            Subscribe<UpdateKillCountMessage>(_hud.OnUpdateKillCount);
         }
 
         protected override void Disconnect()
         {
-            Unsubscribe<AddHealthMessage>(_hud.OnAddHealth);
-            Unsubscribe<SubtractHealthMessage>(_hud.OnSubtractHealth);
+            Unsubscribe<UpdateHealthMessage>(_hud.OnUpdateHealth);
+            Unsubscribe<UpdatePuzzleCountMessage>(_hud.OnUpdatePuzzleCount);
+            Unsubscribe<UpdateKillCountMessage>(_hud.OnUpdateKillCount);
         }
     }
 }

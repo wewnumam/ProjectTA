@@ -8,12 +8,20 @@ namespace ProjectTA.Module.CheatFeature
     public class CheatFeatureView : BaseView
     {
         [SerializeField] Toggle activateJoystickToggle;
+        [Header("Game State")]
         [SerializeField] Button gameWinButton;
         [SerializeField] Button gameOverButton;
-        
-        public int healthAmount = 1;
+
+        [Header("Health")]
         [SerializeField] Button addHealthButton;
         [SerializeField] Button subtractHealthButton;
+        
+        [Header("Mission")]
+        [SerializeField] Button addCollectedPuzzlePieceCountButton;
+        [SerializeField] Button subtractCollectedPuzzlePieceCountButton;
+        [SerializeField] Button addKillCountButton;
+        [SerializeField] Button subtractKillCountButton;
+
 
         public void SetActivateJoystickCallbacks(UnityAction<bool> onActivateJoystick)
         {
@@ -35,6 +43,18 @@ namespace ProjectTA.Module.CheatFeature
             addHealthButton.onClick.AddListener(onAddHealth);
             subtractHealthButton.onClick.RemoveAllListeners();
             subtractHealthButton.onClick.AddListener(onSubtractHealth);
+        }
+
+        public void SetMissionCallbacks(UnityAction onAddPuzzlePieceCount, UnityAction onSubtractPuzzlePieceCount, UnityAction onAddKillCount, UnityAction onSubtractKillCount)
+        {
+            addCollectedPuzzlePieceCountButton.onClick.RemoveAllListeners();
+            addCollectedPuzzlePieceCountButton.onClick.AddListener(onAddPuzzlePieceCount);
+            subtractCollectedPuzzlePieceCountButton.onClick.RemoveAllListeners();
+            subtractCollectedPuzzlePieceCountButton.onClick.AddListener(onSubtractPuzzlePieceCount);
+            addKillCountButton.onClick.RemoveAllListeners();
+            addKillCountButton.onClick.AddListener(onAddKillCount);
+            subtractKillCountButton.onClick.RemoveAllListeners();
+            subtractKillCountButton.onClick.AddListener(onSubtractKillCount);
         }
     }
 }

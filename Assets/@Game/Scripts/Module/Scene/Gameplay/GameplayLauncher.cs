@@ -21,6 +21,7 @@ using ProjectTA.Module.EnemyManager;
 using ProjectTA.Module.CheatFeature;
 using ProjectTA.Module.Health;
 using ProjectTA.Module.HUD;
+using ProjectTA.Module.Mission;
 
 namespace ProjectTA.Scene.Gameplay
 {
@@ -42,6 +43,7 @@ namespace ProjectTA.Scene.Gameplay
         private CheatFeatureController _cheatFeature;
         private HealthController _health;
         private HUDController _hud;
+        private MissionController _mission;
 
         protected override IController[] GetSceneDependencies()
         {
@@ -56,6 +58,7 @@ namespace ProjectTA.Scene.Gameplay
                 new CheatFeatureController(),
                 new HealthController(),
                 new HUDController(),
+                new MissionController(),
             };
         }
 
@@ -70,6 +73,7 @@ namespace ProjectTA.Scene.Gameplay
                 new EnemyManagerConnector(),
                 new HealthConnector(),
                 new HUDConnector(),
+                new MissionConnector(),
             };
         }
 
@@ -103,10 +107,11 @@ namespace ProjectTA.Scene.Gameplay
 
             _cheatFeature.SetView(_view.CheatFeatureView);
 
+            _hud.SetView(_view.HUDView);
+            
             _health.SetInitialHealth(_gameConstants.Model.GameConstants.initialHealth);
 
-            _hud.SetView(_view.HUDView);
-            _hud.SetInitialHealth(_health.Model.InitialHealth);
+            _mission.SetPuzzlePieceCount(3);
 
             yield return null;
         }

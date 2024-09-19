@@ -11,16 +11,19 @@ namespace ProjectTA.Module.Health
         {
             _model.SetInitialHealth(initialHealth);
             _model.SetCurrentHealth(initialHealth);
+            Publish(new UpdateHealthMessage(_model.InitialHealth, _model.CurrentHealth, true));
         }
 
         internal void OnAddHealth(AddHealthMessage message)
         {
             _model.AddCurrentHealth(message.Amount);
+            Publish(new UpdateHealthMessage(_model.InitialHealth, _model.CurrentHealth, true));
         }
 
         internal void OnSubtractHealth(SubtractHealthMessage message)
         {
             _model.SubtractCurrentHealth(message.Amount);
+            Publish(new UpdateHealthMessage(_model.InitialHealth, _model.CurrentHealth, false));
 
             if (_model.IsCurrentHealthLessThanZero())
                 Publish(new GameOverMessage());

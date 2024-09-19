@@ -12,6 +12,7 @@ namespace ProjectTA.Module.CheatFeature
             view.SetActivateJoystickCallbacks(OnActivateJoystick);
             view.SetGameStateCallbacks(OnGameWin, OnGameOver);
             view.SetHealthCallbacks(OnAddHealth, OnSubtractHealth);
+            view.SetMissionCallbacks(OnAddPuzzlePieceCount, OnSubtractPuzzlePieceCount, OnAddKillCount, OnSubtractKillCount);
         }
 
         private void OnActivateJoystick(bool isJoysticActive)
@@ -31,12 +32,32 @@ namespace ProjectTA.Module.CheatFeature
 
         private void OnAddHealth()
         {
-            Publish(new AddHealthMessage(_view.healthAmount));
+            Publish(new AddHealthMessage(1));
         }
 
         private void OnSubtractHealth()
         {
-            Publish(new SubtractHealthMessage(_view.healthAmount));
+            Publish(new SubtractHealthMessage(1));
+        }
+
+        private void OnAddPuzzlePieceCount()
+        {
+            Publish(new AddCollectedPuzzlePieceCountMessage(1));
+        }
+
+        private void OnSubtractPuzzlePieceCount()
+        {
+            Publish(new SubtractCollectedPuzzlePieceCountMessage(1));
+        }
+
+        private void OnAddKillCount()
+        {
+            Publish(new AddKillCountMessage(1));
+        }
+
+        private void OnSubtractKillCount()
+        {
+            Publish(new SubtractKillCountMessage(1));
         }
     }
 }

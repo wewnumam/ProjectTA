@@ -1,26 +1,26 @@
 using Agate.MVC.Base;
+using Agate.MVC.Core;
 using ProjectTA.Message;
 using ProjectTA.Utility;
 using System;
 
 namespace ProjectTA.Module.HUD
 {
-    public class HUDController : ObjectController<HUDController, HUDModel, IHUDModel, HUDView>
+    public class HUDController : ObjectController<HUDController, HUDView>
     {
-        public void SetInitialHealth(int initialHealth)
+        internal void OnUpdateHealth(UpdateHealthMessage message)
         {
-            _model.SetInitialHealth(initialHealth);
-            _model.SetCurrentHealth(initialHealth);
+            _view.healthText.SetText($"{message.CurrentHealth}/{message.InitialHealth}");
         }
 
-        internal void OnAddHealth(AddHealthMessage message)
+        internal void OnUpdatePuzzleCount(UpdatePuzzleCountMessage message)
         {
-            _model.AddCurrentHealth(message.Amount);
+            _view.puzzleCountText.SetText($"{message.CollectedPuzzlePieceCount}/{message.PuzzlePieceCount}");
         }
 
-        internal void OnSubtractHealth(SubtractHealthMessage message)
+        internal void OnUpdateKillCount(UpdateKillCountMessage message)
         {
-            _model.SubtractCurrentHealth(message.Amount);
+            _view.killCountText.SetText($"{message.KillCount}");
         }
     }
 }
