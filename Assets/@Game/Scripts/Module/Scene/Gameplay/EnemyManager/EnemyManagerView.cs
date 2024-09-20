@@ -11,6 +11,7 @@ namespace ProjectTA.Module.EnemyManager
         public float spawnDistance = 10f; // Distance from the camera where enemies should spawn
         public float spawnInterval = 5f; // Interval in seconds between spawns
         private Camera mainCamera;
+        private int enemyCount;
 
         void Start()
         {
@@ -33,7 +34,9 @@ namespace ProjectTA.Module.EnemyManager
 
             // Instantiate the enemy at the spawn position
             GameObject obj = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+            obj.name = $"Enemy_{enemyCount}";
             obj.GetComponent<EnemyView>().player = player;
+            enemyCount++;
         }
 
         Vector3 GetRandomSpawnPosition(float minX, float maxX, float minZ, float maxZ)

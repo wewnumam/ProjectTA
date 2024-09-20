@@ -6,6 +6,22 @@ namespace ProjectTA.Module.PlayerCharacter
 {
     public class PlayerCharacterController : ObjectController<PlayerCharacterController, PlayerCharacterView>
     {
+        public override void SetView(PlayerCharacterView view)
+        {
+            base.SetView(view);
+            view.SetCollideCallbacks(OnCollideWithEnemy, OnCollideWithPuzzlePiece);
+        }
+
+        private void OnCollideWithEnemy()
+        {
+            Publish(new SubtractHealthMessage(1));
+        }
+
+        private void OnCollideWithPuzzlePiece()
+        {
+            Publish(new AddCollectedPuzzlePieceCountMessage(1));
+        }
+
         public void SetInitialActivateJoystick(bool isJoystickActive)
         {
             _view.isJoystickActive = isJoystickActive;
@@ -33,5 +49,6 @@ namespace ProjectTA.Module.PlayerCharacter
         {
             _view.isJoystickActive = message.IsJoystickActive;
         }
+
     }
 }

@@ -2,6 +2,7 @@ using Agate.MVC.Base;
 using NaughtyAttributes;
 using ProjectTA.Utility;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace ProjectTA.Module.PlayerCharacter
@@ -19,6 +20,9 @@ namespace ProjectTA.Module.PlayerCharacter
         public LayerMask enemyLayer;      // Assign layer for enemies
         public LineRenderer lineRenderer; // LineRenderer component
         public float fixedYPosition = 1f; // The fixed Y position for the ray and line
+
+        private UnityAction onCollideWithEnemy;
+        private UnityAction onCollideWithPuzzlePiece;
 
         void Update()
         {
@@ -98,6 +102,24 @@ namespace ProjectTA.Module.PlayerCharacter
                     rb.MoveRotation(targetRotation);
                 }
             }
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.CompareTag(TagManager.TAG_ENEMY))
+                onCollideWithEnemy?.Invoke();
+
+            if (collision.gameObject.CompareTag(TagManager.TAG_PUZZLEPIECE))
+            {
+                onCollideWithPuzzlePiece?.Invoke();
+                Destroy(collision.gameObject);
+            }
+        }
+
+        public void SetCollideCallbacks(UnityAction onCollideWithEnemy, UnityAction onCollideWithPuzzlePiece)
+        {
+            this.onCollideWithEnemy = onCollideWithEnemy;
+            this.onCollideWithPuzzlePiece = onCollideWithPuzzlePiece;
         }
     }
 }
