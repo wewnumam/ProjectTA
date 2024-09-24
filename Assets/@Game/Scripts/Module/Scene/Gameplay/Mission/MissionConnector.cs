@@ -14,6 +14,7 @@ namespace ProjectTA.Module.Mission
             Subscribe<SubtractCollectedPuzzlePieceCountMessage>(_mission.OnSubtractCollectedPuzzlePiece);
             Subscribe<AddKillCountMessage>(_mission.OnAddKillCount);
             Subscribe<SubtractKillCountMessage>(_mission.OnSubtractKillCount);
+            Subscribe<AddPadlockOnPlaceMessage>(_mission.OnAddPadlockOnPlace);
         }
 
         protected override void Disconnect()
@@ -22,6 +23,7 @@ namespace ProjectTA.Module.Mission
             Unsubscribe<SubtractCollectedPuzzlePieceCountMessage>(_mission.OnSubtractCollectedPuzzlePiece);
             Unsubscribe<AddKillCountMessage>(_mission.OnAddKillCount);
             Unsubscribe<SubtractKillCountMessage>(_mission.OnSubtractKillCount);
+            Unsubscribe<AddPadlockOnPlaceMessage>(_mission.OnAddPadlockOnPlace);
         }
     }
 }

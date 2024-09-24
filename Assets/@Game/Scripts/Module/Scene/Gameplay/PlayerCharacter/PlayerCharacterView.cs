@@ -23,6 +23,7 @@ namespace ProjectTA.Module.PlayerCharacter
 
         private UnityAction onCollideWithEnemy;
         private UnityAction onCollideWithPuzzlePiece;
+        private UnityAction onCollideWithPadlock;
 
         void Update()
         {
@@ -114,12 +115,16 @@ namespace ProjectTA.Module.PlayerCharacter
                 onCollideWithPuzzlePiece?.Invoke();
                 Destroy(collision.gameObject);
             }
+
+            if (collision.gameObject.CompareTag(TagManager.TAG_PADLOCK))
+                onCollideWithPadlock?.Invoke();
         }
 
-        public void SetCollideCallbacks(UnityAction onCollideWithEnemy, UnityAction onCollideWithPuzzlePiece)
+        public void SetCollideCallbacks(UnityAction onCollideWithEnemy, UnityAction onCollideWithPuzzlePiece, UnityAction onCollideWithPadlock)
         {
             this.onCollideWithEnemy = onCollideWithEnemy;
             this.onCollideWithPuzzlePiece = onCollideWithPuzzlePiece;
+            this.onCollideWithPadlock = onCollideWithPadlock;
         }
     }
 }

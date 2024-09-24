@@ -9,6 +9,7 @@ namespace ProjectTA.Module.Mission
         public int CollectedPuzzlePieceCount { get; private set; }
 
         public int KillCount { get; private set; }
+        public int PadlockOnPlaceCount { get; private set; }
 
         public void SetPuzzleCount(int puzzleCount)
         {
@@ -52,6 +53,12 @@ namespace ProjectTA.Module.Mission
             SetDataAsDirty();
         }
 
-        public bool IsCollectedPuzzleCompleted() => CollectedPuzzlePieceCount >= PuzzlePieceCount;
+        public void AddPadlockOnPlaceCount(int amount)
+        {
+            PadlockOnPlaceCount += amount;
+            SetDataAsDirty();
+        }
+
+        public bool IsPuzzleCompleted() => PadlockOnPlaceCount >= PuzzlePieceCount;
     }
 }

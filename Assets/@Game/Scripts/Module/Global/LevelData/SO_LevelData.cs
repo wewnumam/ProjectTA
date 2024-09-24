@@ -10,6 +10,7 @@ namespace ProjectTA.Module.LevelData
     {
         [Header("Display")]
         public string title;
+        public List<string> puzzlePieceLabels = new List<string>();
 
         [Header("Environment")]
         public GameObject environmentPrefab;

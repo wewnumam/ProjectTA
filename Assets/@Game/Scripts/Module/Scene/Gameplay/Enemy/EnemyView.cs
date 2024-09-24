@@ -1,6 +1,7 @@
 using Agate.MVC.Base;
 using ProjectTA.Utility;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace ProjectTA.Module.Enemy
 {
@@ -11,9 +12,12 @@ namespace ProjectTA.Module.Enemy
         public float rayDistance = 2f;    // Distance for the raycast to detect obstacles
         public float rayAngle = 30f;      // Angle to spread the rays to detect obstacles
         public float rotationSpeed = 5f;  // Speed of rotation towards movement direction
+        public UnityEvent onKill;
         private Vector3 movementDirection; // The direction the enemy should move in
 
         private Rigidbody rb;
+        private bool isDie;
+
 
         private void Start()
         {
@@ -38,6 +42,12 @@ namespace ProjectTA.Module.Enemy
             AvoidObstacles();
             Move();
             RotateTowardsMovementDirection();
+        }
+
+        public void SetCallback(UnityAction onKill)
+        {
+            this.onKill.RemoveAllListeners();
+            this.onKill.AddListener(onKill);
         }
 
         private void FollowPlayer()
@@ -104,14 +114,16 @@ namespace ProjectTA.Module.Enemy
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.CompareTag(TagManager.TAG_BULLET))
+            if (collision.gameObject.CompareTag(TagManager.TAG_BULLET) && !isDie)
             {
+                isDie = true;
                 Invoke(nameof(Kill), 2f);
             }
         }
 
         private void Kill()
         {
+            onKill?.Invoke();
             Destroy(gameObject);
         }
 

@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: LevelData_0
   m_EditorClassIdentifier: 
   title: Level 1
+  puzzlePieceLabels:
+  - aaaa
+  - bbbb
+  - cccc
   environmentPrefab: {fileID: 5773407093173007764, guid: e42d8a40db97a8c4a872ed892f4e3ea7,
     type: 3}

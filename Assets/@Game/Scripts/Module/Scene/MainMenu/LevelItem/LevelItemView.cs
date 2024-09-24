@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 namespace ProjectTA.Module.LevelItem
 {
-    public class LevelItemView : ObjectView<ILevelItemModel>
+    public class LevelItemView : BaseView
     {
         [ReadOnly] public SO_LevelData levelData;
 
@@ -20,14 +20,6 @@ namespace ProjectTA.Module.LevelItem
         {
             chooseButton.onClick.RemoveAllListeners();
             chooseButton.onClick.AddListener(onChooseLevel);
-        }
-
-        protected override void InitRenderModel(ILevelItemModel model)
-        {
-        }
-
-        protected override void UpdateRenderModel(ILevelItemModel model)
-        {
         }
     }
 }

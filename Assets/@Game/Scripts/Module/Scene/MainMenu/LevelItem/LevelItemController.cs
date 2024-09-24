@@ -4,11 +4,10 @@ using ProjectTA.Message;
 
 namespace ProjectTA.Module.LevelItem
 {
-    public class LevelItemController : ObjectController<LevelItemController, LevelItemModel, ILevelItemModel, LevelItemView>
+    public class LevelItemController : ObjectController<LevelItemController, LevelItemView>
     {
-        public void Init(LevelItemModel model, LevelItemView view)
+        public void Init(LevelItemView view)
         {
-            _model = model;
             SetView(view);
         }
 

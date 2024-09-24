@@ -10,6 +10,7 @@
         public const string TAG_ENEMY = "Enemy";
         public const string TAG_BULLET = "Bullet";
         public const string TAG_PUZZLEPIECE = "PuzzlePiece";
+        public const string TAG_PADLOCK = "Padlock";
 
         public const string ANIM_IDLE = "Idle";
         public static readonly string[] ANIM_POSE = { "Pose1", "Pose2" };

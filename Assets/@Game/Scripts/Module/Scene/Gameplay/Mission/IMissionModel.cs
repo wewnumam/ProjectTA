@@ -6,6 +6,7 @@ namespace ProjectTA.Module.Mission
     {
         int PuzzlePieceCount { get; }
         int CollectedPuzzlePieceCount { get; }
+        int PadlockOnPlaceCount { get; }
         int KillCount { get; }
     }
 }

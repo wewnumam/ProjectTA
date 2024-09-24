@@ -16,7 +16,8 @@ namespace ProjectTA.Utility
             Playing,
             Pause,
             GameOver,
-            GameWin
+            GameWin,
+            ShowPadlock
         }
     }
 }

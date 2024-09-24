@@ -1,5 +1,6 @@
 using Agate.MVC.Base;
 using ProjectTA.Message;
+using System;
 using UnityEngine;
 
 namespace ProjectTA.Module.Mission
@@ -17,9 +18,6 @@ namespace ProjectTA.Module.Mission
         {
             _model.AddCollectedPuzzlePieceCount(message.Amount);
             Publish(new UpdatePuzzleCountMessage(_model.PuzzlePieceCount, _model.CollectedPuzzlePieceCount, true));
-
-            if (_model.IsCollectedPuzzleCompleted())
-                Publish(new GameWinMessage());
         }
 
         internal void OnAddKillCount(AddKillCountMessage message)
@@ -38,6 +36,14 @@ namespace ProjectTA.Module.Mission
         {
             _model.SubtractKillCount(message.Amount);
             Publish(new UpdateKillCountMessage(_model.KillCount, false));
+        }
+
+        internal void OnAddPadlockOnPlace(AddPadlockOnPlaceMessage message)
+        {
+            _model.AddPadlockOnPlaceCount(message.Amount);
+
+            if (_model.IsPuzzleCompleted())
+                Publish(new GameWinMessage());
         }
     }
 }

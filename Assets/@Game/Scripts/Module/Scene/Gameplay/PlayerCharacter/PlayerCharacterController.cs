@@ -9,7 +9,7 @@ namespace ProjectTA.Module.PlayerCharacter
         public override void SetView(PlayerCharacterView view)
         {
             base.SetView(view);
-            view.SetCollideCallbacks(OnCollideWithEnemy, OnCollideWithPuzzlePiece);
+            view.SetCollideCallbacks(OnCollideWithEnemy, OnCollideWithPuzzlePiece, OnCollideWithPadlock);
         }
 
         private void OnCollideWithEnemy()
@@ -20,6 +20,11 @@ namespace ProjectTA.Module.PlayerCharacter
         private void OnCollideWithPuzzlePiece()
         {
             Publish(new AddCollectedPuzzlePieceCountMessage(1));
+        }
+
+        private void OnCollideWithPadlock()
+        {
+            Publish(new ShowPadlockMessage());
         }
 
         public void SetInitialActivateJoystick(bool isJoystickActive)

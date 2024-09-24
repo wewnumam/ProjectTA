@@ -22,6 +22,7 @@ using ProjectTA.Module.CheatFeature;
 using ProjectTA.Module.Health;
 using ProjectTA.Module.HUD;
 using ProjectTA.Module.Mission;
+using ProjectTA.Module.Padlock;
 
 namespace ProjectTA.Scene.Gameplay
 {
@@ -44,6 +45,7 @@ namespace ProjectTA.Scene.Gameplay
         private HealthController _health;
         private HUDController _hud;
         private MissionController _mission;
+        private PadlockController _padlock;
 
         protected override IController[] GetSceneDependencies()
         {
@@ -59,6 +61,7 @@ namespace ProjectTA.Scene.Gameplay
                 new HealthController(),
                 new HUDController(),
                 new MissionController(),
+                new PadlockController(),
             };
         }
 
@@ -74,6 +77,7 @@ namespace ProjectTA.Scene.Gameplay
                 new HealthConnector(),
                 new HUDConnector(),
                 new MissionConnector(),
+                new PadlockConnector(),
             };
         }
 
@@ -111,7 +115,10 @@ namespace ProjectTA.Scene.Gameplay
             
             _health.SetInitialHealth(_gameConstants.Model.GameConstants.initialHealth);
 
-            _mission.SetPuzzlePieceCount(3);
+            _mission.SetPuzzlePieceCount(_levelData.Model.CurrentLevelData.puzzlePieceLabels.Count);
+
+            _padlock.SetPuzzleLabels(_levelData.Model.CurrentLevelData.puzzlePieceLabels);
+            _padlock.SetView(_view.PadlockView);
 
             yield return null;
         }

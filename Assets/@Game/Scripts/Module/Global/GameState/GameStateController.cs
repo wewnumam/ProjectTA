@@ -13,6 +13,7 @@ namespace ProjectTA.Module.GameState
         public bool IsStatePause() => _model.GameState == EnumManager.GameState.Pause;
         public bool IsStateGameOver() => _model.GameState == EnumManager.GameState.GameOver;
         public bool IsStateGameWin() => _model.GameState == EnumManager.GameState.GameWin;
+        public bool IsStateShowPadlock() => _model.GameState == EnumManager.GameState.ShowPadlock;
         
         public override IEnumerator Initialize()
         {

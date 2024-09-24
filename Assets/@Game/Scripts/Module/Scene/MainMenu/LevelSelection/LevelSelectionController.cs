@@ -30,11 +30,10 @@ namespace ProjectTA.Module.LevelSelection
 
                 levelItemView.levelData = levelItem;
                 levelItemView.title.SetText(levelItem.title);
-                
-                LevelItemModel levelItemModel = new LevelItemModel();
+
                 LevelItemController levelItemController = new LevelItemController();
                 InjectDependencies(levelItemController);
-                levelItemController.Init(levelItemModel, levelItemView);
+                levelItemController.Init(levelItemView);
             }
         }
 
