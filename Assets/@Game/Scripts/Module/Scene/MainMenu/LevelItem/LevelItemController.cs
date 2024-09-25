@@ -19,8 +19,7 @@ namespace ProjectTA.Module.LevelItem
 
         private void OnChooseLevel()
         {
-            Publish(new UnlockLevelMessage(_view.levelData));
-            Publish(new ChooseLevelMessage(_view.levelData.name));
+            Publish(new ChooseLevelMessage(_view.levelData));
         }
     }
 }

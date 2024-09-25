@@ -115,10 +115,13 @@ namespace ProjectTA.Scene.Gameplay
             
             _health.SetInitialHealth(_gameConstants.Model.GameConstants.initialHealth);
 
+            _mission.SetCurrentLevelData(_levelData.Model.CurrentLevelData);
             _mission.SetPuzzlePieceCount(_levelData.Model.CurrentLevelData.puzzlePieceLabels.Count);
 
             _padlock.SetPuzzleLabels(_levelData.Model.CurrentLevelData.puzzlePieceLabels);
             _padlock.SetView(_view.PadlockView);
+
+            Publish(new GameStateMessage(EnumManager.GameState.Playing));
 
             yield return null;
         }

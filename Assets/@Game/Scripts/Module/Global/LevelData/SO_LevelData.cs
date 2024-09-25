@@ -14,5 +14,10 @@ namespace ProjectTA.Module.LevelData
 
         [Header("Environment")]
         public GameObject environmentPrefab;
+
+        [Header("Types")]
+        public bool isLockedLevel;
+        [ShowIf(nameof(isLockedLevel))]
+        public SO_LevelData levelGate;
     }
 }

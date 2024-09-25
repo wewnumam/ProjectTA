@@ -7,7 +7,10 @@ namespace ProjectTA.Module.CheatFeature
 {
     public class CheatFeatureView : BaseView
     {
+        [Header("Utility")]
+        [SerializeField] Button deleteSaveDataButton; 
         [SerializeField] Toggle activateJoystickToggle;
+
         [Header("Game State")]
         [SerializeField] Button gameWinButton;
         [SerializeField] Button gameOverButton;
@@ -22,9 +25,11 @@ namespace ProjectTA.Module.CheatFeature
         [SerializeField] Button addKillCountButton;
         [SerializeField] Button subtractKillCountButton;
 
-
-        public void SetActivateJoystickCallbacks(UnityAction<bool> onActivateJoystick)
+        public void SetUtilityCallbacks(UnityAction ondeleteSaveData, UnityAction<bool> onActivateJoystick)
         {
+            deleteSaveDataButton.onClick.RemoveAllListeners();
+            deleteSaveDataButton.onClick.AddListener(ondeleteSaveData);
+
             activateJoystickToggle.onValueChanged.RemoveAllListeners();
             activateJoystickToggle.onValueChanged.AddListener(onActivateJoystick);
         }

@@ -9,5 +9,6 @@ namespace ProjectTA.Module.LevelSelection
     {
         SO_LevelCollection LevelCollection { get; }
         SO_LevelData CurrentLevelData { get; }
+        List<string> UnlockedLevels { get; }
     }
 }

@@ -1,15 +1,21 @@
 using Agate.MVC.Base;
+using ProjectTA.Module.LevelData;
 
 namespace ProjectTA.Module.Mission
 {
     public class MissionModel : BaseModel, IMissionModel
     {
+        public SO_LevelData CurrentLevelData { get; private set; }
         public int PuzzlePieceCount { get; private set; }
-
         public int CollectedPuzzlePieceCount { get; private set; }
-
         public int KillCount { get; private set; }
         public int PadlockOnPlaceCount { get; private set; }
+
+        public void SetCurrentLevelData(SO_LevelData levelData)
+        {
+            CurrentLevelData = levelData;
+            SetDataAsDirty();
+        }
 
         public void SetPuzzleCount(int puzzleCount)
         {

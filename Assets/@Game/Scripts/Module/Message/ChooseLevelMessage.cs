@@ -4,11 +4,11 @@ namespace ProjectTA.Message
 {
     public struct ChooseLevelMessage
     {
-        public string LevelName { get; }
+        public SO_LevelData LevelData { get; }
 
-        public ChooseLevelMessage(string levelName) 
+        public ChooseLevelMessage(SO_LevelData levelData) 
         { 
-            LevelName = levelName;
+            LevelData = levelData;
         }
     }
 }

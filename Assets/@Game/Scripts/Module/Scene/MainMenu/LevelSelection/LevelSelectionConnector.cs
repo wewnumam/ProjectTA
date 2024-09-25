@@ -9,12 +9,12 @@ namespace ProjectTA.Module.LevelSelection
 
         protected override void Connect()
         {
-            Subscribe<UnlockLevelMessage>(_levelSelection.OnUnlockLevel);
+            Subscribe<ChooseLevelMessage>(_levelSelection.OnChooseLevel);
         }
 
         protected override void Disconnect()
         {
-            Unsubscribe<UnlockLevelMessage>(_levelSelection.OnUnlockLevel);
+            Unsubscribe<ChooseLevelMessage>(_levelSelection.OnChooseLevel);
         }
     }
 }

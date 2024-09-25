@@ -9,10 +9,15 @@ namespace ProjectTA.Module.CheatFeature
         public override void SetView(CheatFeatureView view)
         {
             base.SetView(view);
-            view.SetActivateJoystickCallbacks(OnActivateJoystick);
+            view.SetUtilityCallbacks(OnDeleteSaveData, OnActivateJoystick);
             view.SetGameStateCallbacks(OnGameWin, OnGameOver);
             view.SetHealthCallbacks(OnAddHealth, OnSubtractHealth);
             view.SetMissionCallbacks(OnAddPuzzlePieceCount, OnSubtractPuzzlePieceCount, OnAddKillCount, OnSubtractKillCount);
+        }
+
+        private void OnDeleteSaveData()
+        {
+            Publish(new DeleteSaveDataMessage());
         }
 
         private void OnActivateJoystick(bool isJoysticActive)

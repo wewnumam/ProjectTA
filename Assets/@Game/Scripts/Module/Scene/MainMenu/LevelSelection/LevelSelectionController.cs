@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ProjectTA.Module.LevelSelection
 {
@@ -13,6 +14,7 @@ namespace ProjectTA.Module.LevelSelection
     {
         public void SetLevelCollection(SO_LevelCollection levelCollection) => _model.SetLevelCollection(levelCollection);
         public void SetCurrentLevelData(SO_LevelData levelData) => _model.SetCurrentLevelData(levelData);
+        public void SetUnlockedLevels(List<string> unlockedLevels) => _model.SetUnlockedLevels(unlockedLevels);
 
         public override void SetView(LevelSelectionView view)
         {
@@ -30,6 +32,9 @@ namespace ProjectTA.Module.LevelSelection
 
                 levelItemView.levelData = levelItem;
                 levelItemView.title.SetText(levelItem.title);
+                
+                if (levelItem.isLockedLevel)
+                    levelItemView.GetComponent<Button>().interactable = _model.IsLevelUnlocked(levelItem.levelGate.name);
 
                 LevelItemController levelItemController = new LevelItemController();
                 InjectDependencies(levelItemController);
@@ -37,14 +42,9 @@ namespace ProjectTA.Module.LevelSelection
             }
         }
 
-        internal void OnUnlockLevel(UnlockLevelMessage message)
-        {
-            _model.SetCurrentLevelData(message.LevelItem);
-            Debug.Log(message.LevelItem.title);
-        }
-
         internal void OnChooseLevel(ChooseLevelMessage message)
         {
+            _model.SetCurrentLevelData(message.LevelData);
         }
     }
 }

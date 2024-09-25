@@ -56,6 +56,7 @@ namespace ProjectTA.Scene.MainMenu
 
             _levelSelection.SetLevelCollection(_levelData.Model.LevelCollection);
             _levelSelection.SetCurrentLevelData(_levelData.Model.CurrentLevelData);
+            _levelSelection.SetUnlockedLevels(_saveSystem.Model.SaveData.UnlockedLevels);
             _levelSelection.SetView(_view.LevelSelectionView);
 
             yield return null;

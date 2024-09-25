@@ -1,5 +1,6 @@
 using Agate.MVC.Base;
 using ProjectTA.Message;
+using ProjectTA.Module.LevelData;
 using System;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ namespace ProjectTA.Module.Mission
 {
     public class MissionController : DataController<MissionController, MissionModel, IMissionModel>
     {
+        public void SetCurrentLevelData(SO_LevelData levelData) => _model.SetCurrentLevelData(levelData);
+
         public void SetPuzzlePieceCount(int puzzlePieceCount)
         {
             _model.SetPuzzleCount(puzzlePieceCount);
@@ -43,7 +46,11 @@ namespace ProjectTA.Module.Mission
             _model.AddPadlockOnPlaceCount(message.Amount);
 
             if (_model.IsPuzzleCompleted())
+            {
+
                 Publish(new GameWinMessage());
+                Publish(new GameResultMessage(_model.CurrentLevelData));
+            }
         }
     }
 }

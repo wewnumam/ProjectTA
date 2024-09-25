@@ -80,34 +80,13 @@ namespace ProjectTA.Module.SaveSystem
             SaveGame(_model.SaveData);
         }
 
-        internal void SaveHeartResult(GameResultHeartMessage message)
+        internal void SaveGameResult(GameResultMessage message)
         {
-            _model.AddHeart(message.HeartAmount);
-            SaveGame(_model.SaveData);
-        }
-
-        internal void SaveStarResult(GameResultStarMessage message)
-        {
-            if (_model.IsNewStar(message.StarAmount))
+            if (!_model.IsLevelUnlocked(message.LevelData.name) && message.LevelData != null)
             {
-                _model.SetStarRecord(message.StarAmount);
+                _model.AddUnlockedLevel(message.LevelData.name);
                 SaveGame(_model.SaveData);
             }
-        }
-
-        internal void SaveScoreResult(GameResultScoreMessage message)
-        {
-            if (_model.IsNewHighScore(message.Score))
-            {
-                _model.SetHighscore(message.Score);
-                SaveGame(_model.SaveData);
-            }
-        }
-
-        internal void UnlockLevel(UnlockLevelMessage message)
-        {
-            _model.AddStarRecord(message.LevelItem.name);
-            SaveGame(_model.SaveData);
         }
 
         internal void DeleteSaveData(DeleteSaveDataMessage message)

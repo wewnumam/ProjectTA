@@ -30,9 +30,9 @@ namespace ProjectTA.Module.LevelData
 
         internal void OnChooseLevel(ChooseLevelMessage message)
         {
-            Debug.Log($"CHOOSE LEVEL: {message.LevelName}");
-            GameMain.Instance.RunCoroutine(SetCurrentLevel(message.LevelName));
-            _saveSystemController.SetCurrentLevelName(message.LevelName);
+            Debug.Log($"CHOOSE LEVEL: {message.LevelData}");
+            GameMain.Instance.RunCoroutine(SetCurrentLevel(message.LevelData.name));
+            _saveSystemController.SetCurrentLevelName(message.LevelData.name);
         }
     }
 }
