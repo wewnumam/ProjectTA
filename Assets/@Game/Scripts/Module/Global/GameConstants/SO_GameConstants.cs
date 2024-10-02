@@ -7,5 +7,6 @@ namespace ProjectTA.Module.GameConstants
     {
         public bool isJoystickActive;
         public int initialHealth;
+        public float shootingRate;
     }
 }

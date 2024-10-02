@@ -19,7 +19,8 @@ namespace ProjectTA.Module.Input
             inputActions.Character.Enable();
             inputActions.Character.Move.performed += OnStartMove;
             inputActions.Character.Move.canceled += OnEndMove;
-            inputActions.Character.Shoot.performed += OnShoot;
+            inputActions.Character.Shoot.started += OnShootStart;
+            inputActions.Character.Shoot.canceled += OnShootEnd;
             inputActions.Character.Aim.performed += OnStartAim;
             inputActions.Character.Aim.canceled += OnEndAim;
         }
@@ -29,7 +30,7 @@ namespace ProjectTA.Module.Input
 
             inputActions.Character.Move.performed -= OnStartMove;
             inputActions.Character.Move.canceled -= OnEndMove;
-            inputActions.Character.Shoot.performed -= OnShoot;
+            inputActions.Character.Shoot.performed -= OnShootStart;
             inputActions.Character.Aim.performed -= OnStartAim;
             inputActions.Character.Aim.canceled -= OnEndAim;
             inputActions.Character.Disable();
@@ -47,10 +48,15 @@ namespace ProjectTA.Module.Input
             Publish(new MovePlayerCharacterMessage(Vector2.zero));
         }
 
-        private void OnShoot(InputAction.CallbackContext context)
+        private void OnShootStart(InputAction.CallbackContext context)
         {
-            Publish(new PlayerCharacterShootMessage());
+            Publish(new PlayerCharacterShootStartMessage());
         }
+        private void OnShootEnd(InputAction.CallbackContext context)
+        {
+            Publish(new PlayerCharacterShootEndMessage());
+        }
+
 
         private void OnStartAim(InputAction.CallbackContext context)
         {

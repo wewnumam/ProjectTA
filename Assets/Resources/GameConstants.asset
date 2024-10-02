@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isJoystickActive: 0
   initialHealth: 10
+  shootingRate: 0.25

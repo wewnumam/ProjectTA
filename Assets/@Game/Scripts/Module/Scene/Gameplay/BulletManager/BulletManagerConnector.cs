@@ -9,12 +9,14 @@ namespace ProjectTA.Module.BulletManager
 
         protected override void Connect()
         {
-            Subscribe<PlayerCharacterShootMessage>(_bulletManager.OnShoot);
+            Subscribe<PlayerCharacterShootStartMessage>(_bulletManager.OnShootStart);
+            Subscribe<PlayerCharacterShootEndMessage>(_bulletManager.OnShootEnd);
         }
 
         protected override void Disconnect()
         {
-            Unsubscribe<PlayerCharacterShootMessage>(_bulletManager.OnShoot);
+            Unsubscribe<PlayerCharacterShootStartMessage>(_bulletManager.OnShootStart);
+            Unsubscribe<PlayerCharacterShootEndMessage>(_bulletManager.OnShootEnd);
         }
     }
 }
