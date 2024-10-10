@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af2653e6341e0974ea73636a4e7be13f, type: 3}
   m_Name: LevelData_0
   m_EditorClassIdentifier: 
-  title: Level 1
+  title: Level Tugu
   puzzlePieceLabels:
-  - aaaa
-  - bbbb
-  - cccc
-  environmentPrefab: {fileID: 5773407093173007764, guid: e42d8a40db97a8c4a872ed892f4e3ea7,
+  - Semangat Persatuan
+  - 'Raja '
+  - Rakyat
+  environmentPrefab: {fileID: 5773407093173007764, guid: 022ccb88d2a3b5740b579b2900c19fa1,
     type: 3}
+  isLockedLevel: 0
+  levelGate: {fileID: 0}
