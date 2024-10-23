@@ -2,6 +2,7 @@ using Agate.MVC.Base;
 using NaughtyAttributes;
 using ProjectTA.Module.BulletManager;
 using ProjectTA.Module.CheatFeature;
+using ProjectTA.Module.Dialogue;
 using ProjectTA.Module.EnemyManager;
 using ProjectTA.Module.GameOver;
 using ProjectTA.Module.GamePause;
@@ -25,5 +26,6 @@ namespace ProjectTA.Scene.Gameplay
         public CheatFeatureView CheatFeatureView;
         public HUDView HUDView;
         public PadlockView PadlockView;
+        public DialogueView DialogueView;
     }
 }

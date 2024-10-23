@@ -23,6 +23,7 @@ using ProjectTA.Module.Health;
 using ProjectTA.Module.HUD;
 using ProjectTA.Module.Mission;
 using ProjectTA.Module.Padlock;
+using ProjectTA.Module.Dialogue;
 
 namespace ProjectTA.Scene.Gameplay
 {
@@ -46,6 +47,7 @@ namespace ProjectTA.Scene.Gameplay
         private HUDController _hud;
         private MissionController _mission;
         private PadlockController _padlock;
+        private DialogueController _dialogue;
 
         protected override IController[] GetSceneDependencies()
         {
@@ -62,6 +64,7 @@ namespace ProjectTA.Scene.Gameplay
                 new HUDController(),
                 new MissionController(),
                 new PadlockController(),
+                new DialogueController(),
             };
         }
 
@@ -78,6 +81,7 @@ namespace ProjectTA.Scene.Gameplay
                 new HUDConnector(),
                 new MissionConnector(),
                 new PadlockConnector(),
+                new DialogueConnector(),
             };
         }
 
@@ -121,6 +125,8 @@ namespace ProjectTA.Scene.Gameplay
 
             _padlock.SetPuzzleLabels(_levelData.Model.CurrentLevelData.puzzlePieceLabels);
             _padlock.SetView(_view.PadlockView);
+
+            _dialogue.SetView(_view.DialogueView);
 
             Publish(new GameStateMessage(EnumManager.GameState.Playing));
 

@@ -1,5 +1,6 @@
 using Agate.MVC.Base;
 using NaughtyAttributes;
+using ProjectTA.Module.Dialogue;
 using ProjectTA.Utility;
 using UnityEngine;
 using UnityEngine.Events;
@@ -22,7 +23,7 @@ namespace ProjectTA.Module.PlayerCharacter
         public float fixedYPosition = 1f; // The fixed Y position for the ray and line
 
         private UnityAction onCollideWithEnemy;
-        private UnityAction onCollideWithPuzzlePiece;
+        private UnityAction<TextAsset> onCollideWithPuzzlePiece;
         private UnityAction onCollideWithPadlock;
 
         void Update()
@@ -112,7 +113,10 @@ namespace ProjectTA.Module.PlayerCharacter
 
             if (collision.gameObject.CompareTag(TagManager.TAG_PUZZLEPIECE))
             {
-                onCollideWithPuzzlePiece?.Invoke();
+                TextAsset textAsset = null;
+                if (collision.gameObject.TryGetComponent<DialogueComponent>(out var dialogue))
+                    textAsset = dialogue.dialogueAsset;
+                onCollideWithPuzzlePiece?.Invoke(textAsset);
                 Destroy(collision.gameObject);
             }
 
@@ -120,7 +124,7 @@ namespace ProjectTA.Module.PlayerCharacter
                 onCollideWithPadlock?.Invoke();
         }
 
-        public void SetCollideCallbacks(UnityAction onCollideWithEnemy, UnityAction onCollideWithPuzzlePiece, UnityAction onCollideWithPadlock)
+        public void SetCollideCallbacks(UnityAction onCollideWithEnemy, UnityAction<TextAsset> onCollideWithPuzzlePiece, UnityAction onCollideWithPadlock)
         {
             this.onCollideWithEnemy = onCollideWithEnemy;
             this.onCollideWithPuzzlePiece = onCollideWithPuzzlePiece;

@@ -1,6 +1,7 @@
 using Agate.MVC.Base;
 using ProjectTA.Message;
 using System;
+using UnityEngine;
 
 namespace ProjectTA.Module.PlayerCharacter
 {
@@ -17,9 +18,10 @@ namespace ProjectTA.Module.PlayerCharacter
             Publish(new SubtractHealthMessage(1));
         }
 
-        private void OnCollideWithPuzzlePiece()
+        private void OnCollideWithPuzzlePiece(TextAsset textAsset)
         {
             Publish(new AddCollectedPuzzlePieceCountMessage(1));
+            Publish(new ShowDialogueMessage(textAsset));
         }
 
         private void OnCollideWithPadlock()
