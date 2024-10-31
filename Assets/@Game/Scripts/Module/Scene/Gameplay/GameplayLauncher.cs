@@ -13,7 +13,6 @@ using ProjectTA.Module.GameSettings;
 using ProjectTA.Module.GamePause;
 using ProjectTA.Module.GameWin;
 using ProjectTA.Module.GameOver;
-using System;
 using ProjectTA.Module.Input;
 using ProjectTA.Module.PlayerCharacter;
 using ProjectTA.Module.BulletManager;
@@ -22,8 +21,8 @@ using ProjectTA.Module.CheatFeature;
 using ProjectTA.Module.Health;
 using ProjectTA.Module.HUD;
 using ProjectTA.Module.Mission;
-using ProjectTA.Module.Padlock;
 using ProjectTA.Module.Dialogue;
+using ProjectTA.Module.PuzzleBoard;
 
 namespace ProjectTA.Scene.Gameplay
 {
@@ -46,8 +45,8 @@ namespace ProjectTA.Scene.Gameplay
         private HealthController _health;
         private HUDController _hud;
         private MissionController _mission;
-        private PadlockController _padlock;
         private DialogueController _dialogue;
+        private PuzzleBoardController _puzzleBoard;
 
         protected override IController[] GetSceneDependencies()
         {
@@ -63,8 +62,8 @@ namespace ProjectTA.Scene.Gameplay
                 new HealthController(),
                 new HUDController(),
                 new MissionController(),
-                new PadlockController(),
                 new DialogueController(),
+                new PuzzleBoardController(),
             };
         }
 
@@ -80,8 +79,8 @@ namespace ProjectTA.Scene.Gameplay
                 new HealthConnector(),
                 new HUDConnector(),
                 new MissionConnector(),
-                new PadlockConnector(),
                 new DialogueConnector(),
+                new PuzzleBoardConnector(),
             };
         }
 
@@ -100,7 +99,7 @@ namespace ProjectTA.Scene.Gameplay
 
             yield return StartCoroutine(_levelData.SetCurrentLevel(_saveSystem.Model.SaveData.CurrentLevelName));
 
-            Instantiate(_levelData.Model.CurrentEnvironmentPrefab);
+            GameObject environmentObj = Instantiate(_levelData.Model.CurrentEnvironmentPrefab);
 
             _gamePause.SetView(_view.GamePauseView);
             _gameWin.SetView(_view.GameWinView);
@@ -120,13 +119,18 @@ namespace ProjectTA.Scene.Gameplay
             
             _health.SetInitialHealth(_gameConstants.Model.GameConstants.initialHealth);
 
-            _mission.SetCurrentLevelData(_levelData.Model.CurrentLevelData);
-            _mission.SetPuzzlePieceCount(_levelData.Model.CurrentLevelData.puzzlePieceLabels.Count);
-
-            _padlock.SetPuzzleLabels(_levelData.Model.CurrentLevelData.puzzlePieceLabels);
-            _padlock.SetView(_view.PadlockView);
-
             _dialogue.SetView(_view.DialogueView);
+
+            int puzzleCount = 0;
+
+            if (environmentObj.TryGetComponent<PuzzleBoardView>(out var puzzleBoardView))
+            {
+                _puzzleBoard.SetView(puzzleBoardView);
+                puzzleCount = puzzleBoardView.puzzles.Count;
+            }
+
+            _mission.SetCurrentLevelData(_levelData.Model.CurrentLevelData);
+            _mission.SetPuzzlePieceCount(puzzleCount);
 
             Publish(new GameStateMessage(EnumManager.GameState.Playing));
 

@@ -10,7 +10,7 @@ namespace ProjectTA.Module.PlayerCharacter
         public override void SetView(PlayerCharacterView view)
         {
             base.SetView(view);
-            view.SetCollideCallbacks(OnCollideWithEnemy, OnCollideWithPuzzlePiece, OnCollideWithPadlock);
+            view.SetCollideCallbacks(OnCollideWithEnemy, OnCollideWithDialogueComponent, OnCollideWithPadlock);
         }
 
         private void OnCollideWithEnemy()
@@ -18,9 +18,8 @@ namespace ProjectTA.Module.PlayerCharacter
             Publish(new SubtractHealthMessage(1));
         }
 
-        private void OnCollideWithPuzzlePiece(TextAsset textAsset)
+        private void OnCollideWithDialogueComponent(TextAsset textAsset)
         {
-            Publish(new AddCollectedPuzzlePieceCountMessage(1));
             Publish(new ShowDialogueMessage(textAsset));
         }
 

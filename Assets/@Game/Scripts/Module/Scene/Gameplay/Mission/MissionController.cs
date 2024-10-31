@@ -15,6 +15,7 @@ namespace ProjectTA.Module.Mission
             _model.SetPuzzleCount(puzzlePieceCount);
             _model.SetCollectedPuzzlePieceCount(0);
             Publish(new UpdatePuzzleCountMessage(_model.PuzzlePieceCount, _model.CollectedPuzzlePieceCount, true));
+            Publish(new UpdatePuzzleSolvedCountMessage(_model.PadlockOnPlaceCount, _model.CollectedPuzzlePieceCount, true));
         }
 
         internal void OnAddCollectedPuzzlePiece(AddCollectedPuzzlePieceCountMessage message)
@@ -44,6 +45,7 @@ namespace ProjectTA.Module.Mission
         internal void OnAddPadlockOnPlace(AddPadlockOnPlaceMessage message)
         {
             _model.AddPadlockOnPlaceCount(message.Amount);
+            Publish(new UpdatePuzzleSolvedCountMessage(_model.PadlockOnPlaceCount, _model.CollectedPuzzlePieceCount, true));
 
             if (_model.IsPuzzleCompleted())
             {

@@ -1,6 +1,7 @@
 using Agate.MVC.Base;
 using ProjectTA.Message;
 using System;
+using UnityEngine.UIElements;
 
 namespace ProjectTA.Module.CheatFeature
 {
@@ -13,6 +14,7 @@ namespace ProjectTA.Module.CheatFeature
             view.SetGameStateCallbacks(OnGameWin, OnGameOver);
             view.SetHealthCallbacks(OnAddHealth, OnSubtractHealth);
             view.SetMissionCallbacks(OnAddPuzzlePieceCount, OnSubtractPuzzlePieceCount, OnAddKillCount, OnSubtractKillCount);
+            view.SetEnvironmentCallbacks(OnTeleportToPuzzle);
         }
 
         private void OnDeleteSaveData()
@@ -63,6 +65,11 @@ namespace ProjectTA.Module.CheatFeature
         private void OnSubtractKillCount()
         {
             Publish(new SubtractKillCountMessage(1));
+        }
+
+        private void OnTeleportToPuzzle()
+        {
+            Publish(new TeleportToPuzzleMessage());
         }
     }
 }

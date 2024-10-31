@@ -11,6 +11,7 @@ namespace ProjectTA.Module.HUD
         {
             Subscribe<UpdateHealthMessage>(_hud.OnUpdateHealth);
             Subscribe<UpdatePuzzleCountMessage>(_hud.OnUpdatePuzzleCount);
+            Subscribe<UpdatePuzzleSolvedCountMessage>(_hud.OnUpdatePuzzleSolvedCount);
             Subscribe<UpdateKillCountMessage>(_hud.OnUpdateKillCount);
         }
 
@@ -18,6 +19,7 @@ namespace ProjectTA.Module.HUD
         {
             Unsubscribe<UpdateHealthMessage>(_hud.OnUpdateHealth);
             Unsubscribe<UpdatePuzzleCountMessage>(_hud.OnUpdatePuzzleCount);
+            Unsubscribe<UpdatePuzzleSolvedCountMessage>(_hud.OnUpdatePuzzleSolvedCount);
             Unsubscribe<UpdateKillCountMessage>(_hud.OnUpdateKillCount);
         }
     }

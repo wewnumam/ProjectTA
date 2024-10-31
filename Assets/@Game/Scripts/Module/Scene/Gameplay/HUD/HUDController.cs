@@ -18,6 +18,11 @@ namespace ProjectTA.Module.HUD
             _view.puzzleCountText.SetText($"{message.CollectedPuzzlePieceCount}/{message.PuzzlePieceCount}");
         }
 
+        internal void OnUpdatePuzzleSolvedCount(UpdatePuzzleSolvedCountMessage message)
+        {
+            _view.solvedCountText.SetText($"{message.SolvedPuzzlePieceCount}/{message.PuzzlePieceCount}");
+        }
+
         internal void OnUpdateKillCount(UpdateKillCountMessage message)
         {
             _view.killCountText.SetText($"{message.KillCount}");

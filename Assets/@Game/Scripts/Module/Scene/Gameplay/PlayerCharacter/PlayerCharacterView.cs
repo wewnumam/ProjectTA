@@ -23,7 +23,7 @@ namespace ProjectTA.Module.PlayerCharacter
         public float fixedYPosition = 1f; // The fixed Y position for the ray and line
 
         private UnityAction onCollideWithEnemy;
-        private UnityAction<TextAsset> onCollideWithPuzzlePiece;
+        private UnityAction<TextAsset> onCollideWithDialogueComponent;
         private UnityAction onCollideWithPadlock;
 
         void Update()
@@ -108,26 +108,22 @@ namespace ProjectTA.Module.PlayerCharacter
 
         private void OnCollisionEnter(Collision collision)
         {
+            if (collision.gameObject.TryGetComponent<DialogueComponent>(out var dialogue))
+            {
+                onCollideWithDialogueComponent?.Invoke(dialogue.dialogueAsset);
+            }
+
             if (collision.gameObject.CompareTag(TagManager.TAG_ENEMY))
                 onCollideWithEnemy?.Invoke();
-
-            if (collision.gameObject.CompareTag(TagManager.TAG_PUZZLEPIECE))
-            {
-                TextAsset textAsset = null;
-                if (collision.gameObject.TryGetComponent<DialogueComponent>(out var dialogue))
-                    textAsset = dialogue.dialogueAsset;
-                onCollideWithPuzzlePiece?.Invoke(textAsset);
-                Destroy(collision.gameObject);
-            }
 
             if (collision.gameObject.CompareTag(TagManager.TAG_PADLOCK))
                 onCollideWithPadlock?.Invoke();
         }
 
-        public void SetCollideCallbacks(UnityAction onCollideWithEnemy, UnityAction<TextAsset> onCollideWithPuzzlePiece, UnityAction onCollideWithPadlock)
+        public void SetCollideCallbacks(UnityAction onCollideWithEnemy, UnityAction<TextAsset> onCollideWithDialogueComponent, UnityAction onCollideWithPadlock)
         {
             this.onCollideWithEnemy = onCollideWithEnemy;
-            this.onCollideWithPuzzlePiece = onCollideWithPuzzlePiece;
+            this.onCollideWithDialogueComponent = onCollideWithDialogueComponent;
             this.onCollideWithPadlock = onCollideWithPadlock;
         }
     }

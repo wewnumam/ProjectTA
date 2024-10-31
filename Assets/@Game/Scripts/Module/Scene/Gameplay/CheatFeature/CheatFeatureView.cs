@@ -25,6 +25,9 @@ namespace ProjectTA.Module.CheatFeature
         [SerializeField] Button addKillCountButton;
         [SerializeField] Button subtractKillCountButton;
 
+        [Header("Environment")]
+        [SerializeField] Button teleportToPuzzleButton;
+
         public void SetUtilityCallbacks(UnityAction ondeleteSaveData, UnityAction<bool> onActivateJoystick)
         {
             deleteSaveDataButton.onClick.RemoveAllListeners();
@@ -60,6 +63,12 @@ namespace ProjectTA.Module.CheatFeature
             addKillCountButton.onClick.AddListener(onAddKillCount);
             subtractKillCountButton.onClick.RemoveAllListeners();
             subtractKillCountButton.onClick.AddListener(onSubtractKillCount);
+        }
+
+        public void SetEnvironmentCallbacks(UnityAction onTeleportToPuzzle)
+        {
+            teleportToPuzzleButton.onClick.RemoveAllListeners();
+            teleportToPuzzleButton.onClick.AddListener(onTeleportToPuzzle);
         }
     }
 }
