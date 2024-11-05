@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3883382899717998373}
   - component: {fileID: 3555268834469185286}
   - component: {fileID: 439642160595795582}
+  - component: {fileID: 1963692078512835576}
   m_Layer: 0
   m_Name: Roh_Ijo
   m_TagString: Enemy
@@ -148,6 +149,27 @@ MonoBehaviour:
   onKill:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &1963692078512835576
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5375070630054367085}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b5250dc69a51cab47b0489c79aea38a7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &592283402953964747
 PrefabInstance:
   m_ObjectHideFlags: 0
