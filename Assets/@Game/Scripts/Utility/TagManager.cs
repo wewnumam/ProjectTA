@@ -13,13 +13,8 @@
         public const string TAG_PADLOCK = "Padlock";
 
         public const string ANIM_IDLE = "Idle";
-        public static readonly string[] ANIM_POSE = { "Pose1", "Pose2" };
-        public static readonly string[] ANIM_STEP = { "StepLeft", "StepRight" };
-        public static readonly string[] ANIM_STOP = { "Stop1", "Stop2" };
-        public const string ANIM_FALL = "Fall";
-        public const string ANIM_FLY = "Fly";
-        public const string ANIM_LOSE = "Lose";
-        public const string ANIM_WIN = "Win";
+        public const string ANIM_WALK = "Walk";
+        public const string ANIM_DEAD = "Dead";
 
         public const string DEFAULT_CHARACTERNAME = "CharacterData_0";
         public const string DEFAULT_LEVELNAME = "LevelData_0";
