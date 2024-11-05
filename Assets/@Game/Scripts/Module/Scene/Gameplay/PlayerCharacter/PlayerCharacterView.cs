@@ -21,6 +21,7 @@ namespace ProjectTA.Module.PlayerCharacter
         public LayerMask enemyLayer;      // Assign layer for enemies
         public LineRenderer lineRenderer; // LineRenderer component
         public float fixedYPosition = 1f; // The fixed Y position for the ray and line
+        public Animator animator;
 
         private UnityAction onCollideWithEnemy;
         private UnityAction<TextAsset> onCollideWithDialogueComponent;
