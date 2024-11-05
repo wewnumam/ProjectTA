@@ -1,0 +1,2 @@
+Jalan Malioboro
+Melalui jalan margoutomo, jalan menuju keutamaan, berlanjut kearah selatan melalui malioboro membawa obor ilmu pengetahuan yang diajarkan para wali, terus keselatan melalui margo mulya dan kemudian melalui jalan pangurakan yang bertujuan untuk mengusir nafsu yang negatif.
