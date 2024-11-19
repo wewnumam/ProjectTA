@@ -290,7 +290,7 @@ GameObject:
   - component: {fileID: 1041648041}
   - component: {fileID: 1041648042}
   m_Layer: 0
-  m_Name: CutsceneLauncher
+  m_Name: LevelSelectionLauncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -320,7 +320,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1041648040}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8749e9f4f95f9eb41a39a9f2dff68dcb, type: 3}
+  m_Script: {fileID: 11500000, guid: c2356325777529f42ad69a8db5fd6b7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _view: {fileID: 1192199070}
@@ -335,7 +335,7 @@ GameObject:
   - component: {fileID: 1192199069}
   - component: {fileID: 1192199070}
   m_Layer: 0
-  m_Name: CutsceneView
+  m_Name: LevelSelectionView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -366,7 +366,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1192199068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b15287324e280ff42af611d58f08fb48, type: 3}
+  m_Script: {fileID: 11500000, guid: f9c19085c8a2b1041aa9904566f9ee5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1250831696

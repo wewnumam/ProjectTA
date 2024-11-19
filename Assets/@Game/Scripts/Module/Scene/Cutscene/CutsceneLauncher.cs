@@ -8,6 +8,7 @@ using ProjectTA.Module.LevelData;
 using ProjectTA.Module.SaveSystem;
 using UnityEngine;
 using ProjectTA.Utility;
+using ProjectTA.Module.CutscenePlayer;
 
 namespace ProjectTA.Scene.Cutscene
 {
@@ -18,15 +19,19 @@ namespace ProjectTA.Scene.Cutscene
         private SaveSystemController _saveSystem;
         private LevelDataController _levelData;
 
+        private CutscenePlayerController _cutscenePlayer;
+
         protected override IController[] GetSceneDependencies()
         {
             return new IController[] {
+                new CutscenePlayerController(),
             };
         }
 
         protected override IConnector[] GetSceneConnectors()
         {
             return new IConnector[] {
+                new CutscenePlayerConnector(),
             };
         }
 
@@ -44,6 +49,9 @@ namespace ProjectTA.Scene.Cutscene
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneName));
 
             yield return StartCoroutine(_levelData.SetCurrentLevel(_saveSystem.Model.SaveData.CurrentLevelName));
+
+            _cutscenePlayer.SetCurrentCutsceneData(_levelData.Model.CurrentLevelData.cutsceneData);
+            _cutscenePlayer.SetView(_view.CutscenePlayerView);
 
             yield return null;
         }

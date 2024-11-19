@@ -19,5 +19,8 @@ namespace ProjectTA.Module.LevelData
         public bool isLockedLevel;
         [ShowIf(nameof(isLockedLevel))]
         public SO_LevelData levelGate;
+
+        [Header("Cutscene")]
+        public SO_CutsceneData cutsceneData;
     }
 }
