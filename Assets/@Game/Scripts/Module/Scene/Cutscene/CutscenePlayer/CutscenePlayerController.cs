@@ -3,6 +3,10 @@ using Ink.Runtime;
 using ProjectTA.Module.LevelData;
 using System;
 using DG.Tweening;
+using UnityEngine;
+using UnityEngine.UI;
+using ProjectTA.Boot;
+using ProjectTA.Utility;
 
 namespace ProjectTA.Module.CutscenePlayer
 {
@@ -23,6 +27,19 @@ namespace ProjectTA.Module.CutscenePlayer
 
             _story = new Story(_model.CurrentCutsceneData.dialogueAsset.text);
             DisplayNextLine();
+
+            for (int i = 0; i < _model.CurrentCutsceneData.sceneSprites.Count; i++)
+            {
+                Sprite sceneSprite = _model.CurrentCutsceneData.sceneSprites[i];
+                GameObject obj = GameObject.Instantiate(view.imageTemplate.gameObject, view.imageParent);
+                obj.GetComponent<Image>().sprite = sceneSprite;
+
+                Vector3 imageTemplatePosition = view.imageTemplate.transform.position;
+                obj.transform.position = new Vector3(i % 2 == 0 ? imageTemplatePosition.x : -imageTemplatePosition.x, imageTemplatePosition.y, imageTemplatePosition.z + (i * view.distance));
+                obj.SetActive(true);           
+            }
+
+            ReverseOrder(view.imageParent);
         }
 
         public void DisplayNextLine()
@@ -30,17 +47,18 @@ namespace ProjectTA.Module.CutscenePlayer
             if (!_story.canContinue)
             {
                 //_view.onEnd?.Invoke();
+                SceneLoader.Instance.LoadScene(TagManager.SCENE_LEVELSELECTION);
                 return;
             }
 
             if (isTextComplete)
-            {
+            {   
                 text = _story.Continue();
             }
             ParseSentence(text?.Trim());
-            _view.image.sprite = _model.CurrentCutsceneData.sceneSprites[currentIndex];
-            currentIndex = currentIndex < _model.CurrentCutsceneData.sceneSprites.Count - 1 ? currentIndex+1 : _model.CurrentCutsceneData.sceneSprites.Count - 1;
         }
+
+
 
         void ParseSentence(string sentence)
         {
@@ -62,6 +80,25 @@ namespace ProjectTA.Module.CutscenePlayer
             else
             {
                 _view.messageText.text = sentence;
+            }
+        }
+
+        void ReverseOrder(Transform parent)
+        {
+            int childCount = parent.childCount;
+
+            for (int i = 0; i < childCount / 2; i++)
+            {
+                // Get the current and corresponding child to swap
+                Transform childA = parent.GetChild(i);
+                Transform childB = parent.GetChild(childCount - 1 - i);
+
+                // Swap their sibling indices
+                int siblingIndexA = childA.GetSiblingIndex();
+                int siblingIndexB = childB.GetSiblingIndex();
+
+                childA.SetSiblingIndex(siblingIndexB);
+                childB.SetSiblingIndex(siblingIndexA);
             }
         }
     }

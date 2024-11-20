@@ -1,13 +1,11 @@
 using Agate.MVC.Base;
 using NaughtyAttributes;
 using ProjectTA.Module.LevelData;
-using ProjectTA.Module.LevelItem;
-using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using DG.Tweening;
 
 namespace ProjectTA.Module.CutscenePlayer
 {
@@ -16,15 +14,18 @@ namespace ProjectTA.Module.CutscenePlayer
         [ReadOnly] public SO_CutsceneData cutsceneData;
         public TMP_Text characterText;
         public Text messageText;
-        public Image image;
+        public Transform imageParent;
+        public Image imageTemplate;
+        public Transform camera;
+        public float distance = 200;
         
         public UnityAction onNext;
 
         public void DisplayNextLine()
         {
             onNext?.Invoke();
+            camera.DOMoveZ(camera.position.z + distance, 1f);
         }
-
         public void SetCallback(UnityAction onNext)
         {
             this.onNext = onNext;
