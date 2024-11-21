@@ -1,19 +1,17 @@
 using Agate.MVC.Base;
 using Agate.MVC.Core;
-using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 namespace ProjectTA.Boot
 {
     public class SplashScreen : BaseSplash<SplashScreen>
     {
-        [SerializeField] GameObject _splashUI;
-        [SerializeField] GameObject _transitionUI;
+        [SerializeField] RectTransform splashScreenWindow;
         [SerializeField] TMP_Text versionText;
+
+        private Sequence sequence;
 
         protected override IMain GetMain()
         {
@@ -29,26 +27,28 @@ namespace ProjectTA.Boot
         {
             base.StartSplash();
             versionText.SetText($"v{Application.version}");
-            _splashUI.SetActive(true);
-            _transitionUI.SetActive(false);
         }
 
         protected override void FinishSplash()
         {
             base.FinishSplash();
-            _splashUI.SetActive(false);
         }
 
         protected override void StartTransition()
         {
             base.StartTransition();
-            _transitionUI.SetActive(true);
+            sequence = DOTween.Sequence();
+            sequence.Append(splashScreenWindow.DOAnchorPosX(0, .2f));
+            sequence.Play();
         }
 
         protected override void FinishTransition()
         {
             base.FinishTransition();
-            _transitionUI.SetActive(false);
+            sequence = DOTween.Sequence();
+            sequence.Append(splashScreenWindow.DOAnchorPosX(3000, 1f));
+            sequence.Append(splashScreenWindow.DOAnchorPosX(-3000, 0f));
+            sequence.Play();
         }
     }
 }

@@ -1,7 +1,9 @@
 using Agate.MVC.Base;
+using ProjectTA.Boot;
 using ProjectTA.Message;
 using ProjectTA.Module.LevelData;
 using ProjectTA.Module.LevelItem;
+using ProjectTA.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +21,8 @@ namespace ProjectTA.Module.LevelSelection
         public override void SetView(LevelSelectionView view)
         {
             base.SetView(view);
+
+            view.SetCallback(OnPlay);
 
             for (global::System.Int32 i = view.listedLevel.Count; i < _model.LevelCollection.levelItems.Count; i++)
             {
@@ -40,6 +44,11 @@ namespace ProjectTA.Module.LevelSelection
                 InjectDependencies(levelItemController);
                 levelItemController.Init(levelItemView);
             }
+        }
+
+        private void OnPlay()
+        {
+            SceneLoader.Instance.LoadScene(TagManager.SCENE_GAMEPLAY);
         }
 
         internal void OnChooseLevel(ChooseLevelMessage message)

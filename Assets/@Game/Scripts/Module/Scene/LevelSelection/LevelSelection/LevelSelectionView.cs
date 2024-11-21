@@ -2,9 +2,11 @@ using Agate.MVC.Base;
 using NaughtyAttributes;
 using ProjectTA.Module.LevelData;
 using ProjectTA.Module.LevelItem;
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace ProjectTA.Module.LevelSelection
@@ -17,6 +19,18 @@ namespace ProjectTA.Module.LevelSelection
         public GameObject template;
         public TMP_Text currentLevelText;
 
+        private UnityAction onPlay;
+
+        public void SetCallback(UnityAction onPlay)
+        {
+            this.onPlay = onPlay;
+        }
+
+        public void Play()
+        {
+            onPlay?.Invoke();
+        }
+
         protected override void InitRenderModel(ILevelSelectionModel model)
         {
         }
@@ -26,5 +40,6 @@ namespace ProjectTA.Module.LevelSelection
             if (model.CurrentLevelData != null)
                 currentLevelText.SetText(model.CurrentLevelData.title);
         }
+
     }
 }
