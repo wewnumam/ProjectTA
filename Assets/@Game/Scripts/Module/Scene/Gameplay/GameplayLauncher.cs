@@ -23,6 +23,7 @@ using ProjectTA.Module.HUD;
 using ProjectTA.Module.Mission;
 using ProjectTA.Module.Dialogue;
 using ProjectTA.Module.PuzzleBoard;
+using ProjectTA.Module.CameraEffect;
 
 namespace ProjectTA.Scene.Gameplay
 {
@@ -47,6 +48,7 @@ namespace ProjectTA.Scene.Gameplay
         private MissionController _mission;
         private DialogueController _dialogue;
         private PuzzleBoardController _puzzleBoard;
+        private CameraEffectController _cameraEffect;
 
         protected override IController[] GetSceneDependencies()
         {
@@ -64,6 +66,7 @@ namespace ProjectTA.Scene.Gameplay
                 new MissionController(),
                 new DialogueController(),
                 new PuzzleBoardController(),
+                new CameraEffectController(),
             };
         }
 
@@ -81,6 +84,7 @@ namespace ProjectTA.Scene.Gameplay
                 new MissionConnector(),
                 new DialogueConnector(),
                 new PuzzleBoardConnector(),
+                new CameraEffectConnector(),
             };
         }
 
@@ -131,6 +135,8 @@ namespace ProjectTA.Scene.Gameplay
 
             _mission.SetCurrentLevelData(_levelData.Model.CurrentLevelData);
             _mission.SetPuzzlePieceCount(puzzleCount);
+
+            _cameraEffect.SetView(_view.CameraEffectView);
 
             Publish(new GameStateMessage(EnumManager.GameState.Playing));
 

@@ -1,5 +1,6 @@
 using Agate.MVC.Base;
 using ProjectTA.Module.BulletManager;
+using ProjectTA.Module.CameraEffect;
 using ProjectTA.Module.CheatFeature;
 using ProjectTA.Module.Dialogue;
 using ProjectTA.Module.EnemyManager;
@@ -23,5 +24,6 @@ namespace ProjectTA.Scene.Gameplay
         public CheatFeatureView CheatFeatureView;
         public HUDView HUDView;
         public DialogueView DialogueView;
+        public CameraEffectView CameraEffectView;
     }
 }
