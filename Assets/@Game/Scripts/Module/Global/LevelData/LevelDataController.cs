@@ -28,11 +28,20 @@ namespace ProjectTA.Module.LevelData
             yield return null;
         }
 
+        public IEnumerator SetCurrentCutscene(string cutsceneName)
+        {
+            SO_CutsceneData cutsceneData = Resources.Load<SO_CutsceneData>(@"CutsceneData/" + cutsceneName);
+            _model.SetCurrentCutsceneData(cutsceneData);
+
+            yield return null;
+        }
+
         internal void OnChooseLevel(ChooseLevelMessage message)
         {
             Debug.Log($"CHOOSE LEVEL: {message.LevelData}");
             GameMain.Instance.RunCoroutine(SetCurrentLevel(message.LevelData.name));
             _saveSystemController.SetCurrentLevelName(message.LevelData.name);
+            _saveSystemController.SetCurrentCutsceneName(message.LevelData.cutsceneData.name);
         }
     }
 }

@@ -48,9 +48,9 @@ namespace ProjectTA.Scene.Cutscene
 
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneName));
 
-            yield return StartCoroutine(_levelData.SetCurrentLevel(_saveSystem.Model.SaveData.CurrentLevelName));
+            yield return StartCoroutine(_levelData.SetCurrentCutscene(_saveSystem.Model.SaveData.CurrentCutsceneName));
 
-            _cutscenePlayer.SetCurrentCutsceneData(_levelData.Model.CurrentLevelData.cutsceneData);
+            _cutscenePlayer.SetCurrentCutsceneData(_levelData.Model.CurrentCutsceneData);
             _cutscenePlayer.SetView(_view.CutscenePlayerView);
 
             yield return null;

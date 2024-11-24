@@ -19,16 +19,22 @@ namespace ProjectTA.Module.LevelSelection
         public GameObject template;
         public TMP_Text currentLevelText;
 
-        private UnityAction onPlay;
+        private UnityAction onPlay, onMainMenu;
 
-        public void SetCallback(UnityAction onPlay)
+        public void SetCallback(UnityAction onPlay, UnityAction onMainMenu)
         {
             this.onPlay = onPlay;
+            this.onMainMenu = onMainMenu;
         }
 
         public void Play()
         {
             onPlay?.Invoke();
+        }
+
+        public void MainMenu()
+        {
+            onMainMenu?.Invoke();
         }
 
         protected override void InitRenderModel(ILevelSelectionModel model)

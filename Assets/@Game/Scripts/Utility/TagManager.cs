@@ -18,7 +18,7 @@
         public const string ANIM_WALK = "Walk";
         public const string ANIM_DEAD = "Dead";
 
-        public const string DEFAULT_CHARACTERNAME = "CharacterData_0";
+        public const string DEFAULT_CUTSCENENAME = "CutsceneData_Intro";
         public const string DEFAULT_LEVELNAME = "LevelData_0";
         public const string DEFAULT_SAVEFILENAME = "SaveData.json";
 

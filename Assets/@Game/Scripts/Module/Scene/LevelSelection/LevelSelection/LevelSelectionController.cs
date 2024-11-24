@@ -22,7 +22,7 @@ namespace ProjectTA.Module.LevelSelection
         {
             base.SetView(view);
 
-            view.SetCallback(OnPlay);
+            view.SetCallback(OnPlay, OnMainMenu);
 
             for (global::System.Int32 i = view.listedLevel.Count; i < _model.LevelCollection.levelItems.Count; i++)
             {
@@ -49,6 +49,11 @@ namespace ProjectTA.Module.LevelSelection
         private void OnPlay()
         {
             SceneLoader.Instance.LoadScene(TagManager.SCENE_GAMEPLAY);
+        }
+
+        private void OnMainMenu()
+        {
+            SceneLoader.Instance.LoadScene(TagManager.SCENE_MAINMENU);
         }
 
         internal void OnChooseLevel(ChooseLevelMessage message)

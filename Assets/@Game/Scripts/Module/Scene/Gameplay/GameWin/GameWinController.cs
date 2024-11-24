@@ -13,15 +13,15 @@ namespace ProjectTA.Module.GameWin
         public override void SetView(GameWinView view)
         {
             base.SetView(view);
-            view.SetCallbacks(OnMainMenu, OnReplay);
+            view.SetCallbacks(OnContinue, OnPlayAgain);
         }
 
-        private void OnMainMenu()
+        private void OnContinue()
         {
-            SceneLoader.Instance.LoadScene(TagManager.SCENE_MAINMENU);
+            SceneLoader.Instance.LoadScene(TagManager.SCENE_CUTSCENE);
         }
 
-        private void OnReplay()
+        private void OnPlayAgain()
         {
             SceneLoader.Instance.RestartScene();
         }

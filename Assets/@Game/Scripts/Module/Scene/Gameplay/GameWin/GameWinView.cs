@@ -8,16 +8,16 @@ namespace ProjectTA.Module.GameWin
     public class GameWinView : BaseView
     {
         [SerializeField] Button playAgainButton;
-        [SerializeField] Button mainMenuButton;
+        [SerializeField] Button continueButton;
         
         public UnityEvent onGameWin;
 
-        public void SetCallbacks(UnityAction onMainMenu, UnityAction onPlayAgain)
+        public void SetCallbacks(UnityAction onMainMenu, UnityAction onContinue)
         {
-            mainMenuButton.onClick.RemoveAllListeners();
-            mainMenuButton.onClick.AddListener(onMainMenu);
+            continueButton.onClick.RemoveAllListeners();
+            continueButton.onClick.AddListener(onMainMenu);
             playAgainButton.onClick.RemoveAllListeners();
-            playAgainButton.onClick.AddListener(onPlayAgain);
+            playAgainButton.onClick.AddListener(onContinue);
         }
     }
 }

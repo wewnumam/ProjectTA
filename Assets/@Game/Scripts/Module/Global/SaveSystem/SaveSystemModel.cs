@@ -12,6 +12,12 @@ namespace ProjectTA.Module.SaveSystem
             SetDataAsDirty();
         }
 
+        public void SetCurrentCutsceneName(string cutsceneName)
+        {
+            SaveData.CurrentCutsceneName = cutsceneName;
+            SetDataAsDirty();
+        }
+
         public void SetCurrentLevelName(string levelName)
         {
             SaveData.CurrentLevelName = levelName;

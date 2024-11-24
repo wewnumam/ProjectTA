@@ -80,6 +80,12 @@ namespace ProjectTA.Module.SaveSystem
             SaveGame(_model.SaveData);
         }
 
+        public void SetCurrentCutsceneName(string cutsceneName)
+        {
+            _model.SetCurrentCutsceneName(cutsceneName);
+            SaveGame(_model.SaveData);
+        }
+
         internal void SaveGameResult(GameResultMessage message)
         {
             if (!_model.IsLevelUnlocked(message.LevelData.name) && message.LevelData != null)
