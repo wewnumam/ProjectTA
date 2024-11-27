@@ -9,7 +9,7 @@ namespace ProjectTA.Module.CheatFeature
     {
         [Header("Utility")]
         [SerializeField] Button deleteSaveDataButton; 
-        [SerializeField] Toggle activateJoystickToggle;
+        public Toggle activateJoystickToggle;
 
         [Header("Game State")]
         [SerializeField] Button gameWinButton;

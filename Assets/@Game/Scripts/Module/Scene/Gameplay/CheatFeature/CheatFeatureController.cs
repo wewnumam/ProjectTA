@@ -1,7 +1,5 @@
 using Agate.MVC.Base;
 using ProjectTA.Message;
-using System;
-using UnityEngine.UIElements;
 
 namespace ProjectTA.Module.CheatFeature
 {
@@ -15,6 +13,11 @@ namespace ProjectTA.Module.CheatFeature
             view.SetHealthCallbacks(OnAddHealth, OnSubtractHealth);
             view.SetMissionCallbacks(OnAddPuzzlePieceCount, OnSubtractPuzzlePieceCount, OnAddKillCount, OnSubtractKillCount);
             view.SetEnvironmentCallbacks(OnTeleportToPuzzle);
+        }
+
+        public void SetInitialActivateJoystick(bool isJoystickActive)
+        {
+            _view.activateJoystickToggle.isOn = isJoystickActive;
         }
 
         private void OnDeleteSaveData()

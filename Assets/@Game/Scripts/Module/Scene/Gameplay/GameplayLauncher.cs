@@ -114,10 +114,12 @@ namespace ProjectTA.Scene.Gameplay
 
             _bulletManager.SetShootingRate(_gameConstants.Model.GameConstants.shootingRate);
             _bulletManager.SetView(_view.BulletManagerView);
+            _bulletManager.SetInitialActivateJoystick(_gameConstants.Model.GameConstants.isJoystickActive);
 
             _enemyManager.SetView(_view.EnemyManagerView);
 
             _cheatFeature.SetView(_view.CheatFeatureView);
+            _cheatFeature.SetInitialActivateJoystick(_gameConstants.Model.GameConstants.isJoystickActive);
 
             _hud.SetView(_view.HUDView);
             

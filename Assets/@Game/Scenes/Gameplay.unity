@@ -2409,7 +2409,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &357877513
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4233,11 +4233,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c8c2844a5559547b85f753fa399900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  movementSpeed: 5
+  rotationSpeed: 5
   rb: {fileID: 596940349}
   mainCamera: {fileID: 1328431724}
   direction: {x: 0, y: 0}
   aim: {x: 0, y: 0}
+  smoothedInput: {x: 0, y: 0}
   isJoystickActive: 0
   rayDistance: 100
   enemyLayer:
@@ -4262,8 +4264,10 @@ MonoBehaviour:
     type: 3}
   bulletSpawnPoint: {fileID: 1296872198}
   rotationOffset: {x: 0, y: 0, z: 0}
+  isJoystickActive: 0
   shootingRate: 0
   isShoot: 0
+  joystickShootRange: 0.9
 --- !u!1 &609690240
 GameObject:
   m_ObjectHideFlags: 0

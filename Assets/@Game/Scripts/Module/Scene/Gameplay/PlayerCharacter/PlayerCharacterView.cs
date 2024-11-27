@@ -10,11 +10,13 @@ namespace ProjectTA.Module.PlayerCharacter
 {
     public class PlayerCharacterView : BaseView
     {
-        public float speed;
+        public float movementSpeed;
+        public float rotationSpeed;
         public Rigidbody rb;
         public Camera mainCamera;
         [ReadOnly] public Vector2 direction;
         [ReadOnly] public Vector2 aim;
+        [ReadOnly] public Vector2 smoothedAim;
         [ReadOnly] public bool isJoystickActive;
 
         public float rayDistance = 100f;  // Distance of the raycast
@@ -63,7 +65,7 @@ namespace ProjectTA.Module.PlayerCharacter
         private void FixedUpdate()
         {
             if (isJoystickActive)
-                RotatePlayerCharacter();
+                RotatePlayerCharacter(aim);
             else
                 RotateTowardsMouse();
             
@@ -72,19 +74,20 @@ namespace ProjectTA.Module.PlayerCharacter
 
         private void MovePlayerCharacter()
         {
-            rb.velocity = new Vector3(direction.x, 0, direction.y).normalized * speed;
+            rb.velocity = new Vector3(direction.x, 0, direction.y).normalized * movementSpeed;
+            RotatePlayerCharacter(direction);
         }
 
-        private void RotatePlayerCharacter()
+        private void RotatePlayerCharacter(Vector2 aim)
         {
-            if (aim.sqrMagnitude > 0.1f)
-            {
-                // Calculate the angle to rotate the player
-                float targetAngle = Mathf.Atan2(aim.x, aim.y) * Mathf.Rad2Deg;
+            smoothedAim = Vector2.Lerp(smoothedAim, aim, Time.fixedDeltaTime * rotationSpeed); // Adjust the interpolation factor as needed
 
-                // Smoothly rotate the player towards the target angle
-                Quaternion targetRotation = Quaternion.Euler(0, targetAngle, 0);
-                transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, speed * Time.deltaTime);
+            // Check if there is significant input to process
+            if (aim.sqrMagnitude > 0.2f)
+            {
+                Vector3 direction = new Vector3(smoothedAim.x, 0, smoothedAim.y);
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                rb.MoveRotation(targetRotation);
             }
         }
 

@@ -31,6 +31,7 @@ namespace ProjectTA.Module.Input
             inputActions.Character.Move.performed -= OnStartMove;
             inputActions.Character.Move.canceled -= OnEndMove;
             inputActions.Character.Shoot.performed -= OnShootStart;
+            inputActions.Character.Shoot.canceled -= OnShootEnd;
             inputActions.Character.Aim.performed -= OnStartAim;
             inputActions.Character.Aim.canceled -= OnEndAim;
             inputActions.Character.Disable();

@@ -12,18 +12,27 @@ namespace ProjectTA.Module.BulletManager
         public Transform bulletSpawnPoint;
         public Vector3 rotationOffset;
 
+        [ReadOnly] public bool isJoystickActive;
         [ReadOnly] public float shootingRate;
-        [ReadOnly] public bool isShoot;
+        [ReadOnly] public bool isShooting;
 
-        public void StartShoot()
+        [Range(0f, 1f)]
+        public float joystickShootRange;
+
+        public Coroutine shootingCoroutine;
+
+        public void StartShooting()
         {
-            isShoot = true;
-            StartCoroutine(Shoot());
+            if (!isShooting)
+            {
+                isShooting = true;
+                shootingCoroutine = StartCoroutine(Shoot());
+            }
         }
 
         private IEnumerator Shoot()
         {
-            while (isShoot)
+            while (isShooting)
             {
                 GameObject.Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
                 yield return new WaitForSeconds(shootingRate);

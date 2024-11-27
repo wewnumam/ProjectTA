@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb06df640ec6e694d9055050858318b0, type: 3}
   m_Name: GameConstants
   m_EditorClassIdentifier: 
-  isJoystickActive: 0
+  isJoystickActive: 1
   initialHealth: 10
-  shootingRate: 0.25
+  shootingRate: 0.2
