@@ -42,6 +42,10 @@ namespace ProjectTA.Module.BulletManager
             {
                 _view.StartShooting();
             }
+            else
+            {
+                _view.isShooting = false;
+            }
         }
     }
 }

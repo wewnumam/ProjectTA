@@ -17,7 +17,8 @@ namespace ProjectTA.Module.LevelSelection
         [ReadOnly] public List<LevelItemView> listedLevel;
         public Transform container;
         public GameObject template;
-        public TMP_Text currentLevelText;
+        public TMP_Text currentLevelTitle;
+        public TMP_Text currentLevelDescription;
 
         private UnityAction onPlay, onMainMenu;
 
@@ -44,7 +45,10 @@ namespace ProjectTA.Module.LevelSelection
         protected override void UpdateRenderModel(ILevelSelectionModel model)
         {
             if (model.CurrentLevelData != null)
-                currentLevelText.SetText(model.CurrentLevelData.title);
+            {
+                currentLevelTitle.SetText(model.CurrentLevelData.title);
+                currentLevelDescription.SetText(model.CurrentLevelData.description);
+            }
         }
 
     }

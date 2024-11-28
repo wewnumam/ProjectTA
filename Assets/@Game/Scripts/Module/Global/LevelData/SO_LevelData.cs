@@ -10,6 +10,9 @@ namespace ProjectTA.Module.LevelData
     {
         [Header("Display")]
         public string title;
+        public string description;
+        [ShowAssetPreview]
+        public Sprite icon;
         public List<string> puzzlePieceLabels = new List<string>();
 
         [Header("Environment")]

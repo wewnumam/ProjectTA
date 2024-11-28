@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af2653e6341e0974ea73636a4e7be13f, type: 3}
   m_Name: LevelData_0
   m_EditorClassIdentifier: 
-  title: Level Tugu
+  title: TUGU GOLONG GILIG
+  description: Merupakan salah satu bangunan bersejarah yang menjadi salah satu ikon
+    terkenal Yogyakarta. Berada di utara keraton tepatnya di persimpangan Jalan Margoutomo,
+    Jalan A.M. Sangaji, Jalan Jendral Sudirman, dan Jalan P. Diponegoro.
+  icon: {fileID: -197576082, guid: 137fda608f83b1d4abb0f9898697c6e1, type: 3}
   puzzlePieceLabels:
   - Semangat Persatuan
   - 'Raja '

@@ -21,3 +21,4 @@ MonoBehaviour:
     type: 3}
   isLockedLevel: 1
   levelGate: {fileID: 11400000, guid: 550e3315e42db1e4cb8a520996e8f1ac, type: 2}
+  cutsceneData: {fileID: 11400000, guid: 34e1482f657ad8a4dbbfb514bba838fd, type: 2}

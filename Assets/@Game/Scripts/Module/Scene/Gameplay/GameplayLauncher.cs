@@ -122,6 +122,7 @@ namespace ProjectTA.Scene.Gameplay
             _cheatFeature.SetInitialActivateJoystick(_gameConstants.Model.GameConstants.isJoystickActive);
 
             _hud.SetView(_view.HUDView);
+            _hud.SetGateIcon(_levelData.Model.CurrentLevelData.icon);
             
             _health.SetInitialHealth(_gameConstants.Model.GameConstants.initialHealth);
 

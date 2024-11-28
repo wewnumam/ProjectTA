@@ -75,7 +75,8 @@ namespace ProjectTA.Module.PlayerCharacter
         private void MovePlayerCharacter()
         {
             rb.velocity = new Vector3(direction.x, 0, direction.y).normalized * movementSpeed;
-            RotatePlayerCharacter(direction);
+            if (aim == Vector2.zero)
+                RotatePlayerCharacter(direction);
         }
 
         private void RotatePlayerCharacter(Vector2 aim)
