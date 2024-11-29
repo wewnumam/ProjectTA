@@ -22,6 +22,7 @@ namespace ProjectTA.Module.Dialogue
         {
             if (!_story.canContinue)
             {
+                Publish(new GameResumeMessage());
                 _view.onEnd?.Invoke();
                 return;
             }
@@ -61,6 +62,7 @@ namespace ProjectTA.Module.Dialogue
             if (message.TextAsset == null)
                 return;
 
+            Publish(new GamePauseMessage());
             _view.onStart?.Invoke();
             _story = new Story(message.TextAsset.text);
             DisplayNextLine();

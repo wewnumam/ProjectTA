@@ -11,6 +11,7 @@ namespace ProjectTA.Module.EnemyManager
         {
             base.SetView(view);
             view.SetCallback(OnSpawnEnemy);
+            view.enemies = new();
         }
 
         private void OnSpawnEnemy()
@@ -33,6 +34,7 @@ namespace ProjectTA.Module.EnemyManager
             InjectDependencies(enemyController);
             enemyController.Init(enemyView);
             enemyView.player = _view.player;
+            _view.enemies.Add(enemyView);
             
             obj.name = $"Enemy_{_view.enemyCount}";
             _view.enemyCount++;
@@ -65,6 +67,22 @@ namespace ProjectTA.Module.EnemyManager
             }
 
             return spawnPosition;
+        }
+
+        internal void OnGamePause(GamePauseMessage message)
+        {
+            foreach (var enemy in _view.enemies)
+            {
+                enemy.isPause = true;
+            }
+        }
+
+        internal void OnGameResume(GameResumeMessage message)
+        {
+            foreach (var enemy in _view.enemies)
+            {
+                enemy.isPause = false;
+            }
         }
     }
 }

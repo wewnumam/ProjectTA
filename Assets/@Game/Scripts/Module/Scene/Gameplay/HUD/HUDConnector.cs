@@ -13,6 +13,7 @@ namespace ProjectTA.Module.HUD
             Subscribe<UpdatePuzzleCountMessage>(_hud.OnUpdatePuzzleCount);
             Subscribe<UpdatePuzzleSolvedCountMessage>(_hud.OnUpdatePuzzleSolvedCount);
             Subscribe<UpdateKillCountMessage>(_hud.OnUpdateKillCount);
+            Subscribe<UpdateCountdownMessage>(_hud.OnUpdateCountdown);
         }
 
         protected override void Disconnect()
@@ -21,6 +22,7 @@ namespace ProjectTA.Module.HUD
             Unsubscribe<UpdatePuzzleCountMessage>(_hud.OnUpdatePuzzleCount);
             Unsubscribe<UpdatePuzzleSolvedCountMessage>(_hud.OnUpdatePuzzleSolvedCount);
             Unsubscribe<UpdateKillCountMessage>(_hud.OnUpdateKillCount);
+            Unsubscribe<UpdateCountdownMessage>(_hud.OnUpdateCountdown);
         }
     }
 }

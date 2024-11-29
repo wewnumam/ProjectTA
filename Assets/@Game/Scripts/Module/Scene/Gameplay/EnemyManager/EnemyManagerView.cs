@@ -1,8 +1,7 @@
 using Agate.MVC.Base;
 using NaughtyAttributes;
 using ProjectTA.Module.Enemy;
-using System;
-using Unity.VisualScripting;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,6 +15,7 @@ namespace ProjectTA.Module.EnemyManager
         public float spawnInterval = 5f; // Interval in seconds between spawns
         public Camera mainCamera;
         public UnityEvent onEnemySpawn;
+        public List<EnemyView> enemies;
 
         [ReadOnly] public int enemyCount;
 

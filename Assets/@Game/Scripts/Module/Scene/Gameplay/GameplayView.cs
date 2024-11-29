@@ -2,6 +2,7 @@ using Agate.MVC.Base;
 using ProjectTA.Module.BulletManager;
 using ProjectTA.Module.CameraEffect;
 using ProjectTA.Module.CheatFeature;
+using ProjectTA.Module.Countdown;
 using ProjectTA.Module.Dialogue;
 using ProjectTA.Module.EnemyManager;
 using ProjectTA.Module.GameOver;
@@ -25,5 +26,6 @@ namespace ProjectTA.Scene.Gameplay
         public HUDView HUDView;
         public DialogueView DialogueView;
         public CameraEffectView CameraEffectView;
+        public CountdownView CountdownView;
     }
 }

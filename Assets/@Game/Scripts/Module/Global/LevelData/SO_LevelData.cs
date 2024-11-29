@@ -1,6 +1,4 @@
 using NaughtyAttributes;
-using ProjectTA.Utility;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ProjectTA.Module.LevelData
@@ -13,10 +11,10 @@ namespace ProjectTA.Module.LevelData
         public string description;
         [ShowAssetPreview]
         public Sprite icon;
-        public List<string> puzzlePieceLabels = new List<string>();
 
         [Header("Environment")]
         public GameObject environmentPrefab;
+        public float countdown;
 
         [Header("Types")]
         public bool isLockedLevel;

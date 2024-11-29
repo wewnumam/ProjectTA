@@ -1,4 +1,5 @@
 using Agate.MVC.Base;
+using NaughtyAttributes;
 using ProjectTA.Utility;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,6 +8,8 @@ namespace ProjectTA.Module.Enemy
 {
     public class EnemyView : BaseView
     {
+        [ReadOnly]
+        public bool isPause;
         public Transform player;          // The player's transform
         public float speed = 5f;          // Movement speed of the enemy
         public float rayDistance = 2f;    // Distance for the raycast to detect obstacles
@@ -38,6 +41,9 @@ namespace ProjectTA.Module.Enemy
                 return;
             }
 
+            if (isPause)
+                return;
+            
             FollowPlayer();
             AvoidObstacles();
             Move();

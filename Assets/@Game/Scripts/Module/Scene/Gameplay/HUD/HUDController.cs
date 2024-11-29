@@ -44,5 +44,10 @@ namespace ProjectTA.Module.HUD
         {
             _view.killCountText.SetText($"{message.KillCount}");
         }
+
+        internal void OnUpdateCountdown(UpdateCountdownMessage message)
+        {
+            _view.timerText.SetText($"{message.CurrentCountdown:F2}");
+        }
     }
 }

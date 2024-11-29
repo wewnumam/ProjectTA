@@ -6,12 +6,15 @@ using UnityEngine.SceneManagement;
 using ProjectTA.Message;
 using UnityEngine;
 using ProjectTA.Utility;
+using ProjectTA.Module.SaveSystem;
 
 namespace ProjectTA.Scene.MainMenu
 {
     public class MainMenuLauncher : SceneLauncher<MainMenuLauncher, MainMenuView>
     {
         public override string SceneName {get {return TagManager.SCENE_MAINMENU;}}
+
+        SaveSystemController _saveSystemController;
 
         protected override IController[] GetSceneDependencies()
         {
@@ -45,7 +48,14 @@ namespace ProjectTA.Scene.MainMenu
 
         private void OnPlay()
         {
-            SceneLoader.Instance.LoadScene(TagManager.SCENE_LEVELSELECTION);
+            if (_saveSystemController.Model.SaveData.CurrentCutsceneName == TagManager.DEFAULT_CUTSCENENAME)
+            {
+                SceneLoader.Instance.LoadScene(TagManager.SCENE_CUTSCENE);
+            }
+            else
+            {
+                SceneLoader.Instance.LoadScene(TagManager.SCENE_LEVELSELECTION);
+            }
         }
 
         private void OnQuit()

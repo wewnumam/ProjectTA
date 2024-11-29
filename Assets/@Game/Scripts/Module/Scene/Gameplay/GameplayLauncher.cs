@@ -24,6 +24,7 @@ using ProjectTA.Module.Mission;
 using ProjectTA.Module.Dialogue;
 using ProjectTA.Module.PuzzleBoard;
 using ProjectTA.Module.CameraEffect;
+using ProjectTA.Module.Countdown;
 
 namespace ProjectTA.Scene.Gameplay
 {
@@ -49,6 +50,7 @@ namespace ProjectTA.Scene.Gameplay
         private DialogueController _dialogue;
         private PuzzleBoardController _puzzleBoard;
         private CameraEffectController _cameraEffect;
+        private CountdownController _countdown;
 
         protected override IController[] GetSceneDependencies()
         {
@@ -67,6 +69,7 @@ namespace ProjectTA.Scene.Gameplay
                 new DialogueController(),
                 new PuzzleBoardController(),
                 new CameraEffectController(),
+                new CountdownController(),
             };
         }
 
@@ -85,6 +88,7 @@ namespace ProjectTA.Scene.Gameplay
                 new DialogueConnector(),
                 new PuzzleBoardConnector(),
                 new CameraEffectConnector(),
+                new CountdownConnector(),
             };
         }
 
@@ -140,6 +144,10 @@ namespace ProjectTA.Scene.Gameplay
             _mission.SetPuzzlePieceCount(puzzleCount);
 
             _cameraEffect.SetView(_view.CameraEffectView);
+
+            _countdown.SetView(_view.CountdownView);
+            _countdown.SetInitialCountdown(_levelData.Model.CurrentLevelData.countdown);
+            _countdown.SetCurrentCountdown(_levelData.Model.CurrentLevelData.countdown);
 
             Publish(new GameStateMessage(EnumManager.GameState.Playing));
 

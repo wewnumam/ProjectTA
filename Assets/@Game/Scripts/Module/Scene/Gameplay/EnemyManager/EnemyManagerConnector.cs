@@ -9,10 +9,14 @@ namespace ProjectTA.Module.EnemyManager
 
         protected override void Connect()
         {
+            Subscribe<GamePauseMessage>(_enemyManager.OnGamePause);
+            Subscribe<GameResumeMessage>(_enemyManager.OnGameResume);
         }
 
         protected override void Disconnect()
         {
+            Unsubscribe<GamePauseMessage>(_enemyManager.OnGamePause);
+            Unsubscribe<GameResumeMessage>(_enemyManager.OnGameResume);
         }
     }
 }

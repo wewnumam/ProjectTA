@@ -199,7 +199,7 @@ TextureImporter:
         width: 960
         height: 958
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -220,7 +220,7 @@ TextureImporter:
         width: 960
         height: 958
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -228,6 +228,69 @@ TextureImporter:
       bones: []
       spriteID: 6ef4eadfe1689e443aeb9e2df90ca162
       internalID: 1852188456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Buttons_01a_4
+      rect:
+        serializedVersion: 2
+        x: 6052
+        y: 9013
+        width: 2236
+        height: 1754
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 640, y: 877, z: 640, w: 877}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5f91063720d392488e088f7e3f15936
+      internalID: -915702994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Buttons_01a_5
+      rect:
+        serializedVersion: 2
+        x: 2848
+        y: 9817
+        width: 1467
+        height: 1172
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 400, y: 586, z: 400, w: 586}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c6d09b219445a240b3f3cfd779ba24d
+      internalID: -1343115421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Buttons_01a_6
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 398
+        width: 6014
+        height: 4640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 1600, y: 2320, z: 1600, w: 2320}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd8dacb789e7eca45b0fab46e90c102c
+      internalID: -119085501
       vertices: []
       indices: 
       edges: []
@@ -247,6 +310,9 @@ TextureImporter:
       UI_Buttons_01a_1: 457836884
       UI_Buttons_01a_2: -2125128402
       UI_Buttons_01a_3: 1852188456
+      UI_Buttons_01a_4: -915702994
+      UI_Buttons_01a_5: -1343115421
+      UI_Buttons_01a_6: -119085501
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

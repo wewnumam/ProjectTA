@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: LevelData_2
   m_EditorClassIdentifier: 
   title: Level 3
-  puzzlePieceLabels:
-  - gggg
-  - hhhh
-  - iiii
+  description: 
+  icon: {fileID: 0}
   environmentPrefab: {fileID: 5773407093173007764, guid: ad09b7a5cdee83c4dbcb2122ba38c269,
     type: 3}
+  countdown: 120
   isLockedLevel: 0
   levelGate: {fileID: 0}
   cutsceneData: {fileID: 11400000, guid: 34e1482f657ad8a4dbbfb514bba838fd, type: 2}
