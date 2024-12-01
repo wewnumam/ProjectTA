@@ -379,6 +379,90 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: UI_Icons_01a_11
+      rect:
+        serializedVersion: 2
+        x: 6483
+        y: 5535
+        width: 580
+        height: 580
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cec82f1289c3c9640806cc1d68a7aaee
+      internalID: 1744067330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Icons_01a_12
+      rect:
+        serializedVersion: 2
+        x: 7508
+        y: 5535
+        width: 580
+        height: 580
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c76e0d6f226a6ad43a0a93e9d78ee841
+      internalID: -453249972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Icons_01a_13
+      rect:
+        serializedVersion: 2
+        x: 1498
+        y: 4505
+        width: 580
+        height: 580
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 055094cdee8b6e54e83fd1737661397e
+      internalID: -1776086993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Icons_01a_14
+      rect:
+        serializedVersion: 2
+        x: 4583
+        y: 4505
+        width: 580
+        height: 580
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45354278c652e9e4685dccdc61820079
+      internalID: -310122720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -393,6 +477,10 @@ TextureImporter:
       UI_Icons_01a_0: -616433197
       UI_Icons_01a_1: 389632523
       UI_Icons_01a_10: 409238563
+      UI_Icons_01a_11: 1744067330
+      UI_Icons_01a_12: -453249972
+      UI_Icons_01a_13: -1776086993
+      UI_Icons_01a_14: -310122720
       UI_Icons_01a_2: 1113370881
       UI_Icons_01a_3: -1106312123
       UI_Icons_01a_4: -356716393

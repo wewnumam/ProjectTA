@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af2653e6341e0974ea73636a4e7be13f, type: 3}
   m_Name: LevelData_2
   m_EditorClassIdentifier: 
-  title: Level 3
-  description: 
-  icon: {fileID: 0}
-  environmentPrefab: {fileID: 5773407093173007764, guid: ad09b7a5cdee83c4dbcb2122ba38c269,
+  title: KERATON
+  description: Keraton merupakan istana resmi Kesultanan Ngayogyakarta Hadiningrat.
+    Keraton ini memiliki nilai filosofi dan mitologi yang sangat tinggi. Sebagai
+    sebuah istana, maka bangunan ini digunakan sebagai tempat tinggal Sultan Yogyakarta.
+  icon: {fileID: -1776086993, guid: 137fda608f83b1d4abb0f9898697c6e1, type: 3}
+  environmentPrefab: {fileID: 5773407093173007764, guid: 022ccb88d2a3b5740b579b2900c19fa1,
     type: 3}
   countdown: 120
   isLockedLevel: 0

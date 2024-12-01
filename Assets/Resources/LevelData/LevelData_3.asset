@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af2653e6341e0974ea73636a4e7be13f, type: 3}
   m_Name: LevelData_3
   m_EditorClassIdentifier: 
-  title: Level 4
-  description: 
-  icon: {fileID: 0}
-  environmentPrefab: {fileID: 5773407093173007764, guid: ad09b7a5cdee83c4dbcb2122ba38c269,
+  title: TUGU GOLONG GILIG
+  description: Merupakan salah satu bangunan bersejarah yang menjadi salah satu ikon
+    terkenal Yogyakarta. Berada di utara keraton tepatnya di persimpangan Jalan Margoutomo,
+    Jalan A.M. Sangaji, Jalan Jendral Sudirman, dan Jalan P. Diponegoro.
+  icon: {fileID: -197576082, guid: 137fda608f83b1d4abb0f9898697c6e1, type: 3}
+  environmentPrefab: {fileID: 5773407093173007764, guid: 022ccb88d2a3b5740b579b2900c19fa1,
     type: 3}
   countdown: 120
   isLockedLevel: 1
