@@ -283,7 +283,7 @@ TextureImporter:
         width: 6014
         height: 4640
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 1600, y: 2320, z: 1600, w: 2320}
       outline: []
       physicsShape: []
@@ -291,6 +291,48 @@ TextureImporter:
       bones: []
       spriteID: cd8dacb789e7eca45b0fab46e90c102c
       internalID: -119085501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Buttons_01a_7
+      rect:
+        serializedVersion: 2
+        x: 4350
+        y: 11340
+        width: 1540
+        height: 1260
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 414, y: 630, z: 414, w: 630}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2946bc41bb1612948896b28e5ad66200
+      internalID: 2034325684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Buttons_01a_8
+      rect:
+        serializedVersion: 2
+        x: 5889
+        y: 11340
+        width: 1540
+        height: 1260
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 414, y: 630, z: 414, w: 630}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81e59f857ecabbb4786926697df02d27
+      internalID: 314766227
       vertices: []
       indices: 
       edges: []
@@ -313,6 +355,8 @@ TextureImporter:
       UI_Buttons_01a_4: -915702994
       UI_Buttons_01a_5: -1343115421
       UI_Buttons_01a_6: -119085501
+      UI_Buttons_01a_7: 2034325684
+      UI_Buttons_01a_8: 314766227
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

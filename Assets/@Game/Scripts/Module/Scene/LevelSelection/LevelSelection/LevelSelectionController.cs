@@ -1,4 +1,5 @@
 using Agate.MVC.Base;
+using Agate.MVC.Core;
 using ProjectTA.Boot;
 using ProjectTA.Message;
 using ProjectTA.Module.LevelData;
@@ -14,6 +15,8 @@ namespace ProjectTA.Module.LevelSelection
 {
     public class LevelSelectionController : ObjectController<LevelSelectionController, LevelSelectionModel, ILevelSelectionModel, LevelSelectionView>
     {
+        private int currentIndex;
+
         public void SetLevelCollection(SO_LevelCollection levelCollection) => _model.SetLevelCollection(levelCollection);
         public void SetCurrentLevelData(SO_LevelData levelData) => _model.SetCurrentLevelData(levelData);
         public void SetUnlockedLevels(List<string> unlockedLevels) => _model.SetUnlockedLevels(unlockedLevels);
@@ -22,28 +25,7 @@ namespace ProjectTA.Module.LevelSelection
         {
             base.SetView(view);
 
-            view.SetCallback(OnPlay, OnMainMenu);
-
-            for (global::System.Int32 i = view.listedLevel.Count; i < _model.LevelCollection.levelItems.Count; i++)
-            {
-                GameObject obj = GameObject.Instantiate(view.template, view.container);
-                obj.SetActive(true);
-
-                LevelItemView levelItemView = obj.GetComponent<LevelItemView>();
-                SO_LevelData levelItem = _model.LevelCollection.levelItems[i];
-
-                view.listedLevel.Add(levelItemView);
-
-                levelItemView.levelData = levelItem;
-                levelItemView.title.SetText(levelItem.title);
-                
-                if (levelItem.isLockedLevel)
-                    levelItemView.GetComponent<Button>().interactable = _model.IsLevelUnlocked(levelItem.levelGate.name);
-
-                LevelItemController levelItemController = new LevelItemController();
-                InjectDependencies(levelItemController);
-                levelItemController.Init(levelItemView);
-            }
+            view.SetCallbacks(OnPlay, OnMainMenu, OnNext, OnPrevious);
         }
 
         private void OnPlay()
@@ -54,6 +36,20 @@ namespace ProjectTA.Module.LevelSelection
         private void OnMainMenu()
         {
             SceneLoader.Instance.LoadScene(TagManager.SCENE_MAINMENU);
+        }
+
+        private void OnNext()
+        {
+            currentIndex--;
+            currentIndex = currentIndex < 0 ? _model.LevelCollection.levelItems.Count - 1 : currentIndex;
+            Publish(new ChooseLevelMessage(_model.LevelCollection.levelItems[currentIndex]));
+        }
+
+        private void OnPrevious()
+        {
+            currentIndex++;
+            currentIndex = currentIndex >= _model.LevelCollection.levelItems.Count ? 0 : currentIndex;
+            Publish(new ChooseLevelMessage(_model.LevelCollection.levelItems[currentIndex]));
         }
 
         internal void OnChooseLevel(ChooseLevelMessage message)
