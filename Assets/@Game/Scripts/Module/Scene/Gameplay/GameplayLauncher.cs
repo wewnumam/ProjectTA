@@ -25,6 +25,7 @@ using ProjectTA.Module.Dialogue;
 using ProjectTA.Module.PuzzleBoard;
 using ProjectTA.Module.CameraEffect;
 using ProjectTA.Module.Countdown;
+using System.Linq;
 
 namespace ProjectTA.Scene.Gameplay
 {
@@ -140,6 +141,12 @@ namespace ProjectTA.Scene.Gameplay
                 puzzleCount = puzzleBoardView.puzzles.Count;
             }
 
+            var nextLevelItem = _levelData.Model.LevelCollection.levelItems.FirstOrDefault(levelItem => levelItem.levelGate == _levelData.Model.CurrentLevelData);
+
+            if (nextLevelItem != null)
+            {
+                _mission.SetNextLevelData(nextLevelItem);
+            }
             _mission.SetCurrentLevelData(_levelData.Model.CurrentLevelData);
             _mission.SetPuzzlePieceCount(puzzleCount);
 

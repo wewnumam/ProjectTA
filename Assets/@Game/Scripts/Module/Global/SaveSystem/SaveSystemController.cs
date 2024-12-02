@@ -86,7 +86,7 @@ namespace ProjectTA.Module.SaveSystem
             SaveGame(_model.SaveData);
         }
 
-        internal void SaveGameResult(GameResultMessage message)
+        internal void SaveGameResult(UnlockLevelMessage message)
         {
             if (!_model.IsLevelUnlocked(message.LevelData.name) && message.LevelData != null)
             {

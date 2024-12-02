@@ -8,6 +8,7 @@ using ProjectTA.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,6 +44,8 @@ namespace ProjectTA.Module.LevelSelection
             currentIndex--;
             currentIndex = currentIndex < 0 ? _model.LevelCollection.levelItems.Count - 1 : currentIndex;
             Publish(new ChooseLevelMessage(_model.LevelCollection.levelItems[currentIndex]));
+            SetupCamera();
+            _view.playButton.interactable = _model.IsLevelUnlocked(_model.CurrentLevelData.name);
         }
 
         private void OnPrevious()
@@ -50,6 +53,14 @@ namespace ProjectTA.Module.LevelSelection
             currentIndex++;
             currentIndex = currentIndex >= _model.LevelCollection.levelItems.Count ? 0 : currentIndex;
             Publish(new ChooseLevelMessage(_model.LevelCollection.levelItems[currentIndex]));
+            SetupCamera();
+            _view.playButton.interactable = _model.IsLevelUnlocked(_model.CurrentLevelData.name);
+        }
+
+        private void SetupCamera()
+        {
+            _view.VirtualCamera.Follow = _view.ListedModels[currentIndex];
+            _view.VirtualCamera.LookAt = _view.ListedModels[currentIndex];
         }
 
         internal void OnChooseLevel(ChooseLevelMessage message)

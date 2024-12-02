@@ -9,13 +9,13 @@ namespace ProjectTA.Module.SaveSystem
 
         protected override void Connect()
         {
-            Subscribe<GameResultMessage>(_saveSystem.SaveGameResult);
+            Subscribe<UnlockLevelMessage>(_saveSystem.SaveGameResult);
             Subscribe<DeleteSaveDataMessage>(_saveSystem.DeleteSaveData);
         }
 
         protected override void Disconnect()
         {
-            Unsubscribe<GameResultMessage>(_saveSystem.SaveGameResult);
+            Unsubscribe<UnlockLevelMessage>(_saveSystem.SaveGameResult);
             Unsubscribe<DeleteSaveDataMessage>(_saveSystem.DeleteSaveData);
         }
     }

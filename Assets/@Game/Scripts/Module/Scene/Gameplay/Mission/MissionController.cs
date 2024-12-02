@@ -9,6 +9,7 @@ namespace ProjectTA.Module.Mission
     public class MissionController : DataController<MissionController, MissionModel, IMissionModel>
     {
         public void SetCurrentLevelData(SO_LevelData levelData) => _model.SetCurrentLevelData(levelData);
+        public void SetNextLevelData(SO_LevelData levelData) => _model.SetNextLevelData(levelData);
 
         public void SetPuzzlePieceCount(int puzzlePieceCount)
         {
@@ -49,9 +50,12 @@ namespace ProjectTA.Module.Mission
 
             if (_model.IsPuzzleCompleted())
             {
-
                 Publish(new GameWinMessage());
-                Publish(new GameResultMessage(_model.CurrentLevelData));
+                
+                if (_model.NextLevelData != null)
+                {
+                    Publish(new UnlockLevelMessage(_model.NextLevelData));
+                }
             }
         }
     }

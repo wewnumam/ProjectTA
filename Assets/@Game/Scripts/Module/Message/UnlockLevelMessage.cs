@@ -3,11 +3,11 @@ using ProjectTA.Utility;
 
 namespace ProjectTA.Message
 {
-    public struct GameResultMessage
+    public struct UnlockLevelMessage
     {
         public SO_LevelData LevelData { get; }
 
-        public GameResultMessage(SO_LevelData levelData)
+        public UnlockLevelMessage(SO_LevelData levelData)
         {
             LevelData = levelData;
         }

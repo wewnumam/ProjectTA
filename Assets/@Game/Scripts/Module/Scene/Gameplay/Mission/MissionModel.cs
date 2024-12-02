@@ -6,6 +6,7 @@ namespace ProjectTA.Module.Mission
     public class MissionModel : BaseModel, IMissionModel
     {
         public SO_LevelData CurrentLevelData { get; private set; }
+        public SO_LevelData NextLevelData { get; private set; }
         public int PuzzlePieceCount { get; private set; }
         public int CollectedPuzzlePieceCount { get; private set; }
         public int KillCount { get; private set; }
@@ -14,6 +15,12 @@ namespace ProjectTA.Module.Mission
         public void SetCurrentLevelData(SO_LevelData levelData)
         {
             CurrentLevelData = levelData;
+            SetDataAsDirty();
+        }
+
+        public void SetNextLevelData(SO_LevelData levelData)
+        {
+            NextLevelData = levelData;
             SetDataAsDirty();
         }
 

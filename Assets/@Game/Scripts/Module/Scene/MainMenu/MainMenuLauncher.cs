@@ -7,6 +7,7 @@ using ProjectTA.Message;
 using UnityEngine;
 using ProjectTA.Utility;
 using ProjectTA.Module.SaveSystem;
+using ProjectTA.Module.LevelData;
 
 namespace ProjectTA.Scene.MainMenu
 {
@@ -14,7 +15,8 @@ namespace ProjectTA.Scene.MainMenu
     {
         public override string SceneName {get {return TagManager.SCENE_MAINMENU;}}
 
-        SaveSystemController _saveSystemController;
+        LevelDataController _levelData;
+        SaveSystemController _saveSystem;
 
         protected override IController[] GetSceneDependencies()
         {
@@ -48,9 +50,16 @@ namespace ProjectTA.Scene.MainMenu
 
         private void OnPlay()
         {
-            if (_saveSystemController.Model.SaveData.CurrentCutsceneName == TagManager.DEFAULT_CUTSCENENAME)
+            if (_saveSystem.Model.SaveData.CurrentCutsceneName == TagManager.DEFAULT_CUTSCENENAME)
             {
                 SceneLoader.Instance.LoadScene(TagManager.SCENE_CUTSCENE);
+                foreach (var levelItem in _levelData.Model.LevelCollection.levelItems)
+                {
+                    if (!levelItem.isLockedLevel)
+                    {
+                        Publish(new UnlockLevelMessage(levelItem));
+                    }
+                }
             }
             else
             {
