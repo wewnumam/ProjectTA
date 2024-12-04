@@ -7,6 +7,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using ProjectTA.Boot;
 using ProjectTA.Utility;
+using Cinemachine;
+using System.Collections.Generic;
 
 namespace ProjectTA.Module.CutscenePlayer
 {
@@ -18,6 +20,7 @@ namespace ProjectTA.Module.CutscenePlayer
         private int currentIndex;
 
         public void SetCurrentCutsceneData(SO_CutsceneData cutsceneData) => _model.SetCurrentCutsceneData(cutsceneData);
+        public void SetCameras(List<CinemachineVirtualCamera> cameras) => _model.SetCameras(cameras);
 
         public override void SetView(CutscenePlayerView view)
         {
@@ -55,7 +58,15 @@ namespace ProjectTA.Module.CutscenePlayer
             {   
                 text = _story.Continue();
             }
+            
             ParseSentence(text?.Trim());
+            
+            for (int i = 0; i < _model.Cameras.Count; i++)
+            {
+                _model.Cameras[i].enabled = i == currentIndex;
+            }
+
+            currentIndex++;
         }
 
 

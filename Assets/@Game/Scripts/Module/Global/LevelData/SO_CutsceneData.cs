@@ -11,5 +11,7 @@ namespace ProjectTA.Module.LevelData
         public TextAsset dialogueAsset;
         [ShowAssetPreview]
         public List<Sprite> sceneSprites;
+
+        public GameObject environment;
     }
 }

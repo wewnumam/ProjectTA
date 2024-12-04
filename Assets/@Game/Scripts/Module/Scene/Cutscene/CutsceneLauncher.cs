@@ -50,6 +50,12 @@ namespace ProjectTA.Scene.Cutscene
 
             yield return StartCoroutine(_levelData.SetCurrentCutscene(_saveSystem.Model.SaveData.CurrentCutsceneName));
 
+            GameObject environment = Instantiate(_levelData.Model.CurrentCutsceneData.environment);
+
+            if (environment.TryGetComponent<CutsceneComponent>(out var cutsceneComponent))
+            {
+                _cutscenePlayer.SetCameras(cutsceneComponent.cameras);
+            }
             _cutscenePlayer.SetCurrentCutsceneData(_levelData.Model.CurrentCutsceneData);
             _cutscenePlayer.SetView(_view.CutscenePlayerView);
 

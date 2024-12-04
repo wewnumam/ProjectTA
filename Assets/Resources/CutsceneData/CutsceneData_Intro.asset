@@ -17,3 +17,5 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 75b4047b29e8f4140a88a2cd1c859eb1, type: 3}
   - {fileID: 21300000, guid: 96a83f3c8e583db47be22c183ae919f2, type: 3}
   - {fileID: 21300000, guid: 44b05940f0b6c2e47845a0762a0ff1e8, type: 3}
+  environment: {fileID: 5773407093173007764, guid: b350b3899611be640990e4e971a1b2dd,
+    type: 3}
