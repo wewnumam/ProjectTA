@@ -2,6 +2,7 @@ using Agate.MVC.Base;
 using ProjectTA.Message;
 using ProjectTA.Utility;
 using System;
+using TMPro;
 using UnityEngine;
 
 namespace ProjectTA.Module.PuzzleBoard
@@ -17,7 +18,15 @@ namespace ProjectTA.Module.PuzzleBoard
             {
                 puzzle.puzzleComponent.onSendPuzzleComponent += OnPuzzleComponentSended;
                 puzzle.puzzleDragable.onPlace += OnPuzzlePlaced;
+
+                TMP_Text label = puzzle.puzzleDragable.GetComponentInChildren<TMP_Text>();
+                if (label != null)
+                {
+                    label.SetText(puzzle.label);
+                }
             }
+
+            view.SetCallback(OnClose);
             
             Debug.Log($"<color=green>[{view.GetType()}]</color> installed successfully!");
         }
@@ -39,8 +48,14 @@ namespace ProjectTA.Module.PuzzleBoard
             Debug.Log(puzzleDragable.gameObject.name);
         }
 
+        private void OnClose()
+        {
+            Time.timeScale = 1;
+        }
+
         internal void ShowPuzzleBoard(ShowPadlockMessage message)
         {
+            Time.timeScale = 0;
             _view.onShow?.Invoke();
         }
 
