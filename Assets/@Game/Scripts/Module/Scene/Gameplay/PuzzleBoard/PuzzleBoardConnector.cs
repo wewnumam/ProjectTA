@@ -12,14 +12,15 @@ namespace ProjectTA.Module.PuzzleBoard
             Subscribe<ShowPadlockMessage>(_puzzleBoard.ShowPuzzleBoard);
             Subscribe<TeleportToPuzzleMessage>(_puzzleBoard.TeleportToPuzzle);
             Subscribe<GameWinMessage>(_puzzleBoard.OnGameWin);
+            Subscribe<UnlockCollectibleMessage>(_puzzleBoard.OnUnlockCollectible);
         }
 
         protected override void Disconnect()
         {
             Unsubscribe<ShowPadlockMessage>(_puzzleBoard.ShowPuzzleBoard);
             Unsubscribe<TeleportToPuzzleMessage>(_puzzleBoard.TeleportToPuzzle);
-            Unsubscribe<TeleportToPuzzleMessage>(_puzzleBoard.TeleportToPuzzle);
             Unsubscribe<GameWinMessage>(_puzzleBoard.OnGameWin);
+            Unsubscribe<UnlockCollectibleMessage>(_puzzleBoard.OnUnlockCollectible);
         }
     }
 }

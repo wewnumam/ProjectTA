@@ -1,4 +1,7 @@
 using NaughtyAttributes;
+using ProjectTA.Module.CollectibleData;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ProjectTA.Module.LevelData
@@ -8,9 +11,13 @@ namespace ProjectTA.Module.LevelData
     {
         [Header("Display")]
         public string title;
+        [TextArea]
         public string description;
         [ShowAssetPreview]
         public Sprite icon;
+
+        [Header("Puzzle"), TextArea]
+        public string puzzleQuestion;
 
         [Header("Environment")]
         public GameObject environmentPrefab;
@@ -23,5 +30,16 @@ namespace ProjectTA.Module.LevelData
 
         [Header("Cutscene")]
         public SO_CutsceneData cutsceneData;
+
+        [Header("Collectible")]
+        public List<CollectibleObject> collectibleObjects;
+    }
+
+    [Serializable]
+    public class CollectibleObject
+    {
+        public SO_CollectibleData collectibleData;
+        public Vector3 objectPosition;
+        public Vector3 rectPosition;
     }
 }

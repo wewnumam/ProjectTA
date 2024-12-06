@@ -973,16 +973,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c7cfbb0a3c719e40aa11fbb5f618eab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puzzles:
-  - label: Semangat Persatuan
-    puzzleComponent: {fileID: 3821788750231089129}
-    puzzleDragable: {fileID: 4341030105816588032}
-  - label: Raja
-    puzzleComponent: {fileID: 5233029824938805412}
-    puzzleDragable: {fileID: 1584970994348796930}
-  - label: Rakyat
-    puzzleComponent: {fileID: 1880615500493397489}
-    puzzleDragable: {fileID: 1309106587962944877}
+  parent: {fileID: 0}
+  puzzleDragableTemplate: {fileID: 0}
+  puzzleTargetTemplate: {fileID: 0}
+  questionText: {fileID: 0}
+  draggables: []
   onShow:
     m_PersistentCalls:
       m_Calls:
@@ -2210,42 +2205,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1785630e4ee70c44a85f92c3ac9b4aa, type: 3}
---- !u!114 &1309106587962944877 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1209202617721336161, guid: c1785630e4ee70c44a85f92c3ac9b4aa,
-    type: 3}
-  m_PrefabInstance: {fileID: 210845505308531724}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64940640a27d274408b41b4a1705e8e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1584970994348796930 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1662919418253029390, guid: c1785630e4ee70c44a85f92c3ac9b4aa,
-    type: 3}
-  m_PrefabInstance: {fileID: 210845505308531724}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64940640a27d274408b41b4a1705e8e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4341030105816588032 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4527099760479191820, guid: c1785630e4ee70c44a85f92c3ac9b4aa,
-    type: 3}
-  m_PrefabInstance: {fileID: 210845505308531724}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64940640a27d274408b41b4a1705e8e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &7449310108701726527 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7317318936603888435, guid: c1785630e4ee70c44a85f92c3ac9b4aa,

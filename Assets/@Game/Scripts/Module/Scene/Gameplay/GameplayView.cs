@@ -10,7 +10,7 @@ using ProjectTA.Module.GamePause;
 using ProjectTA.Module.GameWin;
 using ProjectTA.Module.HUD;
 using ProjectTA.Module.PlayerCharacter;
-
+using ProjectTA.Module.PuzzleBoard;
 
 namespace ProjectTA.Scene.Gameplay
 {
@@ -25,6 +25,7 @@ namespace ProjectTA.Scene.Gameplay
         public CheatFeatureView CheatFeatureView;
         public HUDView HUDView;
         public DialogueView DialogueView;
+        public PuzzleBoardView PuzzleBoardView;
         public CameraEffectView CameraEffectView;
         public CountdownView CountdownView;
     }

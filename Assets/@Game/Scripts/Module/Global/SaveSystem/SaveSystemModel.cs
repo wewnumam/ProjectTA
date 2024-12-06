@@ -1,4 +1,5 @@
 using Agate.MVC.Base;
+using UnityEngine;
 
 namespace ProjectTA.Module.SaveSystem
 {
@@ -26,7 +27,14 @@ namespace ProjectTA.Module.SaveSystem
 
         public void AddUnlockedLevel(string levelName)
         {
-            SaveData.UnlockedLevels.Add(levelName);
+            if (!IsLevelUnlocked(levelName))
+            {
+                SaveData.UnlockedLevels.Add(levelName);
+            }
+            else
+            {
+                Debug.Log($"{levelName} is already unlocked!");
+            }
             SetDataAsDirty();
         }
 
@@ -34,6 +42,25 @@ namespace ProjectTA.Module.SaveSystem
         {
             SetDataAsDirty();
             return SaveData.UnlockedLevels.Contains(levelName);
+        }
+
+        public void AddUnlockedCollectible(string collectibleName)
+        {
+            if (!IsCollectibleUnlocked(collectibleName))
+            {
+                SaveData.UnlockedCollectibles.Add(collectibleName);
+            }
+            else
+            {
+                Debug.Log($"{collectibleName} is already unlocked!");
+            }
+            SetDataAsDirty();
+        }
+
+        public bool IsCollectibleUnlocked(string collectibleName)
+        {
+            SetDataAsDirty();
+            return SaveData.UnlockedCollectibles.Contains(collectibleName);
         }
     }
 }

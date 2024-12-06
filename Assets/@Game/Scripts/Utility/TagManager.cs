@@ -7,11 +7,12 @@
         public const string SCENE_SPLASHSCREEN = "SplashScreen";
         public const string SCENE_LEVELSELECTION = "LevelSelection";
         public const string SCENE_CUTSCENE = "Cutscene";
+        public const string SCENE_ACHIEVEMENT = "Achievement";
 
         public const string TAG_PLAYER = "Player";
         public const string TAG_ENEMY = "Enemy";
         public const string TAG_BULLET = "Bullet";
-        public const string TAG_PUZZLEPIECE = "PuzzlePiece";
+        public const string TAG_COLLECTIBLE = "Collectible";
         public const string TAG_PADLOCK = "Padlock";
 
         public const string ANIM_IDLE = "Idle";

@@ -86,12 +86,29 @@ namespace ProjectTA.Module.SaveSystem
             SaveGame(_model.SaveData);
         }
 
-        internal void SaveGameResult(UnlockLevelMessage message)
+        internal void UnlockLevel(UnlockLevelMessage message)
         {
-            if (!_model.IsLevelUnlocked(message.LevelData.name) && message.LevelData != null)
+            if (message.LevelData != null)
             {
                 _model.AddUnlockedLevel(message.LevelData.name);
                 SaveGame(_model.SaveData);
+            }
+            else
+            {
+                Debug.LogWarning($"LEVEL DATA MESSAGE IS NULL!");
+            }
+        }
+
+        internal void UnlockCollectible(UnlockCollectibleMessage message)
+        {
+            if (message.CollectibleData != null)
+            {
+                _model.AddUnlockedCollectible(message.CollectibleData.name);
+                SaveGame(_model.SaveData);
+            }
+            else
+            {
+                Debug.LogWarning($"COLLECTIBLE DATA MESSAGE IS NULL!");
             }
         }
 

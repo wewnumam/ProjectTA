@@ -6,8 +6,8 @@ TagManager:
   tags:
   - Enemy
   - Bullet
-  - PuzzlePiece
   - Padlock
+  - Collectible
   layers:
   - Default
   - TransparentFX

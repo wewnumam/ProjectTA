@@ -26,6 +26,7 @@ using ProjectTA.Module.PuzzleBoard;
 using ProjectTA.Module.CameraEffect;
 using ProjectTA.Module.Countdown;
 using System.Linq;
+using ProjectTA.Module.CollectibleData;
 
 namespace ProjectTA.Scene.Gameplay
 {
@@ -36,6 +37,7 @@ namespace ProjectTA.Scene.Gameplay
         private SaveSystemController _saveSystem;
         private GameConstantsController _gameConstants;
         private LevelDataController _levelData;
+        private CollectibleDataController _collectibleData;
         private GameSettingsController _gameSettings;
 
         private GamePauseController _gamePause;
@@ -106,9 +108,24 @@ namespace ProjectTA.Scene.Gameplay
 
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneName));
 
+            foreach (var collectibleName in _saveSystem.Model.SaveData.UnlockedCollectibles)
+            {
+                _collectibleData.AddUnlockedCollectible(collectibleName);
+            }
+
             yield return StartCoroutine(_levelData.SetCurrentLevel(_saveSystem.Model.SaveData.CurrentLevelName));
 
             GameObject environmentObj = Instantiate(_levelData.Model.CurrentEnvironmentPrefab);
+
+            foreach (var collectibleObject in _levelData.Model.CurrentLevelData.collectibleObjects)
+            {
+                GameObject obj = GameObject.Instantiate(collectibleObject.collectibleData.prefab, environmentObj.transform);
+                obj.transform.localPosition = collectibleObject.objectPosition;
+                obj.AddComponent<DialogueComponent>();
+                obj.GetComponent<DialogueComponent>().dialogueAsset = collectibleObject.collectibleData.dialogue;
+                obj.AddComponent<CollectibleComponent>();
+                obj.GetComponent<CollectibleComponent>().CollectibleData = collectibleObject.collectibleData;
+            }
 
             _gamePause.SetView(_view.GamePauseView);
             _gameWin.SetView(_view.GameWinView);
@@ -133,13 +150,8 @@ namespace ProjectTA.Scene.Gameplay
 
             _dialogue.SetView(_view.DialogueView);
 
-            int puzzleCount = 0;
-
-            if (environmentObj.TryGetComponent<PuzzleBoardView>(out var puzzleBoardView))
-            {
-                _puzzleBoard.SetView(puzzleBoardView);
-                puzzleCount = puzzleBoardView.puzzles.Count;
-            }
+            _puzzleBoard.SetLevelData(_levelData.Model.CurrentLevelData);
+            _puzzleBoard.SetView(_view.PuzzleBoardView);
 
             var nextLevelItem = _levelData.Model.LevelCollection.levelItems.FirstOrDefault(levelItem => levelItem.levelGate == _levelData.Model.CurrentLevelData);
 
@@ -148,7 +160,7 @@ namespace ProjectTA.Scene.Gameplay
                 _mission.SetNextLevelData(nextLevelItem);
             }
             _mission.SetCurrentLevelData(_levelData.Model.CurrentLevelData);
-            _mission.SetPuzzlePieceCount(puzzleCount);
+            _mission.SetPuzzlePieceCount(_levelData.Model.CurrentLevelData.collectibleObjects.Count);
 
             _cameraEffect.SetView(_view.CameraEffectView);
 

@@ -1,44 +1,70 @@
 using Agate.MVC.Base;
 using ProjectTA.Message;
+using ProjectTA.Module.LevelData;
 using ProjectTA.Utility;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ProjectTA.Module.PuzzleBoard
 {
     public class PuzzleBoardController : ObjectController<PuzzleBoardController, PuzzleBoardView>
     {
-        int currentPuzzleIndex;
+        private int _currentPuzzleIndex;
+
+        private SO_LevelData _levelData;
+
+        public void SetLevelData(SO_LevelData levelData)
+        {
+            _levelData = levelData;
+        }
 
         public override void SetView(PuzzleBoardView view)
         {
             base.SetView(view);
-            foreach (var puzzle in view.puzzles)
+            int currentLeftIndex = 0;
+            int currentRightIndex = 0;
+            for (int i = 0; i < _levelData.collectibleObjects.Count; i++)
             {
-                puzzle.puzzleComponent.onSendPuzzleComponent += OnPuzzleComponentSended;
-                puzzle.puzzleDragable.onPlace += OnPuzzlePlaced;
+                CollectibleObject puzzle = _levelData.collectibleObjects[i];
+                
+                GameObject puzzleDragable = GameObject.Instantiate(view.puzzleDragableTemplate.gameObject, view.parent);
 
-                TMP_Text label = puzzle.puzzleDragable.GetComponentInChildren<TMP_Text>();
+                GameObject puzzleTarget = GameObject.Instantiate(view.puzzleTargetTemplate.gameObject, view.parent);
+                RectTransform target = puzzleTarget.GetComponent<RectTransform>();
+                target.anchoredPosition = puzzle.rectPosition;
+
+                RectTransform rectTransform = puzzleDragable.GetComponent<RectTransform>();
+                rectTransform.anchoredPosition += new Vector2(i % 2 != 0 ? (rectTransform.rect.width * currentRightIndex) : (-rectTransform.rect.width * currentLeftIndex), 1);
+
+                if (i % 2 != 0)
+                    currentLeftIndex++;
+                else
+                    currentRightIndex++;
+
+                PuzzleDragable dragable = puzzleDragable.GetComponent<PuzzleDragable>();
+                dragable.targetPosition = target;
+                dragable.onPlace += OnPuzzlePlaced;
+                dragable.CollectibleData = puzzle.collectibleData;
+                view.draggables.Add(dragable);
+
+                TMP_Text label = puzzleDragable.GetComponentInChildren<TMP_Text>();
                 if (label != null)
                 {
-                    label.SetText(puzzle.label);
+                    label.SetText(puzzle.collectibleData.Title);
                 }
+
+                puzzleDragable.SetActive(true);
+                puzzleTarget.SetActive(true);
             }
 
             view.SetCallback(OnClose);
-            
+            view.questionText.SetText(_levelData.puzzleQuestion);
+
             Debug.Log($"<color=green>[{view.GetType()}]</color> installed successfully!");
-        }
-
-        private void OnPuzzleComponentSended(PuzzleComponent puzzleComponent)
-        {
-            Puzzle puzzle = _view.puzzles.Find(p => p.puzzleComponent == puzzleComponent);
-            puzzle.puzzleDragable.SetPuzzleDragableActive();
-
-            Debug.Log(puzzleComponent.gameObject.name);
-
-            Publish(new AddCollectedPuzzlePieceCountMessage(1));
         }
 
         private void OnPuzzlePlaced(PuzzleDragable puzzleDragable)
@@ -61,17 +87,23 @@ namespace ProjectTA.Module.PuzzleBoard
 
         internal void TeleportToPuzzle(TeleportToPuzzleMessage message)
         {
-            GameObject.FindGameObjectWithTag(TagManager.TAG_PLAYER).transform.position = _view.puzzles[currentPuzzleIndex].puzzleComponent.transform.position;
+            GameObject.FindGameObjectWithTag(TagManager.TAG_PLAYER).transform.position = _levelData.collectibleObjects[_currentPuzzleIndex].objectPosition;
             
-            currentPuzzleIndex++;
+            _currentPuzzleIndex++;
             
-            if (currentPuzzleIndex >= _view.puzzles.Count)
-                currentPuzzleIndex = 0;
+            if (_currentPuzzleIndex >= _levelData.collectibleObjects.Count)
+                _currentPuzzleIndex = 0;
         }
 
         internal void OnGameWin(GameWinMessage message)
         {
             _view.onComplete?.Invoke();
+        }
+
+        internal void OnUnlockCollectible(UnlockCollectibleMessage message)
+        {
+            PuzzleDragable puzzleDragable = _view.draggables.FirstOrDefault(dragable => dragable.CollectibleData == message.CollectibleData);
+            puzzleDragable.SetPuzzleDragableActive();
         }
     }
 }

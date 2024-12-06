@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using ProjectTA.Module.CollectibleData;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -7,6 +8,7 @@ namespace ProjectTA.Module.PuzzleBoard
 {
     public class PuzzleDragable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
+        [ReadOnly] public SO_CollectibleData CollectibleData;
         [ReadOnly] public bool isActive;
 
         public RectTransform targetPosition; // Reference to the target position (TargetImage's RectTransform)

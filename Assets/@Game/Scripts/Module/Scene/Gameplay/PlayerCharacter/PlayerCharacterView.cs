@@ -1,5 +1,6 @@
 using Agate.MVC.Base;
 using NaughtyAttributes;
+using ProjectTA.Module.CollectibleData;
 using ProjectTA.Module.Dialogue;
 using ProjectTA.Utility;
 using UnityEngine;
@@ -27,6 +28,7 @@ namespace ProjectTA.Module.PlayerCharacter
 
         private UnityAction onCollideWithEnemy;
         private UnityAction<TextAsset> onCollideWithDialogueComponent;
+        private UnityAction<SO_CollectibleData> _onCollideWithCollectibleComponent;
         private UnityAction onCollideWithPadlock;
 
         void Update()
@@ -123,12 +125,26 @@ namespace ProjectTA.Module.PlayerCharacter
 
             if (collision.gameObject.CompareTag(TagManager.TAG_PADLOCK))
                 onCollideWithPadlock?.Invoke();
+
+            if (collision.gameObject.CompareTag(TagManager.TAG_COLLECTIBLE))
+            {
+                if (collision.gameObject.TryGetComponent<CollectibleComponent>(out var collectible))
+                {
+                    _onCollideWithCollectibleComponent?.Invoke(collectible.CollectibleData);
+                    collision.gameObject.SetActive(false);
+                }
+            }
         }
 
-        public void SetCollideCallbacks(UnityAction onCollideWithEnemy, UnityAction<TextAsset> onCollideWithDialogueComponent, UnityAction onCollideWithPadlock)
+        public void SetCollideCallbacks(
+            UnityAction onCollideWithEnemy, 
+            UnityAction<TextAsset> onCollideWithDialogueComponent, 
+            UnityAction<SO_CollectibleData> onCollideWithCollectibleComponent, 
+            UnityAction onCollideWithPadlock)
         {
             this.onCollideWithEnemy = onCollideWithEnemy;
             this.onCollideWithDialogueComponent = onCollideWithDialogueComponent;
+            _onCollideWithCollectibleComponent = onCollideWithCollectibleComponent;
             this.onCollideWithPadlock = onCollideWithPadlock;
         }
     }

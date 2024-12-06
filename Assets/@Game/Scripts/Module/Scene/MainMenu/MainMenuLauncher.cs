@@ -8,6 +8,7 @@ using UnityEngine;
 using ProjectTA.Utility;
 using ProjectTA.Module.SaveSystem;
 using ProjectTA.Module.LevelData;
+using ProjectTA.Module.CollectibleData;
 
 namespace ProjectTA.Scene.MainMenu
 {
@@ -17,6 +18,7 @@ namespace ProjectTA.Scene.MainMenu
 
         LevelDataController _levelData;
         SaveSystemController _saveSystem;
+        CollectibleDataController _collectibleData;
 
         protected override IController[] GetSceneDependencies()
         {
@@ -43,7 +45,12 @@ namespace ProjectTA.Scene.MainMenu
 
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneName));
 
-            _view.SetButtonCallback(OnPlay, OnQuit);
+            _view.SetCallbacks(OnPlay, OnQuit, OnAchievement);
+
+            foreach (var collectibleName in _saveSystem.Model.SaveData.UnlockedCollectibles)
+            {
+                _collectibleData.AddUnlockedCollectible(collectibleName);
+            }
 
             yield return null;
         }
@@ -70,6 +77,11 @@ namespace ProjectTA.Scene.MainMenu
         private void OnQuit()
         {
             Application.Quit();
+        }
+
+        private void OnAchievement()
+        {
+            SceneLoader.Instance.LoadScene(TagManager.SCENE_ACHIEVEMENT);
         }
     }
 }

@@ -1,5 +1,6 @@
 using Agate.MVC.Base;
 using ProjectTA.Message;
+using ProjectTA.Module.CollectibleData;
 using ProjectTA.Utility;
 using System;
 using UnityEngine;
@@ -11,7 +12,7 @@ namespace ProjectTA.Module.PlayerCharacter
         public override void SetView(PlayerCharacterView view)
         {
             base.SetView(view);
-            view.SetCollideCallbacks(OnCollideWithEnemy, OnCollideWithDialogueComponent, OnCollideWithPadlock);
+            view.SetCollideCallbacks(OnCollideWithEnemy, OnCollideWithDialogueComponent, OnCollideWithCollectibleComponent, OnCollideWithPadlock);
             view.rb.isKinematic = false;
         }
 
@@ -23,6 +24,12 @@ namespace ProjectTA.Module.PlayerCharacter
         private void OnCollideWithDialogueComponent(TextAsset textAsset)
         {
             Publish(new ShowDialogueMessage(textAsset));
+        }
+
+        private void OnCollideWithCollectibleComponent(SO_CollectibleData collectibleData)
+        {
+            Publish(new UnlockCollectibleMessage(collectibleData));
+            Publish(new AddCollectedPuzzlePieceCountMessage(1));
         }
 
         private void OnCollideWithPadlock()

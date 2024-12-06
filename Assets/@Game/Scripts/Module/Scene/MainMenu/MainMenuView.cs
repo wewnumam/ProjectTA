@@ -6,16 +6,28 @@ namespace ProjectTA.Scene.MainMenu
 {
     public class MainMenuView : BaseSceneView
     {
-        public Button playButton;
-        public Button quitButton;
+        private UnityAction _onPlay, _onQuit, _onAchievement;
 
-        public void SetButtonCallback(UnityAction onPlay, UnityAction onQuit)
+        public void Play()
         {
-            playButton.onClick.RemoveAllListeners();
-            playButton.onClick.AddListener(onPlay);
+            _onPlay.Invoke();
+        }
 
-            quitButton.onClick.RemoveAllListeners();
-            quitButton.onClick.AddListener(onQuit);
+        public void Quit()
+        {
+            _onQuit?.Invoke();
+        }
+
+        public void Achievement()
+        {
+            _onAchievement?.Invoke();
+        }
+
+        public void SetCallbacks(UnityAction onPlay, UnityAction onQuit, UnityAction onAchievement)
+        {
+            _onPlay = onPlay;
+            _onQuit = onQuit;
+            _onAchievement = onAchievement;
         }
     }
 }

@@ -16,9 +16,22 @@ MonoBehaviour:
   description: Pantai Parangkusumo menjadi titik ujung selatan garis ini. Pantai
     ini menjadi tempat prosesi upacara labuhan Parangkusumo dilaksanakan.
   icon: {fileID: 1744067330, guid: 137fda608f83b1d4abb0f9898697c6e1, type: 3}
+  puzzleQuestion: Terdiri dari dua kata, Golong dan Gilig yang diambil dari bentuk
+    dasar bangunan tersebut. Golong yaitu bentuk ____________ dan Gilig yaitu bentuk
+    ____________. Dan memiliki makna ____________ ____________ dan ____________ .
   environmentPrefab: {fileID: 5773407093173007764, guid: 022ccb88d2a3b5740b579b2900c19fa1,
     type: 3}
   countdown: 120
   isLockedLevel: 0
   levelGate: {fileID: 0}
   cutsceneData: {fileID: 11400000, guid: 34e1482f657ad8a4dbbfb514bba838fd, type: 2}
+  collectibleObjects:
+  - collectibleData: {fileID: 11400000, guid: 139837f5715273840b6589cceebde55d, type: 2}
+    objectPosition: {x: 25, y: 0.5, z: 35}
+    rectPosition: {x: 390, y: 41, z: 0}
+  - collectibleData: {fileID: 11400000, guid: b43994c793f87f342a4b61fe6d7e89f0, type: 2}
+    objectPosition: {x: -29, y: 0.5, z: -21}
+    rectPosition: {x: -185, y: -87, z: 0}
+  - collectibleData: {fileID: 11400000, guid: 63bb7814f5db9e546b74c43ba0a1588e, type: 2}
+    objectPosition: {x: 31, y: 0.5, z: -21}
+    rectPosition: {x: 179, y: -87, z: 0}
