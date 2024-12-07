@@ -30,7 +30,8 @@ namespace ProjectTA.Module.CollectibleList
             {
                 GameObject obj = GameObject.Instantiate(view.itemTemplate.gameObject, view.parent);
                 obj.GetComponent<Button>().interactable = true;
-                if (obj.TryGetComponent<TMP_Text>(out var text))
+                TMP_Text text = obj.GetComponentInChildren<TMP_Text>();
+                if (text != null)
                 {
                     text.SetText(collectibleItem.Title);
                 }

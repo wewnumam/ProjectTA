@@ -9,6 +9,7 @@ using ProjectTA.Utility;
 using ProjectTA.Module.SaveSystem;
 using ProjectTA.Module.LevelData;
 using ProjectTA.Module.CollectibleData;
+using ProjectTA.Module.Tutorial;
 
 namespace ProjectTA.Scene.MainMenu
 {
@@ -20,9 +21,12 @@ namespace ProjectTA.Scene.MainMenu
         SaveSystemController _saveSystem;
         CollectibleDataController _collectibleData;
 
+        TutorialController _tutorial;
+
         protected override IController[] GetSceneDependencies()
         {
             return new IController[] {
+                new TutorialController(),
             };
         }
 
@@ -51,6 +55,8 @@ namespace ProjectTA.Scene.MainMenu
             {
                 _collectibleData.AddUnlockedCollectible(collectibleName);
             }
+
+            _tutorial.SetView(_view.TutorialView);
 
             yield return null;
         }
