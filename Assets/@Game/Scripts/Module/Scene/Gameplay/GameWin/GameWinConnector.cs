@@ -9,11 +9,17 @@ namespace ProjectTA.Module.GameWin
 
         protected override void Connect()
         {
+            Subscribe<UpdateKillCountMessage>(_gameWin.OnUpdateKillCount);
+            Subscribe<UpdatePuzzleCountMessage>(_gameWin.OnUpdatePuzzleCount);
+            Subscribe<UpdateCountdownMessage>(_gameWin.OnUpdateCountdown);
             Subscribe<GameWinMessage>(_gameWin.OnGameWin);
         }
 
         protected override void Disconnect()
         {
+            Unsubscribe<UpdateKillCountMessage>(_gameWin.OnUpdateKillCount);
+            Unsubscribe<UpdatePuzzleCountMessage>(_gameWin.OnUpdatePuzzleCount);
+            Unsubscribe<UpdateCountdownMessage>(_gameWin.OnUpdateCountdown);
             Unsubscribe<GameWinMessage>(_gameWin.OnGameWin);
         }
     }

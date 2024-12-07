@@ -27,6 +27,8 @@ using ProjectTA.Module.CameraEffect;
 using ProjectTA.Module.Countdown;
 using System.Linq;
 using ProjectTA.Module.CollectibleData;
+using Ink.Parsed;
+using System.Collections.Generic;
 
 namespace ProjectTA.Scene.Gameplay
 {
@@ -117,6 +119,8 @@ namespace ProjectTA.Scene.Gameplay
 
             GameObject environmentObj = Instantiate(_levelData.Model.CurrentEnvironmentPrefab);
 
+            List<CollectibleComponent> collectibleObjs = new();
+
             foreach (var collectibleObject in _levelData.Model.CurrentLevelData.collectibleObjects)
             {
                 GameObject obj = GameObject.Instantiate(collectibleObject.collectibleData.prefab, environmentObj.transform);
@@ -125,6 +129,7 @@ namespace ProjectTA.Scene.Gameplay
                 obj.GetComponent<DialogueComponent>().dialogueAsset = collectibleObject.collectibleData.dialogue;
                 obj.AddComponent<CollectibleComponent>();
                 obj.GetComponent<CollectibleComponent>().CollectibleData = collectibleObject.collectibleData;
+                collectibleObjs.Add(obj.GetComponent<CollectibleComponent>());
             }
 
             _gamePause.SetView(_view.GamePauseView);
@@ -143,6 +148,7 @@ namespace ProjectTA.Scene.Gameplay
             _cheatFeature.SetView(_view.CheatFeatureView);
             _cheatFeature.SetInitialActivateJoystick(_gameConstants.Model.GameConstants.isJoystickActive);
 
+            _hud.SetInitialCountdown(_levelData.Model.CurrentLevelData.countdown);
             _hud.SetView(_view.HUDView);
             _hud.SetGateIcon(_levelData.Model.CurrentLevelData.icon);
             
@@ -150,6 +156,7 @@ namespace ProjectTA.Scene.Gameplay
 
             _dialogue.SetView(_view.DialogueView);
 
+            _puzzleBoard.SetCollectibleObjs(collectibleObjs);
             _puzzleBoard.SetLevelData(_levelData.Model.CurrentLevelData);
             _puzzleBoard.SetView(_view.PuzzleBoardView);
 

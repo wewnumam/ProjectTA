@@ -2,14 +2,6 @@ namespace ProjectTA.Utility
 {
     public class EnumManager
     {
-        public enum Direction
-        {
-            FromEast,
-            FromWest,
-            FromNorth,
-            CloseUp
-        }
-
         public enum GameState
         {
             PreGame,
@@ -18,6 +10,12 @@ namespace ProjectTA.Utility
             GameOver,
             GameWin,
             ShowPadlock
+        }
+
+        public enum CollectibleType
+        {
+            Puzzle,
+            HiddenObject
         }
     }
 }

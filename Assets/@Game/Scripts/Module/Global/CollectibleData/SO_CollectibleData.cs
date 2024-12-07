@@ -1,5 +1,6 @@
 using NaughtyAttributes;
 using UnityEngine;
+using ProjectTA.Utility;
 
 namespace ProjectTA.Module.CollectibleData
 {
@@ -9,6 +10,7 @@ namespace ProjectTA.Module.CollectibleData
         [Header("Display")]
         public string Title;
         public string Description;
+        public EnumManager.CollectibleType Type;
 
         [Header("Environment"), ShowAssetPreview]
         public GameObject prefab;

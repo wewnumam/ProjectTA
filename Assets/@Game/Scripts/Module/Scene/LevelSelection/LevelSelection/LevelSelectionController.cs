@@ -43,6 +43,7 @@ namespace ProjectTA.Module.LevelSelection
         {
             currentIndex++;
             currentIndex = currentIndex >= _model.LevelCollection.levelItems.Count ? 0 : currentIndex;
+            Publish(new ChooseLevelMessage(_model.LevelCollection.levelItems[currentIndex]));
             SetupCamera();
             _view.playButton.interactable = _model.IsLevelUnlocked(_model.CurrentLevelData.name);
         }
@@ -51,7 +52,6 @@ namespace ProjectTA.Module.LevelSelection
         {
             currentIndex--;
             currentIndex = currentIndex < 0 ? _model.LevelCollection.levelItems.Count - 1 : currentIndex;
-            Publish(new ChooseLevelMessage(_model.LevelCollection.levelItems[currentIndex]));
             Publish(new ChooseLevelMessage(_model.LevelCollection.levelItems[currentIndex]));
             SetupCamera();
             _view.playButton.interactable = _model.IsLevelUnlocked(_model.CurrentLevelData.name);

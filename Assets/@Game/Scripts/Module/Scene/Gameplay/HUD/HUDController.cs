@@ -9,6 +9,13 @@ namespace ProjectTA.Module.HUD
 {
     public class HUDController : ObjectController<HUDController, HUDView>
     {
+        private float _initialCountdown, _timeRemaining, _minutes, _seconds;
+
+        public void SetInitialCountdown(float initialCountdown)
+        {
+            _initialCountdown = initialCountdown;
+        }
+
         public void SetGateIcon(Sprite sprite) => _view.gateIcon.sprite = sprite;
 
         internal void OnUpdateHealth(UpdateHealthMessage message)
@@ -47,7 +54,7 @@ namespace ProjectTA.Module.HUD
 
         internal void OnUpdateCountdown(UpdateCountdownMessage message)
         {
-            _view.timerText.SetText($"{message.CurrentCountdown:F2}");
+            _view.timerText.SetText(message.GetFormattedCurrentCountdown());
         }
     }
 }

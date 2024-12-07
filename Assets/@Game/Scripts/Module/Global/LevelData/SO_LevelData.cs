@@ -18,6 +18,7 @@ namespace ProjectTA.Module.LevelData
 
         [Header("Puzzle"), TextArea]
         public string puzzleQuestion;
+        public List<PuzzleObject> collectibleObjects;
 
         [Header("Environment")]
         public GameObject environmentPrefab;
@@ -31,12 +32,12 @@ namespace ProjectTA.Module.LevelData
         [Header("Cutscene")]
         public SO_CutsceneData cutsceneData;
 
-        [Header("Collectible")]
-        public List<CollectibleObject> collectibleObjects;
+        [Header("Hidden Object")]
+        public List<SO_CollectibleData> hiddenObjects;
     }
 
     [Serializable]
-    public class CollectibleObject
+    public class PuzzleObject
     {
         public SO_CollectibleData collectibleData;
         public Vector3 objectPosition;

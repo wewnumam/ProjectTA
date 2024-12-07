@@ -1,5 +1,6 @@
 using Agate.MVC.Base;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -8,6 +9,10 @@ namespace ProjectTA.Module.GameOver
 {
     public class GameOverView : BaseView
     {
+        public TMP_Text KillCountText;
+        public TMP_Text CollectedPuzzleCountText;
+        public TMP_Text HiddenObjectCountText;
+
         [SerializeField] Button playAgainButton;
         [SerializeField] Button mainMenuButton;
 

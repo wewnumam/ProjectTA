@@ -31,5 +31,20 @@ namespace ProjectTA.Module.GameWin
             Publish(new GameStateMessage(EnumManager.GameState.GameWin));
             _view.onGameWin?.Invoke();
         }
+
+        internal void OnUpdateKillCount(UpdateKillCountMessage message)
+        {
+            _view.KillCountText.SetText(message.KillCount.ToString());
+        }
+
+        internal void OnUpdatePuzzleCount(UpdatePuzzleCountMessage message)
+        {
+            _view.CollectedPuzzleCountText.SetText(message.CollectedPuzzlePieceCount.ToString());
+        }
+
+        internal void OnUpdateCountdown(UpdateCountdownMessage message)
+        {
+            _view.TimeCompletionText.SetText(message.GetFormattedCurrentCountdown(true));
+        }
     }
 }

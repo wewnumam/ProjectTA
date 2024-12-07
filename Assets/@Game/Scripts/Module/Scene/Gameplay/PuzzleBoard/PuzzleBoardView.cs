@@ -1,5 +1,6 @@
 ﻿using Agate.MVC.Base;
 using NaughtyAttributes;
+using ProjectTA.Module.CollectibleData;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -16,6 +17,8 @@ namespace ProjectTA.Module.PuzzleBoard
 
         [ReadOnly]
         public List<PuzzleDragable> draggables; 
+        [ReadOnly]
+        public List<CollectibleComponent> puzzles; 
 
         public UnityEvent onShow, onComplete;
 

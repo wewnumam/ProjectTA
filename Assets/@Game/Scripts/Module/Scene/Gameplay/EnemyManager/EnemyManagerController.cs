@@ -84,5 +84,23 @@ namespace ProjectTA.Module.EnemyManager
                 enemy.isPause = false;
             }
         }
+
+        internal void OnUpdateCountdown(UpdateCountdownMessage message)
+        {
+            if (message.CurrentCountdown < 0 && _view.spawnInterval != _view.massiveSpawnInterval)
+            {
+                _view.spawnInterval = _view.massiveSpawnInterval;
+            }
+        }
+
+        internal void OnGameOver(GameOverMessage message)
+        {
+            _view.isGameEnd = true;
+        }
+
+        internal void OnGameWin(GameWinMessage message)
+        {
+            _view.isGameEnd = true;
+        }
     }
 }

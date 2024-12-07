@@ -23,5 +23,15 @@ namespace ProjectTA.Module.GameOver
             Publish(new GameStateMessage(EnumManager.GameState.GameOver));
             _view.SetDelay(_view.onGameOver);
         }
+
+        internal void OnUpdateKillCount(UpdateKillCountMessage message)
+        {
+            _view.KillCountText.SetText(message.KillCount.ToString());
+        }
+
+        internal void OnUpdatePuzzleCount(UpdatePuzzleCountMessage message)
+        {
+            _view.CollectedPuzzleCountText.SetText(message.CollectedPuzzlePieceCount.ToString());
+        }
     }
 }

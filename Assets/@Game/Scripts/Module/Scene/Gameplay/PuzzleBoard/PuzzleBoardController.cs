@@ -1,5 +1,6 @@
 using Agate.MVC.Base;
 using ProjectTA.Message;
+using ProjectTA.Module.CollectibleData;
 using ProjectTA.Module.LevelData;
 using ProjectTA.Utility;
 using System;
@@ -16,10 +17,16 @@ namespace ProjectTA.Module.PuzzleBoard
         private int _currentPuzzleIndex;
 
         private SO_LevelData _levelData;
+        private List<CollectibleComponent> _collectibleObjs;
 
         public void SetLevelData(SO_LevelData levelData)
         {
             _levelData = levelData;
+        }
+
+        public void SetCollectibleObjs(List<CollectibleComponent> collectibleObjs)
+        {
+            _collectibleObjs = collectibleObjs;
         }
 
         public override void SetView(PuzzleBoardView view)
@@ -29,7 +36,7 @@ namespace ProjectTA.Module.PuzzleBoard
             int currentRightIndex = 0;
             for (int i = 0; i < _levelData.collectibleObjects.Count; i++)
             {
-                CollectibleObject puzzle = _levelData.collectibleObjects[i];
+                PuzzleObject puzzle = _levelData.collectibleObjects[i];
                 
                 GameObject puzzleDragable = GameObject.Instantiate(view.puzzleDragableTemplate.gameObject, view.parent);
 
@@ -63,6 +70,7 @@ namespace ProjectTA.Module.PuzzleBoard
 
             view.SetCallback(OnClose);
             view.questionText.SetText(_levelData.puzzleQuestion);
+            view.puzzles = _collectibleObjs;
 
             Debug.Log($"<color=green>[{view.GetType()}]</color> installed successfully!");
         }
@@ -87,7 +95,7 @@ namespace ProjectTA.Module.PuzzleBoard
 
         internal void TeleportToPuzzle(TeleportToPuzzleMessage message)
         {
-            GameObject.FindGameObjectWithTag(TagManager.TAG_PLAYER).transform.position = _levelData.collectibleObjects[_currentPuzzleIndex].objectPosition;
+            GameObject.FindGameObjectWithTag(TagManager.TAG_PLAYER).transform.position = _collectibleObjs[_currentPuzzleIndex].transform.position;
             
             _currentPuzzleIndex++;
             
