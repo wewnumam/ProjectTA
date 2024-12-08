@@ -11,6 +11,7 @@ namespace ProjectTA.Module.GameOver
         {
             Subscribe<UpdateKillCountMessage>(_gameOver.OnUpdateKillCount);
             Subscribe<UpdatePuzzleCountMessage>(_gameOver.OnUpdatePuzzleCount);
+            Subscribe<UpdateHiddenObjectCountMessage>(_gameOver.OnUpdateHiddenObjectCount);
             Subscribe<GameOverMessage>(_gameOver.OnGameOver);
         }
 
@@ -18,6 +19,7 @@ namespace ProjectTA.Module.GameOver
         {
             Unsubscribe<UpdateKillCountMessage>(_gameOver.OnUpdateKillCount);
             Unsubscribe<UpdatePuzzleCountMessage>(_gameOver.OnUpdatePuzzleCount);
+            Unsubscribe<UpdateHiddenObjectCountMessage>(_gameOver.OnUpdateHiddenObjectCount);
             Unsubscribe<GameOverMessage>(_gameOver.OnGameOver);
         }
     }

@@ -12,7 +12,7 @@ namespace ProjectTA.Module.PlayerCharacter
         public override void SetView(PlayerCharacterView view)
         {
             base.SetView(view);
-            view.SetCollideCallbacks(OnCollideWithEnemy, OnCollideWithDialogueComponent, OnCollideWithCollectibleComponent, OnCollideWithPadlock);
+            view.SetCollideCallbacks(OnCollideWithEnemy, OnCollideWithCollectibleComponent, OnCollideWithPadlock);
             view.rb.isKinematic = false;
         }
 
@@ -21,15 +21,23 @@ namespace ProjectTA.Module.PlayerCharacter
             Publish(new SubtractHealthMessage(1));
         }
 
-        private void OnCollideWithDialogueComponent(TextAsset textAsset)
-        {
-            Publish(new ShowDialogueMessage(textAsset));
-        }
-
         private void OnCollideWithCollectibleComponent(SO_CollectibleData collectibleData)
         {
             Publish(new UnlockCollectibleMessage(collectibleData));
-            Publish(new AddCollectedPuzzlePieceCountMessage(1));
+
+            if (collectibleData.dialogue != null)
+            {
+                Publish(new ShowDialogueMessage(collectibleData.dialogue));
+            }
+
+            if (collectibleData.Type == EnumManager.CollectibleType.Puzzle)
+            {
+                Publish(new AddCollectedPuzzlePieceCountMessage(1));
+            }
+            else if (collectibleData.Type == EnumManager.CollectibleType.HiddenObject)
+            {
+                Publish(new AddCollectedHiddenObjectCountMessage(1));
+            }
         }
 
         private void OnCollideWithPadlock()

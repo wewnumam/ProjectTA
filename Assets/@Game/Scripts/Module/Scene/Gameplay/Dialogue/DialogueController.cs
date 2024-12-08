@@ -63,6 +63,7 @@ namespace ProjectTA.Module.Dialogue
                 return;
 
             Publish(new GamePauseMessage());
+
             _view.onStart?.Invoke();
             _story = new Story(message.TextAsset.text);
             DisplayNextLine();

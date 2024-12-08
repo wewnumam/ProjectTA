@@ -8,12 +8,15 @@ using UnityEngine;
 using ProjectTA.Utility;
 using ProjectTA.Module.CollectibleData;
 using ProjectTA.Module.CollectibleList;
+using ProjectTA.Module.SaveSystem;
 
 namespace ProjectTA.Scene.Achievement
 {
     public class AchievementLauncher : SceneLauncher<AchievementLauncher, AchievementView>
     {
         public override string SceneName {get {return TagManager.SCENE_ACHIEVEMENT;}}
+
+        SaveSystemController _saveSystem;
 
         CollectibleDataController _collectibleData;
         CollectibleListController _collectibleList;
@@ -43,6 +46,11 @@ namespace ProjectTA.Scene.Achievement
             Publish(new GameStateMessage(EnumManager.GameState.PreGame));
 
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneName));
+
+            foreach (var collectibleName in _saveSystem.Model.SaveData.UnlockedCollectibles)
+            {
+                _collectibleData.AddUnlockedCollectible(collectibleName);
+            }
 
             _view.SetCallback(OnMainMenu);
 

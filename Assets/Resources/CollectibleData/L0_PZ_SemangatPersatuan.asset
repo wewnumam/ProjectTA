@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1b07f33ea1f36d4c92a647367369ef5, type: 3}
-  m_Name: CollectibleData_0
+  m_Name: L0_PZ_SemangatPersatuan
   m_EditorClassIdentifier: 
   Title: Semangat Persatuan
   Description: Lorem ipsum dolor sit amet

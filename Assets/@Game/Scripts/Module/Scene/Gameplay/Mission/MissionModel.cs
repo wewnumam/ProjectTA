@@ -9,6 +9,8 @@ namespace ProjectTA.Module.Mission
         public SO_LevelData NextLevelData { get; private set; }
         public int PuzzlePieceCount { get; private set; }
         public int CollectedPuzzlePieceCount { get; private set; }
+        public int HiddenObjectCount { get; private set; }
+        public int CollectedHiddenObjectCount { get; private set; }
         public int KillCount { get; private set; }
         public int PadlockOnPlaceCount { get; private set; }
 
@@ -45,6 +47,30 @@ namespace ProjectTA.Module.Mission
         public void SubtractCollectedPuzzlePieceCount(int amount)
         {
             CollectedPuzzlePieceCount -= amount;
+            SetDataAsDirty();
+        }
+
+        public void SetHiddenObjectCount(int hiddenObjectCount)
+        {
+            HiddenObjectCount = hiddenObjectCount;
+            SetDataAsDirty();
+        }
+
+        public void SetCollectedHiddenObjectCount(int collectedHiddenObjectCount)
+        {
+            CollectedHiddenObjectCount = collectedHiddenObjectCount;
+            SetDataAsDirty();
+        }
+
+        public void AddCollectedHiddenObjectCount(int amount)
+        {
+            CollectedHiddenObjectCount += amount;
+            SetDataAsDirty();
+        }
+
+        public void SubtractHiddenObjectCount(int amount)
+        {
+            CollectedHiddenObjectCount -= amount;
             SetDataAsDirty();
         }
 

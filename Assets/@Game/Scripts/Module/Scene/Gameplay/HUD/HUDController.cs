@@ -56,5 +56,10 @@ namespace ProjectTA.Module.HUD
         {
             _view.timerText.SetText(message.GetFormattedCurrentCountdown());
         }
+
+        internal void OnUpdateHiddenObjectCount(UpdateHiddenObjectCountMessage message)
+        {
+            _view.hiddenObjectCount.SetText($"{message.CollectedHiddenObjectCount}/{message.HiddenObjectCount}");
+        }
     }
 }

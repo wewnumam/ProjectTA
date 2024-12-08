@@ -20,7 +20,7 @@ namespace ProjectTA.Module.EnemyManager
         public List<EnemyView> enemies;
 
         [ReadOnly] public int enemyCount;
-        [ReadOnly] public bool isGameEnd;
+        [ReadOnly] public bool isGameEnd, isGamePause;
 
         void Start()
         {
@@ -32,7 +32,11 @@ namespace ProjectTA.Module.EnemyManager
             while (!isGameEnd)
             {
                 yield return new WaitForSeconds(spawnInterval);
-                onEnemySpawn?.Invoke();
+
+                if (!isGamePause)
+                {
+                    onEnemySpawn?.Invoke();
+                }
             }
         }
 

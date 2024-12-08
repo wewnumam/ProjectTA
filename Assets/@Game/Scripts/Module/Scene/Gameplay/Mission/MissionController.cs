@@ -19,10 +19,23 @@ namespace ProjectTA.Module.Mission
             Publish(new UpdatePuzzleSolvedCountMessage(_model.PadlockOnPlaceCount, _model.CollectedPuzzlePieceCount, true));
         }
 
+        public void SetHiddenObjectCount(int hiddenObjectCount)
+        {
+            _model.SetHiddenObjectCount(hiddenObjectCount);
+            _model.SetCollectedHiddenObjectCount(0);
+            Publish(new UpdateHiddenObjectCountMessage(_model.HiddenObjectCount, _model.CollectedHiddenObjectCount, true));
+        }
+
         internal void OnAddCollectedPuzzlePiece(AddCollectedPuzzlePieceCountMessage message)
         {
             _model.AddCollectedPuzzlePieceCount(message.Amount);
             Publish(new UpdatePuzzleCountMessage(_model.PuzzlePieceCount, _model.CollectedPuzzlePieceCount, true));
+        }
+
+        internal void OnAddCollectedHidenObject(AddCollectedHiddenObjectCountMessage message)
+        {
+            _model.AddCollectedHiddenObjectCount(message.Amount);
+            Publish(new UpdateHiddenObjectCountMessage(_model.HiddenObjectCount, _model.CollectedHiddenObjectCount, true));
         }
 
         internal void OnAddKillCount(AddKillCountMessage message)

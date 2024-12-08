@@ -11,6 +11,7 @@ namespace ProjectTA.Module.Mission
         protected override void Connect()
         {
             Subscribe<AddCollectedPuzzlePieceCountMessage>(_mission.OnAddCollectedPuzzlePiece);
+            Subscribe<AddCollectedHiddenObjectCountMessage>(_mission.OnAddCollectedHidenObject);
             Subscribe<SubtractCollectedPuzzlePieceCountMessage>(_mission.OnSubtractCollectedPuzzlePiece);
             Subscribe<AddKillCountMessage>(_mission.OnAddKillCount);
             Subscribe<SubtractKillCountMessage>(_mission.OnSubtractKillCount);
@@ -20,6 +21,7 @@ namespace ProjectTA.Module.Mission
         protected override void Disconnect()
         {
             Unsubscribe<AddCollectedPuzzlePieceCountMessage>(_mission.OnAddCollectedPuzzlePiece);
+            Subscribe<AddCollectedHiddenObjectCountMessage>(_mission.OnAddCollectedHidenObject);
             Unsubscribe<SubtractCollectedPuzzlePieceCountMessage>(_mission.OnSubtractCollectedPuzzlePiece);
             Unsubscribe<AddKillCountMessage>(_mission.OnAddKillCount);
             Unsubscribe<SubtractKillCountMessage>(_mission.OnSubtractKillCount);

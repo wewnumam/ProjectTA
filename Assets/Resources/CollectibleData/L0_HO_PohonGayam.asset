@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1b07f33ea1f36d4c92a647367369ef5, type: 3}
-  m_Name: CollectibleData_1
+  m_Name: L0_HO_PohonGayam
   m_EditorClassIdentifier: 
-  Title: Raja
+  Title: Pohon Gayam
   Description: Lorem ipsum dolor sit amet
-  prefab: {fileID: 8793590203011237703, guid: 1e8c380bea12ea94ca804367294c0490, type: 3}
-  dialogue: {fileID: 4900000, guid: 289ee7daecba6054eb8bcc7f77662cc3, type: 3}
+  Type: 1
+  prefab: {fileID: 0}
+  dialogue: {fileID: 4900000, guid: c10e3a27ab80b2949946490710d9a4f2, type: 3}

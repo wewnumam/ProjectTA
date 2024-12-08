@@ -9,6 +9,8 @@ namespace ProjectTA.Module.Mission
         SO_LevelData NextLevelData { get; }
         int PuzzlePieceCount { get; }
         int CollectedPuzzlePieceCount { get; }
+        int HiddenObjectCount { get; }
+        int CollectedHiddenObjectCount { get; }
         int PadlockOnPlaceCount { get; }
         int KillCount { get; }
     }

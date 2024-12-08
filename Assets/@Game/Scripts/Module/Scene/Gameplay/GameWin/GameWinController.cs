@@ -39,12 +39,17 @@ namespace ProjectTA.Module.GameWin
 
         internal void OnUpdatePuzzleCount(UpdatePuzzleCountMessage message)
         {
-            _view.CollectedPuzzleCountText.SetText(message.CollectedPuzzlePieceCount.ToString());
+            _view.CollectedPuzzleCountText.SetText($"{message.CollectedPuzzlePieceCount}/{message.PuzzlePieceCount}");
         }
 
         internal void OnUpdateCountdown(UpdateCountdownMessage message)
         {
             _view.TimeCompletionText.SetText(message.GetFormattedCurrentCountdown(true));
+        }
+
+        internal void OnUpdateHiddenObjectCount(UpdateHiddenObjectCountMessage message)
+        {
+            _view.HiddenObjectCountText.SetText($"{message.CollectedHiddenObjectCount}/{message.HiddenObjectCount}");
         }
     }
 }

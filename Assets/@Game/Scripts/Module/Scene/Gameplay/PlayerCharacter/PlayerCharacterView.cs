@@ -27,7 +27,6 @@ namespace ProjectTA.Module.PlayerCharacter
         public Animator animator;
 
         private UnityAction onCollideWithEnemy;
-        private UnityAction<TextAsset> onCollideWithDialogueComponent;
         private UnityAction<SO_CollectibleData> _onCollideWithCollectibleComponent;
         private UnityAction onCollideWithPadlock;
 
@@ -115,11 +114,6 @@ namespace ProjectTA.Module.PlayerCharacter
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.TryGetComponent<DialogueComponent>(out var dialogue))
-            {
-                onCollideWithDialogueComponent?.Invoke(dialogue.dialogueAsset);
-            }
-
             if (collision.gameObject.CompareTag(TagManager.TAG_ENEMY))
                 onCollideWithEnemy?.Invoke();
 
@@ -131,19 +125,18 @@ namespace ProjectTA.Module.PlayerCharacter
                 if (collision.gameObject.TryGetComponent<CollectibleComponent>(out var collectible))
                 {
                     _onCollideWithCollectibleComponent?.Invoke(collectible.CollectibleData);
-                    collision.gameObject.SetActive(false);
+                    Destroy(collectible);
+                    collision.gameObject.SetActive(collectible.CollectibleData.Type == EnumManager.CollectibleType.HiddenObject);
                 }
             }
         }
 
         public void SetCollideCallbacks(
             UnityAction onCollideWithEnemy, 
-            UnityAction<TextAsset> onCollideWithDialogueComponent, 
             UnityAction<SO_CollectibleData> onCollideWithCollectibleComponent, 
             UnityAction onCollideWithPadlock)
         {
             this.onCollideWithEnemy = onCollideWithEnemy;
-            this.onCollideWithDialogueComponent = onCollideWithDialogueComponent;
             _onCollideWithCollectibleComponent = onCollideWithCollectibleComponent;
             this.onCollideWithPadlock = onCollideWithPadlock;
         }

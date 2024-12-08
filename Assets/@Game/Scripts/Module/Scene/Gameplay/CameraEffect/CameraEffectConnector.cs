@@ -13,6 +13,8 @@ namespace ProjectTA.Module.CameraEffect
             Subscribe<GameResumeMessage>(_cameraEffect.OnGameResume);
             Subscribe<GameOverMessage>(_cameraEffect.OnGameOver);
             Subscribe<GameWinMessage>(_cameraEffect.OnGameWin);
+            Subscribe<CameraBlurMessage>(_cameraEffect.OnCameraBlur);
+            Subscribe<CameraNormalMessage>(_cameraEffect.OnCameraNormal);
         }
 
         protected override void Disconnect()
@@ -21,6 +23,8 @@ namespace ProjectTA.Module.CameraEffect
             Unsubscribe<GameResumeMessage>(_cameraEffect.OnGameResume);
             Unsubscribe<GameOverMessage>(_cameraEffect.OnGameOver);
             Unsubscribe<GameWinMessage>(_cameraEffect.OnGameWin);
+            Unsubscribe<CameraBlurMessage>(_cameraEffect.OnCameraBlur);
+            Unsubscribe<CameraNormalMessage>(_cameraEffect.OnCameraNormal);
         }
     }
 }

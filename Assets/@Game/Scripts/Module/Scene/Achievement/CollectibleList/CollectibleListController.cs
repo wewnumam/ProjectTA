@@ -29,7 +29,7 @@ namespace ProjectTA.Module.CollectibleList
             foreach (var collectibleItem in _collectibleCollection.CollectibleItems)
             {
                 GameObject obj = GameObject.Instantiate(view.itemTemplate.gameObject, view.parent);
-                obj.GetComponent<Button>().interactable = true;
+                obj.GetComponent<Button>().interactable = _unlockedCollectibles.Contains(collectibleItem);
                 TMP_Text text = obj.GetComponentInChildren<TMP_Text>();
                 if (text != null)
                 {

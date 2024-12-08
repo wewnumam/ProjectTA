@@ -110,8 +110,11 @@ namespace ProjectTA.Module.PuzzleBoard
 
         internal void OnUnlockCollectible(UnlockCollectibleMessage message)
         {
-            PuzzleDragable puzzleDragable = _view.draggables.FirstOrDefault(dragable => dragable.CollectibleData == message.CollectibleData);
-            puzzleDragable.SetPuzzleDragableActive();
+            if (message.CollectibleData.Type == EnumManager.CollectibleType.Puzzle)
+            {
+                PuzzleDragable puzzleDragable = _view.draggables.FirstOrDefault(dragable => dragable.CollectibleData == message.CollectibleData);
+                puzzleDragable.SetPuzzleDragableActive();
+            }
         }
     }
 }

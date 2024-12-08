@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1b07f33ea1f36d4c92a647367369ef5, type: 3}
+  m_Name: L0_PZ_Rakyat
+  m_EditorClassIdentifier: 
+  Title: Rakyat
+  Description: Lorem ipsum dolor sit amet
+  prefab: {fileID: 8793590203011237703, guid: e4a82c5fd07b11449a1a08530bfea204, type: 3}
+  dialogue: {fileID: 4900000, guid: 289ee7daecba6054eb8bcc7f77662cc3, type: 3}

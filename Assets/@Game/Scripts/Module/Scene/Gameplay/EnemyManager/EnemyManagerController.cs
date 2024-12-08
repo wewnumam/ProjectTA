@@ -71,6 +71,7 @@ namespace ProjectTA.Module.EnemyManager
 
         internal void OnGamePause(GamePauseMessage message)
         {
+            _view.isGamePause = true;
             foreach (var enemy in _view.enemies)
             {
                 enemy.isPause = true;
@@ -79,6 +80,7 @@ namespace ProjectTA.Module.EnemyManager
 
         internal void OnGameResume(GameResumeMessage message)
         {
+            _view.isGamePause = false;
             foreach (var enemy in _view.enemies)
             {
                 enemy.isPause = false;

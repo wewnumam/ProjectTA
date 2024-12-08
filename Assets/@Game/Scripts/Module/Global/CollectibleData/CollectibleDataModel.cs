@@ -23,7 +23,15 @@ namespace ProjectTA.Module.CollectibleData
                 UnlockedCollectibleItems = new();
             }
 
-            UnlockedCollectibleItems.Add(collectibleData);
+            if (UnlockedCollectibleItems.Contains(collectibleData))
+            {
+                Debug.LogWarning($"{collectibleData.name} is already unlocked!");
+            }
+            else
+            {
+                UnlockedCollectibleItems.Add(collectibleData);
+            }
+
 
             SetDataAsDirty();
         }

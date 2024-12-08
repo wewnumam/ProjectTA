@@ -125,8 +125,6 @@ namespace ProjectTA.Scene.Gameplay
             {
                 GameObject obj = GameObject.Instantiate(collectibleObject.collectibleData.prefab, environmentObj.transform);
                 obj.transform.localPosition = collectibleObject.objectPosition;
-                obj.AddComponent<DialogueComponent>();
-                obj.GetComponent<DialogueComponent>().dialogueAsset = collectibleObject.collectibleData.dialogue;
                 obj.AddComponent<CollectibleComponent>();
                 obj.GetComponent<CollectibleComponent>().CollectibleData = collectibleObject.collectibleData;
                 collectibleObjs.Add(obj.GetComponent<CollectibleComponent>());
@@ -168,6 +166,7 @@ namespace ProjectTA.Scene.Gameplay
             }
             _mission.SetCurrentLevelData(_levelData.Model.CurrentLevelData);
             _mission.SetPuzzlePieceCount(_levelData.Model.CurrentLevelData.collectibleObjects.Count);
+            _mission.SetHiddenObjectCount(_levelData.Model.CurrentLevelData.hiddenObjects.Count);
 
             _cameraEffect.SetView(_view.CameraEffectView);
 

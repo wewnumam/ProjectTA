@@ -11,6 +11,7 @@ namespace ProjectTA.Module.GameWin
         {
             Subscribe<UpdateKillCountMessage>(_gameWin.OnUpdateKillCount);
             Subscribe<UpdatePuzzleCountMessage>(_gameWin.OnUpdatePuzzleCount);
+            Subscribe<UpdateHiddenObjectCountMessage>(_gameWin.OnUpdateHiddenObjectCount);
             Subscribe<UpdateCountdownMessage>(_gameWin.OnUpdateCountdown);
             Subscribe<GameWinMessage>(_gameWin.OnGameWin);
         }
@@ -19,6 +20,7 @@ namespace ProjectTA.Module.GameWin
         {
             Unsubscribe<UpdateKillCountMessage>(_gameWin.OnUpdateKillCount);
             Unsubscribe<UpdatePuzzleCountMessage>(_gameWin.OnUpdatePuzzleCount);
+            Unsubscribe<UpdateHiddenObjectCountMessage>(_gameWin.OnUpdateHiddenObjectCount);
             Unsubscribe<UpdateCountdownMessage>(_gameWin.OnUpdateCountdown);
             Unsubscribe<GameWinMessage>(_gameWin.OnGameWin);
         }

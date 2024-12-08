@@ -13,6 +13,7 @@ namespace ProjectTA.Module.HUD
         public TMP_Text puzzleCountText;
         public TMP_Text killCountText;
         public TMP_Text timerText;
+        public TMP_Text hiddenObjectCount;
         public List<Image> puzzleBarItems;
         public Color collectedPuzzleBarColor;
         public Image gateIcon;
