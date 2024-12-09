@@ -2,7 +2,6 @@ using Agate.MVC.Base;
 using Cinemachine;
 using NaughtyAttributes;
 using ProjectTA.Module.LevelData;
-using ProjectTA.Module.LevelItem;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -15,7 +14,6 @@ namespace ProjectTA.Module.LevelSelection
     {
         [Header("Level Data")]
         [ReadOnly] public SO_LevelCollection LevelCollection;
-        [ReadOnly] public List<LevelItemView> ListedLevels;
         public List<Transform> ListedModels;
 
         [Header("UI References")]

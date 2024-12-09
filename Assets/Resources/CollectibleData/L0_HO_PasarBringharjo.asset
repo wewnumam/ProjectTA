@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: L0_HO_PasarBringharjo
   m_EditorClassIdentifier: 
   Title: Pasar Bringharjo
-  Description: Lorem ipsum dolor sit amet
+  Description: In aliquet lorem at posuere condimentum
   Type: 1
   prefab: {fileID: 0}
   dialogue: {fileID: 4900000, guid: a75f086acf598354cadc7e991d4a5b95, type: 3}

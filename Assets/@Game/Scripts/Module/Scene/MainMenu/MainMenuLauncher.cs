@@ -10,6 +10,7 @@ using ProjectTA.Module.SaveSystem;
 using ProjectTA.Module.LevelData;
 using ProjectTA.Module.CollectibleData;
 using ProjectTA.Module.Tutorial;
+using ProjectTA.Module.CollectibleList;
 
 namespace ProjectTA.Scene.MainMenu
 {
@@ -20,6 +21,7 @@ namespace ProjectTA.Scene.MainMenu
         LevelDataController _levelData;
         SaveSystemController _saveSystem;
         CollectibleDataController _collectibleData;
+        CollectibleListController _collectibleList;
 
         TutorialController _tutorial;
 
@@ -27,12 +29,14 @@ namespace ProjectTA.Scene.MainMenu
         {
             return new IController[] {
                 new TutorialController(),
+                new CollectibleListController(),
             };
         }
 
         protected override IConnector[] GetSceneConnectors()
         {
             return new IConnector[] {
+                new CollectibleListConnector(),
             };
         }
 
@@ -49,7 +53,7 @@ namespace ProjectTA.Scene.MainMenu
 
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneName));
 
-            _view.SetCallbacks(OnPlay, OnQuit, OnAchievement);
+            _view.SetCallbacks(OnPlay, OnQuit);
 
             foreach (var collectibleName in _saveSystem.Model.SaveData.UnlockedCollectibles)
             {
@@ -57,6 +61,10 @@ namespace ProjectTA.Scene.MainMenu
             }
 
             _tutorial.SetView(_view.TutorialView);
+
+            _collectibleList.SetCollectibleCollection(_collectibleData.Model.CollectibleCollection);
+            _collectibleList.SetUnlockedCollectibles(_collectibleData.Model.UnlockedCollectibleItems);
+            _collectibleList.SetView(_view.CollectibleListView);
 
             yield return null;
         }
@@ -83,11 +91,6 @@ namespace ProjectTA.Scene.MainMenu
         private void OnQuit()
         {
             Application.Quit();
-        }
-
-        private void OnAchievement()
-        {
-            SceneLoader.Instance.LoadScene(TagManager.SCENE_ACHIEVEMENT);
         }
     }
 }

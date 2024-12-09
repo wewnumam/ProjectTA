@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: L0_HO_PlangMargoUtomo
   m_EditorClassIdentifier: 
   Title: Plang Margo Utomo
-  Description: Lorem ipsum dolor sit amet
+  Description: Nunc vel gravida lacus
   Type: 1
   prefab: {fileID: 0}
   dialogue: {fileID: 4900000, guid: a7f806d69cb444d4da47bc2fd4d989de, type: 3}

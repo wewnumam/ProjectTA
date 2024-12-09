@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: L0_HO_KomplekKepatihan
   m_EditorClassIdentifier: 
   Title: Komplek Kepatihan
-  Description: Lorem ipsum dolor sit amet
+  Description: Consectetur adipiscing elit
   Type: 1
   prefab: {fileID: 0}
   dialogue: {fileID: 4900000, guid: 70314cb47283b6c419dd6ffa46655fe1, type: 3}

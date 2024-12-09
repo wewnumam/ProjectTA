@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: L0_HO_PohonAsem
   m_EditorClassIdentifier: 
   Title: Pohon Asem
-  Description: Lorem ipsum dolor sit amet
+  Description: Nam malesuada in nisi eget mattis
   Type: 1
   prefab: {fileID: 0}
   dialogue: {fileID: 4900000, guid: 6c80fbee6217b784da769b291633faeb, type: 3}

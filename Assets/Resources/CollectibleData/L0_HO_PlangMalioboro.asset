@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: L0_HO_PlangMalioboro
   m_EditorClassIdentifier: 
   Title: Plang Malioboro
-  Description: Lorem ipsum dolor sit amet
+  Description: Nullam risus mi, hendrerit sed bibendum a
   Type: 1
   prefab: {fileID: 0}
   dialogue: {fileID: 4900000, guid: c67c3ccfaf88a724ba2794eea20ed9f4, type: 3}

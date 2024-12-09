@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: L0_HO_PohonGayam
   m_EditorClassIdentifier: 
   Title: Pohon Gayam
-  Description: Lorem ipsum dolor sit amet
+  Description: Mauris volutpat risus turpis
   Type: 1
   prefab: {fileID: 0}
   dialogue: {fileID: 4900000, guid: c10e3a27ab80b2949946490710d9a4f2, type: 3}

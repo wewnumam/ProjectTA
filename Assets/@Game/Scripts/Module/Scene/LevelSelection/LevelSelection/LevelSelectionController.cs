@@ -1,16 +1,9 @@
 using Agate.MVC.Base;
-using Agate.MVC.Core;
 using ProjectTA.Boot;
 using ProjectTA.Message;
 using ProjectTA.Module.LevelData;
-using ProjectTA.Module.LevelItem;
 using ProjectTA.Utility;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
 
 namespace ProjectTA.Module.LevelSelection
 {
