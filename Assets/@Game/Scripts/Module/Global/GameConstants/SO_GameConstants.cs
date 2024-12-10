@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace ProjectTA.Module.GameConstants
@@ -7,6 +8,18 @@ namespace ProjectTA.Module.GameConstants
     {
         public bool isJoystickActive;
         public int initialHealth;
-        public float shootingRate;
+
+        public ShootingConstants ShootingConstants;
+    }
+
+    [Serializable]
+    public class ShootingConstants
+    {
+        [Range(0.0f, 1.0f)]
+        public float JoystickShootingRange;
+        public int BulletPoolSize;
+        public float BulletShootingRate;
+        public float BulletForce;
+        public float BulletDestroyDelay;
     }
 }

@@ -29,6 +29,7 @@ using System.Linq;
 using ProjectTA.Module.CollectibleData;
 using Ink.Parsed;
 using System.Collections.Generic;
+using ProjectTA.Module.BulletPool;
 
 namespace ProjectTA.Scene.Gameplay
 {
@@ -56,6 +57,7 @@ namespace ProjectTA.Scene.Gameplay
         private PuzzleBoardController _puzzleBoard;
         private CameraEffectController _cameraEffect;
         private CountdownController _countdown;
+        private BulletPoolController _bulletPool;
 
         protected override IController[] GetSceneDependencies()
         {
@@ -65,7 +67,6 @@ namespace ProjectTA.Scene.Gameplay
                 new GameOverController(),
                 new InputController(),
                 new PlayerCharacterController(),
-                new BulletManagerController(),
                 new EnemyManagerController(),
                 new CheatFeatureController(),
                 new HealthController(),
@@ -75,6 +76,7 @@ namespace ProjectTA.Scene.Gameplay
                 new PuzzleBoardController(),
                 new CameraEffectController(),
                 new CountdownController(),
+                new BulletPoolController(),
             };
         }
 
@@ -85,7 +87,6 @@ namespace ProjectTA.Scene.Gameplay
                 new GameWinConnector(),
                 new GameOverConnector(),
                 new PlayerCharacterConnector(),
-                new BulletManagerConnector(),
                 new EnemyManagerConnector(),
                 new HealthConnector(),
                 new HUDConnector(),
@@ -94,6 +95,7 @@ namespace ProjectTA.Scene.Gameplay
                 new PuzzleBoardConnector(),
                 new CameraEffectConnector(),
                 new CountdownConnector(),
+                new BulletPoolConnector(),
             };
         }
 
@@ -137,10 +139,6 @@ namespace ProjectTA.Scene.Gameplay
             _playerCharacter.SetView(_view.PlayerCharacterView);
             _playerCharacter.SetInitialActivateJoystick(_gameConstants.Model.GameConstants.isJoystickActive);
 
-            _bulletManager.SetShootingRate(_gameConstants.Model.GameConstants.shootingRate);
-            _bulletManager.SetView(_view.BulletManagerView);
-            _bulletManager.SetInitialActivateJoystick(_gameConstants.Model.GameConstants.isJoystickActive);
-
             _enemyManager.SetView(_view.EnemyManagerView);
 
             _cheatFeature.SetView(_view.CheatFeatureView);
@@ -173,6 +171,9 @@ namespace ProjectTA.Scene.Gameplay
             _countdown.SetView(_view.CountdownView);
             _countdown.SetInitialCountdown(_levelData.Model.CurrentLevelData.countdown);
             _countdown.SetCurrentCountdown(_levelData.Model.CurrentLevelData.countdown);
+
+            _bulletPool.SetShootingConstants(_gameConstants.Model.GameConstants.ShootingConstants);
+            _bulletPool.SetView(_view.BulletPoolView);
 
             Publish(new GameStateMessage(EnumManager.GameState.Playing));
 

@@ -130,7 +130,7 @@ namespace ProjectTA.Module.Enemy
         private void Kill()
         {
             onKill?.Invoke();
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
 
         // Draw Gizmos in the scene to visualize rays for debugging

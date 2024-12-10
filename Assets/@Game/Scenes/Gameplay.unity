@@ -1005,6 +1005,53 @@ MonoBehaviour:
   volume: {fileID: 910473578}
   normalVolume: {fileID: 11400000, guid: 8bdff54b65204da4e8c1b62f51fa3e6b, type: 2}
   blurVolume: {fileID: 11400000, guid: cc4b4eb36a06f8545b39463c7bfb70c1, type: 2}
+--- !u!1 &96263377
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 96263378}
+  - component: {fileID: 96263379}
+  m_Layer: 0
+  m_Name: BulletPoolView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &96263378
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96263377}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1192199069}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &96263379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96263377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70cb0bb24ff2020488c4faf0b65de369, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 1287742866452862373, guid: 5044140a9f61273469451638d9a68cd7,
+    type: 3}
+  bulletSpawnPoint: {fileID: 1296872198}
 --- !u!1 &100603583
 GameObject:
   m_ObjectHideFlags: 0
@@ -8475,6 +8522,7 @@ Transform:
   - {fileID: 588593586}
   - {fileID: 61286732}
   - {fileID: 491772490}
+  - {fileID: 96263378}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1192199070
@@ -8501,6 +8549,7 @@ MonoBehaviour:
   PuzzleBoardView: {fileID: 242265491}
   CameraEffectView: {fileID: 61286733}
   CountdownView: {fileID: 491772489}
+  BulletPoolView: {fileID: 96263379}
 --- !u!1 &1227737872
 GameObject:
   m_ObjectHideFlags: 0

@@ -126,7 +126,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -149,3 +149,7 @@ MonoBehaviour:
   rb: {fileID: 8575941712296771425}
   launchForce: 25
   hitEffect: {fileID: 0}
+  renderer: {fileID: 3440458674946902125}
+  initialHitMaterial: {fileID: 2100000, guid: c886e349e78a63a4a8132c5508885b9d, type: 2}
+  normalHitMaterial: {fileID: 2100000, guid: a76d1d0720fcee349a4223e15a6fd162, type: 2}
+  enemyHitMaterial: {fileID: 2100000, guid: d3a733834a96e294f9919fb656ffbe04, type: 2}

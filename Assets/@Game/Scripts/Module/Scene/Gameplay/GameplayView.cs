@@ -1,5 +1,6 @@
 using Agate.MVC.Base;
 using ProjectTA.Module.BulletManager;
+using ProjectTA.Module.BulletPool;
 using ProjectTA.Module.CameraEffect;
 using ProjectTA.Module.CheatFeature;
 using ProjectTA.Module.Countdown;
@@ -28,5 +29,6 @@ namespace ProjectTA.Scene.Gameplay
         public PuzzleBoardView PuzzleBoardView;
         public CameraEffectView CameraEffectView;
         public CountdownView CountdownView;
+        public BulletPoolView BulletPoolView;
     }
 }

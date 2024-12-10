@@ -14,4 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isJoystickActive: 1
   initialHealth: 10
-  shootingRate: 0.2
+  ShootingConstants:
+    JoystickShootingRange: 0.9
+    BulletPoolSize: 10
+    BulletShootingRate: 0.25
+    BulletForce: 25
+    BulletDestroyDelay: 3

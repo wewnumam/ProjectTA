@@ -1,18 +1,38 @@
 using Agate.MVC.Base;
+using NaughtyAttributes;
+using ProjectTA.Utility;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace ProjectTA.Module.Bullet
 {
     public class BulletView : BaseView
     {
+
         public Rigidbody rb;
         public float launchForce;
         public GameObject hitEffect;
+        public Renderer renderer;
+        public Material initialHitMaterial;
+        public Material normalHitMaterial;
+        public Material enemyHitMaterial;
+
+        [ReadOnly]
+        public float destroyDelay;
 
         private bool hasHitTarget;
 
-        private void Start()
+        private UnityAction _onCollideWithCollider;
+
+        public void SetCallback(UnityAction onCollideWithCollider)
         {
+            _onCollideWithCollider = onCollideWithCollider;
+        }
+
+        private void OnEnable()
+        {
+            hasHitTarget = false;
+            rb.isKinematic = false;
             rb.AddForce(transform.forward * launchForce, ForceMode.Impulse);
         }
 
@@ -20,6 +40,15 @@ namespace ProjectTA.Module.Bullet
         {
             // Check if the arrow has already hit something to prevent multiple hits
             if (hasHitTarget) return;
+
+            if (collision.gameObject.CompareTag(TagManager.TAG_ENEMY))
+            {
+                renderer.material = enemyHitMaterial;
+            }
+            else
+            {
+                renderer.material = normalHitMaterial;
+            }
 
             hasHitTarget = true;
 
@@ -38,7 +67,12 @@ namespace ProjectTA.Module.Bullet
             }
 
             // Destroy the arrow after a delay (if you want to remove the arrow)
-            Destroy(gameObject, 5f);
+            Invoke(nameof(OnCollideWithCollider), destroyDelay);
+        }
+
+        public void OnCollideWithCollider()
+        {
+            _onCollideWithCollider?.Invoke();
         }
     }
 }

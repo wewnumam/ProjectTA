@@ -55,12 +55,13 @@ namespace ProjectTA.Module.PlayerCharacter
                     Vector3 hitPointFixedY = new Vector3(hit.point.x, fixedYPosition, hit.point.z);
                     lineRenderer.SetPosition(1, hitPointFixedY);
                 }
+                else
+                {
+                    // Disable the LineRenderer if no enemy is hit
+                    lineRenderer.enabled = false;
+                }
             }
-            else
-            {
-                // Disable the LineRenderer if no enemy is hit
-                lineRenderer.enabled = false;
-            }
+            
         }
 
         private void FixedUpdate()
