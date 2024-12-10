@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace ProjectTA.Module.BulletPool
 {
-    public class BulletPoolController : ObjectController<BulletPoolController, BulletPoolModel, IBulletPoolModel, BulletPoolView>
+    public class BulletPoolController : ObjectController<BulletPoolController, BulletPoolModel, BulletPoolView>
     {
         public void SetShootingConstants(ShootingConstants shootingConstants) => _model.SetShootingConstants(shootingConstants);
 
@@ -32,11 +32,11 @@ namespace ProjectTA.Module.BulletPool
         {
             for (int i = 0; i < _model.ShootingConstants.BulletPoolSize; i++)
             {
-                _model.AddBullet(CreateCoinObject());
+                _model.AddBullet(CreateBulletObject());
             }
         }
 
-        private GameObject CreateCoinObject()
+        private GameObject CreateBulletObject()
         {
             GameObject bullet = GameObject.Instantiate(_view.bulletPrefab, _view.bulletSpawnPoint.position, Quaternion.identity);
             bullet.SetActive(false);

@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 namespace ProjectTA.Module.BulletPool
 {
-    public class BulletPoolView : ObjectView<IBulletPoolModel>
+    public class BulletPoolView : BaseView
     {
         public GameObject bulletPrefab;
         public Transform bulletSpawnPoint;
@@ -14,14 +14,6 @@ namespace ProjectTA.Module.BulletPool
         public void SetCallback(UnityAction<float> onSpawnBullet)
         {
             _onSpawnBullet = onSpawnBullet;
-        }
-
-        protected override void InitRenderModel(IBulletPoolModel model)
-        {
-        }
-
-        protected override void UpdateRenderModel(IBulletPoolModel model)
-        {
         }
 
         private void Update()

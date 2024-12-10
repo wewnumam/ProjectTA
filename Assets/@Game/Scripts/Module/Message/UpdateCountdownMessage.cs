@@ -35,5 +35,10 @@ namespace ProjectTA.Message
                 : $"-{minutes}:{seconds:00}";
         }
 
+        public bool IsCurrentCountdownBelowZero()
+        {
+            return CurrentCountdown <= 0;
+        }
+
     }
 }

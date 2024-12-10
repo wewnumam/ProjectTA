@@ -16,9 +16,14 @@ MonoBehaviour:
   description: Gunung Merapi merupakan titik ujung utara dari garis ini. Merapi menjadi
     tempat diadakannya labuhan Merapi setiap diadakannya labuhan di Keraton Yogyakarta.
   icon: {fileID: -310122720, guid: 137fda608f83b1d4abb0f9898697c6e1, type: 3}
+  puzzleQuestion: 
+  collectibleObjects: []
+  enemyPrefab: {fileID: 5375070630054367085, guid: 443df28119fa4364689fa70350348208,
+    type: 3}
   environmentPrefab: {fileID: 5773407093173007764, guid: 022ccb88d2a3b5740b579b2900c19fa1,
     type: 3}
   countdown: 120
   isLockedLevel: 0
   levelGate: {fileID: 0}
   cutsceneData: {fileID: 11400000, guid: 34e1482f657ad8a4dbbfb514bba838fd, type: 2}
+  hiddenObjects: []

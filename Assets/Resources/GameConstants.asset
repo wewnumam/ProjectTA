@@ -20,3 +20,9 @@ MonoBehaviour:
     BulletShootingRate: 0.25
     BulletForce: 25
     BulletDestroyDelay: 3
+  EnemyConstants:
+    EnemyPoolSize: 50
+    EnemySpawnDistance: 10
+    EnemySpawnInterval: 5
+    EnemyMassiveSpawnInterval: 0.25
+    EnemyDestroyDelay: 3

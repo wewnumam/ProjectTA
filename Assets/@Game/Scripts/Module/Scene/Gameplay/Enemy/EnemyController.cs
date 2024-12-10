@@ -1,6 +1,5 @@
 using Agate.MVC.Base;
 using ProjectTA.Message;
-using System;
 using UnityEngine;
 
 namespace ProjectTA.Module.Enemy
@@ -18,9 +17,11 @@ namespace ProjectTA.Module.Enemy
             Publish(new AddKillCountMessage(1));
         }
 
-        public void Init(EnemyView view)
+        public void Init(EnemyView view, Transform player, float destroyDelay)
         {
             SetView(view);
+            view.player = player;
+            view.DestroyDelay = destroyDelay;
         }
 
     }

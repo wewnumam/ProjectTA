@@ -10,6 +10,7 @@ namespace ProjectTA.Module.GameConstants
         public int initialHealth;
 
         public ShootingConstants ShootingConstants;
+        public EnemyConstants EnemyConstants;
     }
 
     [Serializable]
@@ -21,5 +22,15 @@ namespace ProjectTA.Module.GameConstants
         public float BulletShootingRate;
         public float BulletForce;
         public float BulletDestroyDelay;
+    }
+
+    [Serializable]
+    public class EnemyConstants
+    {
+        public int EnemyPoolSize;
+        public float EnemySpawnDistance;
+        public float EnemySpawnInterval;
+        public float EnemyMassiveSpawnInterval;
+        public float EnemyDestroyDelay;
     }
 }

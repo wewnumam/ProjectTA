@@ -15,8 +15,6 @@ using ProjectTA.Module.GameWin;
 using ProjectTA.Module.GameOver;
 using ProjectTA.Module.Input;
 using ProjectTA.Module.PlayerCharacter;
-using ProjectTA.Module.BulletManager;
-using ProjectTA.Module.EnemyManager;
 using ProjectTA.Module.CheatFeature;
 using ProjectTA.Module.Health;
 using ProjectTA.Module.HUD;
@@ -30,6 +28,7 @@ using ProjectTA.Module.CollectibleData;
 using Ink.Parsed;
 using System.Collections.Generic;
 using ProjectTA.Module.BulletPool;
+using ProjectTA.Module.EnemyPool;
 
 namespace ProjectTA.Scene.Gameplay
 {
@@ -47,8 +46,6 @@ namespace ProjectTA.Scene.Gameplay
         private GameWinController _gameWin;
         private GameOverController _gameOver;
         private PlayerCharacterController _playerCharacter;
-        private BulletManagerController _bulletManager;
-        private EnemyManagerController _enemyManager;
         private CheatFeatureController _cheatFeature;
         private HealthController _health;
         private HUDController _hud;
@@ -58,6 +55,7 @@ namespace ProjectTA.Scene.Gameplay
         private CameraEffectController _cameraEffect;
         private CountdownController _countdown;
         private BulletPoolController _bulletPool;
+        private EnemyPoolController _enemyPool;
 
         protected override IController[] GetSceneDependencies()
         {
@@ -67,7 +65,6 @@ namespace ProjectTA.Scene.Gameplay
                 new GameOverController(),
                 new InputController(),
                 new PlayerCharacterController(),
-                new EnemyManagerController(),
                 new CheatFeatureController(),
                 new HealthController(),
                 new HUDController(),
@@ -77,6 +74,7 @@ namespace ProjectTA.Scene.Gameplay
                 new CameraEffectController(),
                 new CountdownController(),
                 new BulletPoolController(),
+                new EnemyPoolController(),
             };
         }
 
@@ -87,7 +85,6 @@ namespace ProjectTA.Scene.Gameplay
                 new GameWinConnector(),
                 new GameOverConnector(),
                 new PlayerCharacterConnector(),
-                new EnemyManagerConnector(),
                 new HealthConnector(),
                 new HUDConnector(),
                 new MissionConnector(),
@@ -96,6 +93,7 @@ namespace ProjectTA.Scene.Gameplay
                 new CameraEffectConnector(),
                 new CountdownConnector(),
                 new BulletPoolConnector(),
+                new EnemyPoolConnector(),
             };
         }
 
@@ -139,8 +137,6 @@ namespace ProjectTA.Scene.Gameplay
             _playerCharacter.SetView(_view.PlayerCharacterView);
             _playerCharacter.SetInitialActivateJoystick(_gameConstants.Model.GameConstants.isJoystickActive);
 
-            _enemyManager.SetView(_view.EnemyManagerView);
-
             _cheatFeature.SetView(_view.CheatFeatureView);
             _cheatFeature.SetInitialActivateJoystick(_gameConstants.Model.GameConstants.isJoystickActive);
 
@@ -174,6 +170,10 @@ namespace ProjectTA.Scene.Gameplay
 
             _bulletPool.SetShootingConstants(_gameConstants.Model.GameConstants.ShootingConstants);
             _bulletPool.SetView(_view.BulletPoolView);
+
+            _enemyPool.SetEnemyPrefab(_levelData.Model.CurrentLevelData.enemyPrefab);
+            _enemyPool.SetEnemyConstants(_gameConstants.Model.GameConstants.EnemyConstants);
+            _enemyPool.SetView(_view.EnemyPoolView);
 
             Publish(new GameStateMessage(EnumManager.GameState.Playing));
 

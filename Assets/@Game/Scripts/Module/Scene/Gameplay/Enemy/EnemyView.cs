@@ -16,15 +16,23 @@ namespace ProjectTA.Module.Enemy
         public float rayAngle = 30f;      // Angle to spread the rays to detect obstacles
         public float rotationSpeed = 5f;  // Speed of rotation towards movement direction
         public UnityEvent onKill;
+
+        [ReadOnly]
+        public float DestroyDelay;
+
         private Vector3 movementDirection; // The direction the enemy should move in
 
         private Rigidbody rb;
         private bool isDie;
 
-
-        private void Start()
+        private void Awake()
         {
             rb = GetComponent<Rigidbody>();
+        }
+
+        private void OnEnable()
+        {
+            isDie = false;
 
             // Optional: Find the player automatically if not set in the Inspector
             if (player == null)
@@ -123,7 +131,7 @@ namespace ProjectTA.Module.Enemy
             if (collision.gameObject.CompareTag(TagManager.TAG_BULLET) && !isDie)
             {
                 isDie = true;
-                Invoke(nameof(Kill), 2f);
+                Invoke(nameof(Kill), DestroyDelay);
             }
         }
 

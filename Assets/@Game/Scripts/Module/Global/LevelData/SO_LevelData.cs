@@ -20,7 +20,9 @@ namespace ProjectTA.Module.LevelData
         public string puzzleQuestion;
         public List<PuzzleObject> collectibleObjects;
 
-        [Header("Environment")]
+        [Header("Environment"), ShowAssetPreview]
+        public GameObject enemyPrefab;
+        [ShowAssetPreview]
         public GameObject environmentPrefab;
         public float countdown;
 
