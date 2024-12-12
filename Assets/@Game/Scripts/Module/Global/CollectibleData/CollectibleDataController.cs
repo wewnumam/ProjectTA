@@ -8,6 +8,11 @@ namespace ProjectTA.Module.CollectibleData
 {
     public class CollectibleDataController : DataController<CollectibleDataController, CollectibleDataModel, ICollectibleDataModel>
     {
+        public void SetModel(CollectibleDataModel model)
+        {
+            _model = model;
+        }
+
         public void AddUnlockedCollectible(string collectibleName)
         {
             try
@@ -38,7 +43,7 @@ namespace ProjectTA.Module.CollectibleData
             yield return base.Initialize();
         }
 
-        internal void OnUnlockCollectible(UnlockCollectibleMessage message)
+        public void OnUnlockCollectible(UnlockCollectibleMessage message)
         {
             Debug.Log($"UNLOCK COLLECTIBLE: {message.CollectibleData.Title}");
             _model.AddUnlockedCollectibleCollection(message.CollectibleData);
