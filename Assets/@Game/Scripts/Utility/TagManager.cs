@@ -7,7 +7,7 @@
         public const string SCENE_SPLASHSCREEN = "SplashScreen";
         public const string SCENE_LEVELSELECTION = "LevelSelection";
         public const string SCENE_CUTSCENE = "Cutscene";
-        public const string SCENE_ACHIEVEMENT = "Achievement";
+        public const string SCENE_QUIZ = "Quiz";
 
         public const string TAG_PLAYER = "Player";
         public const string TAG_ENEMY = "Enemy";
