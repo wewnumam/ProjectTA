@@ -93,16 +93,6 @@ namespace ProjectTA.Module.PuzzleBoard
             _view.onShow?.Invoke();
         }
 
-        internal void TeleportToPuzzle(TeleportToPuzzleMessage message)
-        {
-            GameObject.FindGameObjectWithTag(TagManager.TAG_PLAYER).transform.position = _collectibleObjs[_currentPuzzleIndex].transform.position;
-            
-            _currentPuzzleIndex++;
-            
-            if (_currentPuzzleIndex >= _levelData.collectibleObjects.Count)
-                _currentPuzzleIndex = 0;
-        }
-
         internal void OnGameWin(GameWinMessage message)
         {
             _view.onComplete?.Invoke();

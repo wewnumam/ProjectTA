@@ -53,7 +53,7 @@ namespace ProjectTA.Scene.MainMenu
 
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneName));
 
-            _view.SetCallbacks(OnPlay, OnQuit);
+            _view.SetCallbacks(OnPlay, OnQuit, OnQuiz);
 
             foreach (var collectibleName in _saveSystem.Model.SaveData.UnlockedCollectibles)
             {
@@ -91,6 +91,11 @@ namespace ProjectTA.Scene.MainMenu
         private void OnQuit()
         {
             Application.Quit();
+        }
+
+        private void OnQuiz()
+        {
+            SceneLoader.Instance.LoadScene(TagManager.SCENE_QUIZ);
         }
     }
 }

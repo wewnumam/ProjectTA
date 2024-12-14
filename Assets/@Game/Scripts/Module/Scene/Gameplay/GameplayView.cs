@@ -11,6 +11,7 @@ using ProjectTA.Module.GameWin;
 using ProjectTA.Module.HUD;
 using ProjectTA.Module.PlayerCharacter;
 using ProjectTA.Module.PuzzleBoard;
+using ProjectTA.Module.Tutorial;
 
 namespace ProjectTA.Scene.Gameplay
 {
@@ -28,5 +29,6 @@ namespace ProjectTA.Scene.Gameplay
         public CountdownView CountdownView;
         public BulletPoolView BulletPoolView;
         public EnemyPoolView EnemyPoolView;
+        public TutorialView TutorialView;
     }
 }

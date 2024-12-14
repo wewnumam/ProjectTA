@@ -17,8 +17,19 @@ MonoBehaviour:
     terkenal Yogyakarta. Berada di utara keraton tepatnya di persimpangan Jalan Margoutomo,
     Jalan A.M. Sangaji, Jalan Jendral Sudirman, dan Jalan P. Diponegoro.
   icon: {fileID: -197576082, guid: 137fda608f83b1d4abb0f9898697c6e1, type: 3}
-  puzzleQuestion: 
-  collectibleObjects: []
+  puzzleQuestion: Terdiri dari dua kata, Golong dan Gilig yang diambil dari bentuk
+    dasar bangunan tersebut. Golong yaitu bentuk ____________ dan Gilig yaitu bentuk
+    ____________. Dan memiliki makna ____________ ____________ dan ____________ .
+  collectibleObjects:
+  - collectibleData: {fileID: 11400000, guid: 139837f5715273840b6589cceebde55d, type: 2}
+    objectPosition: {x: 25, y: 0.5, z: 35}
+    rectPosition: {x: 390, y: 41, z: 0}
+  - collectibleData: {fileID: 11400000, guid: b43994c793f87f342a4b61fe6d7e89f0, type: 2}
+    objectPosition: {x: -29, y: 0.5, z: -21}
+    rectPosition: {x: -185, y: -87, z: 0}
+  - collectibleData: {fileID: 11400000, guid: 63bb7814f5db9e546b74c43ba0a1588e, type: 2}
+    objectPosition: {x: 31, y: 0.5, z: -21}
+    rectPosition: {x: 179, y: -87, z: 0}
   enemyPrefab: {fileID: 5375070630054367085, guid: 443df28119fa4364689fa70350348208,
     type: 3}
   environmentPrefab: {fileID: 5773407093173007764, guid: 022ccb88d2a3b5740b579b2900c19fa1,
@@ -27,4 +38,10 @@ MonoBehaviour:
   isLockedLevel: 1
   levelGate: {fileID: 11400000, guid: 60e045f44f7bee24eb119a79ac580d2d, type: 2}
   cutsceneData: {fileID: 11400000, guid: 34e1482f657ad8a4dbbfb514bba838fd, type: 2}
-  hiddenObjects: []
+  hiddenObjects:
+  - {fileID: 11400000, guid: 240c67863c968734580f2e0733d83d1f, type: 2}
+  - {fileID: 11400000, guid: 4d46a454ce3d27e4dac43db61722909c, type: 2}
+  - {fileID: 11400000, guid: 47ba0eddf85805942a2006c35e9a1830, type: 2}
+  - {fileID: 11400000, guid: 3c250486223108d45a5af729108889ca, type: 2}
+  - {fileID: 11400000, guid: 0a8a10ccef77c12489bfef0b952a6411, type: 2}
+  - {fileID: 11400000, guid: a5eb32a2c2bb40a44a2f3556e3ca87ea, type: 2}

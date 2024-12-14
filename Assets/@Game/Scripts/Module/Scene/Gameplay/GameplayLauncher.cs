@@ -29,6 +29,7 @@ using Ink.Parsed;
 using System.Collections.Generic;
 using ProjectTA.Module.BulletPool;
 using ProjectTA.Module.EnemyPool;
+using ProjectTA.Module.Tutorial;
 
 namespace ProjectTA.Scene.Gameplay
 {
@@ -56,6 +57,7 @@ namespace ProjectTA.Scene.Gameplay
         private CountdownController _countdown;
         private BulletPoolController _bulletPool;
         private EnemyPoolController _enemyPool;
+        private TutorialController _tutorial;
 
         protected override IController[] GetSceneDependencies()
         {
@@ -75,6 +77,7 @@ namespace ProjectTA.Scene.Gameplay
                 new CountdownController(),
                 new BulletPoolController(),
                 new EnemyPoolController(),
+                new TutorialController(),
             };
         }
 
@@ -174,6 +177,8 @@ namespace ProjectTA.Scene.Gameplay
             _enemyPool.SetEnemyPrefab(_levelData.Model.CurrentLevelData.enemyPrefab);
             _enemyPool.SetEnemyConstants(_gameConstants.Model.GameConstants.EnemyConstants);
             _enemyPool.SetView(_view.EnemyPoolView);
+
+            _tutorial.SetView(_view.TutorialView);
 
             Publish(new GameStateMessage(EnumManager.GameState.Playing));
 

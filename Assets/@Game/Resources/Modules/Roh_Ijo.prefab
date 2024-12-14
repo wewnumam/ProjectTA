@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54d3231bb0036ad41964643981fae057, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPause: 0
   player: {fileID: 0}
   speed: 3
   rayDistance: 10
@@ -149,6 +150,7 @@ MonoBehaviour:
   onKill:
     m_PersistentCalls:
       m_Calls: []
+  DestroyDelay: 0
 --- !u!95 &1963692078512835576
 Animator:
   serializedVersion: 5
@@ -243,6 +245,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -891574145830612479, guid: 24fa4a0981fe10f4ca5ad478a5456524,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: be437d481a7d48047b5ce493ccc68a54, type: 2}
     - target: {fileID: 919132149155446097, guid: 24fa4a0981fe10f4ca5ad478a5456524,
         type: 3}
       propertyPath: m_Name

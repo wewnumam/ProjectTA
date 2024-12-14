@@ -7,8 +7,8 @@ namespace ProjectTA.Module.CollectibleData
 {
     public class CollectibleDataModel : BaseModel, ICollectibleDataModel
     {
-        public SO_CollectibleCollection CollectibleCollection { get; private set; }
-        public List<SO_CollectibleData> UnlockedCollectibleItems { get; private set; }
+        public SO_CollectibleCollection CollectibleCollection { get; private set; } = new();
+        public List<SO_CollectibleData> UnlockedCollectibleItems { get; private set; } = new();
 
         public void SetCollectibleCollection(SO_CollectibleCollection collectibleCollection)
         {
@@ -18,11 +18,6 @@ namespace ProjectTA.Module.CollectibleData
 
         public void AddUnlockedCollectibleCollection(SO_CollectibleData collectibleData)
         {
-            if (UnlockedCollectibleItems == null)
-            {
-                UnlockedCollectibleItems = new();
-            }
-
             if (UnlockedCollectibleItems.Contains(collectibleData))
             {
                 Debug.LogWarning($"{collectibleData.name} is already unlocked!");

@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 
 namespace ProjectTA.Module.QuizPlayer
 {
@@ -53,6 +54,8 @@ namespace ProjectTA.Module.QuizPlayer
 
                 obj.SetActive(true);
             }
+            
+            ButtonsFeedback(_view.CorrectColor);
         }
 
         public void AnswerCheck(int answerIndex)
@@ -73,6 +76,7 @@ namespace ProjectTA.Module.QuizPlayer
             }
             else
             {
+                ButtonsFeedback(_view.WrongColor);
                 _wrongCount++;
                 _buttons[answerIndex].gameObject.SetActive(false);
             }
@@ -96,6 +100,14 @@ namespace ProjectTA.Module.QuizPlayer
             }
 
             UpdateQuestionAndAnswers();
+        }
+
+        private void ButtonsFeedback(Color color)
+        {
+            foreach (var button in _buttons)
+            {
+                button.image.DOColor(color, .5f).OnComplete(() => button.image.DOColor(_view.InitialColor, 1f));
+            }
         }
     }
 }

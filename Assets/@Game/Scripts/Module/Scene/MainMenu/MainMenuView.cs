@@ -11,7 +11,7 @@ namespace ProjectTA.Scene.MainMenu
         public TutorialView TutorialView;
         public CollectibleListView CollectibleListView;
 
-        private UnityAction _onPlay, _onQuit;
+        private UnityAction _onPlay, _onQuit, _onQuiz;
 
         public void Play()
         {
@@ -23,10 +23,16 @@ namespace ProjectTA.Scene.MainMenu
             _onQuit?.Invoke();
         }
 
-        public void SetCallbacks(UnityAction onPlay, UnityAction onQuit)
+        public void Quiz()
+        {
+            _onQuiz?.Invoke();
+        }
+
+        public void SetCallbacks(UnityAction onPlay, UnityAction onQuit, UnityAction onQuiz)
         {
             _onPlay = onPlay;
             _onQuit = onQuit;
+            _onQuiz = onQuiz;
         }
     }
 }

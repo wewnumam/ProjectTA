@@ -40,13 +40,19 @@ namespace ProjectTA.Module.Mission
 
         public void AddCollectedPuzzlePieceCount(int amount)
         {
-            CollectedPuzzlePieceCount += amount;
+            if (CollectedPuzzlePieceCount < PuzzlePieceCount)
+            {
+                CollectedPuzzlePieceCount += amount;
+            }
             SetDataAsDirty();
         }
 
         public void SubtractCollectedPuzzlePieceCount(int amount)
         {
-            CollectedPuzzlePieceCount -= amount;
+            if (CollectedPuzzlePieceCount > 0)
+            {
+                CollectedPuzzlePieceCount -= amount;
+            }
             SetDataAsDirty();
         }
 
@@ -64,19 +70,19 @@ namespace ProjectTA.Module.Mission
 
         public void AddCollectedHiddenObjectCount(int amount)
         {
-            CollectedHiddenObjectCount += amount;
+            if (CollectedHiddenObjectCount < HiddenObjectCount)
+            {
+                CollectedHiddenObjectCount += amount;
+            }
             SetDataAsDirty();
         }
 
         public void SubtractHiddenObjectCount(int amount)
         {
-            CollectedHiddenObjectCount -= amount;
-            SetDataAsDirty();
-        }
-
-        public void SetKillCount(int killCount)
-        {
-            KillCount = killCount;
+            if (CollectedHiddenObjectCount > 0)
+            {
+                CollectedHiddenObjectCount -= amount;
+            }
             SetDataAsDirty();
         }
 
@@ -88,13 +94,19 @@ namespace ProjectTA.Module.Mission
 
         public void SubtractKillCount(int amount)
         {
-            KillCount -= amount;
+            if (KillCount > 0)
+            {
+                KillCount -= amount;
+            }
             SetDataAsDirty();
         }
 
         public void AddPadlockOnPlaceCount(int amount)
         {
-            PadlockOnPlaceCount += amount;
+            if (PadlockOnPlaceCount < PuzzlePieceCount)
+            {
+                PadlockOnPlaceCount += amount;
+            }
             SetDataAsDirty();
         }
 

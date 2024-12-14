@@ -16,6 +16,9 @@ namespace ProjectTA.Module.QuizPlayer
         public TMP_Text scoreText;
         public Transform answerButtonParent;
         public Button answerButtonTemplate;
+        public Color InitialColor;
+        public Color CorrectColor;
+        public Color WrongColor;
         public List<QuizItem> Items;
 
         private UnityAction _onNext;

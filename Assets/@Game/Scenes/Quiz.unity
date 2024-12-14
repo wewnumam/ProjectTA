@@ -1858,6 +1858,9 @@ MonoBehaviour:
   scoreText: {fileID: 1654482102}
   answerButtonParent: {fileID: 1560377784}
   answerButtonTemplate: {fileID: 832136214}
+  InitialColor: {r: 1, g: 1, b: 1, a: 1}
+  CorrectColor: {r: 0, g: 1, b: 0, a: 1}
+  WrongColor: {r: 1, g: 0, b: 0, a: 1}
   Items:
   - VirtualCamera: {fileID: 5779647148383351892}
     Question: Question 1

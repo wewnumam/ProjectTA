@@ -22,11 +22,14 @@ namespace ProjectTA.Module.CheatFeature
         [Header("Mission")]
         [SerializeField] Button addCollectedPuzzlePieceCountButton;
         [SerializeField] Button subtractCollectedPuzzlePieceCountButton;
+        [SerializeField] Button addCollectedHiddenObjectCountButton;
+        [SerializeField] Button subtractCollectedHiddenObjectCountButton;
         [SerializeField] Button addKillCountButton;
         [SerializeField] Button subtractKillCountButton;
 
         [Header("Environment")]
         [SerializeField] Button teleportToPuzzleButton;
+        [SerializeField] Button teleportToCollectibleButton;
 
         public void SetUtilityCallbacks(UnityAction ondeleteSaveData, UnityAction<bool> onActivateJoystick)
         {
@@ -53,22 +56,34 @@ namespace ProjectTA.Module.CheatFeature
             subtractHealthButton.onClick.AddListener(onSubtractHealth);
         }
 
-        public void SetMissionCallbacks(UnityAction onAddPuzzlePieceCount, UnityAction onSubtractPuzzlePieceCount, UnityAction onAddKillCount, UnityAction onSubtractKillCount)
+        public void SetMissionCallbacks(
+            UnityAction onAddPuzzlePieceCount, 
+            UnityAction onSubtractPuzzlePieceCount, 
+            UnityAction onAddHiddenObjectCount,
+            UnityAction onSubtractHiddenObjectCount,
+            UnityAction onAddKillCount, 
+            UnityAction onSubtractKillCount)
         {
             addCollectedPuzzlePieceCountButton.onClick.RemoveAllListeners();
             addCollectedPuzzlePieceCountButton.onClick.AddListener(onAddPuzzlePieceCount);
             subtractCollectedPuzzlePieceCountButton.onClick.RemoveAllListeners();
             subtractCollectedPuzzlePieceCountButton.onClick.AddListener(onSubtractPuzzlePieceCount);
+            addCollectedHiddenObjectCountButton.onClick.RemoveAllListeners();
+            addCollectedHiddenObjectCountButton.onClick.AddListener(onAddHiddenObjectCount);
+            subtractCollectedHiddenObjectCountButton.onClick.RemoveAllListeners();
+            subtractCollectedHiddenObjectCountButton.onClick.AddListener(onSubtractHiddenObjectCount);
             addKillCountButton.onClick.RemoveAllListeners();
             addKillCountButton.onClick.AddListener(onAddKillCount);
             subtractKillCountButton.onClick.RemoveAllListeners();
             subtractKillCountButton.onClick.AddListener(onSubtractKillCount);
         }
 
-        public void SetEnvironmentCallbacks(UnityAction onTeleportToPuzzle)
+        public void SetEnvironmentCallbacks(UnityAction onTeleportToPuzzle, UnityAction onTeleportToCollectible)
         {
             teleportToPuzzleButton.onClick.RemoveAllListeners();
             teleportToPuzzleButton.onClick.AddListener(onTeleportToPuzzle);
+            teleportToCollectibleButton.onClick.RemoveAllListeners();
+            teleportToCollectibleButton.onClick.AddListener(onTeleportToCollectible);
         }
     }
 }
