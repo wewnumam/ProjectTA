@@ -2,6 +2,7 @@ using NUnit.Framework;
 using ProjectTA.Message;
 using ProjectTA.Module.CollectibleData;
 using System.Collections.Generic;
+using Unity.PerformanceTesting;
 using UnityEditor;
 using UnityEngine;
 
@@ -74,6 +75,46 @@ namespace ProjectTA.Tests
 
             // Assert
             Assert.IsTrue(_controller.Model.UnlockedCollectibleItems.Contains(collectibleData));
+        }
+
+        [Test, Performance]
+        public void Performance_AddUnlockedCollectible()
+        {
+            Measure.Method(() =>
+            {
+                _controller.AddUnlockedCollectible(COLLECTIBLE_DATA_NAME);
+            })
+            .WarmupCount(10)
+            .MeasurementCount(100)
+            .Run();
+        }
+
+        [Test, Performance]
+        public void Performance_Initialize()
+        {
+            Measure.Method(() =>
+            {
+                _controller.Initialize();
+            })
+            .WarmupCount(10)
+            .MeasurementCount(100)
+            .Run();
+        }
+
+        [Test, Performance]
+        public void Performance_OnUnlockCollectible()
+        {
+            // Arrange
+            var collectibleData = ScriptableObject.CreateInstance<SO_CollectibleData>();
+            var message = new UnlockCollectibleMessage(collectibleData);
+
+            Measure.Method(() =>
+            {
+                _controller.OnUnlockCollectible(message);
+            })
+            .WarmupCount(10)
+            .MeasurementCount(100)
+            .Run();
         }
     }
 }

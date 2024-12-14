@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using ProjectTA.Module.Health;
+using Unity.PerformanceTesting;
 
 namespace ProjectTA.Tests
 {
@@ -75,6 +76,69 @@ namespace ProjectTA.Tests
             _healthModel.SetCurrentHealth(10);
 
             Assert.IsFalse(_healthModel.IsCurrentHealthLessThanZero());
+        }
+
+        [Test, Performance]
+        public void SetInitialHealth_Performance()
+        {
+            Measure.Method(() =>
+            {
+                _healthModel.SetInitialHealth(100);
+            })
+            .WarmupCount(5)
+            .MeasurementCount(10)
+            .Run();
+        }
+
+        [Test, Performance]
+        public void SetCurrentHealth_Performance()
+        {
+            Measure.Method(() =>
+            {
+                _healthModel.SetCurrentHealth(80);
+            })
+            .WarmupCount(5)
+            .MeasurementCount(10)
+            .Run();
+        }
+
+        [Test, Performance]
+        public void AddCurrentHealth_Performance()
+        {
+            _healthModel.SetCurrentHealth(50);
+            Measure.Method(() =>
+            {
+                _healthModel.AddCurrentHealth(20);
+            })
+            .WarmupCount(5)
+            .MeasurementCount(10)
+            .Run();
+        }
+
+        [Test, Performance]
+        public void SubtractCurrentHealth_Performance()
+        {
+            _healthModel.SetCurrentHealth(50);
+            Measure.Method(() =>
+            {
+                _healthModel.SubtractCurrentHealth(20);
+            })
+            .WarmupCount(5)
+            .MeasurementCount(10)
+            .Run();
+        }
+
+        [Test, Performance]
+        public void IsCurrentHealthLessThanZero_Performance()
+        {
+            _healthModel.SetCurrentHealth(-10);
+            Measure.Method(() =>
+            {
+                _healthModel.IsCurrentHealthLessThanZero();
+            })
+            .WarmupCount(5)
+            .MeasurementCount(10)
+            .Run();
         }
     }
 }
