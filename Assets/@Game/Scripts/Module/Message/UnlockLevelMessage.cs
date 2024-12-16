@@ -5,9 +5,9 @@ namespace ProjectTA.Message
 {
     public struct UnlockLevelMessage
     {
-        public SO_LevelData LevelData { get; }
+        public SOLevelData LevelData { get; }
 
-        public UnlockLevelMessage(SO_LevelData levelData)
+        public UnlockLevelMessage(SOLevelData levelData)
         {
             LevelData = levelData;
         }

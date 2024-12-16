@@ -12,14 +12,14 @@ using System.Collections.Generic;
 
 namespace ProjectTA.Module.CutscenePlayer
 {
-    public class CutscenePlayerController : ObjectController<CutscenePlayerController, CutscenePlayerModel, ICutscenePlayerModel, CutscenePlayerView>
+    public class CutscenePlayerController : ObjectController<CutscenePlayerController, CutscenePlayerModel, CutscenePlayerView>
     {
-        private Story _story;
-        private string text;
-        private bool isTextComplete = true;
-        private int currentIndex;
+        private Story _story = null;
+        private string _text = String.Empty;
+        private bool _isTextComplete = true;
+        private int _currentIndex = 0;
 
-        public void SetCurrentCutsceneData(SO_CutsceneData cutsceneData) => _model.SetCurrentCutsceneData(cutsceneData);
+        public void SetCurrentCutsceneData(SOCutsceneData cutsceneData) => _model.SetCurrentCutsceneData(cutsceneData);
         public void SetCameras(List<CinemachineVirtualCamera> cameras) => _model.SetCameras(cameras);
 
         public override void SetView(CutscenePlayerView view)
@@ -28,45 +28,31 @@ namespace ProjectTA.Module.CutscenePlayer
 
             view.SetCallback(DisplayNextLine);
 
-            _story = new Story(_model.CurrentCutsceneData.dialogueAsset.text);
+            _story = new Story(_model.CurrentCutsceneData.DialogueAsset.text);
             DisplayNextLine();
-
-            for (int i = 0; i < _model.CurrentCutsceneData.sceneSprites.Count; i++)
-            {
-                Sprite sceneSprite = _model.CurrentCutsceneData.sceneSprites[i];
-                GameObject obj = GameObject.Instantiate(view.imageTemplate.gameObject, view.imageParent);
-                obj.GetComponent<Image>().sprite = sceneSprite;
-
-                Vector3 imageTemplatePosition = view.imageTemplate.transform.position;
-                obj.transform.position = new Vector3(i % 2 == 0 ? imageTemplatePosition.x : -imageTemplatePosition.x, imageTemplatePosition.y, imageTemplatePosition.z + (i * view.distance));
-                obj.SetActive(true);           
-            }
-
-            ReverseOrder(view.imageParent);
         }
 
         public void DisplayNextLine()
         {
             if (!_story.canContinue)
             {
-                //_view.onEnd?.Invoke();
                 SceneLoader.Instance.LoadScene(TagManager.SCENE_LEVELSELECTION);
                 return;
             }
 
-            if (isTextComplete)
+            if (_isTextComplete)
             {   
-                text = _story.Continue();
+                _text = _story.Continue();
             }
             
-            ParseSentence(text?.Trim());
+            ParseSentence(_text?.Trim());
             
             for (int i = 0; i < _model.Cameras.Count; i++)
             {
-                _model.Cameras[i].enabled = i == currentIndex;
+                _model.Cameras[i].enabled = i == _currentIndex;
             }
 
-            currentIndex++;
+            _currentIndex++;
         }
 
 
@@ -81,35 +67,16 @@ namespace ProjectTA.Module.CutscenePlayer
                 sentence = sentence.Replace(characterName + ": ", "");
             }
 
-            _view.characterText.text = characterName;
-            if (isTextComplete)
+            _view.CharacterText.text = characterName;
+            if (_isTextComplete)
             {
-                _view.messageText.text = String.Empty;
-                isTextComplete = false;
-                _view.messageText.DOText(sentence, sentence.Length / 20f).OnComplete(() => isTextComplete = true);
+                _view.MessageText.text = String.Empty;
+                _isTextComplete = false;
+                _view.MessageText.DOText(sentence, sentence.Length / 20f).OnComplete(() => _isTextComplete = true);
             }
             else
             {
-                _view.messageText.text = sentence;
-            }
-        }
-
-        void ReverseOrder(Transform parent)
-        {
-            int childCount = parent.childCount;
-
-            for (int i = 0; i < childCount / 2; i++)
-            {
-                // Get the current and corresponding child to swap
-                Transform childA = parent.GetChild(i);
-                Transform childB = parent.GetChild(childCount - 1 - i);
-
-                // Swap their sibling indices
-                int siblingIndexA = childA.GetSiblingIndex();
-                int siblingIndexB = childB.GetSiblingIndex();
-
-                childA.SetSiblingIndex(siblingIndexB);
-                childB.SetSiblingIndex(siblingIndexA);
+                _view.MessageText.text = sentence;
             }
         }
     }

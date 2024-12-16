@@ -3,23 +3,19 @@ using ProjectTA.Message;
 using ProjectTA.Module.CollectibleData;
 using ProjectTA.Module.LevelData;
 using ProjectTA.Utility;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace ProjectTA.Module.PuzzleBoard
 {
     public class PuzzleBoardController : ObjectController<PuzzleBoardController, PuzzleBoardView>
     {
-        private int _currentPuzzleIndex;
-
-        private SO_LevelData _levelData;
+        private SOLevelData _levelData;
         private List<CollectibleComponent> _collectibleObjs;
 
-        public void SetLevelData(SO_LevelData levelData)
+        public void SetLevelData(SOLevelData levelData)
         {
             _levelData = levelData;
         }
@@ -34,15 +30,15 @@ namespace ProjectTA.Module.PuzzleBoard
             base.SetView(view);
             int currentLeftIndex = 0;
             int currentRightIndex = 0;
-            for (int i = 0; i < _levelData.collectibleObjects.Count; i++)
+            for (int i = 0; i < _levelData.CollectibleObjects.Count; i++)
             {
-                PuzzleObject puzzle = _levelData.collectibleObjects[i];
+                PuzzleObject puzzle = _levelData.CollectibleObjects[i];
                 
                 GameObject puzzleDragable = GameObject.Instantiate(view.puzzleDragableTemplate.gameObject, view.parent);
 
                 GameObject puzzleTarget = GameObject.Instantiate(view.puzzleTargetTemplate.gameObject, view.parent);
                 RectTransform target = puzzleTarget.GetComponent<RectTransform>();
-                target.anchoredPosition = puzzle.rectPosition;
+                target.anchoredPosition = puzzle.RectPosition;
 
                 RectTransform rectTransform = puzzleDragable.GetComponent<RectTransform>();
                 rectTransform.anchoredPosition += new Vector2(i % 2 != 0 ? (rectTransform.rect.width * currentRightIndex) : (-rectTransform.rect.width * currentLeftIndex), 1);
@@ -55,13 +51,13 @@ namespace ProjectTA.Module.PuzzleBoard
                 PuzzleDragable dragable = puzzleDragable.GetComponent<PuzzleDragable>();
                 dragable.targetPosition = target;
                 dragable.onPlace += OnPuzzlePlaced;
-                dragable.CollectibleData = puzzle.collectibleData;
+                dragable.CollectibleData = puzzle.CollectibleData;
                 view.draggables.Add(dragable);
 
                 TMP_Text label = puzzleDragable.GetComponentInChildren<TMP_Text>();
                 if (label != null)
                 {
-                    label.SetText(puzzle.collectibleData.Title);
+                    label.SetText(puzzle.CollectibleData.Title);
                 }
 
                 puzzleDragable.SetActive(true);
@@ -69,7 +65,7 @@ namespace ProjectTA.Module.PuzzleBoard
             }
 
             view.SetCallback(OnClose);
-            view.questionText.SetText(_levelData.puzzleQuestion);
+            view.questionText.SetText(_levelData.PuzzleQuestion);
             view.puzzles = _collectibleObjs;
 
             Debug.Log($"<color=green>[{view.GetType()}]</color> installed successfully!");

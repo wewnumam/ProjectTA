@@ -5,8 +5,8 @@ namespace ProjectTA.Module.Mission
 {
     public interface IMissionModel : IBaseModel
     {
-        SO_LevelData CurrentLevelData { get; }
-        SO_LevelData NextLevelData { get; }
+        SOLevelData CurrentLevelData { get; }
+        SOLevelData NextLevelData { get; }
         int PuzzlePieceCount { get; }
         int CollectedPuzzlePieceCount { get; }
         int HiddenObjectCount { get; }

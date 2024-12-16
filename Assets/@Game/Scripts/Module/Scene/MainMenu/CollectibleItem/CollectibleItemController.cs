@@ -6,7 +6,7 @@ namespace ProjectTA.Module.CollectibleItem
 {
     public class CollectibleItemController : ObjectController<CollectibleItemController, CollectibleItemView>
     {
-        public void Init(CollectibleItemView view, SO_CollectibleData collectibleData, bool isUnlocked)
+        public void Init(CollectibleItemView view, SOCollectibleData collectibleData, bool isUnlocked)
         {
             SetView(view);
             view.CollectibleData = collectibleData;

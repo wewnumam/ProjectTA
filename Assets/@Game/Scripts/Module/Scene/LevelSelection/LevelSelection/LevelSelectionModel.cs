@@ -6,17 +6,17 @@ namespace ProjectTA.Module.LevelSelection
 {
     public class LevelSelectionModel : BaseModel, ILevelSelectionModel
     {
-        public SO_LevelCollection LevelCollection { get; private set; }
-        public SO_LevelData CurrentLevelData { get; private set; }
+        public SOLevelCollection LevelCollection { get; private set; }
+        public SOLevelData CurrentLevelData { get; private set; }
         public List<string> UnlockedLevels { get; private set; }
 
-        public void SetLevelCollection(SO_LevelCollection levelCollection)
+        public void SetLevelCollection(SOLevelCollection levelCollection)
         {
             LevelCollection = levelCollection;
             SetDataAsDirty();
         }
 
-        public void SetCurrentLevelData(SO_LevelData levelData)
+        public void SetCurrentLevelData(SOLevelData levelData)
         {
             CurrentLevelData = levelData;
             SetDataAsDirty();

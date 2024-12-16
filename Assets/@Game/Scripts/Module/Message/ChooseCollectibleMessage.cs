@@ -4,9 +4,9 @@ namespace ProjectTA.Message
 {
     public struct ChooseCollectibleMessage
     {
-        public SO_CollectibleData CollectibleData { get; }
+        public SOCollectibleData CollectibleData { get; }
 
-        public ChooseCollectibleMessage(SO_CollectibleData collectibleData) 
+        public ChooseCollectibleMessage(SOCollectibleData collectibleData) 
         { 
             CollectibleData = collectibleData;
         }

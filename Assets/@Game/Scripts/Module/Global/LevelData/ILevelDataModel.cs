@@ -6,9 +6,9 @@ namespace ProjectTA.Module.LevelData
 {
     public interface ILevelDataModel : IBaseModel
     {
-        SO_CutsceneData CurrentCutsceneData { get; }
-        SO_LevelData CurrentLevelData { get; }
-        SO_LevelCollection LevelCollection { get; }
+        SOCutsceneData CurrentCutsceneData { get; }
+        SOLevelData CurrentLevelData { get; }
+        SOLevelCollection LevelCollection { get; }
 
         GameObject CurrentEnvironmentPrefab { get; }
     }

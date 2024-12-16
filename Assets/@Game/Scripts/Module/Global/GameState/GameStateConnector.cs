@@ -5,7 +5,7 @@ namespace ProjectTA.Module.GameState
 {
     public class GameStateConnector : BaseConnector
     {
-        private GameStateController _gameState;
+        private readonly GameStateController _gameState = new();
 
         protected override void Connect()
         {

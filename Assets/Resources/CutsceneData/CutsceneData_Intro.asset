@@ -12,10 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561c44ba66502d344912280f4ffdbc39, type: 3}
   m_Name: CutsceneData_Intro
   m_EditorClassIdentifier: 
-  dialogueAsset: {fileID: 4900000, guid: 71feba1e4bd34db45a05fc73b5a104d4, type: 3}
-  sceneSprites:
-  - {fileID: 21300000, guid: 75b4047b29e8f4140a88a2cd1c859eb1, type: 3}
-  - {fileID: 21300000, guid: 96a83f3c8e583db47be22c183ae919f2, type: 3}
-  - {fileID: 21300000, guid: 44b05940f0b6c2e47845a0762a0ff1e8, type: 3}
-  environment: {fileID: 5773407093173007764, guid: b350b3899611be640990e4e971a1b2dd,
+  _dialogueAsset: {fileID: 4900000, guid: 71feba1e4bd34db45a05fc73b5a104d4, type: 3}
+  _environment: {fileID: 8854158823960386529, guid: b350b3899611be640990e4e971a1b2dd,
     type: 3}

@@ -5,38 +5,26 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using DG.Tweening;
 
 namespace ProjectTA.Module.CutscenePlayer
 {
-    public class CutscenePlayerView : ObjectView<ICutscenePlayerModel>
+    public class CutscenePlayerView : BaseView
     {
-        [ReadOnly] public SO_CutsceneData cutsceneData;
-        public TMP_Text characterText;
-        public Text messageText;
-        public Transform imageParent;
-        public Image imageTemplate;
-        public Transform camera;
-        public float distance = 200;
+        [SerializeField] private TMP_Text _characterText;
+        [SerializeField] private Text _messageText;
+
+        public TMP_Text CharacterText => _characterText;
+        public Text MessageText => _messageText;
         
-        public UnityAction onNext;
+        private UnityAction onNext;
 
         public void DisplayNextLine()
         {
             onNext?.Invoke();
-            camera.DOMoveZ(camera.position.z + distance, 1f);
         }
         public void SetCallback(UnityAction onNext)
         {
             this.onNext = onNext;
-        }
-
-        protected override void InitRenderModel(ICutscenePlayerModel model)
-        {
-        }
-
-        protected override void UpdateRenderModel(ICutscenePlayerModel model)
-        {
         }
     }
 }

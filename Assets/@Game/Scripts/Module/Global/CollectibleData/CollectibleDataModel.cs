@@ -7,16 +7,16 @@ namespace ProjectTA.Module.CollectibleData
 {
     public class CollectibleDataModel : BaseModel, ICollectibleDataModel
     {
-        public SO_CollectibleCollection CollectibleCollection { get; private set; } = new();
-        public List<SO_CollectibleData> UnlockedCollectibleItems { get; private set; } = new();
+        public SOCollectibleCollection CollectibleCollection { get; private set; } = new();
+        public List<SOCollectibleData> UnlockedCollectibleItems { get; private set; } = new();
 
-        public void SetCollectibleCollection(SO_CollectibleCollection collectibleCollection)
+        public void SetCollectibleCollection(SOCollectibleCollection collectibleCollection)
         {
             CollectibleCollection = collectibleCollection;
             SetDataAsDirty();
         }
 
-        public void AddUnlockedCollectibleCollection(SO_CollectibleData collectibleData)
+        public void AddUnlockedCollectibleCollection(SOCollectibleData collectibleData)
         {
             if (UnlockedCollectibleItems.Contains(collectibleData))
             {

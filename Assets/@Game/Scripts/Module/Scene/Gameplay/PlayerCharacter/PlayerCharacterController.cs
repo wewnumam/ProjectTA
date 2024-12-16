@@ -21,13 +21,13 @@ namespace ProjectTA.Module.PlayerCharacter
             Publish(new SubtractHealthMessage(1));
         }
 
-        private void OnCollideWithCollectibleComponent(SO_CollectibleData collectibleData)
+        private void OnCollideWithCollectibleComponent(SOCollectibleData collectibleData)
         {
             Publish(new UnlockCollectibleMessage(collectibleData));
 
-            if (collectibleData.dialogue != null)
+            if (collectibleData.Dialogue != null)
             {
-                Publish(new ShowDialogueMessage(collectibleData.dialogue));
+                Publish(new ShowDialogueMessage(collectibleData.Dialogue));
             }
 
             if (collectibleData.Type == EnumManager.CollectibleType.Puzzle)

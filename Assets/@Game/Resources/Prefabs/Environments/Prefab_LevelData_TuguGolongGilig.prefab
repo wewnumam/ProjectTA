@@ -924,7 +924,7 @@ GameObject:
   - component: {fileID: 8379325681344764605}
   - component: {fileID: 3640483901813126506}
   m_Layer: 0
-  m_Name: LevelData_0
+  m_Name: Prefab_LevelData_TuguGolongGilig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -682,7 +682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b15287324e280ff42af611d58f08fb48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CutscenePlayerView: {fileID: 1846278171}
+  _cutscenePlayerView: {fileID: 1846278171}
 --- !u!1 &1250831696
 GameObject:
   m_ObjectHideFlags: 0
@@ -1631,13 +1631,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b54bb2ae6ebc924484ae8a2d0c6ad54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutsceneData: {fileID: 0}
-  characterText: {fileID: 136060281}
-  messageText: {fileID: 1930624623}
-  imageParent: {fileID: 805094834}
-  imageTemplate: {fileID: 262967641}
-  camera: {fileID: 988698031}
-  distance: 200
+  _characterText: {fileID: 136060281}
+  _messageText: {fileID: 1930624623}
 --- !u!1 &1930624621
 GameObject:
   m_ObjectHideFlags: 0

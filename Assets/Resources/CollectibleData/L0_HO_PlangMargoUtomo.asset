@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b07f33ea1f36d4c92a647367369ef5, type: 3}
   m_Name: L0_HO_PlangMargoUtomo
   m_EditorClassIdentifier: 
-  Title: Plang Margo Utomo
-  Description: Nunc vel gravida lacus
-  Type: 1
-  prefab: {fileID: 0}
-  dialogue: {fileID: 4900000, guid: a7f806d69cb444d4da47bc2fd4d989de, type: 3}
+  _title: Plang Margo Utomo
+  _description: Nunc vel gravida lacus
+  _type: 1
+  _prefab: {fileID: 0}
+  _dialogue: {fileID: 4900000, guid: a7f806d69cb444d4da47bc2fd4d989de, type: 3}

@@ -4,8 +4,10 @@ using UnityEngine;
 namespace ProjectTA.Module.CollectibleData
 {
     [CreateAssetMenu(fileName = "CollectibleCollection", menuName = "ProjectTA/CollectibleCollection", order = 6)]
-    public class SO_CollectibleCollection : ScriptableObject
+    public class SOCollectibleCollection : ScriptableObject
     {
-        public List<SO_CollectibleData> CollectibleItems;
+        [SerializeField] private List<SOCollectibleData> _collectibleItems;
+
+        public List<SOCollectibleData> CollectibleItems => _collectibleItems;
     }
 }

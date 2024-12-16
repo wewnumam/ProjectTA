@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b07f33ea1f36d4c92a647367369ef5, type: 3}
   m_Name: L0_HO_KomplekKepatihan
   m_EditorClassIdentifier: 
-  Title: Komplek Kepatihan
-  Description: Consectetur adipiscing elit
-  Type: 1
-  prefab: {fileID: 0}
-  dialogue: {fileID: 4900000, guid: 70314cb47283b6c419dd6ffa46655fe1, type: 3}
+  _title: Komplek Kepatihan
+  _description: Consectetur adipiscing elit
+  _type: 1
+  _prefab: {fileID: 0}
+  _dialogue: {fileID: 4900000, guid: 70314cb47283b6c419dd6ffa46655fe1, type: 3}

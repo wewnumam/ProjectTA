@@ -9,11 +9,11 @@ namespace ProjectTA.Module.LevelData
 {
     public class LevelDataController : DataController<LevelDataController, LevelDataModel, ILevelDataModel>
     {
-        private SaveSystemController _saveSystemController;
+        private readonly SaveSystemController _saveSystemController = new();
 
         public override IEnumerator Initialize()
         {
-            SO_LevelCollection levelCollection = Resources.Load<SO_LevelCollection>(@"LevelCollection");
+            SOLevelCollection levelCollection = Resources.Load<SOLevelCollection>(@"LevelCollection");
             _model.SetLevelCollection(levelCollection);
 
             yield return base.Initialize();
@@ -21,16 +21,16 @@ namespace ProjectTA.Module.LevelData
 
         public IEnumerator SetCurrentLevel(string levelName)
         {
-            SO_LevelData levelData = Resources.Load<SO_LevelData>(@"LevelData/" + levelName);
+            SOLevelData levelData = Resources.Load<SOLevelData>(@"LevelData/" + levelName);
             _model.SetCurrentLevelData(levelData);
-            _model.SetCurrentEnvironmentPrefab(levelData.environmentPrefab);
+            _model.SetCurrentEnvironmentPrefab(levelData.EnvironmentPrefab);
 
             yield return null;
         }
 
         public IEnumerator SetCurrentCutscene(string cutsceneName)
         {
-            SO_CutsceneData cutsceneData = Resources.Load<SO_CutsceneData>(@"CutsceneData/" + cutsceneName);
+            SOCutsceneData cutsceneData = Resources.Load<SOCutsceneData>(@"CutsceneData/" + cutsceneName);
             _model.SetCurrentCutsceneData(cutsceneData);
 
             yield return null;
@@ -41,7 +41,7 @@ namespace ProjectTA.Module.LevelData
             Debug.Log($"CHOOSE LEVEL: {message.LevelData}");
             GameMain.Instance.RunCoroutine(SetCurrentLevel(message.LevelData.name));
             _saveSystemController.SetCurrentLevelName(message.LevelData.name);
-            _saveSystemController.SetCurrentCutsceneName(message.LevelData.cutsceneData.name);
+            _saveSystemController.SetCurrentCutsceneName(message.LevelData.CutsceneData.name);
         }
     }
 }

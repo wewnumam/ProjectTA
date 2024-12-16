@@ -17,7 +17,7 @@ namespace ProjectTA.Module.CollectibleData
         {
             try
             {
-                SO_CollectibleData collectibleData = Resources.Load<SO_CollectibleData>(@"CollectibleData/" + collectibleName);
+                SOCollectibleData collectibleData = Resources.Load<SOCollectibleData>(@"CollectibleData/" + collectibleName);
                 _model.AddUnlockedCollectibleCollection(collectibleData);
             }
             catch (Exception e)
@@ -31,7 +31,7 @@ namespace ProjectTA.Module.CollectibleData
         {
             try
             {
-                SO_CollectibleCollection collectibleCollection = Resources.Load<SO_CollectibleCollection>(@"CollectibleCollection");
+                SOCollectibleCollection collectibleCollection = Resources.Load<SOCollectibleCollection>(@"CollectibleCollection");
                 _model.SetCollectibleCollection(collectibleCollection);
             }
             catch (Exception e) 

@@ -5,7 +5,7 @@ namespace ProjectTA.Module.CollectibleData
 {
     public interface ICollectibleDataModel : IBaseModel
     {
-        SO_CollectibleCollection CollectibleCollection { get; }
-        List<SO_CollectibleData> UnlockedCollectibleItems { get; }
+        SOCollectibleCollection CollectibleCollection { get; }
+        List<SOCollectibleData> UnlockedCollectibleItems { get; }
     }
 }

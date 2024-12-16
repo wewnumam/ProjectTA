@@ -37,27 +37,26 @@ namespace ProjectTA.Scene.Gameplay
     {
         public override string SceneName {get {return TagManager.SCENE_GAMEPLAY;}}
 
-        private SaveSystemController _saveSystem;
-        private GameConstantsController _gameConstants;
-        private LevelDataController _levelData;
-        private CollectibleDataController _collectibleData;
-        private GameSettingsController _gameSettings;
+        private readonly SaveSystemController _saveSystem = new();
+        private readonly GameConstantsController _gameConstants = new();
+        private readonly LevelDataController _levelData = new();
+        private readonly CollectibleDataController _collectibleData = new();
 
-        private GamePauseController _gamePause;
-        private GameWinController _gameWin;
-        private GameOverController _gameOver;
-        private PlayerCharacterController _playerCharacter;
-        private CheatFeatureController _cheatFeature;
-        private HealthController _health;
-        private HUDController _hud;
-        private MissionController _mission;
-        private DialogueController _dialogue;
-        private PuzzleBoardController _puzzleBoard;
-        private CameraEffectController _cameraEffect;
-        private CountdownController _countdown;
-        private BulletPoolController _bulletPool;
-        private EnemyPoolController _enemyPool;
-        private TutorialController _tutorial;
+        private readonly GamePauseController _gamePause = new();
+        private readonly GameWinController _gameWin = new();
+        private readonly GameOverController _gameOver = new();
+        private readonly PlayerCharacterController _playerCharacter = new()  ;
+        private readonly CheatFeatureController _cheatFeature = new();
+        private readonly HealthController _health = new();
+        private readonly HUDController _hud = new();
+        private readonly MissionController _mission = new();
+        private readonly DialogueController _dialogue = new();
+        private readonly PuzzleBoardController _puzzleBoard = new();
+        private readonly CameraEffectController _cameraEffect = new();
+        private readonly CountdownController _countdown = new();
+        private readonly BulletPoolController _bulletPool = new();
+        private readonly EnemyPoolController _enemyPool = new();
+        private readonly TutorialController _tutorial = new();
 
         protected override IController[] GetSceneDependencies()
         {
@@ -124,12 +123,12 @@ namespace ProjectTA.Scene.Gameplay
 
             List<CollectibleComponent> collectibleObjs = new();
 
-            foreach (var collectibleObject in _levelData.Model.CurrentLevelData.collectibleObjects)
+            foreach (var collectibleObject in _levelData.Model.CurrentLevelData.CollectibleObjects)
             {
-                GameObject obj = GameObject.Instantiate(collectibleObject.collectibleData.prefab, environmentObj.transform);
-                obj.transform.localPosition = collectibleObject.objectPosition;
+                GameObject obj = GameObject.Instantiate(collectibleObject.CollectibleData.Prefab, environmentObj.transform);
+                obj.transform.localPosition = collectibleObject.ObjectPosition;
                 obj.AddComponent<CollectibleComponent>();
-                obj.GetComponent<CollectibleComponent>().CollectibleData = collectibleObject.collectibleData;
+                obj.GetComponent<CollectibleComponent>().SetCollectibleData(collectibleObject.CollectibleData);
                 collectibleObjs.Add(obj.GetComponent<CollectibleComponent>());
             }
 
@@ -138,16 +137,16 @@ namespace ProjectTA.Scene.Gameplay
             _gameOver.SetView(_view.GameOverView);
 
             _playerCharacter.SetView(_view.PlayerCharacterView);
-            _playerCharacter.SetInitialActivateJoystick(_gameConstants.Model.GameConstants.isJoystickActive);
+            _playerCharacter.SetInitialActivateJoystick(_gameConstants.Model.GameConstants.IsJoystickActive);
 
             _cheatFeature.SetView(_view.CheatFeatureView);
-            _cheatFeature.SetInitialActivateJoystick(_gameConstants.Model.GameConstants.isJoystickActive);
+            _cheatFeature.SetInitialActivateJoystick(_gameConstants.Model.GameConstants.IsJoystickActive);
 
-            _hud.SetInitialCountdown(_levelData.Model.CurrentLevelData.countdown);
+            _hud.SetInitialCountdown(_levelData.Model.CurrentLevelData.Countdown);
             _hud.SetView(_view.HUDView);
-            _hud.SetGateIcon(_levelData.Model.CurrentLevelData.icon);
+            _hud.SetGateIcon(_levelData.Model.CurrentLevelData.Icon);
             
-            _health.SetInitialHealth(_gameConstants.Model.GameConstants.initialHealth);
+            _health.SetInitialHealth(_gameConstants.Model.GameConstants.InitialHealth);
 
             _dialogue.SetView(_view.DialogueView);
 
@@ -155,27 +154,27 @@ namespace ProjectTA.Scene.Gameplay
             _puzzleBoard.SetLevelData(_levelData.Model.CurrentLevelData);
             _puzzleBoard.SetView(_view.PuzzleBoardView);
 
-            var nextLevelItem = _levelData.Model.LevelCollection.levelItems.FirstOrDefault(levelItem => levelItem.levelGate == _levelData.Model.CurrentLevelData);
+            var nextLevelItem = _levelData.Model.LevelCollection.LevelItems.Find(levelItem => levelItem.LevelGate == _levelData.Model.CurrentLevelData);
 
             if (nextLevelItem != null)
             {
                 _mission.SetNextLevelData(nextLevelItem);
             }
             _mission.SetCurrentLevelData(_levelData.Model.CurrentLevelData);
-            _mission.SetPuzzlePieceCount(_levelData.Model.CurrentLevelData.collectibleObjects.Count);
-            _mission.SetHiddenObjectCount(_levelData.Model.CurrentLevelData.hiddenObjects.Count);
+            _mission.SetPuzzlePieceCount(_levelData.Model.CurrentLevelData.CollectibleObjects.Count);
+            _mission.SetHiddenObjectCount(_levelData.Model.CurrentLevelData.HiddenObjects.Count);
 
             _cameraEffect.SetView(_view.CameraEffectView);
 
             _countdown.SetView(_view.CountdownView);
-            _countdown.SetInitialCountdown(_levelData.Model.CurrentLevelData.countdown);
-            _countdown.SetCurrentCountdown(_levelData.Model.CurrentLevelData.countdown);
+            _countdown.SetInitialCountdown(_levelData.Model.CurrentLevelData.Countdown);
+            _countdown.SetCurrentCountdown(_levelData.Model.CurrentLevelData.Countdown);
 
-            _bulletPool.SetShootingConstants(_gameConstants.Model.GameConstants.ShootingConstants);
+            _bulletPool.SetShootingConstants(_gameConstants.Model.GameConstants.Shooting);
             _bulletPool.SetView(_view.BulletPoolView);
 
-            _enemyPool.SetEnemyPrefab(_levelData.Model.CurrentLevelData.enemyPrefab);
-            _enemyPool.SetEnemyConstants(_gameConstants.Model.GameConstants.EnemyConstants);
+            _enemyPool.SetEnemyPrefab(_levelData.Model.CurrentLevelData.EnemyPrefab);
+            _enemyPool.SetEnemyConstants(_gameConstants.Model.GameConstants.Enemy);
             _enemyPool.SetView(_view.EnemyPoolView);
 
             _tutorial.SetView(_view.TutorialView);

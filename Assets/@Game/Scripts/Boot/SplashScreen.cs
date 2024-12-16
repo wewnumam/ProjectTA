@@ -11,8 +11,6 @@ namespace ProjectTA.Boot
         [SerializeField] RectTransform splashScreenWindow;
         [SerializeField] TMP_Text versionText;
 
-        private Sequence sequence;
-
         protected override IMain GetMain()
         {
             return GameMain.Instance;
@@ -29,15 +27,10 @@ namespace ProjectTA.Boot
             versionText.SetText($"v{Application.version}");
         }
 
-        protected override void FinishSplash()
-        {
-            base.FinishSplash();
-        }
-
         protected override void StartTransition()
         {
             base.StartTransition();
-            sequence = DOTween.Sequence();
+            Sequence sequence = DOTween.Sequence();
             sequence.Append(splashScreenWindow.DOAnchorPosX(0, .2f));
             sequence.Play();
         }
@@ -45,7 +38,7 @@ namespace ProjectTA.Boot
         protected override void FinishTransition()
         {
             base.FinishTransition();
-            sequence = DOTween.Sequence();
+            Sequence sequence = DOTween.Sequence();
             sequence.Append(splashScreenWindow.DOAnchorPosX(3000, 1f));
             sequence.Append(splashScreenWindow.DOAnchorPosX(-3000, 0f));
             sequence.Play();

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b07f33ea1f36d4c92a647367369ef5, type: 3}
   m_Name: L0_HO_PohonAsem
   m_EditorClassIdentifier: 
-  Title: Pohon Asem
-  Description: Nam malesuada in nisi eget mattis
-  Type: 1
-  prefab: {fileID: 0}
-  dialogue: {fileID: 4900000, guid: 6c80fbee6217b784da769b291633faeb, type: 3}
+  _title: Pohon Asem
+  _description: Nam malesuada in nisi eget mattis
+  _type: 1
+  _prefab: {fileID: 0}
+  _dialogue: {fileID: 4900000, guid: 6c80fbee6217b784da769b291633faeb, type: 3}

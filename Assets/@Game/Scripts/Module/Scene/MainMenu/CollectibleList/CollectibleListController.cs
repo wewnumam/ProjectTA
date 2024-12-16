@@ -12,16 +12,16 @@ namespace ProjectTA.Module.CollectibleList
 {
     public class CollectibleListController : ObjectController<CollectibleListController, CollectibleListView>
     {
-        private SO_CollectibleCollection _collectibleCollection;
-        private List<SO_CollectibleData> _unlockedCollectibles;
+        private SOCollectibleCollection _collectibleCollection;
+        private List<SOCollectibleData> _unlockedCollectibles;
 
-        public void SetCollectibleCollection(SO_CollectibleCollection collection)
+        public void SetCollectibleCollection(SOCollectibleCollection collection)
         {
             _collectibleCollection = collection;
             Debug.Log(_collectibleCollection.CollectibleItems.Count);
         }
 
-        public void SetUnlockedCollectibles(List<SO_CollectibleData> unlockedCollectibles)
+        public void SetUnlockedCollectibles(List<SOCollectibleData> unlockedCollectibles)
         {
             _unlockedCollectibles = unlockedCollectibles;
             Debug.Log(_unlockedCollectibles.Count);

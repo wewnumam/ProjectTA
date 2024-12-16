@@ -5,7 +5,7 @@ namespace ProjectTA.Module.SaveSystem
 {
     public class SaveSystemModel : BaseModel, ISaveSystemModel
     {
-        public SaveData SaveData { get; private set; }
+        public SaveData SaveData { get; private set; } = new();
 
         public void SetSaveData(SaveData saveData)
         {

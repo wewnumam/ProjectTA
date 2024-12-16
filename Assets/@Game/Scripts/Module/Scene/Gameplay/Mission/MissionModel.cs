@@ -5,8 +5,8 @@ namespace ProjectTA.Module.Mission
 {
     public class MissionModel : BaseModel, IMissionModel
     {
-        public SO_LevelData CurrentLevelData { get; private set; }
-        public SO_LevelData NextLevelData { get; private set; }
+        public SOLevelData CurrentLevelData { get; private set; }
+        public SOLevelData NextLevelData { get; private set; }
         public int PuzzlePieceCount { get; private set; }
         public int CollectedPuzzlePieceCount { get; private set; }
         public int HiddenObjectCount { get; private set; }
@@ -14,13 +14,13 @@ namespace ProjectTA.Module.Mission
         public int KillCount { get; private set; }
         public int PadlockOnPlaceCount { get; private set; }
 
-        public void SetCurrentLevelData(SO_LevelData levelData)
+        public void SetCurrentLevelData(SOLevelData levelData)
         {
             CurrentLevelData = levelData;
             SetDataAsDirty();
         }
 
-        public void SetNextLevelData(SO_LevelData levelData)
+        public void SetNextLevelData(SOLevelData levelData)
         {
             NextLevelData = levelData;
             SetDataAsDirty();

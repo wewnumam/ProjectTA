@@ -74,9 +74,9 @@ namespace ProjectTA.Scene.MainMenu
             if (_saveSystem.Model.SaveData.CurrentCutsceneName == TagManager.DEFAULT_CUTSCENENAME)
             {
                 SceneLoader.Instance.LoadScene(TagManager.SCENE_CUTSCENE);
-                foreach (var levelItem in _levelData.Model.LevelCollection.levelItems)
+                foreach (var levelItem in _levelData.Model.LevelCollection.LevelItems)
                 {
-                    if (!levelItem.isLockedLevel)
+                    if (!levelItem.IsLockedLevel)
                     {
                         Publish(new UnlockLevelMessage(levelItem));
                     }

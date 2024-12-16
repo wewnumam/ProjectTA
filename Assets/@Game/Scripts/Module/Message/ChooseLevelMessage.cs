@@ -4,9 +4,9 @@ namespace ProjectTA.Message
 {
     public struct ChooseLevelMessage
     {
-        public SO_LevelData LevelData { get; }
+        public SOLevelData LevelData { get; }
 
-        public ChooseLevelMessage(SO_LevelData levelData) 
+        public ChooseLevelMessage(SOLevelData levelData) 
         { 
             LevelData = levelData;
         }

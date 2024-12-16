@@ -27,7 +27,7 @@ namespace ProjectTA.Module.PlayerCharacter
         public Animator animator;
 
         private UnityAction onCollideWithEnemy;
-        private UnityAction<SO_CollectibleData> _onCollideWithCollectibleComponent;
+        private UnityAction<SOCollectibleData> _onCollideWithCollectibleComponent;
         private UnityAction onCollideWithPadlock;
 
         void Update()
@@ -134,7 +134,7 @@ namespace ProjectTA.Module.PlayerCharacter
 
         public void SetCollideCallbacks(
             UnityAction onCollideWithEnemy, 
-            UnityAction<SO_CollectibleData> onCollideWithCollectibleComponent, 
+            UnityAction<SOCollectibleData> onCollideWithCollectibleComponent, 
             UnityAction onCollideWithPadlock)
         {
             this.onCollideWithEnemy = onCollideWithEnemy;

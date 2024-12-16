@@ -11,8 +11,8 @@ namespace ProjectTA.Module.LevelSelection
     {
         private int currentIndex;
 
-        public void SetLevelCollection(SO_LevelCollection levelCollection) => _model.SetLevelCollection(levelCollection);
-        public void SetCurrentLevelData(SO_LevelData levelData) => _model.SetCurrentLevelData(levelData);
+        public void SetLevelCollection(SOLevelCollection levelCollection) => _model.SetLevelCollection(levelCollection);
+        public void SetCurrentLevelData(SOLevelData levelData) => _model.SetCurrentLevelData(levelData);
         public void SetUnlockedLevels(List<string> unlockedLevels) => _model.SetUnlockedLevels(unlockedLevels);
 
         public override void SetView(LevelSelectionView view)
@@ -35,8 +35,8 @@ namespace ProjectTA.Module.LevelSelection
         private void OnNext()
         {
             currentIndex++;
-            currentIndex = currentIndex >= _model.LevelCollection.levelItems.Count ? 0 : currentIndex;
-            Publish(new ChooseLevelMessage(_model.LevelCollection.levelItems[currentIndex]));
+            currentIndex = currentIndex >= _model.LevelCollection.LevelItems.Count ? 0 : currentIndex;
+            Publish(new ChooseLevelMessage(_model.LevelCollection.LevelItems[currentIndex]));
             SetupCamera();
             _view.playButton.interactable = _model.IsLevelUnlocked(_model.CurrentLevelData.name);
         }
@@ -44,8 +44,8 @@ namespace ProjectTA.Module.LevelSelection
         private void OnPrevious()
         {
             currentIndex--;
-            currentIndex = currentIndex < 0 ? _model.LevelCollection.levelItems.Count - 1 : currentIndex;
-            Publish(new ChooseLevelMessage(_model.LevelCollection.levelItems[currentIndex]));
+            currentIndex = currentIndex < 0 ? _model.LevelCollection.LevelItems.Count - 1 : currentIndex;
+            Publish(new ChooseLevelMessage(_model.LevelCollection.LevelItems[currentIndex]));
             SetupCamera();
             _view.playButton.interactable = _model.IsLevelUnlocked(_model.CurrentLevelData.name);
         }

@@ -13,7 +13,7 @@ namespace ProjectTA.Module.LevelSelection
     public class LevelSelectionView : ObjectView<ILevelSelectionModel>
     {
         [Header("Level Data")]
-        [ReadOnly] public SO_LevelCollection LevelCollection;
+        [ReadOnly] public SOLevelCollection LevelCollection;
         public List<Transform> ListedModels;
 
         [Header("UI References")]
@@ -54,8 +54,8 @@ namespace ProjectTA.Module.LevelSelection
         {
             if (model.CurrentLevelData != null)
             {
-                CurrentLevelTitle.SetText(model.CurrentLevelData.title);
-                CurrentLevelDescription.SetText(model.CurrentLevelData.description);
+                CurrentLevelTitle.SetText(model.CurrentLevelData.Title);
+                CurrentLevelDescription.SetText(model.CurrentLevelData.Description);
             }
         }
     }

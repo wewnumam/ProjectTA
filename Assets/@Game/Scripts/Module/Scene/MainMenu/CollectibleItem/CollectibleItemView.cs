@@ -9,7 +9,7 @@ namespace ProjectTA.Module.CollectibleItem
 {
     public class CollectibleItemView : BaseView
     {
-        [ReadOnly] public SO_CollectibleData CollectibleData;
+        [ReadOnly] public SOCollectibleData CollectibleData;
 
         public TMP_Text title;
         public Button chooseButton;

@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb06df640ec6e694d9055050858318b0, type: 3}
   m_Name: GameConstants
   m_EditorClassIdentifier: 
-  isJoystickActive: 1
-  initialHealth: 10
-  ShootingConstants:
-    JoystickShootingRange: 0.9
-    BulletPoolSize: 10
-    BulletShootingRate: 0.25
-    BulletForce: 25
-    BulletDestroyDelay: 3
-  EnemyConstants:
-    EnemyPoolSize: 50
-    EnemySpawnDistance: 10
-    EnemySpawnInterval: 5
-    EnemyMassiveSpawnInterval: 0.25
-    EnemyDestroyDelay: 3
+  _isJoystickActive: 0
+  _initialHealth: 10
+  _shootingConstants:
+    _joystickShootingRange: 0.9
+    _bulletPoolSize: 10
+    _bulletShootingRate: 0.25
+    _bulletForce: 25
+    _bulletDestroyDelay: 3
+  _enemyConstants:
+    _enemyPoolSize: 50
+    _enemySpawnDistance: 10
+    _enemySpawnInterval: 5
+    _enemyMassiveSpawnInterval: 0.25
+    _enemyDestroyDelay: 3

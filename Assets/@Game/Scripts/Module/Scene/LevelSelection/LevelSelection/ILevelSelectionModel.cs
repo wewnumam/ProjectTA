@@ -7,8 +7,8 @@ namespace ProjectTA.Module.LevelSelection
 {
     public interface ILevelSelectionModel : IBaseModel
     {
-        SO_LevelCollection LevelCollection { get; }
-        SO_LevelData CurrentLevelData { get; }
+        SOLevelCollection LevelCollection { get; }
+        SOLevelData CurrentLevelData { get; }
         List<string> UnlockedLevels { get; }
     }
 }

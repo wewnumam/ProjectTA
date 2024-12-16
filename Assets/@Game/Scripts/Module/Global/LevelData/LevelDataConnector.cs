@@ -5,7 +5,7 @@ namespace ProjectTA.Module.LevelData
 {
     public class LevelDataConnector : BaseConnector
     {
-        private LevelDataController _levelData;
+        private readonly LevelDataController _levelData = new();
 
         protected override void Connect()
         {

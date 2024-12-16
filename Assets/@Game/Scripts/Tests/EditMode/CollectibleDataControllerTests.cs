@@ -18,13 +18,17 @@ namespace ProjectTA.Tests
         [SetUp]
         public void SetUp()
         {
-            // Create a ScriptableObject file for CollectibleCollection
-            var collectibleCollection = ScriptableObject.CreateInstance<SO_CollectibleCollection>();
-            collectibleCollection.CollectibleItems = new List<SO_CollectibleData> { ScriptableObject.CreateInstance<SO_CollectibleData>() };
+            // Create the ScriptableObject instance
+            var collectibleCollection = ScriptableObject.CreateInstance<SOCollectibleCollection>();
+
+            // Use reflection to set the private field
+            var fieldInfo = typeof(SOCollectibleCollection).GetField("_collectibleItems", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            fieldInfo.SetValue(collectibleCollection, new List<SOCollectibleData> { ScriptableObject.CreateInstance<SOCollectibleData>() });
+
             AssetDatabase.CreateAsset(collectibleCollection, $"Assets/Resources/{COLLECTIBLE_COLLECTION_NAME}.asset");
 
             // Create a ScriptableObject file for CollectibleData
-            var collectibleData = ScriptableObject.CreateInstance<SO_CollectibleData>();
+            var collectibleData = ScriptableObject.CreateInstance<SOCollectibleData>();
             AssetDatabase.CreateAsset(collectibleData, $"Assets/Resources/CollectibleData/{COLLECTIBLE_DATA_NAME}.asset");
 
             var model = new CollectibleDataModel();
@@ -50,7 +54,7 @@ namespace ProjectTA.Tests
             _controller.AddUnlockedCollectible(COLLECTIBLE_DATA_NAME);
 
             // Assert
-            Assert.IsTrue(_controller.Model.UnlockedCollectibleItems.Contains(Resources.Load<SO_CollectibleData>(@"CollectibleData/" + COLLECTIBLE_DATA_NAME)));
+            Assert.IsTrue(_controller.Model.UnlockedCollectibleItems.Contains(Resources.Load<SOCollectibleData>(@"CollectibleData/" + COLLECTIBLE_DATA_NAME)));
         }
 
         [Test]
@@ -60,14 +64,14 @@ namespace ProjectTA.Tests
             _controller.Initialize();
 
             // Assert
-            Assert.AreEqual(Resources.Load<SO_CollectibleCollection>(COLLECTIBLE_COLLECTION_NAME), _controller.Model.CollectibleCollection);
+            Assert.AreEqual(Resources.Load<SOCollectibleCollection>(COLLECTIBLE_COLLECTION_NAME), _controller.Model.CollectibleCollection);
         }
 
         [Test]
         public void OnUnlockCollectible_CorrectlyAddsCollectibleToModel()
         {
             // Arrange
-            var collectibleData = ScriptableObject.CreateInstance<SO_CollectibleData>();
+            var collectibleData = ScriptableObject.CreateInstance<SOCollectibleData>();
             var message = new UnlockCollectibleMessage(collectibleData);
 
             // Act
@@ -87,6 +91,9 @@ namespace ProjectTA.Tests
             .WarmupCount(10)
             .MeasurementCount(100)
             .Run();
+
+            // Assert after performance test
+            Assert.IsTrue(_controller.Model.UnlockedCollectibleItems.Contains(Resources.Load<SOCollectibleData>(@"CollectibleData/" + COLLECTIBLE_DATA_NAME)));
         }
 
         [Test, Performance]
@@ -99,13 +106,16 @@ namespace ProjectTA.Tests
             .WarmupCount(10)
             .MeasurementCount(100)
             .Run();
+
+            // Assert after performance test
+            Assert.AreEqual(Resources.Load<SOCollectibleCollection>(COLLECTIBLE_COLLECTION_NAME), _controller.Model.CollectibleCollection);
         }
 
         [Test, Performance]
         public void Performance_OnUnlockCollectible()
         {
             // Arrange
-            var collectibleData = ScriptableObject.CreateInstance<SO_CollectibleData>();
+            var collectibleData = ScriptableObject.CreateInstance<SOCollectibleData>();
             var message = new UnlockCollectibleMessage(collectibleData);
 
             Measure.Method(() =>
@@ -115,6 +125,9 @@ namespace ProjectTA.Tests
             .WarmupCount(10)
             .MeasurementCount(100)
             .Run();
+
+            // Assert after performance test
+            Assert.IsTrue(_controller.Model.UnlockedCollectibleItems.Contains(collectibleData));
         }
     }
 }

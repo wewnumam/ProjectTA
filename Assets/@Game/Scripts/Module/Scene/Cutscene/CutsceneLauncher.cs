@@ -16,10 +16,10 @@ namespace ProjectTA.Scene.Cutscene
     {
         public override string SceneName {get {return TagManager.SCENE_CUTSCENE;}}
 
-        private SaveSystemController _saveSystem;
-        private LevelDataController _levelData;
+        private readonly SaveSystemController _saveSystem = new();
+        private readonly LevelDataController _levelData = new();
 
-        private CutscenePlayerController _cutscenePlayer;
+        private readonly CutscenePlayerController _cutscenePlayer = new();
 
         protected override IController[] GetSceneDependencies()
         {
@@ -31,7 +31,6 @@ namespace ProjectTA.Scene.Cutscene
         protected override IConnector[] GetSceneConnectors()
         {
             return new IConnector[] {
-                new CutscenePlayerConnector(),
             };
         }
 
@@ -50,11 +49,11 @@ namespace ProjectTA.Scene.Cutscene
 
             yield return StartCoroutine(_levelData.SetCurrentCutscene(_saveSystem.Model.SaveData.CurrentCutsceneName));
 
-            GameObject environment = Instantiate(_levelData.Model.CurrentCutsceneData.environment);
+            GameObject environment = Instantiate(_levelData.Model.CurrentCutsceneData.Environment.gameObject);
 
             if (environment.TryGetComponent<CutsceneComponent>(out var cutsceneComponent))
             {
-                _cutscenePlayer.SetCameras(cutsceneComponent.cameras);
+                _cutscenePlayer.SetCameras(cutsceneComponent.Cameras);
             }
             _cutscenePlayer.SetCurrentCutsceneData(_levelData.Model.CurrentCutsceneData);
             _cutscenePlayer.SetView(_view.CutscenePlayerView);

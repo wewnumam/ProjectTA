@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2251344587895755311}
   - component: {fileID: 2291068310524938059}
   m_Layer: 0
-  m_Name: Puzzle_2
+  m_Name: Prefab_Collectible_PZ_SemangatPersatuan
   m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

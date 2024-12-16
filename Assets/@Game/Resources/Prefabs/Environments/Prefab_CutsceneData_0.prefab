@@ -732,7 +732,7 @@ GameObject:
   - component: {fileID: 8379325681344764605}
   - component: {fileID: 8854158823960386529}
   m_Layer: 0
-  m_Name: CutsceneData_0
+  m_Name: Prefab_CutsceneData_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -775,7 +775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 389d58bf7ce910148960cd4653ca3409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameras:
+  _cameras:
   - {fileID: 2670198101255932602}
   - {fileID: 5306399873285892517}
   - {fileID: 9004156968497109429}

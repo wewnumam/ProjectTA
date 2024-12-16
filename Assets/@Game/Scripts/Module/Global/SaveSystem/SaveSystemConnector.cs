@@ -5,7 +5,7 @@ namespace ProjectTA.Module.SaveSystem
 {
     public class SaveSystemConnector : BaseConnector
     {
-        private SaveSystemController _saveSystem;
+        private readonly SaveSystemController _saveSystem = new();
 
         protected override void Connect()
         {

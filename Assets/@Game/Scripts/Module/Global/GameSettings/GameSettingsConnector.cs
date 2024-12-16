@@ -5,7 +5,7 @@ namespace ProjectTA.Module.GameSettings
 {
     public class GameSettingsConnector : BaseConnector
     {
-        private GameSettingsController _gameSettings;
+        private readonly GameSettingsController _gameSettings = new();
 
         protected override void Connect()
         {

@@ -8,7 +8,7 @@ namespace ProjectTA.Module.GameConstants
     {
         public override IEnumerator Initialize()
         {
-            SO_GameConstants gameConstants = Resources.Load<SO_GameConstants>(@"GameConstants");
+            SOGameConstants gameConstants = Resources.Load<SOGameConstants>(@"GameConstants");
             _model.SetGameConstants(gameConstants);
 
             return base.Initialize();

@@ -5,12 +5,12 @@ using System.Collections.Generic;
 
 namespace ProjectTA.Module.CutscenePlayer
 {
-    public class CutscenePlayerModel : BaseModel, ICutscenePlayerModel
+    public class CutscenePlayerModel : BaseModel
     {
-        public SO_CutsceneData CurrentCutsceneData { get; private set; }
+        public SOCutsceneData CurrentCutsceneData { get; private set; }
         public List<CinemachineVirtualCamera> Cameras { get; private set; }
 
-        public void SetCurrentCutsceneData(SO_CutsceneData cutsceneData)
+        public void SetCurrentCutsceneData(SOCutsceneData cutsceneData)
         {
             CurrentCutsceneData = cutsceneData;
             SetDataAsDirty();

@@ -6,6 +6,9 @@ namespace ProjectTA.Module.CutscenePlayer
 {
     public class CutsceneComponent : MonoBehaviour
     {
-        public List<CinemachineVirtualCamera> cameras;
+        [SerializeField] private List<CinemachineVirtualCamera> _cameras;
+
+         public List<CinemachineVirtualCamera> Cameras => _cameras;
+
     }
 }

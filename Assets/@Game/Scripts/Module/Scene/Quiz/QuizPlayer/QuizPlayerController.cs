@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using Cinemachine;
 
 namespace ProjectTA.Module.QuizPlayer
 {
@@ -17,6 +18,7 @@ namespace ProjectTA.Module.QuizPlayer
         private int _wrongCount;
         private int _answersCount;
         private List<Button> _buttons = new();
+        private List<CinemachineVirtualCamera> _virtualCameras = new();
 
         public override void SetView(QuizPlayerView view)
         {
@@ -24,6 +26,7 @@ namespace ProjectTA.Module.QuizPlayer
             view.SetCallback(OnNext);
 
             _answersCount = view.Items.Sum(item => item.Answers.Count);
+            view.Items.ForEach(item => _virtualCameras.Add(item.VirtualCamera));
             UpdateQuestionAndAnswers();
         }
 
@@ -100,6 +103,7 @@ namespace ProjectTA.Module.QuizPlayer
             }
 
             UpdateQuestionAndAnswers();
+            UpdateVirtualCamera();
         }
 
         private void ButtonsFeedback(Color color)
@@ -107,6 +111,14 @@ namespace ProjectTA.Module.QuizPlayer
             foreach (var button in _buttons)
             {
                 button.image.DOColor(color, .5f).OnComplete(() => button.image.DOColor(_view.InitialColor, 1f));
+            }
+        }
+
+        private void UpdateVirtualCamera()
+        {
+            for (int i = 0; i < _virtualCameras.Count; i++)
+            {
+                _virtualCameras[i].enabled = i == _currentQuizItemIndex;
             }
         }
     }

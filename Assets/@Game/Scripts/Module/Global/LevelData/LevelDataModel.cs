@@ -7,25 +7,25 @@ namespace ProjectTA.Module.LevelData
 {
     public class LevelDataModel : BaseModel, ILevelDataModel
     {
-        public SO_CutsceneData CurrentCutsceneData { get; private set; }
-        public SO_LevelData CurrentLevelData { get; private set; }
-        public SO_LevelCollection LevelCollection { get; private set; }
+        public SOCutsceneData CurrentCutsceneData { get; private set; }
+        public SOLevelData CurrentLevelData { get; private set; }
+        public SOLevelCollection LevelCollection { get; private set; }
 
         public GameObject CurrentEnvironmentPrefab { get; private set; }
 
-        public void SetCurrentCutsceneData(SO_CutsceneData currentCutsceneData)
+        public void SetCurrentCutsceneData(SOCutsceneData currentCutsceneData)
         {
             CurrentCutsceneData = currentCutsceneData;
             SetDataAsDirty();
         }
 
-        public void SetCurrentLevelData(SO_LevelData levelData)
+        public void SetCurrentLevelData(SOLevelData levelData)
         {
             CurrentLevelData = levelData;
             SetDataAsDirty();
         }
 
-        public void SetLevelCollection(SO_LevelCollection levelCollection)
+        public void SetLevelCollection(SOLevelCollection levelCollection)
         {
             LevelCollection = levelCollection;
             SetDataAsDirty();
