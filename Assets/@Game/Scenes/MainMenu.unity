@@ -2779,9 +2779,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c33738bb23d3c45af8ed623e91777b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollectibleData: {fileID: 0}
-  title: {fileID: 229945681}
-  chooseButton: {fileID: 1072348901}
+  _title: {fileID: 229945681}
+  _chooseButton: {fileID: 1072348901}
 --- !u!224 &1097798605 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3295374748030132067, guid: c51d939334ee62e45af31e42eb05cd53,
@@ -3036,10 +3035,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfd2d12fe1e60ad448cb6f5ddbb3dd97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 1309523676}
-  itemTemplate: {fileID: 1072348904}
-  descriptionText: {fileID: 1858130815}
-  collectibleItems: []
+  _parent: {fileID: 1309523676}
+  _itemTemplate: {fileID: 1072348904}
+  _descriptionText: {fileID: 1858130815}
 --- !u!1 &1275015784
 GameObject:
   m_ObjectHideFlags: 0
@@ -3808,8 +3806,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01e7de05b0699e44cb6ffdcc8edf5737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TutorialView: {fileID: 1895538353}
-  CollectibleListView: {fileID: 1252118813}
+  _tutorialView: {fileID: 1895538353}
+  _collectibleListView: {fileID: 1252118813}
 --- !u!114 &1536710537
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,15 +2,16 @@ using Agate.MVC.Base;
 using DG.Tweening;
 using Ink.Runtime;
 using ProjectTA.Message;
-using UnityEngine;
+using ProjectTA.Utility;
+using System;
 
 namespace ProjectTA.Module.Dialogue
 {
     public class DialogueController : ObjectController<DialogueController, DialogueView>
     {
-        private Story _story;
-        private string text;
-        private bool isTextComplete = true;
+        private Story _story = null;
+        private string _text = String.Empty;
+        private bool _isTextComplete = true;
 
         public override void SetView(DialogueView view)
         {
@@ -22,16 +23,18 @@ namespace ProjectTA.Module.Dialogue
         {
             if (!_story.canContinue)
             {
+                _view.OnEnd?.Invoke();
                 Publish(new GameResumeMessage());
-                _view.onEnd?.Invoke();
+                Publish(new GameStateMessage(EnumManager.GameState.Playing));
+                _view.OnEnd?.Invoke();
                 return;
             }
 
-            if (isTextComplete)
+            if (_isTextComplete)
             {
-                text = _story.Continue();
+                _text = _story.Continue();
             }
-            ParseSentence(text?.Trim());
+            ParseSentence(_text?.Trim());
         }
 
         void ParseSentence(string sentence)
@@ -44,16 +47,16 @@ namespace ProjectTA.Module.Dialogue
                 sentence = sentence.Replace(characterName + ": ", "");
             }
 
-            _view.characterText.text = characterName;
-            if (isTextComplete)
+            _view.CharacterText.text = characterName;
+            if (_isTextComplete)
             {
-                _view.messageText.text = "";
-                isTextComplete = false;
-                _view.messageText.DOText(sentence, sentence.Length / 20f).OnComplete(() => isTextComplete = true);
+                _view.MessageText.text = "";
+                _isTextComplete = false;
+                _view.MessageText.DOText(sentence, sentence.Length / 20f).OnComplete(() => _isTextComplete = true);
             }
             else
             {
-                _view.messageText.text = sentence;
+                _view.MessageText.text = sentence;
             }
         }
 
@@ -63,8 +66,8 @@ namespace ProjectTA.Module.Dialogue
                 return;
 
             Publish(new GamePauseMessage());
-
-            _view.onStart?.Invoke();
+            Publish(new GameStateMessage(EnumManager.GameState.Dialogue));
+            _view.OnStart?.Invoke();
             _story = new Story(message.TextAsset.text);
             DisplayNextLine();
         }

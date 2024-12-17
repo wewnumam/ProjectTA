@@ -5,7 +5,7 @@ namespace ProjectTA.Module.EnemyPool
 {
     public class EnemyPoolConnector : BaseConnector
     {
-        private EnemyPoolController _enemyPool;
+        private readonly EnemyPoolController _enemyPool = new();
 
         protected override void Connect()
         {

@@ -2,7 +2,6 @@ using Agate.MVC.Base;
 using ProjectTA.Message;
 using ProjectTA.Module.CollectibleData;
 using ProjectTA.Utility;
-using System;
 using UnityEngine;
 
 namespace ProjectTA.Module.PlayerCharacter
@@ -13,7 +12,7 @@ namespace ProjectTA.Module.PlayerCharacter
         {
             base.SetView(view);
             view.SetCollideCallbacks(OnCollideWithEnemy, OnCollideWithCollectibleComponent, OnCollideWithPadlock);
-            view.rb.isKinematic = false;
+            view.DisableKinematic();
         }
 
         private void OnCollideWithEnemy()
@@ -47,37 +46,33 @@ namespace ProjectTA.Module.PlayerCharacter
 
         public void SetInitialActivateJoystick(bool isJoystickActive)
         {
-            _view.isJoystickActive = isJoystickActive;
+            _view.SetIsJoyStickActive(isJoystickActive);
         }
 
         internal void OnGameOver(GameOverMessage message)
         {
-            _view.animator.Play(TagManager.ANIM_DEAD);
-        }
-
-        internal void OnGameWin(GameWinMessage message)
-        {
+            _view.Animator.Play(TagManager.ANIM_DEAD);
         }
 
         internal void OnMove(MovePlayerCharacterMessage message)
         {
-            _view.direction = message.Direction;
+            _view.SetDirection(message.Direction);
 
             if (message.Direction == Vector2.zero)
-                _view.animator.Play(TagManager.ANIM_IDLE);
+                _view.Animator.Play(TagManager.ANIM_IDLE);
             else
-                _view.animator.Play(TagManager.ANIM_WALK);
+                _view.Animator.Play(TagManager.ANIM_WALK);
 
         }
 
         internal void OnRotate(RotatePlayerCharacterMessage message)
         {
-            _view.aim = message.Aim;
+            _view.SetAim(message.Aim);
         }
 
         internal void OnActivateJoystick(ActivateJoystickMessage message)
         {
-            _view.isJoystickActive = message.IsJoystickActive;
+            _view.SetIsJoyStickActive(message.IsJoystickActive);
         }
 
     }

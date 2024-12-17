@@ -140,16 +140,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54d3231bb0036ad41964643981fae057, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPause: 0
-  player: {fileID: 0}
-  speed: 3
-  rayDistance: 10
-  rayAngle: 30
-  rotationSpeed: 5
-  onKill:
-    m_PersistentCalls:
-      m_Calls: []
-  DestroyDelay: 0
+  _speed: 5
+  _rayDistance: 2
+  _rayAngle: 30
+  _rotationSpeed: 5
 --- !u!1001 &8526062558977913467
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -6,9 +6,9 @@ namespace ProjectTA.Module.CameraEffect
 {
     public class CameraEffectController : ObjectController<CameraEffectController, CameraEffectView>
     {
-        private void Reset() => _view.volume.profile = _view.normalVolume;
+        private void Reset() => _view.Volume.profile = _view.NormalVolume;
 
-        private void Blur() => _view.volume.profile = _view.blurVolume;
+        private void Blur() => _view.Volume.profile = _view.BlurVolume;
 
         internal void OnGamePause(GamePauseMessage message) => Blur();
 

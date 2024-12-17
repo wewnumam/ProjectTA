@@ -20,8 +20,8 @@ namespace ProjectTA.Module.Enemy
         public void Init(EnemyView view, Transform player, float destroyDelay)
         {
             SetView(view);
-            view.player = player;
-            view.DestroyDelay = destroyDelay;
+            view.SetPlayer(player);
+            view.SetDestroyDelay(destroyDelay);
         }
 
     }

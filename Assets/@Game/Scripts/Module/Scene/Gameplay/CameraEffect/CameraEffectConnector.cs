@@ -5,7 +5,7 @@ namespace ProjectTA.Module.CameraEffect
 {
     public class CameraEffectConnector : BaseConnector
     {
-        private CameraEffectController _cameraEffect;
+        private readonly CameraEffectController _cameraEffect = new();
 
         protected override void Connect()
         {

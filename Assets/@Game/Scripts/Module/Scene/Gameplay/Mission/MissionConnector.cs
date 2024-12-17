@@ -6,7 +6,7 @@ namespace ProjectTA.Module.Mission
 {
     public class MissionConnector : BaseConnector
     {
-        private MissionController _mission;
+        private readonly MissionController _mission = new();
 
         protected override void Connect()
         {

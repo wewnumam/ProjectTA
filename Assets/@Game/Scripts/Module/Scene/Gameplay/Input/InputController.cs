@@ -1,6 +1,5 @@
 using Agate.MVC.Base;
 using ProjectTA.Message;
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,7 +8,7 @@ namespace ProjectTA.Module.Input
 {
     public class InputController : BaseController<InputController>
     {
-        InputActionManager inputActions;
+        private InputActionManager inputActions;
 
         public override IEnumerator Initialize()
         {

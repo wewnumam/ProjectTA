@@ -1,6 +1,4 @@
 using Agate.MVC.Base;
-using NaughtyAttributes;
-using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -11,13 +9,16 @@ namespace ProjectTA.Module.Tutorial
 {
     public class TutorialView : BaseView
     {
-        public Image image;
-        public TMP_Text title;
-        public TMP_Text description;
-
-        public List<TutorialItem> tutorialItems;
-
+        [SerializeField] private Image _imageComponent;
+        [SerializeField] private TMP_Text _titleText;
+        [SerializeField] private TMP_Text _descriptionText;
+        [SerializeField] private List<TutorialItem> _tutorialItems;
         private UnityAction _onNext, _onPrevious;
+
+        public Image ImageComponent => _imageComponent;
+        public TMP_Text TitleText => _titleText;
+        public TMP_Text DescriptionText => _descriptionText;
+        public List<TutorialItem> TutorialItems => _tutorialItems;
 
         public void SetCallbacks(UnityAction onNext, UnityAction onPrevious)
         {
@@ -34,15 +35,5 @@ namespace ProjectTA.Module.Tutorial
         {
             _onPrevious?.Invoke();
         }
-    }
-
-    [Serializable]
-    public class TutorialItem
-    {
-        [ShowAssetPreview]
-        public Sprite image;
-        public string title;
-        [TextArea]
-        public string description;
     }
 }

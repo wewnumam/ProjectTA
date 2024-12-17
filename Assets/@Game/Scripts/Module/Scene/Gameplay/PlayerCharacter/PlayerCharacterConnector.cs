@@ -5,7 +5,7 @@ namespace ProjectTA.Module.PlayerCharacter
 {
     public class PlayerCharacterConnector : BaseConnector
     {
-        private PlayerCharacterController _playerCharacter;
+        private readonly PlayerCharacterController _playerCharacter = new();
 
         protected override void Connect()
         {
@@ -13,7 +13,6 @@ namespace ProjectTA.Module.PlayerCharacter
             Subscribe<RotatePlayerCharacterMessage>(_playerCharacter.OnRotate);
             Subscribe<ActivateJoystickMessage>(_playerCharacter.OnActivateJoystick);
             Subscribe<GameOverMessage>(_playerCharacter.OnGameOver);
-            Subscribe<GameWinMessage>(_playerCharacter.OnGameWin);
         }
 
         protected override void Disconnect()
@@ -22,7 +21,6 @@ namespace ProjectTA.Module.PlayerCharacter
             Unsubscribe<RotatePlayerCharacterMessage>(_playerCharacter.OnRotate);
             Unsubscribe<ActivateJoystickMessage>(_playerCharacter.OnActivateJoystick);
             Unsubscribe<GameOverMessage>(_playerCharacter.OnGameOver);
-            Unsubscribe<GameWinMessage>(_playerCharacter.OnGameWin);
         }
     }
 }

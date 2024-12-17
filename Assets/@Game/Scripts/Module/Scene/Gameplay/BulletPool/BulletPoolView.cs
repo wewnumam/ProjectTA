@@ -6,10 +6,12 @@ namespace ProjectTA.Module.BulletPool
 {
     public class BulletPoolView : BaseView
     {
-        public GameObject bulletPrefab;
-        public Transform bulletSpawnPoint;
-
+        [SerializeField] private GameObject _bulletPrefab;
+        [SerializeField] private Transform _bulletSpawnPoint;
         private UnityAction<float> _onSpawnBullet;
+
+        public GameObject BulletPrefab => _bulletPrefab;
+        public Transform BulletSpawnPoint => _bulletSpawnPoint;
 
         public void SetCallback(UnityAction<float> onSpawnBullet)
         {

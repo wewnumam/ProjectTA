@@ -5,7 +5,7 @@ namespace ProjectTA.Module.GameOver
 {
     public class GameOverConnector : BaseConnector
     {
-        private GameOverController _gameOver;
+        private readonly GameOverController _gameOver = new();
 
         protected override void Connect()
         {

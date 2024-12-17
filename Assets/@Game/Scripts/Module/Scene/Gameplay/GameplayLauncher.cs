@@ -9,7 +9,6 @@ using ProjectTA.Module.GameConstants;
 using ProjectTA.Message;
 using ProjectTA.Module.SaveSystem;
 using ProjectTA.Utility;
-using ProjectTA.Module.GameSettings;
 using ProjectTA.Module.GamePause;
 using ProjectTA.Module.GameWin;
 using ProjectTA.Module.GameOver;
@@ -23,9 +22,7 @@ using ProjectTA.Module.Dialogue;
 using ProjectTA.Module.PuzzleBoard;
 using ProjectTA.Module.CameraEffect;
 using ProjectTA.Module.Countdown;
-using System.Linq;
 using ProjectTA.Module.CollectibleData;
-using Ink.Parsed;
 using System.Collections.Generic;
 using ProjectTA.Module.BulletPool;
 using ProjectTA.Module.EnemyPool;
@@ -35,20 +32,19 @@ namespace ProjectTA.Scene.Gameplay
 {
     public class GameplayLauncher : SceneLauncher<GameplayLauncher, GameplayView>
     {
-        public override string SceneName {get {return TagManager.SCENE_GAMEPLAY;}}
+        public override string SceneName { get { return TagManager.SCENE_GAMEPLAY; } }
 
         private readonly SaveSystemController _saveSystem = new();
         private readonly GameConstantsController _gameConstants = new();
         private readonly LevelDataController _levelData = new();
-        private readonly CollectibleDataController _collectibleData = new();
 
         private readonly GamePauseController _gamePause = new();
         private readonly GameWinController _gameWin = new();
         private readonly GameOverController _gameOver = new();
-        private readonly PlayerCharacterController _playerCharacter = new()  ;
+        private readonly PlayerCharacterController _playerCharacter = new();
         private readonly CheatFeatureController _cheatFeature = new();
         private readonly HealthController _health = new();
-        private readonly HUDController _hud = new();
+        private readonly HudController _hud = new();
         private readonly MissionController _mission = new();
         private readonly DialogueController _dialogue = new();
         private readonly PuzzleBoardController _puzzleBoard = new();
@@ -68,7 +64,7 @@ namespace ProjectTA.Scene.Gameplay
                 new PlayerCharacterController(),
                 new CheatFeatureController(),
                 new HealthController(),
-                new HUDController(),
+                new HudController(),
                 new MissionController(),
                 new DialogueController(),
                 new PuzzleBoardController(),
@@ -83,12 +79,11 @@ namespace ProjectTA.Scene.Gameplay
         protected override IConnector[] GetSceneConnectors()
         {
             return new IConnector[] {
-                new GamePauseConnector(),
                 new GameWinConnector(),
                 new GameOverConnector(),
                 new PlayerCharacterConnector(),
                 new HealthConnector(),
-                new HUDConnector(),
+                new HudConnector(),
                 new MissionConnector(),
                 new DialogueConnector(),
                 new PuzzleBoardConnector(),
@@ -112,25 +107,9 @@ namespace ProjectTA.Scene.Gameplay
 
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneName));
 
-            foreach (var collectibleName in _saveSystem.Model.SaveData.UnlockedCollectibles)
-            {
-                _collectibleData.AddUnlockedCollectible(collectibleName);
-            }
-
             yield return StartCoroutine(_levelData.SetCurrentLevel(_saveSystem.Model.SaveData.CurrentLevelName));
 
             GameObject environmentObj = Instantiate(_levelData.Model.CurrentEnvironmentPrefab);
-
-            List<CollectibleComponent> collectibleObjs = new();
-
-            foreach (var collectibleObject in _levelData.Model.CurrentLevelData.CollectibleObjects)
-            {
-                GameObject obj = GameObject.Instantiate(collectibleObject.CollectibleData.Prefab, environmentObj.transform);
-                obj.transform.localPosition = collectibleObject.ObjectPosition;
-                obj.AddComponent<CollectibleComponent>();
-                obj.GetComponent<CollectibleComponent>().SetCollectibleData(collectibleObject.CollectibleData);
-                collectibleObjs.Add(obj.GetComponent<CollectibleComponent>());
-            }
 
             _gamePause.SetView(_view.GamePauseView);
             _gameWin.SetView(_view.GameWinView);
@@ -138,30 +117,20 @@ namespace ProjectTA.Scene.Gameplay
 
             _playerCharacter.SetView(_view.PlayerCharacterView);
             _playerCharacter.SetInitialActivateJoystick(_gameConstants.Model.GameConstants.IsJoystickActive);
-
-            _cheatFeature.SetView(_view.CheatFeatureView);
-            _cheatFeature.SetInitialActivateJoystick(_gameConstants.Model.GameConstants.IsJoystickActive);
-
-            _hud.SetInitialCountdown(_levelData.Model.CurrentLevelData.Countdown);
-            _hud.SetView(_view.HUDView);
-            _hud.SetGateIcon(_levelData.Model.CurrentLevelData.Icon);
             
+            _hud.SetView(_view.HudView);
+            _hud.SetGateIcon(_levelData.Model.CurrentLevelData.Icon);
+
             _health.SetInitialHealth(_gameConstants.Model.GameConstants.InitialHealth);
 
             _dialogue.SetView(_view.DialogueView);
 
-            _puzzleBoard.SetCollectibleObjs(collectibleObjs);
+            InitializePuzzleObjects(environmentObj.transform);
             _puzzleBoard.SetLevelData(_levelData.Model.CurrentLevelData);
             _puzzleBoard.SetView(_view.PuzzleBoardView);
 
-            var nextLevelItem = _levelData.Model.LevelCollection.LevelItems.Find(levelItem => levelItem.LevelGate == _levelData.Model.CurrentLevelData);
-
-            if (nextLevelItem != null)
-            {
-                _mission.SetNextLevelData(nextLevelItem);
-            }
             _mission.SetCurrentLevelData(_levelData.Model.CurrentLevelData);
-            _mission.SetPuzzlePieceCount(_levelData.Model.CurrentLevelData.CollectibleObjects.Count);
+            _mission.SetPuzzlePieceCount(_levelData.Model.CurrentLevelData.PuzzleObjects.Count);
             _mission.SetHiddenObjectCount(_levelData.Model.CurrentLevelData.HiddenObjects.Count);
 
             _cameraEffect.SetView(_view.CameraEffectView);
@@ -179,9 +148,34 @@ namespace ProjectTA.Scene.Gameplay
 
             _tutorial.SetView(_view.TutorialView);
 
+            _cheatFeature.SetView(_view.CheatFeatureView);
+            _cheatFeature.SetInitialActivateJoystick(_gameConstants.Model.GameConstants.IsJoystickActive);
+
             Publish(new GameStateMessage(EnumManager.GameState.Playing));
 
             yield return null;
+        }
+
+        private void InitializePuzzleObjects(Transform parent)
+        {
+            List<CollectibleComponent> puzzleObjects = new();
+
+            foreach (var collectibleObject in _levelData.Model.CurrentLevelData.PuzzleObjects)
+            {
+                GameObject obj = GameObject.Instantiate(collectibleObject.CollectibleData.Prefab, parent);
+                obj.transform.localPosition = collectibleObject.ObjectPosition;
+
+                if (obj.TryGetComponent<CollectibleComponent>(out var co))
+                {
+                    co.SetCollectibleData(collectibleObject.CollectibleData);
+                }
+                else 
+                { 
+                    obj.AddComponent<CollectibleComponent>().SetCollectibleData(collectibleObject.CollectibleData);
+                }
+                
+                puzzleObjects.Add(obj.GetComponent<CollectibleComponent>());
+            }
         }
     }
 }

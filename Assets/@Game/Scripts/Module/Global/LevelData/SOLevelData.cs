@@ -16,7 +16,7 @@ namespace ProjectTA.Module.LevelData
 
         [Header("Puzzle")]
         [SerializeField, TextArea] private string _puzzleQuestion;
-        [SerializeField] private List<PuzzleObject> _collectibleObjects;
+        [SerializeField] private List<PuzzleObject> _puzzleObjects;
 
         [Header("Environment")]
         [SerializeField, ShowAssetPreview] private GameObject _enemyPrefab;
@@ -25,7 +25,7 @@ namespace ProjectTA.Module.LevelData
 
         [Header("Types")]
         [SerializeField] private bool _isLockedLevel;
-        [SerializeField, ShowIf(nameof(_isLockedLevel))] private SOLevelData _levelGate;
+        [SerializeField] private SOLevelData _nextLevel;
 
         [Header("Cutscene")]
         [SerializeField] private SOCutsceneData _cutsceneData;
@@ -37,12 +37,12 @@ namespace ProjectTA.Module.LevelData
         public string Description => _description;
         public Sprite Icon => _icon;
         public string PuzzleQuestion => _puzzleQuestion;
-        public List<PuzzleObject> CollectibleObjects => _collectibleObjects;
+        public List<PuzzleObject> PuzzleObjects => _puzzleObjects;
         public GameObject EnemyPrefab => _enemyPrefab;
         public GameObject EnvironmentPrefab => _environmentPrefab;
         public float Countdown => _countdown;
         public bool IsLockedLevel => _isLockedLevel;
-        public SOLevelData LevelGate => _levelGate;
+        public SOLevelData NextLevel => _nextLevel;
         public SOCutsceneData CutsceneData => _cutsceneData;
         public List<SOCollectibleData> HiddenObjects => _hiddenObjects;
     }

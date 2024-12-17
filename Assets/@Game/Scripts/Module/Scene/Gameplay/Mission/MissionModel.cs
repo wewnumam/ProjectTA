@@ -7,22 +7,17 @@ namespace ProjectTA.Module.Mission
     {
         public SOLevelData CurrentLevelData { get; private set; }
         public SOLevelData NextLevelData { get; private set; }
-        public int PuzzlePieceCount { get; private set; }
-        public int CollectedPuzzlePieceCount { get; private set; }
-        public int HiddenObjectCount { get; private set; }
-        public int CollectedHiddenObjectCount { get; private set; }
-        public int KillCount { get; private set; }
-        public int PadlockOnPlaceCount { get; private set; }
+        public int PuzzlePieceCount { get; private set; } = 0;
+        public int CollectedPuzzlePieceCount { get; private set; } = 0;
+        public int HiddenObjectCount { get; private set; } = 0;
+        public int CollectedHiddenObjectCount { get; private set; } = 0;
+        public int KillCount { get; private set; } = 0;
+        public int PadlockOnPlaceCount { get; private set; } = 0;
 
         public void SetCurrentLevelData(SOLevelData levelData)
         {
             CurrentLevelData = levelData;
-            SetDataAsDirty();
-        }
-
-        public void SetNextLevelData(SOLevelData levelData)
-        {
-            NextLevelData = levelData;
+            NextLevelData = levelData.NextLevel;
             SetDataAsDirty();
         }
 

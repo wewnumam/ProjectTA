@@ -7,12 +7,12 @@ namespace ProjectTA.Module.BulletPool
 {
     public class BulletPoolModel : BaseModel
     {
-        public bool IsPlaying { get; private set; }
-        public bool IsShooting { get; private set; }
-        public ShootingConstants ShootingConstants { get; private set; }
+        public bool IsPlaying { get; private set; } = false;
+        public bool IsShooting { get; private set; } = false;
+        public ShootingConstants ShootingConstants { get; private set; } = new();
 
         private float _currentCountdown = 0;
-        private List<GameObject> _bulletPool = new List<GameObject>();
+        private readonly List<GameObject> _bulletPool = new List<GameObject>();
 
         public void SetIsPlaying(bool isPlaying)
         {

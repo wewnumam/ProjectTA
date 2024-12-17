@@ -5,7 +5,7 @@ namespace ProjectTA.Module.Tutorial
 {
     public class TutorialController : ObjectController<TutorialController, TutorialView>
     {
-        private int _currentIndex;
+        private int _currentIndex = 0;
 
         public override void SetView(TutorialView view)
         {
@@ -18,22 +18,22 @@ namespace ProjectTA.Module.Tutorial
         private void OnNext()
         {
             _currentIndex++;
-            _currentIndex = _currentIndex >= _view.tutorialItems.Count ? 0 : _currentIndex;
+            _currentIndex = _currentIndex >= _view.TutorialItems.Count ? 0 : _currentIndex;
             UpdateContent();
         }
 
         private void OnPrevious()
         {
             _currentIndex--;
-            _currentIndex = _currentIndex < 0 ? _view.tutorialItems.Count - 1 : _currentIndex;
+            _currentIndex = _currentIndex < 0 ? _view.TutorialItems.Count - 1 : _currentIndex;
             UpdateContent();
         }
 
         private void UpdateContent()
         {
-            _view.image.sprite = _view.tutorialItems[_currentIndex].image;
-            _view.title.SetText(_view.tutorialItems[_currentIndex].title);
-            _view.description.SetText(_view.tutorialItems[_currentIndex].description);
+            _view.ImageComponent.sprite = _view.TutorialItems[_currentIndex].Image;
+            _view.TitleText.SetText(_view.TutorialItems[_currentIndex].Title);
+            _view.DescriptionText.SetText(_view.TutorialItems[_currentIndex].Description);
         }
     }
 }

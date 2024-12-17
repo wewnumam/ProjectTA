@@ -5,7 +5,7 @@ namespace ProjectTA.Module.Dialogue
 {
     public class DialogueConnector : BaseConnector
     {
-        private DialogueController _dialogue;
+        private readonly DialogueController _dialogue = new();
 
         protected override void Connect()
         {

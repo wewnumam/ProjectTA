@@ -6,12 +6,14 @@ namespace ProjectTA.Module.CollectibleItem
 {
     public class CollectibleItemController : ObjectController<CollectibleItemController, CollectibleItemView>
     {
+        private SOCollectibleData _collectibleData = null;
+
         public void Init(CollectibleItemView view, SOCollectibleData collectibleData, bool isUnlocked)
         {
             SetView(view);
-            view.CollectibleData = collectibleData;
-            view.title.SetText(collectibleData.Title);
-            view.chooseButton.interactable = isUnlocked;
+            _collectibleData = collectibleData;
+            view.Title.SetText(collectibleData.Title);
+            view.ChooseButton.interactable = isUnlocked;
         }
 
         public override void SetView(CollectibleItemView view)
@@ -22,7 +24,7 @@ namespace ProjectTA.Module.CollectibleItem
 
         private void OnChooseCollectible()
         {
-            Publish(new ChooseCollectibleMessage(_view.CollectibleData));
+            Publish(new ChooseCollectibleMessage(_collectibleData));
         }
     }
 }

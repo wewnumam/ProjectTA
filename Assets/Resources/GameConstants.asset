@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb06df640ec6e694d9055050858318b0, type: 3}
   m_Name: GameConstants
   m_EditorClassIdentifier: 
-  _isJoystickActive: 0
+  _isJoystickActive: 1
   _initialHealth: 10
   _shootingConstants:
     _joystickShootingRange: 0.9

@@ -146,10 +146,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1190f82d08408434eb3c6908cbeb7bd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 8575941712296771425}
-  launchForce: 25
-  hitEffect: {fileID: 0}
-  renderer: {fileID: 3440458674946902125}
-  initialHitMaterial: {fileID: 2100000, guid: c886e349e78a63a4a8132c5508885b9d, type: 2}
-  normalHitMaterial: {fileID: 2100000, guid: a76d1d0720fcee349a4223e15a6fd162, type: 2}
-  enemyHitMaterial: {fileID: 2100000, guid: d3a733834a96e294f9919fb656ffbe04, type: 2}
+  _rb: {fileID: 8575941712296771425}
+  _launchForce: 50
+  _hitEffect: {fileID: 0}
+  _bulletMeshRenderer: {fileID: 3440458674946902125}
+  _initialHitMaterial: {fileID: 2100000, guid: c886e349e78a63a4a8132c5508885b9d, type: 2}
+  _normalHitMaterial: {fileID: 2100000, guid: a76d1d0720fcee349a4223e15a6fd162, type: 2}
+  _enemyHitMaterial: {fileID: 2100000, guid: d3a733834a96e294f9919fb656ffbe04, type: 2}

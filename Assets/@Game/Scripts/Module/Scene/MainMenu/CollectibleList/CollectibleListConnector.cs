@@ -5,7 +5,7 @@ namespace ProjectTA.Module.CollectibleList
 {
     public class CollectibleListConnector : BaseConnector
     {
-        private CollectibleListController _collectibleList;
+        private readonly CollectibleListController _collectibleList = new();
 
         protected override void Connect()
         {

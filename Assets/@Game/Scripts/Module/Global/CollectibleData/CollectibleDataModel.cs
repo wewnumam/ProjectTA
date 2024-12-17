@@ -7,7 +7,7 @@ namespace ProjectTA.Module.CollectibleData
 {
     public class CollectibleDataModel : BaseModel, ICollectibleDataModel
     {
-        public SOCollectibleCollection CollectibleCollection { get; private set; } = new();
+        public SOCollectibleCollection CollectibleCollection { get; private set; }
         public List<SOCollectibleData> UnlockedCollectibleItems { get; private set; } = new();
 
         public void SetCollectibleCollection(SOCollectibleCollection collectibleCollection)

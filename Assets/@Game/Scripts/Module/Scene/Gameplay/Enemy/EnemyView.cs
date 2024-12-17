@@ -8,48 +8,43 @@ namespace ProjectTA.Module.Enemy
 {
     public class EnemyView : BaseView
     {
-        [ReadOnly]
-        public bool isPause;
-        public Transform player;          // The player's transform
-        public float speed = 5f;          // Movement speed of the enemy
-        public float rayDistance = 2f;    // Distance for the raycast to detect obstacles
-        public float rayAngle = 30f;      // Angle to spread the rays to detect obstacles
-        public float rotationSpeed = 5f;  // Speed of rotation towards movement direction
-        public UnityEvent onKill;
-
-        [ReadOnly]
-        public float DestroyDelay;
-
-        private Vector3 movementDirection; // The direction the enemy should move in
-
-        private Rigidbody rb;
-        private bool isDie;
+        [SerializeField] private float _speed = 5f;
+        [SerializeField] private float _rayDistance = 2f; 
+        [SerializeField] private float _rayAngle = 30f;
+        [SerializeField] private float _rotationSpeed = 5f;
+        
+        private bool _isPause;
+        private bool _isDie;
+        private float _destroyDelay;
+        private Transform _player;
+        private Vector3 _movementDirection;
+        private Rigidbody _rb;
+        private UnityAction _onKill;
 
         private void Awake()
         {
-            rb = GetComponent<Rigidbody>();
+            _rb = GetComponent<Rigidbody>();
         }
 
         private void OnEnable()
         {
-            isDie = false;
+            _isDie = false;
 
-            // Optional: Find the player automatically if not set in the Inspector
-            if (player == null)
+            if (_player == null)
             {
-                player = GameObject.FindGameObjectWithTag("Player").transform;
+                _player = GameObject.FindGameObjectWithTag(TagManager.TAG_PLAYER).transform;
             }
         }
 
         private void FixedUpdate()
         {
-            if (player == null)
+            if (_player == null)
             {
                 Debug.LogError("Player not assigned or found!");
                 return;
             }
 
-            if (isPause)
+            if (_isPause)
                 return;
             
             FollowPlayer();
@@ -58,51 +53,65 @@ namespace ProjectTA.Module.Enemy
             RotateTowardsMovementDirection();
         }
 
+        public void SetPause(bool isPause)
+        {
+            _isPause = isPause;
+        }
+
+        public void SetPlayer(Transform player)
+        {
+            _player = player;
+        }
+
+        public void SetDestroyDelay(float destroyDelay)
+        {
+            _destroyDelay = destroyDelay;
+        }
+
         public void SetCallback(UnityAction onKill)
         {
-            this.onKill.RemoveAllListeners();
-            this.onKill.AddListener(onKill);
+            _onKill = onKill;
         }
 
         private void FollowPlayer()
         {
             // Calculate the direction towards the player
-            Vector3 directionToPlayer = (player.position - transform.position).normalized;
+            Vector3 directionToPlayer = (_player.position - transform.position).normalized;
 
             // Set the movement direction to the direction towards the player
-            movementDirection = directionToPlayer;
+            _movementDirection = directionToPlayer;
         }
 
         private void AvoidObstacles()
         {
             // Cast a ray directly in front of the enemy
-            if (Physics.Raycast(transform.position, transform.forward, rayDistance))
+            if (Physics.Raycast(transform.position, transform.forward, _rayDistance))
             {
                 // If there's an obstacle in front, calculate a new direction to avoid it
-                movementDirection = GetAvoidanceDirection();
+                _movementDirection = GetAvoidanceDirection();
             }
         }
 
         private void Move()
         {
             // Move the enemy in the determined direction (towards player, avoiding obstacles)
-            Vector3 newPosition = rb.position + movementDirection * speed * Time.fixedDeltaTime;
-            rb.MovePosition(newPosition);  // Move the Rigidbody using physics
+            Vector3 newPosition = _rb.position + _movementDirection * _speed * Time.fixedDeltaTime;
+            _rb.MovePosition(newPosition);  // Move the Rigidbody using physics
         }
 
         private Vector3 GetAvoidanceDirection()
         {
             // Cast rays at an angle to the left and right to detect an open path
-            Vector3 leftDirection = Quaternion.Euler(0, -rayAngle, 0) * transform.forward;
-            Vector3 rightDirection = Quaternion.Euler(0, rayAngle, 0) * transform.forward;
+            Vector3 leftDirection = Quaternion.Euler(0, -_rayAngle, 0) * transform.forward;
+            Vector3 rightDirection = Quaternion.Euler(0, _rayAngle, 0) * transform.forward;
 
             // Check if the left direction is clear
-            if (!Physics.Raycast(transform.position, leftDirection, rayDistance))
+            if (!Physics.Raycast(transform.position, leftDirection, _rayDistance))
             {
                 return leftDirection;
             }
             // Check if the right direction is clear
-            else if (!Physics.Raycast(transform.position, rightDirection, rayDistance))
+            else if (!Physics.Raycast(transform.position, rightDirection, _rayDistance))
             {
                 return rightDirection;
             }
@@ -116,28 +125,28 @@ namespace ProjectTA.Module.Enemy
         private void RotateTowardsMovementDirection()
         {
             // Rotate the enemy to face the direction of movement
-            if (movementDirection != Vector3.zero)
+            if (_movementDirection != Vector3.zero)
             {
                 // Calculate the desired rotation based on the movement direction
-                Quaternion targetRotation = Quaternion.LookRotation(movementDirection);
+                Quaternion targetRotation = Quaternion.LookRotation(_movementDirection);
 
                 // Smoothly rotate towards the target rotation using Lerp
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _rotationSpeed * Time.fixedDeltaTime);
             }
         }
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.CompareTag(TagManager.TAG_BULLET) && !isDie)
+            if (collision.gameObject.CompareTag(TagManager.TAG_BULLET) && !_isDie)
             {
-                isDie = true;
-                Invoke(nameof(Kill), DestroyDelay);
+                _isDie = true;
+                Invoke(nameof(Kill), _destroyDelay);
             }
         }
 
         private void Kill()
         {
-            onKill?.Invoke();
+            _onKill?.Invoke();
             gameObject.SetActive(false);
         }
 
@@ -150,17 +159,17 @@ namespace ProjectTA.Module.Enemy
             Gizmos.color = Color.red;
 
             // Draw forward ray (for obstacle detection)
-            Gizmos.DrawRay(transform.position, transform.forward * rayDistance);
+            Gizmos.DrawRay(transform.position, transform.forward * _rayDistance);
 
             // Draw left and right rays for avoidance
-            Vector3 leftDirection = Quaternion.Euler(0, -rayAngle, 0) * transform.forward;
-            Vector3 rightDirection = Quaternion.Euler(0, rayAngle, 0) * transform.forward;
+            Vector3 leftDirection = Quaternion.Euler(0, -_rayAngle, 0) * transform.forward;
+            Vector3 rightDirection = Quaternion.Euler(0, _rayAngle, 0) * transform.forward;
 
             Gizmos.color = Color.blue;
-            Gizmos.DrawRay(transform.position, leftDirection * rayDistance);
+            Gizmos.DrawRay(transform.position, leftDirection * _rayDistance);
 
             Gizmos.color = Color.green;
-            Gizmos.DrawRay(transform.position, rightDirection * rayDistance);
+            Gizmos.DrawRay(transform.position, rightDirection * _rayDistance);
         }
     }
 }

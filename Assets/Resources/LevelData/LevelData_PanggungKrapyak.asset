@@ -20,7 +20,7 @@ MonoBehaviour:
   _puzzleQuestion: Terdiri dari dua kata, Golong dan Gilig yang diambil dari bentuk
     dasar bangunan tersebut. Golong yaitu bentuk ____________ dan Gilig yaitu bentuk
     ____________. Dan memiliki makna ____________ ____________ dan ____________ .
-  _collectibleObjects:
+  _puzzleObjects:
   - _collectibleData: {fileID: 11400000, guid: b43994c793f87f342a4b61fe6d7e89f0, type: 2}
     _objectPosition: {x: 25, y: 0.5, z: 35}
     _rectPosition: {x: 390, y: 41, z: 0}
@@ -36,7 +36,7 @@ MonoBehaviour:
     type: 3}
   _countdown: 120
   _isLockedLevel: 1
-  _levelGate: {fileID: 11400000, guid: 5249bec530f7e644aaa4c072d5dc4523, type: 2}
+  _nextLevel: {fileID: 11400000, guid: 60e045f44f7bee24eb119a79ac580d2d, type: 2}
   _cutsceneData: {fileID: 11400000, guid: 34e1482f657ad8a4dbbfb514bba838fd, type: 2}
   _hiddenObjects:
   - {fileID: 11400000, guid: 240c67863c968734580f2e0733d83d1f, type: 2}

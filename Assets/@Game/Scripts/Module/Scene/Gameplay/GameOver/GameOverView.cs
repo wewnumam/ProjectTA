@@ -9,15 +9,18 @@ namespace ProjectTA.Module.GameOver
 {
     public class GameOverView : BaseView
     {
-        public TMP_Text KillCountText;
-        public TMP_Text CollectedPuzzleCountText;
-        public TMP_Text HiddenObjectCountText;
+        [SerializeField] private TMP_Text _killCountText;
+        [SerializeField] private TMP_Text _collectedPuzzleCountText;
+        [SerializeField] private TMP_Text _hiddenObjectCountText;
+        [SerializeField] private Button playAgainButton;
+        [SerializeField] private Button mainMenuButton;
+        [SerializeField] private float delayEvent;
+        [SerializeField] private UnityEvent _onGameOver;
 
-        [SerializeField] Button playAgainButton;
-        [SerializeField] Button mainMenuButton;
-
-        [SerializeField] float delayEvent;
-        public UnityEvent onGameOver;
+        public TMP_Text KillCountText => _killCountText;
+        public TMP_Text CollectedPuzzleCountText => _collectedPuzzleCountText;
+        public TMP_Text HiddenObjectCountText => _hiddenObjectCountText;
+        public UnityEvent OnGameOver => _onGameOver;
 
         public void SetCallbacks(UnityAction onPlayAgain, UnityAction onMainMenu)
         {

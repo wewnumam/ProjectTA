@@ -18,12 +18,12 @@ namespace ProjectTA.Scene.MainMenu
     {
         public override string SceneName {get {return TagManager.SCENE_MAINMENU;}}
 
-        LevelDataController _levelData;
-        SaveSystemController _saveSystem;
-        CollectibleDataController _collectibleData;
-        CollectibleListController _collectibleList;
+        private readonly LevelDataController _levelData = new();
+        private readonly SaveSystemController _saveSystem = new();
+        private readonly CollectibleDataController _collectibleData = new();
+        private readonly CollectibleListController _collectibleList = new();
 
-        TutorialController _tutorial;
+        private readonly TutorialController _tutorial = new();
 
         protected override IController[] GetSceneDependencies()
         {
@@ -55,10 +55,7 @@ namespace ProjectTA.Scene.MainMenu
 
             _view.SetCallbacks(OnPlay, OnQuit, OnQuiz);
 
-            foreach (var collectibleName in _saveSystem.Model.SaveData.UnlockedCollectibles)
-            {
-                _collectibleData.AddUnlockedCollectible(collectibleName);
-            }
+            SetInitialUnlockedCollectibles();
 
             _tutorial.SetView(_view.TutorialView);
 
@@ -74,13 +71,7 @@ namespace ProjectTA.Scene.MainMenu
             if (_saveSystem.Model.SaveData.CurrentCutsceneName == TagManager.DEFAULT_CUTSCENENAME)
             {
                 SceneLoader.Instance.LoadScene(TagManager.SCENE_CUTSCENE);
-                foreach (var levelItem in _levelData.Model.LevelCollection.LevelItems)
-                {
-                    if (!levelItem.IsLockedLevel)
-                    {
-                        Publish(new UnlockLevelMessage(levelItem));
-                    }
-                }
+                SetInitialUnlockedLevels();
             }
             else
             {
@@ -96,6 +87,25 @@ namespace ProjectTA.Scene.MainMenu
         private void OnQuiz()
         {
             SceneLoader.Instance.LoadScene(TagManager.SCENE_QUIZ);
+        }
+
+        private void SetInitialUnlockedLevels()
+        {
+            foreach (var levelItem in _levelData.Model.LevelCollection.LevelItems)
+            {
+                if (!levelItem.IsLockedLevel)
+                {
+                    Publish(new UnlockLevelMessage(levelItem));
+                }
+            }
+        }
+
+        private void SetInitialUnlockedCollectibles()
+        {
+            foreach (var collectibleName in _saveSystem.Model.SaveData.UnlockedCollectibles)
+            {
+                _collectibleData.AddUnlockedCollectible(collectibleName);
+            }
         }
     }
 }

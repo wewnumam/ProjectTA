@@ -11,8 +11,6 @@ namespace ProjectTA.Module.GamePause
 {
     public class GamePauseController : ObjectController<GamePauseController, GamePauseView>
     {
-        private GameStateController _gameState;
-
         public override void SetView(GamePauseView view)
         {
             base.SetView(view);
@@ -25,7 +23,7 @@ namespace ProjectTA.Module.GamePause
 
             Publish(new GameStateMessage(EnumManager.GameState.Pause));
             Time.timeScale = 0;
-            _view.onGamePause?.Invoke();
+            _view.OnGamePause?.Invoke();
         }
 
         private void OnResume()
@@ -34,7 +32,7 @@ namespace ProjectTA.Module.GamePause
 
             Publish(new GameStateMessage(EnumManager.GameState.Playing));
             Time.timeScale = 1;
-            _view.onGameResume?.Invoke();
+            _view.OnGameResume?.Invoke();
         }
 
         private void OnMainMenu()

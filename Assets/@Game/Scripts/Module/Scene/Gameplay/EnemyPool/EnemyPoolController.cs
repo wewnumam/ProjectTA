@@ -40,8 +40,8 @@ namespace ProjectTA.Module.EnemyPool
         private GameObject CreateEnemyObject()
         {
             // Get the camera bounds in world space
-            Vector3 screenBottomLeft = _view.mainCamera.ViewportToWorldPoint(new Vector3(0, 0, _view.mainCamera.nearClipPlane));
-            Vector3 screenTopRight = _view.mainCamera.ViewportToWorldPoint(new Vector3(1, 1, _view.mainCamera.nearClipPlane));
+            Vector3 screenBottomLeft = _view.MainCamera.ViewportToWorldPoint(new Vector3(0, 0, _view.MainCamera.nearClipPlane));
+            Vector3 screenTopRight = _view.MainCamera.ViewportToWorldPoint(new Vector3(1, 1, _view.MainCamera.nearClipPlane));
 
             float minX = screenBottomLeft.x - _model.EnemyConstants.EnemySpawnDistance;
             float maxX = screenTopRight.x + _model.EnemyConstants.EnemySpawnDistance;
@@ -62,7 +62,7 @@ namespace ProjectTA.Module.EnemyPool
             }
             EnemyController enemyController = new EnemyController();
             InjectDependencies(enemyController);
-            enemyController.Init(enemyView, _view.player, _model.EnemyConstants.EnemyDestroyDelay);
+            enemyController.Init(enemyView, _view.Player, _model.EnemyConstants.EnemyDestroyDelay);
 
             return enemy;
         }

@@ -38,7 +38,7 @@ namespace ProjectTA.Module.BulletPool
 
         private GameObject CreateBulletObject()
         {
-            GameObject bullet = GameObject.Instantiate(_view.bulletPrefab, _view.bulletSpawnPoint.position, Quaternion.identity);
+            GameObject bullet = GameObject.Instantiate(_view.BulletPrefab, _view.BulletSpawnPoint.position, Quaternion.identity);
             bullet.SetActive(false);
 
             BulletView bulletView = bullet.GetComponent<BulletView>();
@@ -61,8 +61,8 @@ namespace ProjectTA.Module.BulletPool
             if (bullet != null)
             {
                 bullet.transform.SetParent(null);
-                bullet.transform.position = _view.bulletSpawnPoint.position;
-                bullet.transform.rotation = _view.bulletSpawnPoint.rotation;
+                bullet.transform.position = _view.BulletSpawnPoint.position;
+                bullet.transform.rotation = _view.BulletSpawnPoint.rotation;
                 bullet.SetActive(true);
             }
         }

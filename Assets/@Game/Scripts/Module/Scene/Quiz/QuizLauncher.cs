@@ -14,7 +14,7 @@ namespace ProjectTA.Scene.Quiz
     {
         public override string SceneName {get {return TagManager.SCENE_QUIZ;}}
 
-        private QuizPlayerController _quizPlayer;
+        private readonly QuizPlayerController _quizPlayer = new();
 
         protected override IController[] GetSceneDependencies()
         {

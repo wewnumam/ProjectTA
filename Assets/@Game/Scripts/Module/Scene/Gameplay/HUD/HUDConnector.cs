@@ -3,15 +3,14 @@ using ProjectTA.Message;
 
 namespace ProjectTA.Module.HUD
 {
-    public class HUDConnector : BaseConnector
+    public class HudConnector : BaseConnector
     {
-        private HUDController _hud;
+        private readonly HudController _hud = new();
 
         protected override void Connect()
         {
             Subscribe<UpdateHealthMessage>(_hud.OnUpdateHealth);
             Subscribe<UpdatePuzzleCountMessage>(_hud.OnUpdatePuzzleCount);
-            Subscribe<UpdatePuzzleSolvedCountMessage>(_hud.OnUpdatePuzzleSolvedCount);
             Subscribe<UpdateKillCountMessage>(_hud.OnUpdateKillCount);
             Subscribe<UpdateCountdownMessage>(_hud.OnUpdateCountdown);
             Subscribe<UpdateHiddenObjectCountMessage>(_hud.OnUpdateHiddenObjectCount);
@@ -21,7 +20,6 @@ namespace ProjectTA.Module.HUD
         {
             Unsubscribe<UpdateHealthMessage>(_hud.OnUpdateHealth);
             Unsubscribe<UpdatePuzzleCountMessage>(_hud.OnUpdatePuzzleCount);
-            Unsubscribe<UpdatePuzzleSolvedCountMessage>(_hud.OnUpdatePuzzleSolvedCount);
             Unsubscribe<UpdateKillCountMessage>(_hud.OnUpdateKillCount);
             Unsubscribe<UpdateCountdownMessage>(_hud.OnUpdateCountdown);
             Unsubscribe<UpdateHiddenObjectCountMessage>(_hud.OnUpdateHiddenObjectCount);

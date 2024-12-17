@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ProjectTA.Module.LevelSelection
 {
-    public interface ILevelSelectionModel : IBaseModel
+    public interface ILevelSelectionPlayerModel : IBaseModel
     {
         SOLevelCollection LevelCollection { get; }
         SOLevelData CurrentLevelData { get; }

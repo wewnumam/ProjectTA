@@ -3523,18 +3523,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e740695616d1ede47abf059c2d8ec626, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelCollection: {fileID: 0}
-  ListedLevels: []
-  ListedModels:
+  _listedModels:
   - {fileID: 978778425}
   - {fileID: 748059917}
   - {fileID: 711503458}
   - {fileID: 1744231227}
   - {fileID: 770989874}
-  CurrentLevelTitle: {fileID: 829786722}
-  CurrentLevelDescription: {fileID: 993464568}
-  playButton: {fileID: 1742327391}
-  VirtualCamera: {fileID: 988698032}
+  _currentLevelTitle: {fileID: 829786722}
+  _currentLevelDescription: {fileID: 993464568}
+  _playButton: {fileID: 1742327391}
+  _virtualCamera: {fileID: 988698032}
 --- !u!1001 &1742327389
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ namespace ProjectTA.Module.Bullet
         public void Init(BulletView view, float destroyDelay)
         {
             SetView(view);
-            view.destroyDelay = destroyDelay;
+            view.SetDestroyDelay(destroyDelay);
         }
 
         public override void SetView(BulletView view)

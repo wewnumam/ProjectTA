@@ -10,28 +10,26 @@ namespace ProjectTA.Module.Dialogue
 {
     public class DialogueView : BaseView
     {
-        [Header("UI Component")]
-        public TMP_Text characterText;
-        public Text messageText;
+        [SerializeField] private TMP_Text _characterText;
+        [SerializeField] private Text _messageText;
+        [SerializeField] private UnityEvent _onStart;
+        [SerializeField] private UnityEvent _onEnd; 
+        private UnityAction _onNext;
 
-        [Header("Dialogue Asset"), ReadOnly] 
-        public Text dialogueAsset;
-        [ReadOnly] public int currentDialogueAssetIndex;
+        public TMP_Text CharacterText => _characterText;
+        public Text MessageText => _messageText;
+        public UnityEvent OnStart => _onStart;
+        public UnityEvent OnEnd => _onEnd;
 
-        [Header("Callbacks")]
-        public UnityEvent onStart;
-        public UnityEvent onEnd;
-        
-        private UnityAction onNext;
         
         public void DisplayNextLine()
         {
-            onNext?.Invoke();
+            _onNext?.Invoke();
         }
 
         public void SetCallback(UnityAction onNext)
         {
-            this.onNext = onNext;
+            this._onNext = onNext;
         }
     }
 }

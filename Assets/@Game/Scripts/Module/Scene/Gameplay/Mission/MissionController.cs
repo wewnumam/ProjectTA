@@ -1,15 +1,12 @@
 using Agate.MVC.Base;
 using ProjectTA.Message;
 using ProjectTA.Module.LevelData;
-using System;
-using UnityEngine;
 
 namespace ProjectTA.Module.Mission
 {
     public class MissionController : DataController<MissionController, MissionModel, IMissionModel>
     {
         public void SetCurrentLevelData(SOLevelData levelData) => _model.SetCurrentLevelData(levelData);
-        public void SetNextLevelData(SOLevelData levelData) => _model.SetNextLevelData(levelData);
 
         public void SetPuzzlePieceCount(int puzzlePieceCount)
         {

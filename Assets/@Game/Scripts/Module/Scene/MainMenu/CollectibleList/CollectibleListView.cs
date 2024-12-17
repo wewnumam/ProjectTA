@@ -1,7 +1,5 @@
 using Agate.MVC.Base;
-using NaughtyAttributes;
 using ProjectTA.Module.CollectibleItem;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -9,11 +7,12 @@ namespace ProjectTA.Module.CollectibleList
 {
     public class CollectibleListView : BaseView
     {
-        public Transform parent;
-        public CollectibleItemView itemTemplate;
-        public TMP_Text descriptionText;
+        [SerializeField] private Transform _parent;
+        [SerializeField] private CollectibleItemView _itemTemplate;
+        [SerializeField] private TMP_Text _descriptionText;
 
-        [ReadOnly]
-        public List<CollectibleItemView> collectibleItems;
+        public Transform Parent => _parent;
+        public CollectibleItemView ItemTemplate => _itemTemplate;
+        public TMP_Text DescriptionText => _descriptionText;
     }
 }

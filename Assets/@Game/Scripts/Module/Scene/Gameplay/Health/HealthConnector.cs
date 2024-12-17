@@ -5,7 +5,7 @@ namespace ProjectTA.Module.Health
 {
     public class HealthConnector : BaseConnector
     {
-        private HealthController _health;
+        private readonly HealthController _health = new();
 
         protected override void Connect()
         {

@@ -3,9 +3,9 @@ using ProjectTA.Message;
 
 namespace ProjectTA.Module.LevelSelection
 {
-    public class LevelSelectionConnector : BaseConnector
+    public class LevelSelectionPlayerConnector : BaseConnector
     {
-        private LevelSelectionController _levelSelection;
+        private LevelSelectionPlayerController _levelSelection;
 
         protected override void Connect()
         {

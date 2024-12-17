@@ -1,65 +1,51 @@
 using Agate.MVC.Base;
-using Agate.MVC.Core;
 using ProjectTA.Message;
-using ProjectTA.Utility;
-using System;
 using UnityEngine;
 
 namespace ProjectTA.Module.HUD
 {
-    public class HUDController : ObjectController<HUDController, HUDView>
+    public class HudController : ObjectController<HudController, HudView>
     {
-        private float _initialCountdown, _timeRemaining, _minutes, _seconds;
-
-        public void SetInitialCountdown(float initialCountdown)
-        {
-            _initialCountdown = initialCountdown;
-        }
-
-        public void SetGateIcon(Sprite sprite) => _view.gateIcon.sprite = sprite;
+        public void SetGateIcon(Sprite sprite) => _view.GateIcon.sprite = sprite;
 
         internal void OnUpdateHealth(UpdateHealthMessage message)
         {
-            _view.healthSlider.maxValue = message.InitialHealth;
-            _view.healthSlider.value = message.CurrentHealth;
+            _view.HealthSlider.maxValue = message.InitialHealth;
+            _view.HealthSlider.value = message.CurrentHealth;
         }
 
         internal void OnUpdatePuzzleCount(UpdatePuzzleCountMessage message)
         {
-            _view.puzzleCountText.SetText(message.PuzzlePieceCount.ToString());
+            _view.PuzzleCountText.SetText(message.PuzzlePieceCount.ToString());
             for (int i = 0; i < message.PuzzlePieceCount; i++)
             {
-                if (message.PuzzlePieceCount < _view.puzzleBarItems.Count)
+                if (message.PuzzlePieceCount < _view.PuzzleBarItems.Count)
                 {
-                    _view.puzzleBarItems[i].gameObject.SetActive(true);
+                    _view.PuzzleBarItems[i].gameObject.SetActive(true);
                 }
             }
             for (int i = 0; i < message.CollectedPuzzlePieceCount; i++)
             {
-                if (message.CollectedPuzzlePieceCount < _view.puzzleBarItems.Count)
+                if (message.CollectedPuzzlePieceCount < _view.PuzzleBarItems.Count)
                 {
-                    _view.puzzleBarItems[i].color = _view.collectedPuzzleBarColor;
+                    _view.PuzzleBarItems[i].color = _view.CollectedPuzzleBarColor;
                 }
             }
         }
 
-        internal void OnUpdatePuzzleSolvedCount(UpdatePuzzleSolvedCountMessage message)
-        {
-        }
-
         internal void OnUpdateKillCount(UpdateKillCountMessage message)
         {
-            _view.killCountText.SetText($"{message.KillCount}");
+            _view.KillCountText.SetText($"{message.KillCount}");
         }
 
         internal void OnUpdateCountdown(UpdateCountdownMessage message)
         {
-            _view.timerText.SetText(message.GetFormattedCurrentCountdown());
+            _view.TimerText.SetText(message.GetFormattedCurrentCountdown());
         }
 
         internal void OnUpdateHiddenObjectCount(UpdateHiddenObjectCountMessage message)
         {
-            _view.hiddenObjectCount.SetText($"{message.CollectedHiddenObjectCount}/{message.HiddenObjectCount}");
+            _view.HiddenObjectCount.SetText($"{message.CollectedHiddenObjectCount}/{message.HiddenObjectCount}");
         }
     }
 }

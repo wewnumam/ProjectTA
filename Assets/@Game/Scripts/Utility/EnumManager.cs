@@ -9,7 +9,7 @@ namespace ProjectTA.Utility
             Pause,
             GameOver,
             GameWin,
-            ShowPadlock
+            Dialogue
         }
 
         public enum CollectibleType

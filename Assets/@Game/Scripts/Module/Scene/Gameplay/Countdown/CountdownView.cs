@@ -7,22 +7,21 @@ namespace ProjectTA.Module.Countdown
 {
     public class CountdownView : ObjectView<ICountdownModel>
     {
-        [ReadOnly]
-        public bool isPause;
+        public bool IsPause { get; set; }
 
-        private UnityAction<float> onUpdate;
+        private UnityAction<float> _onUpdate;
 
         private void Update()
         {
-            if (!isPause)
+            if (!IsPause)
             {
-                onUpdate?.Invoke(Time.deltaTime);
+                _onUpdate?.Invoke(Time.deltaTime);
             }
         }
 
         public void SetCallback(UnityAction<float> onUpdate)
         {
-            this.onUpdate = onUpdate;
+            this._onUpdate = onUpdate;
         }
 
         protected override void InitRenderModel(ICountdownModel model)

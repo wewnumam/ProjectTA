@@ -7,27 +7,29 @@ namespace ProjectTA.Module.GamePause
 {
     public class GamePauseView : BaseView
     {
-        [SerializeField] Button pauseButton;
-        [SerializeField] Button resumeButton;
-        [SerializeField] Button mainMenuButton;
-        [SerializeField] Button playAgainButton;
+        [SerializeField] private Button _pauseButton;
+        [SerializeField] private Button _resumeButton;
+        [SerializeField] private Button _mainMenuButton;
+        [SerializeField] private Button _playAgainButton;
+        [SerializeField] private UnityEvent _onGamePause;
+        [SerializeField] private UnityEvent _onGameResume;
 
-        public UnityEvent onGamePause;
-        public UnityEvent onGameResume;
+        public UnityEvent OnGamePause => _onGamePause;
+        public UnityEvent OnGameResume => _onGameResume;
 
         public void SetCallbacks(UnityAction onPause, UnityAction onResume, UnityAction onMainMenu, UnityAction onPlayAgain)
         {
-            pauseButton.onClick.RemoveAllListeners();
-            pauseButton.onClick.AddListener(onPause);
+            _pauseButton.onClick.RemoveAllListeners();
+            _pauseButton.onClick.AddListener(onPause);
 
-            resumeButton.onClick.RemoveAllListeners();
-            resumeButton.onClick.AddListener(onResume);
+            _resumeButton.onClick.RemoveAllListeners();
+            _resumeButton.onClick.AddListener(onResume);
 
-            mainMenuButton.onClick.RemoveAllListeners();
-            mainMenuButton.onClick.AddListener(onMainMenu);
+            _mainMenuButton.onClick.RemoveAllListeners();
+            _mainMenuButton.onClick.AddListener(onMainMenu);
 
-            playAgainButton.onClick.RemoveAllListeners();
-            playAgainButton.onClick.AddListener(onPlayAgain);
+            _playAgainButton.onClick.RemoveAllListeners();
+            _playAgainButton.onClick.AddListener(onPlayAgain);
         }
     }
 }

@@ -29,7 +29,7 @@ namespace ProjectTA.Module.GameWin
         internal void OnGameWin(GameWinMessage message)
         {
             Publish(new GameStateMessage(EnumManager.GameState.GameWin));
-            _view.onGameWin?.Invoke();
+            _view.OnGameWin?.Invoke();
         }
 
         internal void OnUpdateKillCount(UpdateKillCountMessage message)

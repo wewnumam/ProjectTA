@@ -4,7 +4,6 @@ using ProjectTA.Module.CollectibleData;
 using ProjectTA.Module.LevelData;
 using ProjectTA.Utility;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -12,17 +11,12 @@ namespace ProjectTA.Module.PuzzleBoard
 {
     public class PuzzleBoardController : ObjectController<PuzzleBoardController, PuzzleBoardView>
     {
-        private SOLevelData _levelData;
-        private List<CollectibleComponent> _collectibleObjs;
+        private SOLevelData _levelData = null;
+        private readonly List<PuzzleDragable> _puzzleDragables = new();
 
         public void SetLevelData(SOLevelData levelData)
         {
             _levelData = levelData;
-        }
-
-        public void SetCollectibleObjs(List<CollectibleComponent> collectibleObjs)
-        {
-            _collectibleObjs = collectibleObjs;
         }
 
         public override void SetView(PuzzleBoardView view)
@@ -30,13 +24,13 @@ namespace ProjectTA.Module.PuzzleBoard
             base.SetView(view);
             int currentLeftIndex = 0;
             int currentRightIndex = 0;
-            for (int i = 0; i < _levelData.CollectibleObjects.Count; i++)
+            for (int i = 0; i < _levelData.PuzzleObjects.Count; i++)
             {
-                PuzzleObject puzzle = _levelData.CollectibleObjects[i];
+                PuzzleObject puzzle = _levelData.PuzzleObjects[i];
                 
-                GameObject puzzleDragable = GameObject.Instantiate(view.puzzleDragableTemplate.gameObject, view.parent);
+                GameObject puzzleDragable = GameObject.Instantiate(view.PuzzleDragableTemplate.gameObject, view.Parent);
 
-                GameObject puzzleTarget = GameObject.Instantiate(view.puzzleTargetTemplate.gameObject, view.parent);
+                GameObject puzzleTarget = GameObject.Instantiate(view.PuzzleTargetTemplate.gameObject, view.Parent);
                 RectTransform target = puzzleTarget.GetComponent<RectTransform>();
                 target.anchoredPosition = puzzle.RectPosition;
 
@@ -52,7 +46,7 @@ namespace ProjectTA.Module.PuzzleBoard
                 dragable.targetPosition = target;
                 dragable.onPlace += OnPuzzlePlaced;
                 dragable.CollectibleData = puzzle.CollectibleData;
-                view.draggables.Add(dragable);
+                _puzzleDragables.Add(dragable);
 
                 TMP_Text label = puzzleDragable.GetComponentInChildren<TMP_Text>();
                 if (label != null)
@@ -65,8 +59,7 @@ namespace ProjectTA.Module.PuzzleBoard
             }
 
             view.SetCallback(OnClose);
-            view.questionText.SetText(_levelData.PuzzleQuestion);
-            view.puzzles = _collectibleObjs;
+            view.QuestionText.SetText(_levelData.PuzzleQuestion);
 
             Debug.Log($"<color=green>[{view.GetType()}]</color> installed successfully!");
         }
@@ -86,19 +79,19 @@ namespace ProjectTA.Module.PuzzleBoard
         internal void ShowPuzzleBoard(ShowPadlockMessage message)
         {
             Time.timeScale = 0;
-            _view.onShow?.Invoke();
+            _view.OnShow?.Invoke();
         }
 
         internal void OnGameWin(GameWinMessage message)
         {
-            _view.onComplete?.Invoke();
+            _view.OnComplete?.Invoke();
         }
 
         internal void OnUnlockCollectible(UnlockCollectibleMessage message)
         {
             if (message.CollectibleData.Type == EnumManager.CollectibleType.Puzzle)
             {
-                PuzzleDragable puzzleDragable = _view.draggables.FirstOrDefault(dragable => dragable.CollectibleData == message.CollectibleData);
+                PuzzleDragable puzzleDragable = _puzzleDragables.Find(dragable => dragable.CollectibleData == message.CollectibleData);
                 puzzleDragable.SetPuzzleDragableActive();
             }
         }

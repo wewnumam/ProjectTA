@@ -5,7 +5,7 @@ namespace ProjectTA.Module.BulletPool
 {
     public class BulletPoolConnector : BaseConnector
     {
-        private BulletPoolController _bulletPool;
+        private readonly BulletPoolController _bulletPool = new();
 
         protected override void Connect()
         {

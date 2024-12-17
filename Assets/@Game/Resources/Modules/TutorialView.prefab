@@ -301,22 +301,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59ca0c1fcb0b4de4798a351a328b50ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 3416491467956516662}
-  title: {fileID: 5539326279304073480}
-  description: {fileID: 707195836257923731}
-  tutorialItems:
-  - image: {fileID: -1820831637, guid: 677a1f3961d0d014ab4495c040cbfdb4, type: 3}
-    title: Tutorial 1
-    description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  - image: {fileID: -872886351, guid: 677a1f3961d0d014ab4495c040cbfdb4, type: 3}
-    title: Tutorial 2
-    description: Donec congue erat vitae volutpat tempus.
-  - image: {fileID: 966793320, guid: 677a1f3961d0d014ab4495c040cbfdb4, type: 3}
-    title: Tutorial 3
-    description: Nam laoreet tincidunt massa, volutpat viverra orci.
-  - image: {fileID: 242469982, guid: 677a1f3961d0d014ab4495c040cbfdb4, type: 3}
-    title: Tutorial 4
-    description: Morbi massa urna, porttitor ut sem at, interdum aliquam felis.
+  _imageComponent: {fileID: 3416491467956516662}
+  _titleText: {fileID: 5539326279304073480}
+  _descriptionText: {fileID: 707195836257923731}
+  _tutorialItems:
+  - _image: {fileID: -1820831637, guid: 677a1f3961d0d014ab4495c040cbfdb4, type: 3}
+    _title: Tutorial 1
+    _description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  - _image: {fileID: -872886351, guid: 677a1f3961d0d014ab4495c040cbfdb4, type: 3}
+    _title: Tutorial 2
+    _description: Donec congue erat vitae volutpat tempus.
+  - _image: {fileID: 966793320, guid: 677a1f3961d0d014ab4495c040cbfdb4, type: 3}
+    _title: Tutorial 3
+    _description: Nam laoreet tincidunt massa, volutpat viverra orci.
+  - _image: {fileID: 242469982, guid: 677a1f3961d0d014ab4495c040cbfdb4, type: 3}
+    _title: Tutorial 4
+    _description: Morbi massa urna, porttitor ut sem at, interdum aliquam felis.
 --- !u!1 &8938511608453296260
 GameObject:
   m_ObjectHideFlags: 0

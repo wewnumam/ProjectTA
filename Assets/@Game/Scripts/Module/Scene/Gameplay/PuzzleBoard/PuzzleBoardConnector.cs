@@ -5,7 +5,7 @@ namespace ProjectTA.Module.PuzzleBoard
 {
     public class PuzzleBoardConnector : BaseConnector
     {
-        private PuzzleBoardController _puzzleBoard;
+        private readonly PuzzleBoardController _puzzleBoard = new();
 
         protected override void Connect()
         {

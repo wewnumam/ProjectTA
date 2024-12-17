@@ -21,7 +21,7 @@ namespace ProjectTA.Module.GameOver
         internal void OnGameOver(GameOverMessage message)
         {
             Publish(new GameStateMessage(EnumManager.GameState.GameOver));
-            _view.SetDelay(_view.onGameOver);
+            _view.SetDelay(_view.OnGameOver);
         }
 
         internal void OnUpdateKillCount(UpdateKillCountMessage message)

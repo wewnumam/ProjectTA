@@ -8,66 +8,76 @@ namespace ProjectTA.Module.Bullet
 {
     public class BulletView : BaseView
     {
+        [SerializeField] private Rigidbody _rb;
+        [SerializeField] private float _launchForce;
+        [SerializeField] private GameObject _hitEffect;
+        [SerializeField] private Renderer _bulletMeshRenderer;
+        [SerializeField] private Material _initialHitMaterial;
+        [SerializeField] private Material _normalHitMaterial;
+        [SerializeField] private Material _enemyHitMaterial;
 
-        public Rigidbody rb;
-        public float launchForce;
-        public GameObject hitEffect;
-        public Renderer renderer;
-        public Material initialHitMaterial;
-        public Material normalHitMaterial;
-        public Material enemyHitMaterial;
-
-        [ReadOnly]
-        public float destroyDelay;
-
-        private bool hasHitTarget;
-
+        private float _destroyDelay;
+        private bool _hasHitTarget;
         private UnityAction _onCollideWithCollider;
+
+        public float DestroyDelay => _destroyDelay;
+        public Rigidbody Rb => _rb;
+        public float LaunchForce => _launchForce;
+        public GameObject HitEffect => _hitEffect;
+        public Renderer BulletMeshRenderer => _bulletMeshRenderer;
+        public Material InitialHitMaterial => _initialHitMaterial;
+        public Material NormalHitMaterial => _normalHitMaterial;
+        public Material EnemyHitMaterial => _enemyHitMaterial;
 
         public void SetCallback(UnityAction onCollideWithCollider)
         {
             _onCollideWithCollider = onCollideWithCollider;
         }
 
-        private void OnEnable()
+        public void SetDestroyDelay(float destroyDelay)
         {
-            hasHitTarget = false;
-            rb.isKinematic = false;
-            rb.AddForce(transform.forward * launchForce, ForceMode.Impulse);
+            _destroyDelay = destroyDelay;
         }
 
-        public  void OnCollisionEnter(Collision collision)
+        private void OnEnable()
+        {
+            _hasHitTarget = false;
+            Rb.isKinematic = false;
+            Rb.AddForce(transform.forward * LaunchForce, ForceMode.Impulse);
+        }
+
+        public void OnCollisionEnter(Collision collision)
         {
             // Check if the arrow has already hit something to prevent multiple hits
-            if (hasHitTarget) return;
+            if (_hasHitTarget) return;
 
             if (collision.gameObject.CompareTag(TagManager.TAG_ENEMY))
             {
-                renderer.material = enemyHitMaterial;
+                BulletMeshRenderer.material = EnemyHitMaterial;
             }
             else
             {
-                renderer.material = normalHitMaterial;
+                BulletMeshRenderer.material = NormalHitMaterial;
             }
 
-            hasHitTarget = true;
+            _hasHitTarget = true;
 
             // Stop the arrow from continuing to move
-            rb.isKinematic = true;  // Stop all physics on the arrow
-            rb.velocity = Vector3.zero;  // Zero out its velocity
+            Rb.isKinematic = true;  // Stop all physics on the arrow
+            Rb.velocity = Vector3.zero;  // Zero out its velocity
 
             // Stick the arrow into the target
             transform.position = collision.contacts[0].point;  // Set arrow to point of contact
             transform.parent = collision.transform;  // Attach arrow to the hit object
 
             // Optionally create a hit effect
-            if (hitEffect != null)
+            if (HitEffect != null)
             {
-                Instantiate(hitEffect, transform.position, Quaternion.identity);
+                Instantiate(HitEffect, transform.position, Quaternion.identity);
             }
 
             // Destroy the arrow after a delay (if you want to remove the arrow)
-            Invoke(nameof(OnCollideWithCollider), destroyDelay);
+            Invoke(nameof(OnCollideWithCollider), DestroyDelay);
         }
 
         public void OnCollideWithCollider()

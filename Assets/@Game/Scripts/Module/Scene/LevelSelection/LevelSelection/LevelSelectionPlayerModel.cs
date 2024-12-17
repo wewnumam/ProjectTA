@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ProjectTA.Module.LevelSelection
 {
-    public class LevelSelectionModel : BaseModel, ILevelSelectionModel
+    public class LevelSelectionPlayerModel : BaseModel, ILevelSelectionPlayerModel
     {
         public SOLevelCollection LevelCollection { get; private set; }
         public SOLevelData CurrentLevelData { get; private set; }

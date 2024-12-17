@@ -1,7 +1,5 @@
 using Agate.MVC.Base;
 using Cinemachine;
-using NaughtyAttributes;
-using ProjectTA.Module.LevelData;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -10,22 +8,24 @@ using UnityEngine.UI;
 
 namespace ProjectTA.Module.LevelSelection
 {
-    public class LevelSelectionView : ObjectView<ILevelSelectionModel>
+    public class LevelSelectionPlayerView : ObjectView<ILevelSelectionPlayerModel>
     {
         [Header("Level Data")]
-        [ReadOnly] public SOLevelCollection LevelCollection;
-        public List<Transform> ListedModels;
+        [SerializeField] private List<Transform> _listedModels;
 
         [Header("UI References")]
-        public TMP_Text CurrentLevelTitle;
-        public TMP_Text CurrentLevelDescription;
-        public Button playButton;
-        public CinemachineVirtualCamera VirtualCamera;
+        [SerializeField] private TMP_Text _currentLevelTitle;
+        [SerializeField] private TMP_Text _currentLevelDescription;
+        [SerializeField] private Button _playButton;
+        [SerializeField] private CinemachineVirtualCamera _virtualCamera;
 
-        private UnityAction _onPlay;
-        private UnityAction _onMainMenu;
-        private UnityAction _onNext;
-        private UnityAction _onPrevious;
+        public List<Transform> ListedModels => _listedModels;
+        public TMP_Text CurrentLevelTitle => _currentLevelTitle;
+        public TMP_Text CurrentLevelDescription => _currentLevelDescription;
+        public Button PlayButton => _playButton;
+        public CinemachineVirtualCamera VirtualCamera => _virtualCamera;
+
+        private UnityAction _onPlay, _onMainMenu, _onNext, _onPrevious;
 
         public void Next()
         {
@@ -48,9 +48,9 @@ namespace ProjectTA.Module.LevelSelection
         public void Play() => _onPlay?.Invoke();
         public void MainMenu() => _onMainMenu?.Invoke();
 
-        protected override void InitRenderModel(ILevelSelectionModel model) { }
+        protected override void InitRenderModel(ILevelSelectionPlayerModel model) { }
 
-        protected override void UpdateRenderModel(ILevelSelectionModel model)
+        protected override void UpdateRenderModel(ILevelSelectionPlayerModel model)
         {
             if (model.CurrentLevelData != null)
             {

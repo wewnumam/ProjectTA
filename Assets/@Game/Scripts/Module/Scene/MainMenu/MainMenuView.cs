@@ -1,15 +1,18 @@
 using Agate.MVC.Base;
-using UnityEngine.UI;
 using UnityEngine.Events;
 using ProjectTA.Module.Tutorial;
 using ProjectTA.Module.CollectibleList;
+using UnityEngine;
 
 namespace ProjectTA.Scene.MainMenu
 {
     public class MainMenuView : BaseSceneView
     {
-        public TutorialView TutorialView;
-        public CollectibleListView CollectibleListView;
+        [SerializeField] private TutorialView _tutorialView;
+        [SerializeField] private CollectibleListView _collectibleListView;
+
+        public TutorialView TutorialView => _tutorialView;
+        public CollectibleListView CollectibleListView => _collectibleListView;
 
         private UnityAction _onPlay, _onQuit, _onQuiz;
 

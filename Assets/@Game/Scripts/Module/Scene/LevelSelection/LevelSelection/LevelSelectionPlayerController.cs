@@ -7,15 +7,15 @@ using System.Collections.Generic;
 
 namespace ProjectTA.Module.LevelSelection
 {
-    public class LevelSelectionController : ObjectController<LevelSelectionController, LevelSelectionModel, ILevelSelectionModel, LevelSelectionView>
+    public class LevelSelectionPlayerController : ObjectController<LevelSelectionPlayerController, LevelSelectionPlayerModel, ILevelSelectionPlayerModel, LevelSelectionPlayerView>
     {
-        private int currentIndex;
+        private int currentIndex = 0;
 
         public void SetLevelCollection(SOLevelCollection levelCollection) => _model.SetLevelCollection(levelCollection);
         public void SetCurrentLevelData(SOLevelData levelData) => _model.SetCurrentLevelData(levelData);
         public void SetUnlockedLevels(List<string> unlockedLevels) => _model.SetUnlockedLevels(unlockedLevels);
 
-        public override void SetView(LevelSelectionView view)
+        public override void SetView(LevelSelectionPlayerView view)
         {
             base.SetView(view);
 
@@ -38,7 +38,7 @@ namespace ProjectTA.Module.LevelSelection
             currentIndex = currentIndex >= _model.LevelCollection.LevelItems.Count ? 0 : currentIndex;
             Publish(new ChooseLevelMessage(_model.LevelCollection.LevelItems[currentIndex]));
             SetupCamera();
-            _view.playButton.interactable = _model.IsLevelUnlocked(_model.CurrentLevelData.name);
+            _view.PlayButton.interactable = _model.IsLevelUnlocked(_model.CurrentLevelData.name);
         }
 
         private void OnPrevious()
@@ -47,7 +47,7 @@ namespace ProjectTA.Module.LevelSelection
             currentIndex = currentIndex < 0 ? _model.LevelCollection.LevelItems.Count - 1 : currentIndex;
             Publish(new ChooseLevelMessage(_model.LevelCollection.LevelItems[currentIndex]));
             SetupCamera();
-            _view.playButton.interactable = _model.IsLevelUnlocked(_model.CurrentLevelData.name);
+            _view.PlayButton.interactable = _model.IsLevelUnlocked(_model.CurrentLevelData.name);
         }
 
         private void SetupCamera()

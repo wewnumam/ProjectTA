@@ -1,9 +1,7 @@
 using Agate.MVC.Base;
 using ProjectTA.Message;
 using ProjectTA.Module.CollectibleData;
-using ProjectTA.Module.LevelData;
 using ProjectTA.Utility;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,10 +9,10 @@ namespace ProjectTA.Module.CheatFeature
 {
     public class CheatFeatureController : ObjectController<CheatFeatureController, CheatFeatureView>
     {
-        private List<Transform> _puzzleTransforms = new();
-        private List<Transform> _hiddenObjectTransforms = new();
-        private int _currentPuzzleIndex;
-        private int _currentHiddenObjectIndex;
+        private readonly List<Transform> _puzzleTransforms = new();
+        private readonly List<Transform> _hiddenObjectTransforms = new();
+        private int _currentPuzzleIndex = 0;
+        private int _currentHiddenObjectIndex = 0;
 
         public override void SetView(CheatFeatureView view)
         {
@@ -30,6 +28,8 @@ namespace ProjectTA.Module.CheatFeature
                 OnAddKillCount, 
                 OnSubtractKillCount);
             view.SetEnvironmentCallbacks(OnTeleportToPuzzle, OnTeleportToCollectible);
+            view.SetEffectsCallbacks(OnBlurCamera, OnNormalCamera);
+            view.SetCountdownCallbacks(OnRestartCountdown, OnResetCountdown);
 
             foreach (var collectibleObj in GameObject.FindGameObjectsWithTag(TagManager.TAG_COLLECTIBLE))
             {
@@ -49,7 +49,7 @@ namespace ProjectTA.Module.CheatFeature
 
         public void SetInitialActivateJoystick(bool isJoystickActive)
         {
-            _view.activateJoystickToggle.isOn = isJoystickActive;
+            _view.ActivateJoystickToggle.isOn = isJoystickActive;
         }
 
         private void OnDeleteSaveData()
@@ -128,6 +128,26 @@ namespace ProjectTA.Module.CheatFeature
 
             if (_currentHiddenObjectIndex >= _hiddenObjectTransforms.Count)
                 _currentHiddenObjectIndex = 0;
+        }
+
+        private void OnBlurCamera()
+        {
+            Publish(new CameraBlurMessage());
+        }
+
+        private void OnNormalCamera()
+        {
+            Publish(new CameraNormalMessage());
+        }
+
+        private void OnRestartCountdown()
+        {
+            Publish(new CountdownRestartMessage());
+        }
+
+        private void OnResetCountdown()
+        {
+            Publish(new CountdownResetMessage());
         }
     }
 }

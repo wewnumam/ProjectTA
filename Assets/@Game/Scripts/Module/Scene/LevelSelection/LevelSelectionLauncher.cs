@@ -16,35 +16,32 @@ namespace ProjectTA.Scene.LevelSelection
     {
         public override string SceneName {get {return TagManager.SCENE_LEVELSELECTION;}}
 
-        private SaveSystemController _saveSystem;
-        private LevelDataController _levelData;
+        private readonly SaveSystemController _saveSystem = new();
+        private readonly LevelDataController _levelData = new();
 
-        private LevelSelectionController _levelSelection;
+        private readonly LevelSelectionPlayerController _levelSelection = new();
 
         protected override IController[] GetSceneDependencies()
         {
             return new IController[] {
-                new LevelSelectionController(),
+                new LevelSelectionPlayerController(),
             };
         }
 
         protected override IConnector[] GetSceneConnectors()
         {
             return new IConnector[] {
-                new LevelSelectionConnector(),
+                new LevelSelectionPlayerConnector(),
             };
         }
 
         protected override IEnumerator LaunchScene()
         {
             yield return null;
-            Debug.Log("5. LaunchScene");
         }
 
         protected override IEnumerator InitSceneObject()
         {
-            Debug.Log("6. InitSceneObject");
-
             Time.timeScale = 1;
 
             Publish(new GameStateMessage(EnumManager.GameState.PreGame));

@@ -14,7 +14,7 @@ namespace ProjectTA.Module.EnemyPool
         public EnemyConstants EnemyConstants { get; private set; }
 
         private float _currentCountdown = 0;
-        private List<GameObject> _enemyPool = new List<GameObject>();
+        private readonly List<GameObject> _enemyPool = new List<GameObject>();
 
         public void SetIsPlaying(bool isPlaying)
         {
@@ -78,7 +78,7 @@ namespace ProjectTA.Module.EnemyPool
             {
                 if (enemy.TryGetComponent<EnemyView>(out var enemyView))
                 {
-                    enemyView.isPause = pause;
+                    enemyView.SetPause(pause);
                 }
             }
         }

@@ -8,22 +8,26 @@ namespace ProjectTA.Module.GameWin
 {
     public class GameWinView : BaseView
     {
-        public TMP_Text KillCountText;
-        public TMP_Text CollectedPuzzleCountText;
-        public TMP_Text HiddenObjectCountText;
-        public TMP_Text TimeCompletionText;
+        [SerializeField] private TMP_Text _killCountText;
+        [SerializeField] private TMP_Text _collectedPuzzleCountText;
+        [SerializeField] private TMP_Text _hiddenObjectCountText;
+        [SerializeField] private TMP_Text _timeCompletionText;
+        [SerializeField] private Button _playAgainButton;
+        [SerializeField] private Button _continueButton;
+        [SerializeField] private UnityEvent _onGameWin;
 
-        [SerializeField] Button playAgainButton;
-        [SerializeField] Button continueButton;
-        
-        public UnityEvent onGameWin;
+        public TMP_Text KillCountText => _killCountText;
+        public TMP_Text CollectedPuzzleCountText => _collectedPuzzleCountText;
+        public TMP_Text HiddenObjectCountText => _hiddenObjectCountText;
+        public TMP_Text TimeCompletionText => _timeCompletionText;
+        public UnityEvent OnGameWin => _onGameWin;
 
         public void SetCallbacks(UnityAction onMainMenu, UnityAction onContinue)
         {
-            continueButton.onClick.RemoveAllListeners();
-            continueButton.onClick.AddListener(onMainMenu);
-            playAgainButton.onClick.RemoveAllListeners();
-            playAgainButton.onClick.AddListener(onContinue);
+            _continueButton.onClick.RemoveAllListeners();
+            _continueButton.onClick.AddListener(onMainMenu);
+            _playAgainButton.onClick.RemoveAllListeners();
+            _playAgainButton.onClick.AddListener(onContinue);
         }
     }
 }

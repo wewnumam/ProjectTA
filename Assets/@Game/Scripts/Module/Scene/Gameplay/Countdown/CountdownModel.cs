@@ -4,9 +4,9 @@ namespace ProjectTA.Module.Countdown
 {
     public class CountdownModel : BaseModel, ICountdownModel
     {
-        public float InitialCountdown {  get; private set; }
+        public float InitialCountdown { get; private set; } = 0;
 
-        public float CurrentCountdown {  get; private set; }
+        public float CurrentCountdown { get; private set; } = 0;
 
         public void SetInitialCountdown(float initialHealth)
         {
