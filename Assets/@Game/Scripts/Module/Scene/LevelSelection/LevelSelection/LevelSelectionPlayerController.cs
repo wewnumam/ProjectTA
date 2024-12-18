@@ -56,7 +56,7 @@ namespace ProjectTA.Module.LevelSelection
             _view.VirtualCamera.LookAt = _view.ListedModels[currentIndex];
         }
 
-        internal void OnChooseLevel(ChooseLevelMessage message)
+        public void OnChooseLevel(ChooseLevelMessage message)
         {
             _model.SetCurrentLevelData(message.LevelData);
         }

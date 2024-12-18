@@ -106,12 +106,12 @@ namespace ProjectTA.Module.EnemyPool
             return spawnPosition;
         }
 
-        internal void OnUpdateCountdown(UpdateCountdownMessage message)
+        public void OnUpdateCountdown(UpdateCountdownMessage message)
         {
             _model.SetIsGameCountdownBelowZero(message.IsCurrentCountdownBelowZero());
         }
 
-        internal void OnGameState(GameStateMessage message)
+        public void OnGameState(GameStateMessage message)
         {
             _model.SetIsPlaying(message.GameState == Utility.EnumManager.GameState.Playing);
             _model.SetEnemyPause(message.GameState != Utility.EnumManager.GameState.Playing);

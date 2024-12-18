@@ -10,16 +10,16 @@ namespace ProjectTA.Module.CameraEffect
 
         private void Blur() => _view.Volume.profile = _view.BlurVolume;
 
-        internal void OnGamePause(GamePauseMessage message) => Blur();
+        public void OnGamePause(GamePauseMessage message) => Blur();
 
-        internal void OnGameResume(GameResumeMessage message) => Reset();
+        public void OnGameResume(GameResumeMessage message) => Reset();
 
-        internal void OnGameOver(GameOverMessage message) => Blur();
+        public void OnGameOver(GameOverMessage message) => Blur();
 
-        internal void OnCameraBlur(CameraBlurMessage message) => Blur();
+        public void OnCameraBlur(CameraBlurMessage message) => Blur();
 
-        internal void OnGameWin(GameWinMessage message) => Blur();
+        public void OnGameWin(GameWinMessage message) => Blur();
 
-        internal void OnCameraNormal(CameraNormalMessage message) => Reset();
+        public void OnCameraNormal(CameraNormalMessage message) => Reset();
     }
 }

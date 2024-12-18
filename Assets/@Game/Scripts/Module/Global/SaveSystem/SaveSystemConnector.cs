@@ -9,6 +9,7 @@ namespace ProjectTA.Module.SaveSystem
 
         protected override void Connect()
         {
+            Subscribe<ChooseLevelMessage>(_saveSystem.ChooseLevel);
             Subscribe<UnlockLevelMessage>(_saveSystem.UnlockLevel);
             Subscribe<UnlockCollectibleMessage>(_saveSystem.UnlockCollectible);
             Subscribe<DeleteSaveDataMessage>(_saveSystem.DeleteSaveData);
@@ -16,6 +17,7 @@ namespace ProjectTA.Module.SaveSystem
 
         protected override void Disconnect()
         {
+            Unsubscribe<ChooseLevelMessage>(_saveSystem.ChooseLevel);
             Unsubscribe<UnlockLevelMessage>(_saveSystem.UnlockLevel);
             Unsubscribe<UnlockCollectibleMessage>(_saveSystem.UnlockCollectible);
             Unsubscribe<DeleteSaveDataMessage>(_saveSystem.DeleteSaveData);

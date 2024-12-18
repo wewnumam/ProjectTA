@@ -64,6 +64,7 @@ namespace ProjectTA.Tests
             _controller.Initialize();
 
             // Assert
+            Assert.IsNotNull(_controller.Model.CollectibleCollection);
             Assert.AreEqual(Resources.Load<SOCollectibleCollection>(COLLECTIBLE_COLLECTION_NAME), _controller.Model.CollectibleCollection);
         }
 

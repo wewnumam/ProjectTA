@@ -18,23 +18,23 @@ namespace ProjectTA.Module.GameOver
 
         private void OnMainMenu() => SceneLoader.Instance.LoadScene(TagManager.SCENE_MAINMENU);
 
-        internal void OnGameOver(GameOverMessage message)
+        public void OnGameOver(GameOverMessage message)
         {
             Publish(new GameStateMessage(EnumManager.GameState.GameOver));
             _view.SetDelay(_view.OnGameOver);
         }
 
-        internal void OnUpdateKillCount(UpdateKillCountMessage message)
+        public void OnUpdateKillCount(UpdateKillCountMessage message)
         {
             _view.KillCountText.SetText(message.KillCount.ToString());
         }
 
-        internal void OnUpdatePuzzleCount(UpdatePuzzleCountMessage message)
+        public void OnUpdatePuzzleCount(UpdatePuzzleCountMessage message)
         {
             _view.CollectedPuzzleCountText.SetText($"{message.CollectedPuzzlePieceCount}/{message.PuzzlePieceCount}");
         }
 
-        internal void OnUpdateHiddenObjectCount(UpdateHiddenObjectCountMessage message)
+        public void OnUpdateHiddenObjectCount(UpdateHiddenObjectCountMessage message)
         {
             _view.HiddenObjectCountText.SetText($"{message.CollectedHiddenObjectCount}/{message.HiddenObjectCount}");
         }

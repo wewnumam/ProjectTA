@@ -23,15 +23,23 @@ namespace ProjectTA.Module.Health
         public void AddCurrentHealth(int amount)
         {
             CurrentHealth += amount;
+            if (CurrentHealth > InitialHealth)
+            {
+                CurrentHealth = InitialHealth;
+            }
             SetDataAsDirty();
         }
 
         public void SubtractCurrentHealth(int amount)
         {
             CurrentHealth -= amount;
+            if (CurrentHealth < 0)
+            {
+                CurrentHealth = 0;
+            }
             SetDataAsDirty();
         }
 
-        public bool IsCurrentHealthLessThanZero() => CurrentHealth < 0;
+        public bool IsCurrentHealthEqualsOrLessThanZero() => CurrentHealth <= 0;
     }
 }

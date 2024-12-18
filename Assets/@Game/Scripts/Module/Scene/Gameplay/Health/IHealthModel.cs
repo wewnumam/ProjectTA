@@ -6,5 +6,7 @@ namespace ProjectTA.Module.Health
     {
         int InitialHealth { get; }
         int CurrentHealth { get; }
+
+        bool IsCurrentHealthEqualsOrLessThanZero();
     }
 }

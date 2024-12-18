@@ -1,4 +1,5 @@
 using Agate.MVC.Base;
+using log4net.Core;
 using ProjectTA.Boot;
 using ProjectTA.Message;
 using ProjectTA.Module.SaveSystem;
@@ -10,10 +11,21 @@ namespace ProjectTA.Module.LevelData
     public class LevelDataController : DataController<LevelDataController, LevelDataModel, ILevelDataModel>
     {
         private readonly SaveSystemController _saveSystemController = new();
+        private string _levelCollectionFileName = "LevelCollection";
+
+        public void SetModel(LevelDataModel model)
+        {
+            _model = model;
+        }
+
+        public void SetLevelCollectionFileName(string fileName)
+        {
+            _levelCollectionFileName = fileName;
+        }
 
         public override IEnumerator Initialize()
         {
-            SOLevelCollection levelCollection = Resources.Load<SOLevelCollection>(@"LevelCollection");
+            SOLevelCollection levelCollection = Resources.Load<SOLevelCollection>(_levelCollectionFileName);
             _model.SetLevelCollection(levelCollection);
 
             yield return base.Initialize();
@@ -36,12 +48,10 @@ namespace ProjectTA.Module.LevelData
             yield return null;
         }
 
-        internal void OnChooseLevel(ChooseLevelMessage message)
+        public void OnChooseLevel(ChooseLevelMessage message)
         {
-            Debug.Log($"CHOOSE LEVEL: {message.LevelData}");
             GameMain.Instance.RunCoroutine(SetCurrentLevel(message.LevelData.name));
-            _saveSystemController.SetCurrentLevelName(message.LevelData.name);
-            _saveSystemController.SetCurrentCutsceneName(message.LevelData.CutsceneData.name);
+            Debug.Log($"CHOOSE LEVEL: {message.LevelData}");
         }
     }
 }

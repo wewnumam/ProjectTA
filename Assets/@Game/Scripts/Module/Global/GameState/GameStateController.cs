@@ -7,14 +7,7 @@ using UnityEngine;
 namespace ProjectTA.Module.GameState
 {
     public class GameStateController : DataController<GameStateController, GameStateModel, IGameStateModel>
-    {
-        public bool IsStatePreGame() => _model.GameState == EnumManager.GameState.PreGame;
-        public bool IsStatePlaying() => _model.GameState == EnumManager.GameState.Playing;
-        public bool IsStatePause() => _model.GameState == EnumManager.GameState.Pause;
-        public bool IsStateGameOver() => _model.GameState == EnumManager.GameState.GameOver;
-        public bool IsStateGameWin() => _model.GameState == EnumManager.GameState.GameWin;
-        public bool IsStateDialogue() => _model.GameState == EnumManager.GameState.Dialogue;
-        
+    {        
         public override IEnumerator Initialize()
         {
             _model.SetGameState(EnumManager.GameState.PreGame);
@@ -23,7 +16,7 @@ namespace ProjectTA.Module.GameState
             return base.Initialize();
         }
 
-        internal void SetGameState(GameStateMessage message)
+        public void SetGameState(GameStateMessage message)
         {
             _model.SetGameState(message.GameState);
             Debug.Log($"STATE: {message.GameState}");

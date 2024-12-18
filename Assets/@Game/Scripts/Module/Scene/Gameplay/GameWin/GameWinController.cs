@@ -26,28 +26,28 @@ namespace ProjectTA.Module.GameWin
             SceneLoader.Instance.RestartScene();
         }
 
-        internal void OnGameWin(GameWinMessage message)
+        public void OnGameWin(GameWinMessage message)
         {
             Publish(new GameStateMessage(EnumManager.GameState.GameWin));
             _view.OnGameWin?.Invoke();
         }
 
-        internal void OnUpdateKillCount(UpdateKillCountMessage message)
+        public void OnUpdateKillCount(UpdateKillCountMessage message)
         {
             _view.KillCountText.SetText(message.KillCount.ToString());
         }
 
-        internal void OnUpdatePuzzleCount(UpdatePuzzleCountMessage message)
+        public void OnUpdatePuzzleCount(UpdatePuzzleCountMessage message)
         {
             _view.CollectedPuzzleCountText.SetText($"{message.CollectedPuzzlePieceCount}/{message.PuzzlePieceCount}");
         }
 
-        internal void OnUpdateCountdown(UpdateCountdownMessage message)
+        public void OnUpdateCountdown(UpdateCountdownMessage message)
         {
             _view.TimeCompletionText.SetText(message.GetFormattedCurrentCountdown(true));
         }
 
-        internal void OnUpdateHiddenObjectCount(UpdateHiddenObjectCountMessage message)
+        public void OnUpdateHiddenObjectCount(UpdateHiddenObjectCountMessage message)
         {
             _view.HiddenObjectCountText.SetText($"{message.CollectedHiddenObjectCount}/{message.HiddenObjectCount}");
         }

@@ -21,23 +21,23 @@ namespace ProjectTA.Module.Countdown
             Publish(new UpdateCountdownMessage(_model.InitialCountdown, _model.CurrentCountdown, false));
         }
 
-        internal void OnGamePause(GamePauseMessage message)
+        public void OnGamePause(GamePauseMessage message)
         {
             _view.IsPause = true;
         }
 
-        internal void OnGameResume(GameResumeMessage message)
+        public void OnGameResume(GameResumeMessage message)
         {
             _view.IsPause = false;
         }
 
-        internal void OnRestart(CountdownRestartMessage message)
+        public void OnRestart(CountdownRestartMessage message)
         {
             _model.SetCurrentCountdown(_model.InitialCountdown);
             Publish(new UpdateCountdownMessage(_model.InitialCountdown, _model.CurrentCountdown, true));
         }
 
-        internal void OnReset(CountdownResetMessage message)
+        public void OnReset(CountdownResetMessage message)
         {
             _model.SetCurrentCountdown(0);
             Publish(new UpdateCountdownMessage(_model.InitialCountdown, _model.CurrentCountdown, false));

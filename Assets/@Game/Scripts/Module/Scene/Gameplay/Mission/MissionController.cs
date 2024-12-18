@@ -6,6 +6,11 @@ namespace ProjectTA.Module.Mission
 {
     public class MissionController : DataController<MissionController, MissionModel, IMissionModel>
     {
+        public void SetModel(MissionModel model)
+        {
+            _model = model;
+        }
+
         public void SetCurrentLevelData(SOLevelData levelData) => _model.SetCurrentLevelData(levelData);
 
         public void SetPuzzlePieceCount(int puzzlePieceCount)
@@ -23,37 +28,37 @@ namespace ProjectTA.Module.Mission
             Publish(new UpdateHiddenObjectCountMessage(_model.HiddenObjectCount, _model.CollectedHiddenObjectCount, true));
         }
 
-        internal void OnAddCollectedPuzzlePiece(AddCollectedPuzzlePieceCountMessage message)
+        public void OnAddCollectedPuzzlePiece(AddCollectedPuzzlePieceCountMessage message)
         {
             _model.AddCollectedPuzzlePieceCount(message.Amount);
             Publish(new UpdatePuzzleCountMessage(_model.PuzzlePieceCount, _model.CollectedPuzzlePieceCount, true));
         }
 
-        internal void OnAddCollectedHidenObject(AddCollectedHiddenObjectCountMessage message)
+        public void OnAddCollectedHidenObject(AddCollectedHiddenObjectCountMessage message)
         {
             _model.AddCollectedHiddenObjectCount(message.Amount);
             Publish(new UpdateHiddenObjectCountMessage(_model.HiddenObjectCount, _model.CollectedHiddenObjectCount, true));
         }
 
-        internal void OnAddKillCount(AddKillCountMessage message)
+        public void OnAddKillCount(AddKillCountMessage message)
         {
             _model.AddKillCount(message.Amount);
             Publish(new UpdateKillCountMessage(_model.KillCount, true));
         }
 
-        internal void OnSubtractCollectedPuzzlePiece(SubtractCollectedPuzzlePieceCountMessage message)
+        public void OnSubtractCollectedPuzzlePiece(SubtractCollectedPuzzlePieceCountMessage message)
         {
             _model.SubtractCollectedPuzzlePieceCount(message.Amount);
             Publish(new UpdatePuzzleCountMessage(_model.PuzzlePieceCount, _model.CollectedPuzzlePieceCount, false));
         }
 
-        internal void OnSubtractKillCount(SubtractKillCountMessage message)
+        public void OnSubtractKillCount(SubtractKillCountMessage message)
         {
             _model.SubtractKillCount(message.Amount);
             Publish(new UpdateKillCountMessage(_model.KillCount, false));
         }
 
-        internal void OnAddPadlockOnPlace(AddPadlockOnPlaceMessage message)
+        public void OnAddPadlockOnPlace(AddPadlockOnPlaceMessage message)
         {
             _model.AddPadlockOnPlaceCount(message.Amount);
             Publish(new UpdatePuzzleSolvedCountMessage(_model.PadlockOnPlaceCount, _model.CollectedPuzzlePieceCount, true));

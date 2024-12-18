@@ -1,6 +1,7 @@
 using Agate.MVC.Base;
 using ProjectTA.Message;
 using ProjectTA.Utility;
+using System;
 using System.Collections;
 using System.IO;
 using UnityEngine;
@@ -9,6 +10,11 @@ namespace ProjectTA.Module.SaveSystem
 {
     public class SaveSystemController : DataController<SaveSystemController, SaveSystemModel, ISaveSystemModel>
     {
+        public void SetModel(SaveSystemModel model)
+        {
+            _model = model;
+        }
+
         public override IEnumerator Initialize()
         {
             if (!PlayerPrefs.HasKey(TagManager.KEY_VERSION) || !PlayerPrefs.GetString(TagManager.KEY_VERSION).Equals(Application.version))
@@ -74,19 +80,7 @@ namespace ProjectTA.Module.SaveSystem
             }
         }
 
-        public void SetCurrentLevelName(string levelName)
-        {
-            _model.SetCurrentLevelName(levelName);
-            SaveGame(_model.SaveData);
-        }
-
-        public void SetCurrentCutsceneName(string cutsceneName)
-        {
-            _model.SetCurrentCutsceneName(cutsceneName);
-            SaveGame(_model.SaveData);
-        }
-
-        internal void UnlockLevel(UnlockLevelMessage message)
+        public void UnlockLevel(UnlockLevelMessage message)
         {
             if (message.LevelData != null)
             {
@@ -99,7 +93,7 @@ namespace ProjectTA.Module.SaveSystem
             }
         }
 
-        internal void UnlockCollectible(UnlockCollectibleMessage message)
+        public void UnlockCollectible(UnlockCollectibleMessage message)
         {
             if (message.CollectibleData != null)
             {
@@ -112,10 +106,17 @@ namespace ProjectTA.Module.SaveSystem
             }
         }
 
-        internal void DeleteSaveData(DeleteSaveDataMessage message)
+        public void DeleteSaveData(DeleteSaveDataMessage message)
         {
             DeleteSaveFile();
             _model.SetSaveData(LoadGame());
+        }
+
+        internal void ChooseLevel(ChooseLevelMessage message)
+        {
+            _model.SetCurrentLevelName(message.LevelData.name);
+            _model.SetCurrentCutsceneName(message.LevelData.CutsceneData.name);
+            SaveGame(_model.SaveData);
         }
     }
 }

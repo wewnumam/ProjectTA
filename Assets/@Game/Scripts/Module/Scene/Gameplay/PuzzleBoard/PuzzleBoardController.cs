@@ -76,18 +76,18 @@ namespace ProjectTA.Module.PuzzleBoard
             Time.timeScale = 1;
         }
 
-        internal void ShowPuzzleBoard(ShowPadlockMessage message)
+        public void ShowPuzzleBoard(ShowPadlockMessage message)
         {
             Time.timeScale = 0;
             _view.OnShow?.Invoke();
         }
 
-        internal void OnGameWin(GameWinMessage message)
+        public void OnGameWin(GameWinMessage message)
         {
             _view.OnComplete?.Invoke();
         }
 
-        internal void OnUnlockCollectible(UnlockCollectibleMessage message)
+        public void OnUnlockCollectible(UnlockCollectibleMessage message)
         {
             if (message.CollectibleData.Type == EnumManager.CollectibleType.Puzzle)
             {

@@ -167,11 +167,11 @@ namespace ProjectTA.Scene.Gameplay
 
                 if (obj.TryGetComponent<CollectibleComponent>(out var co))
                 {
-                    co.SetCollectibleData(collectibleObject.CollectibleData);
+                    co.Initialize(collectibleObject.CollectibleData);
                 }
                 else 
                 { 
-                    obj.AddComponent<CollectibleComponent>().SetCollectibleData(collectibleObject.CollectibleData);
+                    obj.AddComponent<CollectibleComponent>().Initialize(collectibleObject.CollectibleData);
                 }
                 
                 puzzleObjects.Add(obj.GetComponent<CollectibleComponent>());

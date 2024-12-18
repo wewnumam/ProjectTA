@@ -49,12 +49,12 @@ namespace ProjectTA.Module.PlayerCharacter
             _view.SetIsJoyStickActive(isJoystickActive);
         }
 
-        internal void OnGameOver(GameOverMessage message)
+        public void OnGameOver(GameOverMessage message)
         {
             _view.Animator.Play(TagManager.ANIM_DEAD);
         }
 
-        internal void OnMove(MovePlayerCharacterMessage message)
+        public void OnMove(MovePlayerCharacterMessage message)
         {
             _view.SetDirection(message.Direction);
 
@@ -65,12 +65,12 @@ namespace ProjectTA.Module.PlayerCharacter
 
         }
 
-        internal void OnRotate(RotatePlayerCharacterMessage message)
+        public void OnRotate(RotatePlayerCharacterMessage message)
         {
             _view.SetAim(message.Aim);
         }
 
-        internal void OnActivateJoystick(ActivateJoystickMessage message)
+        public void OnActivateJoystick(ActivateJoystickMessage message)
         {
             _view.SetIsJoyStickActive(message.IsJoystickActive);
         }

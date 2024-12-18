@@ -41,7 +41,7 @@ namespace ProjectTA.Module.CollectibleList
             }
         }
 
-        internal void OnChooseColletible(ChooseCollectibleMessage message)
+        public void OnChooseColletible(ChooseCollectibleMessage message)
         {
             _view.DescriptionText.SetText(message.CollectibleData.Description);
         }

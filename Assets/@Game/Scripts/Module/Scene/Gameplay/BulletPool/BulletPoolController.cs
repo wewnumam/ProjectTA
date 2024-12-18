@@ -67,17 +67,17 @@ namespace ProjectTA.Module.BulletPool
             }
         }
 
-        internal void OnAim(RotatePlayerCharacterMessage message)
+        public void OnAim(RotatePlayerCharacterMessage message)
         {
             _model.SetIsShooting(message.Aim.sqrMagnitude > _model.ShootingConstants.JoystickShootingRange);
         }
 
-        internal void OnDespawnBullet(DespawnBulletMessage message)
+        public void OnDespawnBullet(DespawnBulletMessage message)
         {
             message.Bullet.SetActive(false);
         }
 
-        internal void OnGameState(GameStateMessage message)
+        public void OnGameState(GameStateMessage message)
         {
             _model.SetIsPlaying(message.GameState == Utility.EnumManager.GameState.Playing);
         }

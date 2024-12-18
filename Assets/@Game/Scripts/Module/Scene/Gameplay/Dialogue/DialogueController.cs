@@ -60,7 +60,7 @@ namespace ProjectTA.Module.Dialogue
             }
         }
 
-        internal void ShowDialogue(ShowDialogueMessage message)
+        public void ShowDialogue(ShowDialogueMessage message)
         {
             if (message.TextAsset == null)
                 return;
