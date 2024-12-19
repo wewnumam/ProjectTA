@@ -53,9 +53,9 @@ namespace ProjectTA.Scene.Cutscene
 
             if (environment.TryGetComponent<CutsceneComponent>(out var cutsceneComponent))
             {
-                _cutscenePlayer.SetCameras(cutsceneComponent.Cameras);
+                _cutscenePlayer.InitEnvironment(cutsceneComponent);
             }
-            _cutscenePlayer.SetCurrentCutsceneData(_levelData.Model.CurrentCutsceneData);
+            _cutscenePlayer.SetDialogueAsset(_levelData.Model.CurrentCutsceneData.DialogueAsset);
             _cutscenePlayer.SetView(_view.CutscenePlayerView);
 
             yield return null;

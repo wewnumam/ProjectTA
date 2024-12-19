@@ -6,7 +6,11 @@
         "UnityEditor.TestRunner",
         "Unity.PerformanceTesting",
         "Agate.MVC",
-        "ProjectTA"
+        "ProjectTA",
+        "Cinemachine",
+        "Unity.TextMeshPro",
+        "DOTween.Modules",
+        "Ink-Libraries"
     ],
     "includePlatforms": [
         "Editor"

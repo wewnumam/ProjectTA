@@ -1,82 +1,48 @@
 using Agate.MVC.Base;
-using Ink.Runtime;
-using ProjectTA.Module.LevelData;
-using System;
-using DG.Tweening;
-using UnityEngine;
-using UnityEngine.UI;
 using ProjectTA.Boot;
 using ProjectTA.Utility;
-using Cinemachine;
-using System.Collections.Generic;
+using UnityEngine;
 
 namespace ProjectTA.Module.CutscenePlayer
 {
-    public class CutscenePlayerController : ObjectController<CutscenePlayerController, CutscenePlayerModel, CutscenePlayerView>
+    public class CutscenePlayerController : ObjectController<CutscenePlayerController, CutscenePlayerModel, ICutscenePlayerModel , CutscenePlayerView>
     {
-        private Story _story = null;
-        private string _text = String.Empty;
-        private bool _isTextComplete = true;
-        private int _currentIndex = 0;
+        public void SetModel(CutscenePlayerModel model)
+        {
+            _model = model;
+        }
 
-        public void SetCurrentCutsceneData(SOCutsceneData cutsceneData) => _model.SetCurrentCutsceneData(cutsceneData);
-        public void SetCameras(List<CinemachineVirtualCamera> cameras) => _model.SetCameras(cameras);
+        public void SetDialogueAsset(TextAsset textAsset) => _model.InitStory(textAsset);
+
+        public void InitEnvironment(CutsceneComponent component) => _model.SetCameras(component.Cameras);
 
         public override void SetView(CutscenePlayerView view)
         {
             base.SetView(view);
 
             view.SetCallback(DisplayNextLine);
-
-            _story = new Story(_model.CurrentCutsceneData.DialogueAsset.text);
             DisplayNextLine();
         }
 
         public void DisplayNextLine()
         {
-            if (!_story.canContinue)
+            if (!_model.Story.canContinue)
             {
                 SceneLoader.Instance.LoadScene(TagManager.SCENE_LEVELSELECTION);
                 return;
             }
 
-            if (_isTextComplete)
+            if (_model.IsTextAnimationComplete)
             {   
-                _text = _story.Continue();
-            }
-            
-            ParseSentence(_text?.Trim());
-            
-            for (int i = 0; i < _model.Cameras.Count; i++)
-            {
-                _model.Cameras[i].enabled = i == _currentIndex;
-            }
-
-            _currentIndex++;
-        }
-
-
-
-        void ParseSentence(string sentence)
-        {
-            string characterName = string.Empty;
-            if (sentence.Contains(":"))
-            {
-                int endIndex = sentence.IndexOf(':');
-                characterName = sentence.Substring(0, endIndex);
-                sentence = sentence.Replace(characterName + ": ", "");
-            }
-
-            _view.CharacterText.text = characterName;
-            if (_isTextComplete)
-            {
-                _view.MessageText.text = String.Empty;
-                _isTextComplete = false;
-                _view.MessageText.DOText(sentence, sentence.Length / 20f).OnComplete(() => _isTextComplete = true);
+                _model.SetNextLine();
+                _model.UpdateDialogueLine();
+                _model.SetIsTextAnimationComplete(false);
+                _model.GoNextCamera();
             }
             else
             {
-                _view.MessageText.text = sentence;
+                _model.UpdateDialogueLine();
+                _model.SetIsTextAnimationComplete(true);
             }
         }
     }

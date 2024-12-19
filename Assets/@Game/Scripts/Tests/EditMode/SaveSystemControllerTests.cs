@@ -1,14 +1,12 @@
 using NUnit.Framework;
 using ProjectTA.Module.SaveSystem;
 using ProjectTA.Message;
-using UnityEngine;
-using UnityEngine.TestTools;
-using System.Collections;
 using Unity.PerformanceTesting;
 using ProjectTA.Module.CollectibleData;
 using ProjectTA.Module.LevelData;
 using ProjectTA.Utility;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace ProjectTA.Tests
 {
@@ -53,8 +51,8 @@ namespace ProjectTA.Tests
             {
                 CurrentCutsceneName = "Cutscene1",
                 CurrentLevelName = "Level1",
-                UnlockedLevels = new System.Collections.Generic.List<string> { "Level1", "Level2" },
-                UnlockedCollectibles = new System.Collections.Generic.List<string> { "Collectible1" }
+                UnlockedLevels = new List<string> { "Level1", "Level2" },
+                UnlockedCollectibles = new List<string> { "Collectible1" }
             };
 
             // Act
@@ -75,8 +73,8 @@ namespace ProjectTA.Tests
             {
                 CurrentCutsceneName = "Cutscene1",
                 CurrentLevelName = "Level1",
-                UnlockedLevels = new System.Collections.Generic.List<string> { "Level1", "Level2" },
-                UnlockedCollectibles = new System.Collections.Generic.List<string> { "Collectible1" }
+                UnlockedLevels = new List<string> { "Level1", "Level2" },
+                UnlockedCollectibles = new List<string> { "Collectible1" }
             };
 
             _controller.SaveGame(saveData); // Save the data first
@@ -99,8 +97,8 @@ namespace ProjectTA.Tests
             {
                 CurrentCutsceneName = "PerformanceCutscene",
                 CurrentLevelName = "PerformanceLevel",
-                UnlockedLevels = new System.Collections.Generic.List<string> { "Level1", "Level2" },
-                UnlockedCollectibles = new System.Collections.Generic.List<string> { "Collectible1" }
+                UnlockedLevels = new List<string> { "Level1", "Level2" },
+                UnlockedCollectibles = new List<string> { "Collectible1" }
             };
 
             Measure.Method(() =>
@@ -114,6 +112,9 @@ namespace ProjectTA.Tests
 
             // Assert
             Assert.AreEqual(saveData.CurrentCutsceneName, _controller.Model.SaveData.CurrentCutsceneName);
+            Assert.AreEqual(saveData.CurrentLevelName, _controller.Model.SaveData.CurrentLevelName);
+            Assert.AreEqual(saveData.UnlockedLevels, _controller.Model.SaveData.UnlockedLevels);
+            Assert.AreEqual(saveData.UnlockedCollectibles, _controller.Model.SaveData.UnlockedCollectibles);
         }
 
         [Test, Performance]
@@ -124,8 +125,8 @@ namespace ProjectTA.Tests
             {
                 CurrentCutsceneName = "PerformanceCutscene",
                 CurrentLevelName = "PerformanceLevel",
-                UnlockedLevels = new System.Collections.Generic.List<string> { "Level1", "Level2" },
-                UnlockedCollectibles = new System.Collections.Generic.List<string> { "Collectible1" }
+                UnlockedLevels = new List<string> { "Level1", "Level2" },
+                UnlockedCollectibles = new List<string> { "Collectible1" }
             };
 
             _controller.SaveGame(saveData); // Save the data first
@@ -138,40 +139,48 @@ namespace ProjectTA.Tests
             .WarmupCount(10)
             .MeasurementCount(100)
             .Run();
+
+            // Assert
+            Assert.AreEqual(saveData.CurrentCutsceneName, _controller.Model.SaveData.CurrentCutsceneName);
+            Assert.AreEqual(saveData.CurrentLevelName, _controller.Model.SaveData.CurrentLevelName);
+            Assert.AreEqual(saveData.UnlockedLevels, _controller.Model.SaveData.UnlockedLevels);
+            Assert.AreEqual(saveData.UnlockedCollectibles, _controller.Model.SaveData.UnlockedCollectibles);
         }
 
         [Test]
         public void UnlockLevel_ShouldAddLevelToUnlockedLevels()
         {
             // Arrange
+            var levelData = ScriptableObject.CreateInstance<SOLevelData>();
+            levelData.name = "Level1";
             var saveData = new SaveData();
             var model = new SaveSystemModel();
             model.SetSaveData(saveData);
             _controller.SetModel(model);
-            string levelToUnlock = "Level1";
 
             // Act
-            _controller.UnlockLevel(new UnlockLevelMessage(new SOLevelData { name = levelToUnlock }));
+            _controller.UnlockLevel(new UnlockLevelMessage(levelData));
 
             // Assert
-            Assert.IsTrue(_controller.Model.SaveData.UnlockedLevels.Contains(levelToUnlock));
+            Assert.IsTrue(_controller.Model.SaveData.UnlockedLevels.Contains(levelData.name));
         }
 
         [Test]
         public void UnlockCollectible_ShouldAddCollectibleToUnlockedCollectibles()
         {
             // Arrange
+            var collectibleData = ScriptableObject.CreateInstance<SOCollectibleData>();
+            collectibleData.name = "Collectible1";
             var saveData = new SaveData();
             var model = new SaveSystemModel();
             model.SetSaveData(saveData);
             _controller.SetModel(model);
-            string collectibleToUnlock = "Collectible1";
 
             // Act
-            _controller.UnlockCollectible(new UnlockCollectibleMessage(new SOCollectibleData { name = collectibleToUnlock }));
+            _controller.UnlockCollectible(new UnlockCollectibleMessage(collectibleData));
 
             // Assert
-            Assert.IsTrue(_controller.Model.SaveData.UnlockedCollectibles.Contains(collectibleToUnlock));
+            Assert.IsTrue(_controller.Model.SaveData.UnlockedCollectibles.Contains(collectibleData.name));
         }
     }
 }
