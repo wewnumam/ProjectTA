@@ -15,13 +15,11 @@ namespace ProjectTA.Module.CollectibleList
         public void SetCollectibleCollection(SOCollectibleCollection collection)
         {
             _collectibleCollection = collection;
-            Debug.Log(_collectibleCollection.CollectibleItems.Count);
         }
 
         public void SetUnlockedCollectibles(List<SOCollectibleData> unlockedCollectibles)
         {
             _unlockedCollectibles = unlockedCollectibles;
-            Debug.Log(_unlockedCollectibles.Count);
         }
 
         public override void SetView(CollectibleListView view)

@@ -12,6 +12,7 @@ namespace ProjectTA.Module.SaveSystem
             Subscribe<ChooseLevelMessage>(_saveSystem.ChooseLevel);
             Subscribe<UnlockLevelMessage>(_saveSystem.UnlockLevel);
             Subscribe<UnlockCollectibleMessage>(_saveSystem.UnlockCollectible);
+            Subscribe<ChoicesRecordsMessage>(_saveSystem.SaveChoicesRecords);
             Subscribe<DeleteSaveDataMessage>(_saveSystem.DeleteSaveData);
         }
 
@@ -20,6 +21,7 @@ namespace ProjectTA.Module.SaveSystem
             Unsubscribe<ChooseLevelMessage>(_saveSystem.ChooseLevel);
             Unsubscribe<UnlockLevelMessage>(_saveSystem.UnlockLevel);
             Unsubscribe<UnlockCollectibleMessage>(_saveSystem.UnlockCollectible);
+            Unsubscribe<ChoicesRecordsMessage>(_saveSystem.SaveChoicesRecords);
             Unsubscribe<DeleteSaveDataMessage>(_saveSystem.DeleteSaveData);
         }
     }

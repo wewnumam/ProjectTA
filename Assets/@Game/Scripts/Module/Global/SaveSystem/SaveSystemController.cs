@@ -118,5 +118,11 @@ namespace ProjectTA.Module.SaveSystem
             _model.SetCurrentCutsceneName(message.LevelData.CutsceneData.name);
             SaveGame(_model.SaveData);
         }
+
+        internal void SaveChoicesRecords(ChoicesRecordsMessage message)
+        {
+            _model.SetChoicesRecords(message.ChoicesRecords);
+            SaveGame(_model.SaveData);
+        }
     }
 }

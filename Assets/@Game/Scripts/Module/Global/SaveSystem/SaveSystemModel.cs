@@ -1,4 +1,8 @@
 using Agate.MVC.Base;
+using ProjectTA.Module.QuizPlayer;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace ProjectTA.Module.SaveSystem
@@ -61,6 +65,12 @@ namespace ProjectTA.Module.SaveSystem
         {
             SetDataAsDirty();
             return SaveData.UnlockedCollectibles.Contains(collectibleName);
+        }
+
+        internal void SetChoicesRecords(List<ChoicesRecord> choicesRecords)
+        {
+            SaveData.ChoicesRecords = choicesRecords;
+            SetDataAsDirty();
         }
     }
 }

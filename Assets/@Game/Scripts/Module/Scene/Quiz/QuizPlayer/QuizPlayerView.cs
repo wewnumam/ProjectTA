@@ -1,51 +1,82 @@
 using Agate.MVC.Base;
-using Cinemachine;
+using DG.Tweening;
 using NaughtyAttributes;
-using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace ProjectTA.Module.QuizPlayer
 {
-    public class QuizPlayerView : BaseView
+    public class QuizPlayerView : ObjectView<IQuizPlayerModel>
     {
-        public TMP_Text questionText;
-        public TMP_Text scoreText;
-        public Transform answerButtonParent;
-        public Button answerButtonTemplate;
-        public Color InitialColor;
-        public Color CorrectColor;
-        public Color WrongColor;
-        public List<QuizItem> Items;
+        [SerializeField] private TMP_Text _questionText;
+        [SerializeField] private TMP_Text _scoreText;
+        [SerializeField] private Transform _answerButtonParent;
+        [SerializeField] private Button _answerButtonTemplate;
 
-        private UnityAction _onNext;
+        [SerializeField] private Color _initialColor;
+        [SerializeField] private Color _correctColor;
+        [SerializeField] private Color _wrongColor;
 
-        public void SetCallback(UnityAction onNext)
+        [SerializeField, ResizableTextArea, ReadOnly] private string _log;
+
+        [field: SerializeField]
+        public List<QuizItem> QuizItems { get; set; }
+
+        private void OnValidate()
         {
-            _onNext = onNext;
+            if (_answerButtonTemplate.GetComponentInChildren<TMP_Text>() == null)
+            {
+                Debug.LogError("TMP text not found in answer button template child!");
+            }
         }
 
-        public void Next()
+        private void OnCorrect()
         {
-            _onNext?.Invoke();
+            ButtonsFeedback(_correctColor);
         }
-    }
 
-    [Serializable]
-    public class QuizItem
-    {
-        public CinemachineVirtualCamera VirtualCamera;
-        public string Question;
-        public List<QuizAnswer> Answers;
-    }
+        private void OnWrong()
+        {
+            ButtonsFeedback(_wrongColor);
+        }
 
-    [Serializable]
-    public class QuizAnswer
-    {
-        public string Message;
-        public bool isCorrectAnswer;
+        private void ButtonsFeedback(Color color)
+        {
+            foreach (var button in _model.Buttons)
+            {
+                button.image.DOColor(color, .5f).OnComplete(() => button.image.DOColor(_initialColor, 1f));
+            }
+        }
+
+        protected override void InitRenderModel(IQuizPlayerModel model)
+        {
+            _log = model.GetLog();
+
+            model.InitButtons(_answerButtonTemplate, _answerButtonParent);
+            model.AddCallbacks(OnCorrect, OnWrong, null);
+        }
+
+        protected override void UpdateRenderModel(IQuizPlayerModel model)
+        {
+            _log = model.GetLog();
+
+            _questionText.SetText(model.CurrentQuizItem.Question);
+            float percentage = (float)(model.AnswersCount - model.WrongCount) / model.AnswersCount;
+            _scoreText?.SetText($"{percentage * 100f:F2}%");
+
+            for (int i = 0; i < model.CurrentQuizItem.Answers.Count; i++)
+            {
+                if (model.ButtonsText[i] == null)
+                {
+                    model.InitButtons(_answerButtonTemplate, _answerButtonParent);
+                }
+                else
+                {
+                    model.ButtonsText[i].SetText(model.CurrentQuizItem.Answers[i].Message);
+                }
+            }
+        }
     }
 }

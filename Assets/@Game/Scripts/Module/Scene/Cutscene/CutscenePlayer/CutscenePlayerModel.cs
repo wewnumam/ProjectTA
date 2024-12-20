@@ -21,8 +21,6 @@ namespace ProjectTA.Module.CutscenePlayer
         private List<CinemachineVirtualCamera> _cameras = new();
         private int _currentCameraIndex = 0;
 
-        public List<CinemachineVirtualCamera> Cameras { get => _cameras; }
-
         public void InitStory(TextAsset textAsset)
         {
             Story = new Story(textAsset.text);
