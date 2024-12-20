@@ -96,7 +96,7 @@ namespace ProjectTA.Module.QuizPlayer
         {
             for (int i = 0; i < QuizItems.Count; i++)
             {
-                CurrentQuizItem.VirtualCamera.enabled = i == CurrentQuizItemIndex;
+                QuizItems[i].VirtualCamera.enabled = i == CurrentQuizItemIndex;
             }
 
             for (int i = 0;  i < Buttons.Count; i++)
