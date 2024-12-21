@@ -20,6 +20,7 @@ namespace ProjectTA.Module.LevelSelection
             base.SetView(view);
 
             view.SetCallbacks(OnPlay, OnMainMenu, OnNext, OnPrevious);
+            OnNext();
         }
 
         private void OnPlay()
@@ -36,18 +37,33 @@ namespace ProjectTA.Module.LevelSelection
         {
             currentIndex++;
             currentIndex = currentIndex >= _model.LevelCollection.LevelItems.Count ? 0 : currentIndex;
-            Publish(new ChooseLevelMessage(_model.LevelCollection.LevelItems[currentIndex]));
-            SetupCamera();
-            _view.PlayButton.interactable = _model.IsLevelUnlocked(_model.CurrentLevelData.name);
+            UpdateContent();
         }
 
         private void OnPrevious()
         {
             currentIndex--;
             currentIndex = currentIndex < 0 ? _model.LevelCollection.LevelItems.Count - 1 : currentIndex;
-            Publish(new ChooseLevelMessage(_model.LevelCollection.LevelItems[currentIndex]));
+            UpdateContent();
+        }
+
+        private void UpdateContent()
+        {
+            var currentLevel = _model.LevelCollection.LevelItems[currentIndex];
+            Publish(new ChooseLevelMessage(currentLevel));
+            
             SetupCamera();
-            _view.PlayButton.interactable = _model.IsLevelUnlocked(_model.CurrentLevelData.name);
+            
+            _view.PlayButton.interactable = _model.IsLevelUnlocked(currentLevel.name);
+            
+            if (_model.IsLevelUnlocked(currentLevel.name))
+            {
+                _view.OnUnlock?.Invoke();
+            }
+            else
+            {
+                _view.OnLock?.Invoke();
+            }
         }
 
         private void SetupCamera()

@@ -14,12 +14,14 @@ namespace ProjectTA.Module.Dialogue
         [SerializeField] private Text _messageText;
         [SerializeField] private UnityEvent _onStart;
         [SerializeField] private UnityEvent _onEnd; 
+        [SerializeField] private UnityEvent _onLastLine; 
         private UnityAction _onNext;
 
         public TMP_Text CharacterText => _characterText;
         public Text MessageText => _messageText;
         public UnityEvent OnStart => _onStart;
         public UnityEvent OnEnd => _onEnd;
+        public UnityEvent OnLastLine => _onLastLine;
 
         
         public void DisplayNextLine()

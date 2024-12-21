@@ -1,8 +1,6 @@
 using Agate.MVC.Base;
-using log4net.Core;
 using ProjectTA.Boot;
 using ProjectTA.Message;
-using ProjectTA.Module.SaveSystem;
 using System.Collections;
 using UnityEngine;
 
@@ -10,7 +8,6 @@ namespace ProjectTA.Module.LevelData
 {
     public class LevelDataController : DataController<LevelDataController, LevelDataModel, ILevelDataModel>
     {
-        private readonly SaveSystemController _saveSystemController = new();
         private string _levelCollectionFileName = "LevelCollection";
 
         public void SetModel(LevelDataModel model)

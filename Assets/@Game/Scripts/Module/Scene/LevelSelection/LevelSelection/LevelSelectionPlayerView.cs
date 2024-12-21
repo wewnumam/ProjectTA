@@ -16,14 +16,20 @@ namespace ProjectTA.Module.LevelSelection
         [Header("UI References")]
         [SerializeField] private TMP_Text _currentLevelTitle;
         [SerializeField] private TMP_Text _currentLevelDescription;
+        [SerializeField] private Image _imageIcon;
         [SerializeField] private Button _playButton;
         [SerializeField] private CinemachineVirtualCamera _virtualCamera;
+
+        [SerializeField] private UnityEvent _onLock;
+        [SerializeField] private UnityEvent _onUnlock;
 
         public List<Transform> ListedModels => _listedModels;
         public TMP_Text CurrentLevelTitle => _currentLevelTitle;
         public TMP_Text CurrentLevelDescription => _currentLevelDescription;
         public Button PlayButton => _playButton;
         public CinemachineVirtualCamera VirtualCamera => _virtualCamera;
+        public UnityEvent OnLock => _onLock;
+        public UnityEvent OnUnlock => _onUnlock;
 
         private UnityAction _onPlay, _onMainMenu, _onNext, _onPrevious;
 
@@ -56,6 +62,7 @@ namespace ProjectTA.Module.LevelSelection
             {
                 CurrentLevelTitle.SetText(model.CurrentLevelData.Title);
                 CurrentLevelDescription.SetText(model.CurrentLevelData.Description);
+                _imageIcon.sprite = model.CurrentLevelData.Icon;
             }
         }
     }

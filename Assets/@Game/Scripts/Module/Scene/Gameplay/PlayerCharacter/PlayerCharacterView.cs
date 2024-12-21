@@ -76,6 +76,8 @@ namespace ProjectTA.Module.PlayerCharacter
 
         private void MovePlayerCharacter()
         {
+            _rb.isKinematic = _direction == Vector2.zero;
+
             _rb.velocity = new Vector3(_direction.x, 0, _direction.y).normalized * _movementSpeed;
             if (_aim == Vector2.zero)
                 RotatePlayerCharacter(_direction);

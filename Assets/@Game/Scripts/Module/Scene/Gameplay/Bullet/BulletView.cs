@@ -54,6 +54,11 @@ namespace ProjectTA.Module.Bullet
             if (collision.gameObject.CompareTag(TagManager.TAG_ENEMY))
             {
                 BulletMeshRenderer.material = EnemyHitMaterial;
+                // Optionally create a hit effect
+                if (HitEffect != null)
+                {
+                    Instantiate(HitEffect, collision.transform);
+                }
             }
             else
             {
@@ -70,11 +75,6 @@ namespace ProjectTA.Module.Bullet
             transform.position = collision.contacts[0].point;  // Set arrow to point of contact
             transform.parent = collision.transform;  // Attach arrow to the hit object
 
-            // Optionally create a hit effect
-            if (HitEffect != null)
-            {
-                Instantiate(HitEffect, transform.position, Quaternion.identity);
-            }
 
             // Destroy the arrow after a delay (if you want to remove the arrow)
             Invoke(nameof(OnCollideWithCollider), DestroyDelay);

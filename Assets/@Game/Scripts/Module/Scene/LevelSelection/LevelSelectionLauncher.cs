@@ -50,12 +50,28 @@ namespace ProjectTA.Scene.LevelSelection
 
             yield return StartCoroutine(_levelData.SetCurrentLevel(_saveSystem.Model.SaveData.CurrentLevelName));
 
+            if (_saveSystem.Model.SaveData.UnlockedLevels.Count <= 0)
+            {
+                SetInitialUnlockedLevels();
+            }
+
             _levelSelection.SetLevelCollection(_levelData.Model.LevelCollection);
             _levelSelection.SetCurrentLevelData(_levelData.Model.CurrentLevelData);
             _levelSelection.SetUnlockedLevels(_saveSystem.Model.SaveData.UnlockedLevels);
             _levelSelection.SetView(_view.levelSelectionView);
 
             yield return null;
+        }
+
+        private void SetInitialUnlockedLevels()
+        {
+            foreach (var levelItem in _levelData.Model.LevelCollection.LevelItems)
+            {
+                if (!levelItem.IsLockedLevel)
+                {
+                    Publish(new UnlockLevelMessage(levelItem));
+                }
+            }
         }
     }
 }

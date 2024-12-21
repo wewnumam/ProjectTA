@@ -55,13 +55,18 @@ namespace ProjectTA.Scene.MainMenu
 
             _view.SetCallbacks(OnPlay, OnQuit, OnQuiz);
 
-            SetInitialUnlockedCollectibles();
+            if (_saveSystem.Model.SaveData.UnlockedCollectibles.Count > 0  && _collectibleData.Model.UnlockedCollectibleItems.Count <= 0)
+            {
+                SetInitialUnlockedCollectibles();
+            }
 
             _tutorial.SetView(_view.TutorialView);
 
             _collectibleList.SetCollectibleCollection(_collectibleData.Model.CollectibleCollection);
             _collectibleList.SetUnlockedCollectibles(_collectibleData.Model.UnlockedCollectibleItems);
             _collectibleList.SetView(_view.CollectibleListView);
+
+            
 
             yield return null;
         }
@@ -71,7 +76,6 @@ namespace ProjectTA.Scene.MainMenu
             if (_saveSystem.Model.SaveData.CurrentCutsceneName == TagManager.DEFAULT_CUTSCENENAME)
             {
                 SceneLoader.Instance.LoadScene(TagManager.SCENE_CUTSCENE);
-                SetInitialUnlockedLevels();
             }
             else
             {
@@ -87,17 +91,6 @@ namespace ProjectTA.Scene.MainMenu
         private void OnQuiz()
         {
             SceneLoader.Instance.LoadScene(TagManager.SCENE_QUIZ);
-        }
-
-        private void SetInitialUnlockedLevels()
-        {
-            foreach (var levelItem in _levelData.Model.LevelCollection.LevelItems)
-            {
-                if (!levelItem.IsLockedLevel)
-                {
-                    Publish(new UnlockLevelMessage(levelItem));
-                }
-            }
         }
 
         private void SetInitialUnlockedCollectibles()

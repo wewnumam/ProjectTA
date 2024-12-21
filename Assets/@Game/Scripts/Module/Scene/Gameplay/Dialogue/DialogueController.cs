@@ -23,9 +23,10 @@ namespace ProjectTA.Module.Dialogue
         {
             if (!_story.canContinue)
             {
-                _view.OnEnd?.Invoke();
                 Publish(new GameResumeMessage());
                 Publish(new GameStateMessage(EnumManager.GameState.Playing));
+                _story.ResetState();
+                _story = null;
                 _view.OnEnd?.Invoke();
                 return;
             }
@@ -33,6 +34,10 @@ namespace ProjectTA.Module.Dialogue
             if (_isTextComplete)
             {
                 _text = _story.Continue();
+                if (!_story.canContinue)
+                {
+                    _view.OnLastLine?.Invoke();
+                }
             }
             ParseSentence(_text?.Trim());
         }
@@ -67,9 +72,9 @@ namespace ProjectTA.Module.Dialogue
 
             Publish(new GamePauseMessage());
             Publish(new GameStateMessage(EnumManager.GameState.Dialogue));
-            _view.OnStart?.Invoke();
             _story = new Story(message.TextAsset.text);
             DisplayNextLine();
+            _view.OnStart?.Invoke();
         }
     }
 }

@@ -30,7 +30,7 @@ MonoBehaviour:
   - _collectibleData: {fileID: 11400000, guid: 139837f5715273840b6589cceebde55d, type: 2}
     _objectPosition: {x: 30, y: 0.5, z: -21}
     _rectPosition: {x: 179, y: -87, z: 0}
-  _enemyPrefab: {fileID: 5375070630054367085, guid: 443df28119fa4364689fa70350348208,
+  _enemyPrefab: {fileID: 5375070630054367085, guid: de55181138340c942ba24b6984e2afb4,
     type: 3}
   _environmentPrefab: {fileID: 5773407093173007764, guid: 022ccb88d2a3b5740b579b2900c19fa1,
     type: 3}

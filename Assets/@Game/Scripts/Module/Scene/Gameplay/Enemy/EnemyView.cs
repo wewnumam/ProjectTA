@@ -12,6 +12,8 @@ namespace ProjectTA.Module.Enemy
         [SerializeField] private float _rayDistance = 2f; 
         [SerializeField] private float _rayAngle = 30f;
         [SerializeField] private float _rotationSpeed = 5f;
+        [SerializeField] ParticleSystem _spawnFX;
+        [SerializeField] ParticleSystem _dieFX;
         
         private bool _isPause;
         private bool _isDie;
@@ -34,6 +36,11 @@ namespace ProjectTA.Module.Enemy
             {
                 _player = GameObject.FindGameObjectWithTag(TagManager.TAG_PLAYER).transform;
             }
+
+            if (_spawnFX != null)
+            {
+                _spawnFX.Play();
+            }
         }
 
         private void FixedUpdate()
@@ -44,7 +51,7 @@ namespace ProjectTA.Module.Enemy
                 return;
             }
 
-            if (_isPause)
+            if (_isPause || _isDie)
                 return;
             
             FollowPlayer();
@@ -139,6 +146,10 @@ namespace ProjectTA.Module.Enemy
         {
             if (collision.gameObject.CompareTag(TagManager.TAG_BULLET) && !_isDie)
             {
+                if (_dieFX != null)
+                {
+                    _dieFX.Play();
+                }
                 _isDie = true;
                 Invoke(nameof(Kill), _destroyDelay);
             }
