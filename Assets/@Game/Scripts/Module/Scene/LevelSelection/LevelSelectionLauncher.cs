@@ -9,6 +9,8 @@ using ProjectTA.Module.SaveSystem;
 using UnityEngine;
 using ProjectTA.Utility;
 using ProjectTA.Module.LevelSelection;
+using Ink.Parsed;
+using System.Collections.Generic;
 
 namespace ProjectTA.Scene.LevelSelection
 {
@@ -31,7 +33,6 @@ namespace ProjectTA.Scene.LevelSelection
         protected override IConnector[] GetSceneConnectors()
         {
             return new IConnector[] {
-                new LevelSelectionPlayerConnector(),
             };
         }
 
@@ -56,8 +57,15 @@ namespace ProjectTA.Scene.LevelSelection
             }
 
             _levelSelection.SetLevelCollection(_levelData.Model.LevelCollection);
-            _levelSelection.SetCurrentLevelData(_levelData.Model.CurrentLevelData);
-            _levelSelection.SetUnlockedLevels(_saveSystem.Model.SaveData.UnlockedLevels);
+            List<SOLevelData> unlockedLevels = new();
+            foreach (var levelData in _levelData.Model.LevelCollection.LevelItems)
+            {
+                if (_saveSystem.Model.SaveData.UnlockedLevels.Contains(levelData.name))
+                {
+                    unlockedLevels.Add(levelData);
+                }
+            }
+            _levelSelection.SetUnlockedLevels(unlockedLevels);
             _levelSelection.SetView(_view.levelSelectionView);
 
             yield return null;

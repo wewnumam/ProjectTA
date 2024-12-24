@@ -1,5 +1,6 @@
 using Agate.MVC.Base;
 using Cinemachine;
+using NaughtyAttributes;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -22,14 +23,7 @@ namespace ProjectTA.Module.LevelSelection
 
         [SerializeField] private UnityEvent _onLock;
         [SerializeField] private UnityEvent _onUnlock;
-
-        public List<Transform> ListedModels => _listedModels;
-        public TMP_Text CurrentLevelTitle => _currentLevelTitle;
-        public TMP_Text CurrentLevelDescription => _currentLevelDescription;
-        public Button PlayButton => _playButton;
-        public CinemachineVirtualCamera VirtualCamera => _virtualCamera;
-        public UnityEvent OnLock => _onLock;
-        public UnityEvent OnUnlock => _onUnlock;
+        [SerializeField, ReadOnly, ResizableTextArea] string _log;
 
         private UnityAction _onPlay, _onMainMenu, _onNext, _onPrevious;
 
@@ -43,6 +37,16 @@ namespace ProjectTA.Module.LevelSelection
             _onPrevious?.Invoke();
         }
 
+        public void Play()
+        {
+            _onPlay?.Invoke();
+        }
+
+        public void MainMenu()
+        {
+            _onMainMenu?.Invoke();
+        }
+
         public void SetCallbacks(UnityAction onPlay, UnityAction onMainMenu, UnityAction onNext, UnityAction onPrevious)
         {
             _onPlay = onPlay;
@@ -51,19 +55,29 @@ namespace ProjectTA.Module.LevelSelection
             _onPrevious = onPrevious;
         }
 
-        public void Play() => _onPlay?.Invoke();
-        public void MainMenu() => _onMainMenu?.Invoke();
-
         protected override void InitRenderModel(ILevelSelectionPlayerModel model) { }
 
         protected override void UpdateRenderModel(ILevelSelectionPlayerModel model)
         {
             if (model.CurrentLevelData != null)
             {
-                CurrentLevelTitle.SetText(model.CurrentLevelData.Title);
-                CurrentLevelDescription.SetText(model.CurrentLevelData.Description);
+                _currentLevelTitle.SetText(model.CurrentLevelData.Title);
+                _currentLevelDescription.SetText(model.CurrentLevelData.Description);
                 _imageIcon.sprite = model.CurrentLevelData.Icon;
+                _virtualCamera.LookAt = _listedModels[model.CurrentLevelDataIndex];
+                _virtualCamera.Follow = _listedModels[model.CurrentLevelDataIndex];
+                _playButton.interactable = model.IsCurrentLevelUnlocked();
+                if (model.IsCurrentLevelUnlocked())
+                {
+                    _onUnlock?.Invoke();
+                }
+                else
+                {
+                    _onLock?.Invoke();
+                }
             }
+
+            _log = model.GetLog();
         }
     }
 }

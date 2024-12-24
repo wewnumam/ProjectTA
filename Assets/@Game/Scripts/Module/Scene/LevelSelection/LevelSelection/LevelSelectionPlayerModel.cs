@@ -6,31 +6,69 @@ namespace ProjectTA.Module.LevelSelection
 {
     public class LevelSelectionPlayerModel : BaseModel, ILevelSelectionPlayerModel
     {
-        public SOLevelCollection LevelCollection { get; private set; }
         public SOLevelData CurrentLevelData { get; private set; }
-        public List<string> UnlockedLevels { get; private set; }
+        public int CurrentLevelDataIndex { get; private set; } = 0;
+
+        private SOLevelCollection _levelCollection = null;
+        private List<SOLevelData> _unlockedLevels = new();
 
         public void SetLevelCollection(SOLevelCollection levelCollection)
         {
-            LevelCollection = levelCollection;
+            _levelCollection = levelCollection;
             SetDataAsDirty();
         }
 
-        public void SetCurrentLevelData(SOLevelData levelData)
+        public void SetUnlockedLevels(List<SOLevelData> unlockedLevels)
         {
-            CurrentLevelData = levelData;
+            _unlockedLevels = unlockedLevels;
             SetDataAsDirty();
         }
 
-        public void SetUnlockedLevels(List<string> unlockedLevels)
+        public bool IsCurrentLevelUnlocked()
         {
-            UnlockedLevels = unlockedLevels;
+            return _unlockedLevels.Contains(CurrentLevelData);
+        }
+
+        public void SetNextLevelData()
+        {
+            CurrentLevelDataIndex++;
+            if (CurrentLevelDataIndex >= _levelCollection.LevelItems.Count)
+            {
+                CurrentLevelDataIndex = 0;
+            }
+            CurrentLevelData = _levelCollection.LevelItems[CurrentLevelDataIndex];
+            
             SetDataAsDirty();
         }
 
-        public bool IsLevelUnlocked(string levelName)
+        public void SetPreviousLevelData()
         {
-            return UnlockedLevels.Contains(levelName);
+            CurrentLevelDataIndex--;
+            if (CurrentLevelDataIndex < 0)
+            {
+                CurrentLevelDataIndex = _levelCollection.LevelItems.Count - 1;
+            }
+            CurrentLevelData = _levelCollection.LevelItems[CurrentLevelDataIndex];
+
+            SetDataAsDirty();
+        }
+
+        public string GetLog()
+        {
+            var sb = new System.Text.StringBuilder();
+
+            sb.AppendLine("LevelSelectionPlayerModel Log:");
+            sb.AppendLine($"{nameof(CurrentLevelData)}\t: {CurrentLevelData.name}");
+            sb.AppendLine($"{nameof(CurrentLevelData.Title)}\t\t: {CurrentLevelData.Title}");
+            sb.AppendLine($"{nameof(CurrentLevelDataIndex)}\t\t: {CurrentLevelDataIndex}");
+
+            sb.AppendLine("\nUnlocked Level:");
+            foreach (var levelData in _unlockedLevels)
+            {
+                sb.AppendLine($"{levelData}\t\t: {levelData.name}");
+            }
+
+            return sb.ToString();
         }
     }
 }

@@ -7,8 +7,10 @@ namespace ProjectTA.Module.LevelSelection
 {
     public interface ILevelSelectionPlayerModel : IBaseModel
     {
-        SOLevelCollection LevelCollection { get; }
         SOLevelData CurrentLevelData { get; }
-        List<string> UnlockedLevels { get; }
+        int CurrentLevelDataIndex { get; }
+
+        bool IsCurrentLevelUnlocked();
+        string GetLog();
     }
 }

@@ -9,18 +9,15 @@ namespace ProjectTA.Module.LevelSelection
 {
     public class LevelSelectionPlayerController : ObjectController<LevelSelectionPlayerController, LevelSelectionPlayerModel, ILevelSelectionPlayerModel, LevelSelectionPlayerView>
     {
-        private int currentIndex = 0;
-
         public void SetLevelCollection(SOLevelCollection levelCollection) => _model.SetLevelCollection(levelCollection);
-        public void SetCurrentLevelData(SOLevelData levelData) => _model.SetCurrentLevelData(levelData);
-        public void SetUnlockedLevels(List<string> unlockedLevels) => _model.SetUnlockedLevels(unlockedLevels);
+
+        public void SetUnlockedLevels(List<SOLevelData> unlockedLevels) => _model.SetUnlockedLevels(unlockedLevels);
 
         public override void SetView(LevelSelectionPlayerView view)
         {
-            base.SetView(view);
-
             view.SetCallbacks(OnPlay, OnMainMenu, OnNext, OnPrevious);
             OnNext();
+            view.SetModel(_model);
         }
 
         private void OnPlay()
@@ -35,46 +32,14 @@ namespace ProjectTA.Module.LevelSelection
 
         private void OnNext()
         {
-            currentIndex++;
-            currentIndex = currentIndex >= _model.LevelCollection.LevelItems.Count ? 0 : currentIndex;
-            UpdateContent();
+            _model.SetNextLevelData();
+            Publish(new ChooseLevelMessage(_model.CurrentLevelData));
         }
 
         private void OnPrevious()
         {
-            currentIndex--;
-            currentIndex = currentIndex < 0 ? _model.LevelCollection.LevelItems.Count - 1 : currentIndex;
-            UpdateContent();
-        }
-
-        private void UpdateContent()
-        {
-            var currentLevel = _model.LevelCollection.LevelItems[currentIndex];
-            Publish(new ChooseLevelMessage(currentLevel));
-            
-            SetupCamera();
-            
-            _view.PlayButton.interactable = _model.IsLevelUnlocked(currentLevel.name);
-            
-            if (_model.IsLevelUnlocked(currentLevel.name))
-            {
-                _view.OnUnlock?.Invoke();
-            }
-            else
-            {
-                _view.OnLock?.Invoke();
-            }
-        }
-
-        private void SetupCamera()
-        {
-            _view.VirtualCamera.Follow = _view.ListedModels[currentIndex];
-            _view.VirtualCamera.LookAt = _view.ListedModels[currentIndex];
-        }
-
-        public void OnChooseLevel(ChooseLevelMessage message)
-        {
-            _model.SetCurrentLevelData(message.LevelData);
+            _model.SetPreviousLevelData();
+            Publish(new ChooseLevelMessage(_model.CurrentLevelData));
         }
     }
 }
