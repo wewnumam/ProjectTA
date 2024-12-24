@@ -12,16 +12,22 @@ namespace ProjectTA.Module.LevelSelection
         private SOLevelCollection _levelCollection = null;
         private List<SOLevelData> _unlockedLevels = new();
 
+        public SOLevelCollection LevelCollection { get => _levelCollection; }
+        public List<SOLevelData> UnlockedLevels { get => _unlockedLevels; }
+
+        public void SetCurrentLevelData(SOLevelData levelData)
+        {
+            CurrentLevelData = levelData;
+        }
+
         public void SetLevelCollection(SOLevelCollection levelCollection)
         {
             _levelCollection = levelCollection;
-            SetDataAsDirty();
         }
 
         public void SetUnlockedLevels(List<SOLevelData> unlockedLevels)
         {
             _unlockedLevels = unlockedLevels;
-            SetDataAsDirty();
         }
 
         public bool IsCurrentLevelUnlocked()
@@ -58,9 +64,13 @@ namespace ProjectTA.Module.LevelSelection
             var sb = new System.Text.StringBuilder();
 
             sb.AppendLine("LevelSelectionPlayerModel Log:");
-            sb.AppendLine($"{nameof(CurrentLevelData)}\t: {CurrentLevelData.name}");
-            sb.AppendLine($"{nameof(CurrentLevelData.Title)}\t\t: {CurrentLevelData.Title}");
+            if (CurrentLevelData != null)
+            {
+                sb.AppendLine($"{nameof(CurrentLevelData)}\t: {CurrentLevelData.name}");
+                sb.AppendLine($"{nameof(CurrentLevelData.Title)}\t\t: {CurrentLevelData.Title}");
+            }
             sb.AppendLine($"{nameof(CurrentLevelDataIndex)}\t\t: {CurrentLevelDataIndex}");
+                
 
             sb.AppendLine("\nUnlocked Level:");
             foreach (var levelData in _unlockedLevels)

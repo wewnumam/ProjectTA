@@ -15,6 +15,7 @@ namespace ProjectTA.Tests
     {
         private GameObject _playerObject; private PlayerCharacterView _playerCharacter;
 
+        [UnitySetUp]
         public IEnumerator Setup()
         {
             SceneManager.LoadScene(TagManager.SCENE_GAMEPLAY);
