@@ -11,8 +11,8 @@ namespace ProjectTA.Module.QuizPlayer
         {
             _model.InitQuizItem(view.QuizItems);
             _model.AddCallbacks(OnCorrect, OnWrong, OnDone);
-            _model.SetNextQuizItem();
             view.SetModel(_model);
+            view.UpdateView();
         }
 
         private void OnCorrect()

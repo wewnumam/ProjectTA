@@ -1,3 +1,4 @@
+using ProjectTA.Module.QuizPlayer;
 using System;
 using UnityEngine;
 
@@ -16,10 +17,14 @@ namespace ProjectTA.Module.GameConstants
         [Header("Enemy Constants")]
         [SerializeField] private EnemyConstants _enemyConstants;
 
+        [Header("Quiz Form Constants")]
+        [SerializeField] private QuizFormConstants _quizFormConstants;
+
         public bool IsJoystickActive => _isJoystickActive;
         public int InitialHealth => _initialHealth;
         public ShootingConstants Shooting => _shootingConstants;
         public EnemyConstants Enemy => _enemyConstants;
+        public QuizFormConstants QuizFormConstants => _quizFormConstants;
     }
 
     [Serializable]
@@ -53,5 +58,15 @@ namespace ProjectTA.Module.GameConstants
         public float EnemySpawnInterval => _enemySpawnInterval;
         public float EnemyMassiveSpawnInterval => _enemyMassiveSpawnInterval;
         public float EnemyDestroyDelay => _enemyDestroyDelay;
+    }
+
+    [Serializable]
+    public class QuizFormConstants
+    {
+        [SerializeField] private string _formUrl;
+        [SerializeField] private ChoicesRecord _entryIds;
+
+        public string FormUrl => _formUrl;
+        public ChoicesRecord EntryIds => _entryIds;
     }
 }

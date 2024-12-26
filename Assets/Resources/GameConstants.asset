@@ -26,3 +26,11 @@ MonoBehaviour:
     _enemySpawnInterval: 5
     _enemyMassiveSpawnInterval: 0.25
     _enemyDestroyDelay: 3
+  _quizFormConstants:
+    _formUrl: https://docs.google.com/forms/u/1/d/e/1FAIpQLSdlhKVlGxlwDChBO2f1i1OPsxITN5fE3eJm69MHiaOw66EU5Q/formResponse
+    _entryIds:
+      <SessionId>k__BackingField: entry.861163201
+      <DeviceId>k__BackingField: entry.466681076
+      <Question>k__BackingField: entry.802313376
+      <Choices>k__BackingField: entry.1780135778
+      <IsFirstChoice>k__BackingField: entry.755100478

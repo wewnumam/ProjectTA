@@ -1,4 +1,5 @@
 using Agate.MVC.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -20,6 +21,8 @@ namespace ProjectTA.Module.QuizPlayer
         public List<Button> Buttons { get; private set; }  = new();
         public List<ChoicesRecord> ChoicesRecords { get; private set; } = new();
         
+        private string _sessionId = string.Empty;
+        private bool _isFirstChoice = true;
         private UnityAction _onWrong = null;
         private UnityAction _onCorrect = null;
         private UnityAction _onDone = null;
@@ -29,6 +32,7 @@ namespace ProjectTA.Module.QuizPlayer
             QuizItems = quizItems;
             CurrentQuizItem = quizItems[0];
             AnswersCount = quizItems.Sum(item => item.Answers.Count);
+            _sessionId = Guid.NewGuid().ToString();
         }
 
         public void InitButtons(Button template, Transform parent)
@@ -67,7 +71,8 @@ namespace ProjectTA.Module.QuizPlayer
 
         public void AnswerCheck(QuizAnswer quizAnswer)
         {
-            ChoicesRecords.Add(new ChoicesRecord(CurrentQuizItem.Question, quizAnswer.Message));
+            ChoicesRecords.Add(new ChoicesRecord(_sessionId, SystemInfo.deviceUniqueIdentifier, CurrentQuizItem.Question, quizAnswer.Message, _isFirstChoice.ToString()));
+            _isFirstChoice = false;
 
             if (quizAnswer.IsCorrectAnswer)
             {
@@ -118,6 +123,8 @@ namespace ProjectTA.Module.QuizPlayer
             {
                 CurrentQuizItem = QuizItems[CurrentQuizItemIndex];
             }
+
+            _isFirstChoice = true;
 
             SetDataAsDirty();
         }
