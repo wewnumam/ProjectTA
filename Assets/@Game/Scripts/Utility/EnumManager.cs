@@ -17,5 +17,17 @@ namespace ProjectTA.Utility
             Puzzle,
             HiddenObject
         }
+
+        public enum QuestType
+        {
+            Kill,
+            Collectible,
+            Puzzle,
+            HiddenObject,
+            LevelPlayed,
+            GameWin,
+            MinutesPlayed,
+            QuizScore
+        }
     }
 }

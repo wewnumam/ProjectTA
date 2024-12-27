@@ -14,6 +14,7 @@ namespace ProjectTA.Module.SaveSystem
             Subscribe<UnlockCollectibleMessage>(_saveSystem.UnlockCollectible);
             Subscribe<ChoicesRecordsMessage>(_saveSystem.SaveChoicesRecords);
             Subscribe<DeleteSaveDataMessage>(_saveSystem.DeleteSaveData);
+            Subscribe<UpdateQuestDataMessage>(_saveSystem.SaveQuestData);
         }
 
         protected override void Disconnect()
@@ -23,6 +24,7 @@ namespace ProjectTA.Module.SaveSystem
             Unsubscribe<UnlockCollectibleMessage>(_saveSystem.UnlockCollectible);
             Unsubscribe<ChoicesRecordsMessage>(_saveSystem.SaveChoicesRecords);
             Unsubscribe<DeleteSaveDataMessage>(_saveSystem.DeleteSaveData);
+            Unsubscribe<UpdateQuestDataMessage>(_saveSystem.SaveQuestData);
         }
     }
 }

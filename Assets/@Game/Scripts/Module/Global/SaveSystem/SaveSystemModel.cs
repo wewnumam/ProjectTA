@@ -67,9 +67,15 @@ namespace ProjectTA.Module.SaveSystem
             return SaveData.UnlockedCollectibles.Contains(collectibleName);
         }
 
-        internal void SetChoicesRecords(List<ChoicesRecord> choicesRecords)
+        public void SetChoicesRecords(List<ChoicesRecord> choicesRecords)
         {
             SaveData.ChoicesRecords = choicesRecords;
+            SetDataAsDirty();
+        }
+
+        public void SetCurrentQuestData(QuestData.QuestData questData)
+        {
+            SaveData.CurrentQuestData = questData;
             SetDataAsDirty();
         }
     }

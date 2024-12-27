@@ -6,6 +6,7 @@ using ProjectTA.Module.GameConstants;
 using ProjectTA.Module.GameSettings;
 using ProjectTA.Module.GameState;
 using ProjectTA.Module.LevelData;
+using ProjectTA.Module.QuestData;
 using ProjectTA.Module.SaveSystem;
 using System.Collections;
 using UnityEngine;
@@ -14,10 +15,6 @@ namespace ProjectTA.Boot
 {
     public class GameMain : BaseMain<GameMain>, IMain
     {
-        private readonly SaveSystemController _saveSystem;
-        private readonly LevelDataController _levelData;
-        private readonly CollectibleDataController _collectibleData;
-
         protected override IConnector[] GetConnectors()
         {
             return new IConnector[] {
@@ -26,6 +23,7 @@ namespace ProjectTA.Boot
                 new CollectibleDataConnector(),
                 new GameStateConnector(),
                 new GameSettingsConnector(),
+                new QuestDataConnector(),
             };
         }
 
@@ -38,6 +36,7 @@ namespace ProjectTA.Boot
                 new GameConstantsController(),
                 new GameStateController(),
                 new GameSettingsController(),
+                new QuestDataController(),
             };
         }
 

@@ -18,5 +18,7 @@ namespace ProjectTA.Module.SaveSystem
         public List<string> UnlockedCollectibles { get; set; } = new List<string>();
         [field: SerializeField]
         public List<ChoicesRecord> ChoicesRecords { get; set; } = new() { new ChoicesRecord(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty)};
+        [field: SerializeField]
+        public QuestData.QuestData CurrentQuestData { get; set; } = new();
     }
 }

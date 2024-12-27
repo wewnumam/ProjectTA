@@ -7,10 +7,12 @@ using ProjectTA.Message;
 using UnityEngine;
 using ProjectTA.Utility;
 using ProjectTA.Module.SaveSystem;
-using ProjectTA.Module.LevelData;
 using ProjectTA.Module.CollectibleData;
 using ProjectTA.Module.Tutorial;
 using ProjectTA.Module.CollectibleList;
+using System;
+using ProjectTA.Module.QuestData;
+using ProjectTA.Module.QuestList;
 
 namespace ProjectTA.Scene.MainMenu
 {
@@ -18,18 +20,20 @@ namespace ProjectTA.Scene.MainMenu
     {
         public override string SceneName {get {return TagManager.SCENE_MAINMENU;}}
 
-        private readonly LevelDataController _levelData = new();
         private readonly SaveSystemController _saveSystem = new();
         private readonly CollectibleDataController _collectibleData = new();
         private readonly CollectibleListController _collectibleList = new();
+        private readonly QuestDataController _questData = new();
 
         private readonly TutorialController _tutorial = new();
+        private readonly QuestListController _questList = new();
 
         protected override IController[] GetSceneDependencies()
         {
             return new IController[] {
                 new TutorialController(),
                 new CollectibleListController(),
+                new QuestListController(),
             };
         }
 
@@ -55,6 +59,8 @@ namespace ProjectTA.Scene.MainMenu
 
             _view.SetCallbacks(OnPlay, OnQuit, OnQuiz);
 
+            SetInitialQuizData();
+
             if (_saveSystem.Model.SaveData.UnlockedCollectibles.Count > 0  && _collectibleData.Model.UnlockedCollectibleItems.Count <= 0)
             {
                 SetInitialUnlockedCollectibles();
@@ -66,7 +72,9 @@ namespace ProjectTA.Scene.MainMenu
             _collectibleList.SetUnlockedCollectibles(_collectibleData.Model.UnlockedCollectibleItems);
             _collectibleList.SetView(_view.CollectibleListView);
 
-            
+            _questList.SetQuestCollection(_questData.Model.QuestCollection);
+            _questList.SetQuestData(_questData.Model.CurrentQuestData);
+            _questList.SetView(_view.QuestListView);
 
             yield return null;
         }
@@ -99,6 +107,11 @@ namespace ProjectTA.Scene.MainMenu
             {
                 _collectibleData.AddUnlockedCollectible(collectibleName);
             }
+        }
+
+        private void SetInitialQuizData()
+        {
+            _questData.SetCurrentQuestData(_saveSystem.Model.SaveData.CurrentQuestData);
         }
     }
 }

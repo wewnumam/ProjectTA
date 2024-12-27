@@ -112,16 +112,22 @@ namespace ProjectTA.Module.SaveSystem
             _model.SetSaveData(LoadGame());
         }
 
-        internal void ChooseLevel(ChooseLevelMessage message)
+        public void ChooseLevel(ChooseLevelMessage message)
         {
             _model.SetCurrentLevelName(message.LevelData.name);
             _model.SetCurrentCutsceneName(message.LevelData.CutsceneData.name);
             SaveGame(_model.SaveData);
         }
 
-        internal void SaveChoicesRecords(ChoicesRecordsMessage message)
+        public void SaveChoicesRecords(ChoicesRecordsMessage message)
         {
             _model.SetChoicesRecords(message.ChoicesRecords);
+            SaveGame(_model.SaveData);
+        }
+
+        public void SaveQuestData(UpdateQuestDataMessage message)
+        {
+            _model.SetCurrentQuestData(message.QuestData);
             SaveGame(_model.SaveData);
         }
     }
