@@ -1,2 +1,1 @@
-Pohon Gayam
-Sepanjang jalan jalan margoutomo, malioboro, dan margomulyo ditanam Pohon Asem yang bermakna sengsem/menarik dan pohon gayam yang bermakna ayom/teduh.
+Pohon Gayam yang ditanam dibeberapa tempat di sepanjang Jalan Margo Utama, Malioboro, dan Margo Mulya yang memiliki makna ayom/teduh

@@ -1,3 +1,5 @@
-Jalan Margo Utomo
-Perjalanan manusia menghadap sang kholiq yang disimbolkan dari tugu golong-gilig ke arah selatan.
-Golong-gilig melambangkan bersatunya cipta, rasa, dan karsa yang dilandasi dari kesucian hati yang berwarna putih. 
+Tiga rangkaian Jalan Margo Utomo, Malioboro, dan Margo Mulyo. Teramasuk kedalam rangkaian sumbu filosofi jogja
+Mengandung filosofi "Perjalanan manusia menghadap sang kholiq" yang disimbolkan dari tugu kearah selatan
+Melalui jalan Margoutomo yang namanya sendiri memiliki arti "Jalan Menuju Keutamaan"
+Berlanjut kearah selatan, melalui Jalan Malioboro sembari membawa obor ilmu pengetahuan, bekal ilmu yang diajarkan para wali selama hidupnya.
+Dan terus keselatan melalui jalan margomulyo dan kemudian melalui Jalan Pangkuran yang bertujuan untuk mengusir Nafsu yang negatif.

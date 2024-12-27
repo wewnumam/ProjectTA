@@ -1,2 +1,2 @@
 Kompleks Kepatihan
-keberadaan kompleks kepatihan dan pasar bringharjo yang melambangkan godaan duniawi dan godaan syahwat manusia yang harus dihindari.
+Keberadaan Kompleks kepatihan yang melambangkan godaan duniawi dan godaan syahwat manusia yang harus dihindari

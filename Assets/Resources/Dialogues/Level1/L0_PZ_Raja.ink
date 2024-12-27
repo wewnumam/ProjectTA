@@ -1,2 +1,2 @@
-Raja
-Lorem ipsum dolor sit amet
+Character : Puzzle Raja ya.. tertulis besar sekali dalam aksara jawa, untung aku bisa membacanya.
+Character : Dibelakangnya tertulis "Pangeran mangkubumi, seorang Arsitek yang sangat memegang teguh Nilai Historis dan Filosofis"

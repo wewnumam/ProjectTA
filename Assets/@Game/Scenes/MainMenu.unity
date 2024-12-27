@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1427397810}
-  m_IndirectSpecularColor: {r: 0.106880374, g: 0.098027416, b: 0.16135706, a: 1}
+  m_IndirectSpecularColor: {r: 0.08968252, g: 0.07284977, b: 0.14552101, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8602,6 +8602,197 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1536710540}
     m_Modifications:
+    - target: {fileID: 674195000949609589, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[0]._image
+      value: 
+      objectReference: {fileID: 21300000, guid: 83ec03f44fcf01145b199d8d19fa7351,
+        type: 3}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[0]._title
+      value: Movement
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[1]._image
+      value: 
+      objectReference: {fileID: 21300000, guid: ca184dad78df5494b83814bc42847733,
+        type: 3}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[1]._title
+      value: Aim & Shoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[2]._image
+      value: 
+      objectReference: {fileID: 21300000, guid: 72503d3098e7d0441b9362a50a4d2f26,
+        type: 3}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[2]._title
+      value: Main Quest
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[3]._image
+      value: 
+      objectReference: {fileID: 21300000, guid: aacbd1e5724bc5b4ab96cdc5082af9c9,
+        type: 3}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[3]._title
+      value: Main Quest
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[4]._image
+      value: 
+      objectReference: {fileID: 21300000, guid: 991ecb63ebb6a084f911cc5480465b0d,
+        type: 3}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[4]._title
+      value: Main Quest
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[5]._image
+      value: 
+      objectReference: {fileID: 21300000, guid: 719267f912d47874ba10a2f1becf3312,
+        type: 3}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[5]._title
+      value: Puzzle
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[6]._image
+      value: 
+      objectReference: {fileID: 21300000, guid: c59212e5f8567b0458ef42c6d4ff3c65,
+        type: 3}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[6]._title
+      value: Side Quest
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[7]._image
+      value: 
+      objectReference: {fileID: 21300000, guid: e6e267b03adfe574290f246f733194b8,
+        type: 3}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[7]._title
+      value: Side Quest
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[8]._image
+      value: 
+      objectReference: {fileID: 21300000, guid: e1d673c9b5615024aa50d6e9ea43fe2a,
+        type: 3}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[8]._title
+      value: Interactive Obect
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[9]._image
+      value: 
+      objectReference: {fileID: 21300000, guid: a1103a4045f52e445ae0729f305a3bc0,
+        type: 3}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[9]._title
+      value: Time Limit
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[0]._description
+      value: Gunakan Joystick berwarna biru diselah kiri untuk menggerakan karakter.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[1]._description
+      value: Gunakan joystick berwarna merah disebelah kanan untuk membidik dan menembak.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[2]._description
+      value: Kumpulkan 3 keping puzzle yang tersebar di sekitar peta permainan.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[3]._description
+      value: Informasi jumlah puzzle yang telah terkumpul akan tertera pada bagian
+        atas.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[4]._description
+      value: Setelah terkumpul, segeralah menuju bangunan utama dan selesaikan puzzlenya.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[5]._description
+      value: Drag & Drop potongan puzzle ke tempat yang benar untk menyelesaikan
+        puzzlenya.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[6]._description
+      value: Kumpulkan bangunan tersembunyi di sekitar untuk mengungkap filosofi
+        dibaliknya.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[7]._description
+      value: Informasi jumlah bangunan tersembunyi tersebut dapat dilihat di sebelah
+        kanan.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[8]._description
+      value: Objek yang dapat diinteraksi akan muncul outline berwarna putih disekitar
+        objek tersebut.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[9]._description
+      value: Segeralah selesaikan tugasmu, karena terdapat hitung mundur serangan
+        gelombang roh jahat.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3125824327270060895, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1231
+      objectReference: {fileID: 0}
+    - target: {fileID: 3125824327270060895, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3125824327270060895, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 86.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4375358405656207759, guid: e88100e3bcfdb574d8a00a63ac4e5699,
         type: 3}
       propertyPath: m_Pivot.x
