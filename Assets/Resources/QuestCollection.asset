@@ -30,7 +30,7 @@ MonoBehaviour:
     _requiredAmount: 7
   - _label: Win 5 Times
     _type: 5
-    _requiredAmount: 4
+    _requiredAmount: 5
   - _label: Play for 10 Minutes
     _type: 6
     _requiredAmount: 10

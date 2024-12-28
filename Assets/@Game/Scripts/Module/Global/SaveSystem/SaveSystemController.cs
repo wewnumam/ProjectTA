@@ -130,5 +130,11 @@ namespace ProjectTA.Module.SaveSystem
             _model.SetCurrentQuestData(message.QuestData);
             SaveGame(_model.SaveData);
         }
+
+        public void AddLevelPlayed(AddLevelPlayedMessage message)
+        {
+            _model.AddLevelPlayed(message.LevelName);
+            SaveGame(_model.SaveData);
+        }
     }
 }

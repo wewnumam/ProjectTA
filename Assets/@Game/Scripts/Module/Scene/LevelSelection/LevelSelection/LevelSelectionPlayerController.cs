@@ -22,6 +22,7 @@ namespace ProjectTA.Module.LevelSelection
 
         private void OnPlay()
         {
+            Publish(new AddLevelPlayedMessage(_model.CurrentLevelData.name));
             SceneLoader.Instance.LoadScene(TagManager.SCENE_GAMEPLAY);
         }
 

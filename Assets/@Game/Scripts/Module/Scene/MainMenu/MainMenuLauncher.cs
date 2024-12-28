@@ -59,12 +59,13 @@ namespace ProjectTA.Scene.MainMenu
 
             _view.SetCallbacks(OnPlay, OnQuit, OnQuiz);
 
-            SetInitialQuizData();
 
             if (_saveSystem.Model.SaveData.UnlockedCollectibles.Count > 0  && _collectibleData.Model.UnlockedCollectibleItems.Count <= 0)
             {
                 SetInitialUnlockedCollectibles();
             }
+
+            SetInitialQuestData();
 
             _tutorial.SetView(_view.TutorialView);
 
@@ -109,9 +110,11 @@ namespace ProjectTA.Scene.MainMenu
             }
         }
 
-        private void SetInitialQuizData()
+        private void SetInitialQuestData()
         {
             _questData.SetCurrentQuestData(_saveSystem.Model.SaveData.CurrentQuestData);
+            _questData.SetCollectibleCollectionAndUnlockedCollectible(_collectibleData.Model.CollectibleCollection, _saveSystem.Model.SaveData.UnlockedCollectibles);
+            _questData.SetCurrentLevelPlayedAmount(_saveSystem.Model.SaveData.LevelPlayed.Count);
         }
     }
 }

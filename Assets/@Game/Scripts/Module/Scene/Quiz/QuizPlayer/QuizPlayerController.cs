@@ -28,6 +28,7 @@ namespace ProjectTA.Module.QuizPlayer
         private void OnDone()
         {
             Publish(new ChoicesRecordsMessage(_model.ChoicesRecords));
+            Publish(new QuizScoreMessage(_model.GetScore()));
             SceneLoader.Instance.LoadScene(TagManager.SCENE_MAINMENU);
         }
     }

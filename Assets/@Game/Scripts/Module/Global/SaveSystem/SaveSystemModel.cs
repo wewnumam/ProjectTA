@@ -78,5 +78,14 @@ namespace ProjectTA.Module.SaveSystem
             SaveData.CurrentQuestData = questData;
             SetDataAsDirty();
         }
+
+        public void AddLevelPlayed(string levelName)
+        {
+            if (!SaveData.LevelPlayed.Contains(levelName))
+            {
+                SaveData.LevelPlayed.Add(levelName);
+            }
+            SetDataAsDirty();
+        }
     }
 }

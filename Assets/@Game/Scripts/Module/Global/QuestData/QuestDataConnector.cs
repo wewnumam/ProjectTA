@@ -12,6 +12,8 @@ namespace ProjectTA.Module.QuestData
             Subscribe<GameOverMessage>(_questData.OnGameOver);
             Subscribe<GameWinMessage>(_questData.OnGameWin);
             Subscribe<AddKillCountMessage>(_questData.OnAddKillCount);
+            Subscribe<QuizScoreMessage>(_questData.OnSetQuizScore);
+            Subscribe<UpdateCountdownMessage>(_questData.OnUpdateCountdown);
         }
 
         protected override void Disconnect()
@@ -19,6 +21,8 @@ namespace ProjectTA.Module.QuestData
             Unsubscribe<GameOverMessage>(_questData.OnGameOver);
             Unsubscribe<GameWinMessage>(_questData.OnGameWin);
             Unsubscribe<AddKillCountMessage>(_questData.OnAddKillCount);
+            Unsubscribe<QuizScoreMessage>(_questData.OnSetQuizScore);
+            Unsubscribe<UpdateCountdownMessage>(_questData.OnUpdateCountdown);
         }
     }
 }

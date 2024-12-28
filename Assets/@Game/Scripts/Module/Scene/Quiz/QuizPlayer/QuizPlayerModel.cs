@@ -1,4 +1,5 @@
 using Agate.MVC.Base;
+using Agate.MVC.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -145,6 +146,12 @@ namespace ProjectTA.Module.QuizPlayer
             }
 
             return sb.ToString();
+        }
+
+        public float GetScore()
+        {
+            float percentage = (float)(AnswersCount - WrongCount) / AnswersCount;
+            return percentage * 100f;
         }
     }
 }
