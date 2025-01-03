@@ -15,6 +15,7 @@ namespace ProjectTA.Module.PuzzleBoard
         private RectTransform draggableRect; // Reference to the draggable image's RectTransform
         private Canvas canvas;               // Reference to the canvas
         private CanvasGroup canvasGroup;
+        private Vector2 initialAnchoredPosition;
 
         public UnityAction<PuzzleDragable> onPlace;
         public UnityEvent onActive;
@@ -28,6 +29,8 @@ namespace ProjectTA.Module.PuzzleBoard
             canvasGroup = GetComponent<CanvasGroup>();
             if (canvasGroup == null)
                 canvasGroup = gameObject.AddComponent<CanvasGroup>();
+
+            initialAnchoredPosition = draggableRect.anchoredPosition;
         }
 
         public void SetPuzzleDragableActive()
@@ -81,6 +84,10 @@ namespace ProjectTA.Module.PuzzleBoard
                 draggableRect.anchoredPosition = targetPosition.anchoredPosition;
                 isActive = false;
                 onPlace?.Invoke(this);
+            }
+            else
+            {
+                draggableRect.anchoredPosition = initialAnchoredPosition;
             }
         }
     }
