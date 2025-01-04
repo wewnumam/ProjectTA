@@ -17,6 +17,8 @@ namespace ProjectTA.Module.PlayerCharacter
         [SerializeField] private LayerMask _enemyLayer;
         [SerializeField] private LineRenderer _lineRenderer;
         [SerializeField] private float _fixedYPosition = 1f;
+        [SerializeField] private AudioSource _walkSfx;
+        [SerializeField] private AudioSource _shootSfx;
 
         private Vector2 _direction;
         private Vector2 _aim;
@@ -72,6 +74,8 @@ namespace ProjectTA.Module.PlayerCharacter
                 RotateTowardsMouse();
             
             MovePlayerCharacter();
+            PlayWalkSfx();
+            PlayShootSfx();
         }
 
         private void MovePlayerCharacter()
@@ -112,6 +116,32 @@ namespace ProjectTA.Module.PlayerCharacter
                     Quaternion targetRotation = Quaternion.LookRotation(direction);
                     _rb.MoveRotation(targetRotation);
                 }
+            }
+        }
+
+        private void PlayWalkSfx()
+        {
+            if (_direction != Vector2.zero && !_walkSfx.isPlaying)
+            {
+                _walkSfx.Play();
+            }
+
+            if (_direction == Vector2.zero && _walkSfx.isPlaying)
+            {
+                _walkSfx.Stop();
+            }
+        }
+
+        private void PlayShootSfx()
+        {
+            if (_aim != Vector2.zero && !_shootSfx.isPlaying)
+            {
+                _shootSfx.Play();
+            }
+
+            if (_aim == Vector2.zero && _shootSfx.isPlaying)
+            {
+                _shootSfx.Stop();
             }
         }
 

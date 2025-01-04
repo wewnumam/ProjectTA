@@ -2,12 +2,20 @@ using Agate.MVC.Base;
 using ProjectTA.Message;
 using ProjectTA.Module.CollectibleData;
 using ProjectTA.Utility;
+using System;
 using UnityEngine;
 
 namespace ProjectTA.Module.PlayerCharacter
 {
     public class PlayerCharacterController : ObjectController<PlayerCharacterController, PlayerCharacterView>
     {
+        private bool _isVibrationOn = false;
+
+        public void SetInitialVibration(bool isVibrationOn)
+        {
+            _isVibrationOn = isVibrationOn;
+        }
+
         public override void SetView(PlayerCharacterView view)
         {
             base.SetView(view);
@@ -18,6 +26,12 @@ namespace ProjectTA.Module.PlayerCharacter
         private void OnCollideWithEnemy()
         {
             Publish(new SubtractHealthMessage(1));
+#if UNITY_ANDROID
+            if (_isVibrationOn)
+            {
+                Handheld.Vibrate();
+            }
+#endif
         }
 
         private void OnCollideWithCollectibleComponent(SOCollectibleData collectibleData)
@@ -75,5 +89,9 @@ namespace ProjectTA.Module.PlayerCharacter
             _view.SetIsJoyStickActive(message.IsJoystickActive);
         }
 
+        public void OnVibrate(GameSettingVibrateMessage message)
+        {
+            _isVibrationOn = message.Vibrate;
+        }
     }
 }

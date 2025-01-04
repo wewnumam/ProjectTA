@@ -34,13 +34,13 @@ namespace ProjectTA.Module.GameSettings
             yield return base.Initialize();
         }
 
-        internal void OnVolume(GameSettingVolumeMessage message)
+        public void OnVolume(GameSettingVolumeMessage message)
         {
             _model.SetVolume(message.Volume);
             PlayerPrefs.SetFloat(TagManager.KEY_VOLUME, _model.AudioVolume);
         }
 
-        internal void OnVibrate(GameSettingVibrateMessage message)
+        public void OnVibrate(GameSettingVibrateMessage message)
         {
             _model.SetVibrate(message.Vibrate);
             PlayerPrefs.SetInt(TagManager.KEY_VIBRATE, Convert.ToInt32(_model.IsVibrateOn));

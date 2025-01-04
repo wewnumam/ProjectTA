@@ -1,4 +1,5 @@
 using Agate.MVC.Base;
+using ProjectTA.Module.Settings;
 using ProjectTA.Module.BulletPool;
 using ProjectTA.Module.CameraEffect;
 using ProjectTA.Module.CheatFeature;
@@ -31,6 +32,7 @@ namespace ProjectTA.Scene.Gameplay
         [SerializeField] private BulletPoolView _bulletPoolView;
         [SerializeField] private EnemyPoolView _enemyPoolView;
         [SerializeField] private TutorialView _tutorialView;
+        [SerializeField] private SettingsView _settingsView;
 
         public GamePauseView GamePauseView => _gamePauseView;
         public GameWinView GameWinView => _gameWinView;
@@ -45,5 +47,6 @@ namespace ProjectTA.Scene.Gameplay
         public BulletPoolView BulletPoolView => _bulletPoolView;
         public EnemyPoolView EnemyPoolView => _enemyPoolView;
         public TutorialView TutorialView => _tutorialView;
+        public SettingsView SettingsView => _settingsView;
     }
 }

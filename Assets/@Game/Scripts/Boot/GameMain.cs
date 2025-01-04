@@ -2,6 +2,7 @@ using Agate.MVC.Base;
 using Agate.MVC.Core;
 using ProjectTA.Message;
 using ProjectTA.Module.CollectibleData;
+using ProjectTA.Module.CollectibleList;
 using ProjectTA.Module.GameConstants;
 using ProjectTA.Module.GameSettings;
 using ProjectTA.Module.GameState;
@@ -15,6 +16,10 @@ namespace ProjectTA.Boot
 {
     public class GameMain : BaseMain<GameMain>, IMain
     {
+        private readonly SaveSystemController _saveSystem = new();
+        private readonly CollectibleDataController _collectibleData = new();
+        private readonly QuestDataController _questData = new();
+
         protected override IConnector[] GetConnectors()
         {
             return new IConnector[] {

@@ -13,6 +13,8 @@ using ProjectTA.Module.CollectibleList;
 using System;
 using ProjectTA.Module.QuestData;
 using ProjectTA.Module.QuestList;
+using ProjectTA.Module.Settings;
+using ProjectTA.Module.GameSettings;
 
 namespace ProjectTA.Scene.MainMenu
 {
@@ -24,9 +26,11 @@ namespace ProjectTA.Scene.MainMenu
         private readonly CollectibleDataController _collectibleData = new();
         private readonly CollectibleListController _collectibleList = new();
         private readonly QuestDataController _questData = new();
+        private readonly GameSettingsController _gameSettings = new();
 
         private readonly TutorialController _tutorial = new();
         private readonly QuestListController _questList = new();
+        private readonly SettingsController _settings = new();
 
         protected override IController[] GetSceneDependencies()
         {
@@ -34,6 +38,7 @@ namespace ProjectTA.Scene.MainMenu
                 new TutorialController(),
                 new CollectibleListController(),
                 new QuestListController(),
+                new SettingsController(),
             };
         }
 
@@ -59,12 +64,7 @@ namespace ProjectTA.Scene.MainMenu
 
             _view.SetCallbacks(OnPlay, OnQuit, OnQuiz);
 
-
-            if (_saveSystem.Model.SaveData.UnlockedCollectibles.Count > 0  && _collectibleData.Model.UnlockedCollectibleItems.Count <= 0)
-            {
-                SetInitialUnlockedCollectibles();
-            }
-
+            SetInitialUnlockedCollectibles();
             SetInitialQuestData();
 
             _tutorial.SetView(_view.TutorialView);
@@ -76,6 +76,10 @@ namespace ProjectTA.Scene.MainMenu
             _questList.SetQuestCollection(_questData.Model.QuestCollection);
             _questList.SetQuestData(_questData.Model.CurrentQuestData);
             _questList.SetView(_view.QuestListView);
+
+            _settings.SetInitialVolume(_gameSettings.Model.AudioVolume);
+            _settings.SetInitialVibrate(_gameSettings.Model.IsVibrateOn);
+            _settings.SetView(_view.SettingsView);
 
             yield return null;
         }
@@ -104,9 +108,12 @@ namespace ProjectTA.Scene.MainMenu
 
         private void SetInitialUnlockedCollectibles()
         {
-            foreach (var collectibleName in _saveSystem.Model.SaveData.UnlockedCollectibles)
+            if (_saveSystem.Model.SaveData.UnlockedCollectibles.Count > 0 && _collectibleData.Model.UnlockedCollectibleItems.Count <= 0)
             {
-                _collectibleData.AddUnlockedCollectible(collectibleName);
+                foreach (var collectibleName in _saveSystem.Model.SaveData.UnlockedCollectibles)
+                {
+                    _collectibleData.AddUnlockedCollectible(collectibleName);
+                }
             }
         }
 

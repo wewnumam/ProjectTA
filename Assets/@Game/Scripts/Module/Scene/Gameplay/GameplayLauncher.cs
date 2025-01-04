@@ -27,6 +27,8 @@ using System.Collections.Generic;
 using ProjectTA.Module.BulletPool;
 using ProjectTA.Module.EnemyPool;
 using ProjectTA.Module.Tutorial;
+using ProjectTA.Module.Settings;
+using ProjectTA.Module.GameSettings;
 
 namespace ProjectTA.Scene.Gameplay
 {
@@ -37,6 +39,7 @@ namespace ProjectTA.Scene.Gameplay
         private readonly SaveSystemController _saveSystem = new();
         private readonly GameConstantsController _gameConstants = new();
         private readonly LevelDataController _levelData = new();
+        private readonly GameSettingsController _gameSettings = new();
 
         private readonly GamePauseController _gamePause = new();
         private readonly GameWinController _gameWin = new();
@@ -53,6 +56,7 @@ namespace ProjectTA.Scene.Gameplay
         private readonly BulletPoolController _bulletPool = new();
         private readonly EnemyPoolController _enemyPool = new();
         private readonly TutorialController _tutorial = new();
+        private readonly SettingsController _settings = new();
 
         protected override IController[] GetSceneDependencies()
         {
@@ -73,6 +77,7 @@ namespace ProjectTA.Scene.Gameplay
                 new BulletPoolController(),
                 new EnemyPoolController(),
                 new TutorialController(),
+                new SettingsController(),
             };
         }
 
@@ -115,6 +120,7 @@ namespace ProjectTA.Scene.Gameplay
             _gameWin.SetView(_view.GameWinView);
             _gameOver.SetView(_view.GameOverView);
 
+            _playerCharacter.SetInitialVibration(_gameSettings.Model.IsVibrateOn);
             _playerCharacter.SetView(_view.PlayerCharacterView);
             _playerCharacter.SetInitialActivateJoystick(_gameConstants.Model.GameConstants.IsJoystickActive);
             
@@ -150,6 +156,10 @@ namespace ProjectTA.Scene.Gameplay
 
             _cheatFeature.SetView(_view.CheatFeatureView);
             _cheatFeature.SetInitialActivateJoystick(_gameConstants.Model.GameConstants.IsJoystickActive);
+
+            _settings.SetInitialVolume(_gameSettings.Model.AudioVolume);
+            _settings.SetInitialVibrate(_gameSettings.Model.IsVibrateOn);
+            _settings.SetView(_view.SettingsView);
 
             Publish(new GameStateMessage(EnumManager.GameState.Playing));
 
