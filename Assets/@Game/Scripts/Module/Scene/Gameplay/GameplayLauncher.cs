@@ -29,6 +29,7 @@ using ProjectTA.Module.EnemyPool;
 using ProjectTA.Module.Tutorial;
 using ProjectTA.Module.Settings;
 using ProjectTA.Module.GameSettings;
+using ProjectTA.Module.SpatialDirection;
 
 namespace ProjectTA.Scene.Gameplay
 {
@@ -57,6 +58,7 @@ namespace ProjectTA.Scene.Gameplay
         private readonly EnemyPoolController _enemyPool = new();
         private readonly TutorialController _tutorial = new();
         private readonly SettingsController _settings = new();
+        private readonly SpatialDirectionController _spatialDirection = new();
 
         protected override IController[] GetSceneDependencies()
         {
@@ -78,6 +80,7 @@ namespace ProjectTA.Scene.Gameplay
                 new EnemyPoolController(),
                 new TutorialController(),
                 new SettingsController(),
+                new SpatialDirectionController(),
             };
         }
 
@@ -96,6 +99,7 @@ namespace ProjectTA.Scene.Gameplay
                 new CountdownConnector(),
                 new BulletPoolConnector(),
                 new EnemyPoolConnector(),
+                new SpatialDirectionConnector(),
             };
         }
 
@@ -160,6 +164,8 @@ namespace ProjectTA.Scene.Gameplay
             _settings.SetInitialVolume(_gameSettings.Model.AudioVolume);
             _settings.SetInitialVibrate(_gameSettings.Model.IsVibrateOn);
             _settings.SetView(_view.SettingsView);
+
+            _spatialDirection.SetView(_view.SpatialDirectionView);
 
             Publish(new GameStateMessage(EnumManager.GameState.Playing));
 

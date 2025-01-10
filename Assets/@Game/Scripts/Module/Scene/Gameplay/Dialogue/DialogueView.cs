@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using NaughtyAttributes;
+using UnityEngine.EventSystems;
 
 namespace ProjectTA.Module.Dialogue
 {
@@ -27,6 +28,7 @@ namespace ProjectTA.Module.Dialogue
         public void DisplayNextLine()
         {
             _onNext?.Invoke();
+            EventSystem.current.SetSelectedGameObject(null);
         }
 
         public void SetCallback(UnityAction onNext)

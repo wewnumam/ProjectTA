@@ -14,6 +14,7 @@ using ProjectTA.Module.PlayerCharacter;
 using ProjectTA.Module.PuzzleBoard;
 using ProjectTA.Module.Tutorial;
 using UnityEngine;
+using ProjectTA.Module.SpatialDirection;
 
 namespace ProjectTA.Scene.Gameplay
 {
@@ -33,6 +34,7 @@ namespace ProjectTA.Scene.Gameplay
         [SerializeField] private EnemyPoolView _enemyPoolView;
         [SerializeField] private TutorialView _tutorialView;
         [SerializeField] private SettingsView _settingsView;
+        [SerializeField] private SpatialDirectionView _spatialDirectionView;
 
         public GamePauseView GamePauseView => _gamePauseView;
         public GameWinView GameWinView => _gameWinView;
@@ -48,5 +50,6 @@ namespace ProjectTA.Scene.Gameplay
         public EnemyPoolView EnemyPoolView => _enemyPoolView;
         public TutorialView TutorialView => _tutorialView;
         public SettingsView SettingsView => _settingsView;
+        public SpatialDirectionView SpatialDirectionView => _spatialDirectionView;
     }
 }
