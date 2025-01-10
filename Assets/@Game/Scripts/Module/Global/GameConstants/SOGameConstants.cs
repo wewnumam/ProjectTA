@@ -11,6 +11,9 @@ namespace ProjectTA.Module.GameConstants
         [SerializeField] private bool _isJoystickActive;
         [SerializeField] private int _initialHealth;
 
+        [Header("Player Constants")]
+        [SerializeField] private PlayerConstants _playerConstants;
+
         [Header("Shooting Constants")]
         [SerializeField] private ShootingConstants _shootingConstants;
 
@@ -22,9 +25,30 @@ namespace ProjectTA.Module.GameConstants
 
         public bool IsJoystickActive => _isJoystickActive;
         public int InitialHealth => _initialHealth;
+        public PlayerConstants PlayerConstants => _playerConstants;
         public ShootingConstants Shooting => _shootingConstants;
         public EnemyConstants Enemy => _enemyConstants;
         public QuizFormConstants QuizFormConstants => _quizFormConstants;
+    }
+
+    [Serializable]
+    public class PlayerConstants
+    {
+        [SerializeField] private LayerMask _enemyLayer;
+        [SerializeField] private float _movementSpeed;
+        [SerializeField] private float _rotationSpeed;
+        [SerializeField] private float _rayDistance;
+        [SerializeField] private float _fixedYPosition;
+        [SerializeField] private float _knockbackDistance;
+        [SerializeField] private float _knockbackDuration;
+
+        public LayerMask EnemyLayer => _enemyLayer;
+        public float MovementSpeed => _movementSpeed;
+        public float RotationSpeed => _rotationSpeed;
+        public float RayDistance => _rayDistance;
+        public float FixedYPosition => _fixedYPosition;
+        public float KnockbackDistance => _knockbackDistance;
+        public float KnockbackDuration => _knockbackDuration;
     }
 
     [Serializable]

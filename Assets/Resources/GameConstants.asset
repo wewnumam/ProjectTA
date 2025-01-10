@@ -14,6 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isJoystickActive: 1
   _initialHealth: 10
+  _playerConstants:
+    _enemyLayer:
+      serializedVersion: 2
+      m_Bits: 1
+    _movementSpeed: 5
+    _rotationSpeed: 5
+    _rayDistance: 100
+    _fixedYPosition: 1
+    _knockbackDistance: 5
+    _knockbackDuration: 0.2
   _shootingConstants:
     _joystickShootingRange: 0.9
     _bulletPoolSize: 10

@@ -1,6 +1,7 @@
 using Agate.MVC.Base;
 using ProjectTA.Message;
 using ProjectTA.Module.CollectibleData;
+using ProjectTA.Module.GameConstants;
 using ProjectTA.Utility;
 using System;
 using UnityEngine;
@@ -9,7 +10,13 @@ namespace ProjectTA.Module.PlayerCharacter
 {
     public class PlayerCharacterController : ObjectController<PlayerCharacterController, PlayerCharacterView>
     {
+        private PlayerConstants _playerConstants = null;
         private bool _isVibrationOn = false;
+
+        public void SetPlayerConstants(PlayerConstants playerConstants)
+        {
+            _playerConstants = playerConstants;
+        }
 
         public void SetInitialVibration(bool isVibrationOn)
         {
@@ -21,6 +28,7 @@ namespace ProjectTA.Module.PlayerCharacter
             base.SetView(view);
             view.SetCollideCallbacks(OnCollideWithEnemy, OnCollideWithCollectibleComponent, OnCollideWithPadlock);
             view.DisableKinematic();
+            view.PlayerConstants = _playerConstants;
         }
 
         private void OnCollideWithEnemy()

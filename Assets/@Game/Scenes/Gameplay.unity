@@ -6627,6 +6627,8 @@ MonoBehaviour:
   _fixedYPosition: 1
   _walkSfx: {fileID: 596940352}
   _shootSfx: {fileID: 596940353}
+  _knockbackDistance: 10
+  _knockbackDuration: 0.2
   _animator: {fileID: 2040471412}
 --- !u!82 &596940352
 AudioSource:

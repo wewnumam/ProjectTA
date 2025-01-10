@@ -1,6 +1,9 @@
 using Agate.MVC.Base;
+using NaughtyAttributes;
 using ProjectTA.Module.CollectibleData;
+using ProjectTA.Module.GameConstants;
 using ProjectTA.Utility;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -9,14 +12,9 @@ namespace ProjectTA.Module.PlayerCharacter
 {
     public class PlayerCharacterView : BaseView
     {
-        [SerializeField] private float _movementSpeed;
-        [SerializeField] private float _rotationSpeed;
         [SerializeField] private Rigidbody _rb;
         [SerializeField] private Camera _mainCamera;
-        [SerializeField] private float _rayDistance = 100f;
-        [SerializeField] private LayerMask _enemyLayer;
         [SerializeField] private LineRenderer _lineRenderer;
-        [SerializeField] private float _fixedYPosition = 1f;
         [SerializeField] private AudioSource _walkSfx;
         [SerializeField] private AudioSource _shootSfx;
 
@@ -24,6 +22,7 @@ namespace ProjectTA.Module.PlayerCharacter
         private Vector2 _aim;
         private Vector2 _smoothedAim;
         private bool _isJoystickActive;
+        private Coroutine _knockbackCoroutine;
 
         private UnityAction _onCollideWithEnemy;
         private UnityAction<SOCollectibleData> _onCollideWithCollectibleComponent;
@@ -32,17 +31,25 @@ namespace ProjectTA.Module.PlayerCharacter
         [SerializeField] private Animator _animator;
         public Animator Animator => _animator;
 
+        [field: SerializeField, ReadOnly]
+        public PlayerConstants PlayerConstants { get; set; } = null;
+
         void Update()
         {
+            if (PlayerConstants == null)
+            {
+                return;
+            }
+
             // Create a ray starting from the player's position with fixed Y and forward direction
-            Vector3 rayOrigin = new Vector3(transform.position.x, _fixedYPosition, transform.position.z);
+            Vector3 rayOrigin = new Vector3(transform.position.x, PlayerConstants.FixedYPosition, transform.position.z);
             Vector3 rayDirection = new Vector3(transform.forward.x, 0, transform.forward.z); // Ensure direction is parallel to the ground
 
             Ray ray = new Ray(rayOrigin, rayDirection);
             RaycastHit hit;
 
             // Perform the raycast
-            if (Physics.Raycast(ray, out hit, _rayDistance, _enemyLayer))
+            if (Physics.Raycast(ray, out hit, PlayerConstants.RayDistance, PlayerConstants.EnemyLayer))
             {
                 // Check if the object hit is tagged as "Enemy"
                 if (hit.collider.CompareTag(TagManager.TAG_ENEMY))
@@ -54,7 +61,7 @@ namespace ProjectTA.Module.PlayerCharacter
                     _lineRenderer.SetPosition(0, rayOrigin);
 
                     // End of the line (hit point with fixed Y)
-                    Vector3 hitPointFixedY = new Vector3(hit.point.x, _fixedYPosition, hit.point.z);
+                    Vector3 hitPointFixedY = new Vector3(hit.point.x, PlayerConstants.FixedYPosition, hit.point.z);
                     _lineRenderer.SetPosition(1, hitPointFixedY);
                 }
                 else
@@ -82,14 +89,14 @@ namespace ProjectTA.Module.PlayerCharacter
         {
             _rb.isKinematic = _direction == Vector2.zero;
 
-            _rb.velocity = new Vector3(_direction.x, 0, _direction.y).normalized * _movementSpeed;
+            _rb.velocity = new Vector3(_direction.x, 0, _direction.y).normalized * PlayerConstants.MovementSpeed;
             if (_aim == Vector2.zero)
                 RotatePlayerCharacter(_direction);
         }
 
         private void RotatePlayerCharacter(Vector2 aim)
         {
-            _smoothedAim = Vector2.Lerp(_smoothedAim, aim, Time.fixedDeltaTime * _rotationSpeed); // Adjust the interpolation factor as needed
+            _smoothedAim = Vector2.Lerp(_smoothedAim, aim, Time.fixedDeltaTime * PlayerConstants.RotationSpeed); // Adjust the interpolation factor as needed
 
             // Check if there is significant input to process
             if (aim.sqrMagnitude > 0.2f)
@@ -148,7 +155,19 @@ namespace ProjectTA.Module.PlayerCharacter
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.CompareTag(TagManager.TAG_ENEMY))
+            {
                 _onCollideWithEnemy?.Invoke();
+
+                // Calculate the knockback direction
+                Vector3 knockbackDirection = (transform.position - collision.transform.position).normalized;
+
+                // Start the knockback coroutine
+                if (_knockbackCoroutine != null)
+                {
+                    StopCoroutine(_knockbackCoroutine);
+                }
+                _knockbackCoroutine = StartCoroutine(ApplyKnockback(knockbackDirection));
+            }
 
             if (collision.gameObject.CompareTag(TagManager.TAG_PADLOCK))
                 _onCollideWithPadlock?.Invoke();
@@ -164,6 +183,25 @@ namespace ProjectTA.Module.PlayerCharacter
                 Destroy(collectible);
                 collision.gameObject.SetActive(collectible.CollectibleData.Type == EnumManager.CollectibleType.HiddenObject);
             }
+        }
+
+        private IEnumerator ApplyKnockback(Vector3 direction)
+        {
+            float elapsedTime = 0f;
+            Vector3 startPosition = transform.position;
+            Vector3 targetPosition = startPosition + direction * PlayerConstants.KnockbackDistance;
+
+            while (elapsedTime < PlayerConstants.KnockbackDuration)
+            {
+                elapsedTime += Time.deltaTime;
+                float t = elapsedTime / PlayerConstants.KnockbackDuration;
+
+                // Smoothly interpolate the position
+                transform.position = Vector3.Lerp(startPosition, targetPosition, t);
+                yield return null;
+            }
+
+            transform.position = targetPosition; // Ensure the final position is exact
         }
 
         public void SetCollideCallbacks(

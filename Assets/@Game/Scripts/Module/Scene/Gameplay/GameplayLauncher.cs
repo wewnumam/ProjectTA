@@ -30,6 +30,8 @@ using ProjectTA.Module.Tutorial;
 using ProjectTA.Module.Settings;
 using ProjectTA.Module.GameSettings;
 using ProjectTA.Module.SpatialDirection;
+using ProjectTA.Module.QuestData;
+using ProjectTA.Module.CollectibleList;
 
 namespace ProjectTA.Scene.Gameplay
 {
@@ -41,6 +43,8 @@ namespace ProjectTA.Scene.Gameplay
         private readonly GameConstantsController _gameConstants = new();
         private readonly LevelDataController _levelData = new();
         private readonly GameSettingsController _gameSettings = new();
+        private readonly QuestDataController _questData = new();
+        private readonly CollectibleDataController _collectibleData = new();
 
         private readonly GamePauseController _gamePause = new();
         private readonly GameWinController _gameWin = new();
@@ -116,6 +120,8 @@ namespace ProjectTA.Scene.Gameplay
 
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneName));
 
+            SetInitialQuestData();
+
             yield return StartCoroutine(_levelData.SetCurrentLevel(_saveSystem.Model.SaveData.CurrentLevelName));
 
             GameObject environmentObj = Instantiate(_levelData.Model.CurrentEnvironmentPrefab);
@@ -124,6 +130,7 @@ namespace ProjectTA.Scene.Gameplay
             _gameWin.SetView(_view.GameWinView);
             _gameOver.SetView(_view.GameOverView);
 
+            _playerCharacter.SetPlayerConstants(_gameConstants.Model.GameConstants.PlayerConstants);
             _playerCharacter.SetInitialVibration(_gameSettings.Model.IsVibrateOn);
             _playerCharacter.SetView(_view.PlayerCharacterView);
             _playerCharacter.SetInitialActivateJoystick(_gameConstants.Model.GameConstants.IsJoystickActive);
@@ -192,6 +199,13 @@ namespace ProjectTA.Scene.Gameplay
                 
                 puzzleObjects.Add(obj.GetComponent<CollectibleComponent>());
             }
+        }
+
+        private void SetInitialQuestData()
+        {
+            _questData.SetCurrentQuestData(_saveSystem.Model.SaveData.CurrentQuestData);
+            _questData.SetCollectibleCollectionAndUnlockedCollectible(_collectibleData.Model.CollectibleCollection, _saveSystem.Model.SaveData.UnlockedCollectibles);
+            _questData.SetCurrentLevelPlayedAmount(_saveSystem.Model.SaveData.LevelPlayed.Count);
         }
     }
 }
