@@ -7,12 +7,8 @@ using System;
 
 namespace ProjectTA.Module.Dialogue
 {
-    public class DialogueController : ObjectController<DialogueController, DialogueView>
+    public class DialogueController : ObjectController<DialogueController, DialogueModel, IDialogueModel, DialogueView>
     {
-        private Story _story = null;
-        private string _text = String.Empty;
-        private bool _isTextComplete = true;
-
         public override void SetView(DialogueView view)
         {
             base.SetView(view);
@@ -21,47 +17,28 @@ namespace ProjectTA.Module.Dialogue
 
         public void DisplayNextLine()
         {
-            if (!_story.canContinue)
+            if (!_model.Story.canContinue)
             {
                 Publish(new GameResumeMessage());
                 Publish(new GameStateMessage(EnumManager.GameState.Playing));
-                _story.ResetState();
-                _story = null;
                 _view.OnEnd?.Invoke();
                 return;
             }
 
-            if (_isTextComplete)
+            if (_model.IsTextAnimationComplete)
             {
-                _text = _story.Continue();
-                if (!_story.canContinue)
+                _model.SetNextLine();
+                _model.UpdateDialogueLine();
+                _model.SetIsTextAnimationComplete(false);
+                if (!_model.Story.canContinue)
                 {
                     _view.OnLastLine?.Invoke();
                 }
             }
-            ParseSentence(_text?.Trim());
-        }
-
-        void ParseSentence(string sentence)
-        {
-            string characterName = "";
-            if (sentence.Contains(":"))
-            {
-                int endIndex = sentence.IndexOf(':');
-                characterName = sentence.Substring(0, endIndex);
-                sentence = sentence.Replace(characterName + ": ", "");
-            }
-
-            _view.CharacterText.text = characterName;
-            if (_isTextComplete)
-            {
-                _view.MessageText.text = "";
-                _isTextComplete = false;
-                _view.MessageText.DOText(sentence, sentence.Length / 20f).OnComplete(() => _isTextComplete = true);
-            }
             else
             {
-                _view.MessageText.text = sentence;
+                _model.UpdateDialogueLine();
+                _model.SetIsTextAnimationComplete(true);
             }
         }
 
@@ -72,9 +49,11 @@ namespace ProjectTA.Module.Dialogue
 
             Publish(new GamePauseMessage());
             Publish(new GameStateMessage(EnumManager.GameState.Dialogue));
-            _story = new Story(message.TextAsset.text);
+
+            _model.InitStory(message.TextAsset);
             DisplayNextLine();
             _view.OnStart?.Invoke();
+
         }
     }
 }
