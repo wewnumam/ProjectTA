@@ -189,19 +189,29 @@ namespace ProjectTA.Module.PlayerCharacter
         {
             float elapsedTime = 0f;
             Vector3 startPosition = transform.position;
+
+            // Ensure Y position remains constant
+            float fixedYPosition = startPosition.y;
+
+            // Calculate the target position with the frozen Y
             Vector3 targetPosition = startPosition + direction * PlayerConstants.KnockbackDistance;
+            targetPosition.y = fixedYPosition;
 
             while (elapsedTime < PlayerConstants.KnockbackDuration)
             {
                 elapsedTime += Time.deltaTime;
                 float t = elapsedTime / PlayerConstants.KnockbackDuration;
 
-                // Smoothly interpolate the position
-                transform.position = Vector3.Lerp(startPosition, targetPosition, t);
+                // Smoothly interpolate the position and freeze Y
+                Vector3 interpolatedPosition = Vector3.Lerp(startPosition, targetPosition, t);
+                interpolatedPosition.y = fixedYPosition; // Keep Y position fixed
+
+                transform.position = interpolatedPosition;
                 yield return null;
             }
 
-            transform.position = targetPosition; // Ensure the final position is exact
+            // Ensure the final position matches exactly
+            transform.position = targetPosition;
         }
 
         public void SetCollideCallbacks(

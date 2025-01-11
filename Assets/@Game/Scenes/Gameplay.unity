@@ -6615,21 +6615,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c8c2844a5559547b85f753fa399900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementSpeed: 5
-  _rotationSpeed: 5
   _rb: {fileID: 596940349}
   _mainCamera: {fileID: 1328431724}
-  _rayDistance: 100
-  _enemyLayer:
-    serializedVersion: 2
-    m_Bits: 1
   _lineRenderer: {fileID: 1005781293}
-  _fixedYPosition: 1
   _walkSfx: {fileID: 596940352}
   _shootSfx: {fileID: 596940353}
-  _knockbackDistance: 10
-  _knockbackDuration: 0.2
   _animator: {fileID: 2040471412}
+  <PlayerConstants>k__BackingField:
+    _enemyLayer:
+      serializedVersion: 2
+      m_Bits: 0
+    _movementSpeed: 0
+    _rotationSpeed: 0
+    _rayDistance: 0
+    _fixedYPosition: 0
+    _knockbackDistance: 0
+    _knockbackDuration: 0
 --- !u!82 &596940352
 AudioSource:
   m_ObjectHideFlags: 0
