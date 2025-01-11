@@ -87,5 +87,11 @@ namespace ProjectTA.Module.SaveSystem
             }
             SetDataAsDirty();
         }
+
+        public void SetIsGameIndctionActive(bool isGameIndctionActive)
+        {
+            SaveData.IsGameInductionActive = isGameIndctionActive;
+            SetDataAsDirty();
+        }
     }
 }

@@ -136,5 +136,11 @@ namespace ProjectTA.Module.SaveSystem
             _model.AddLevelPlayed(message.LevelName);
             SaveGame(_model.SaveData);
         }
+
+        public void ActivateGameInduction(ActivateGameInductionMessage message)
+        {
+            _model.SetIsGameIndctionActive(message.IsGameInductionActive);
+            SaveGame(_model.SaveData);
+        }
     }
 }

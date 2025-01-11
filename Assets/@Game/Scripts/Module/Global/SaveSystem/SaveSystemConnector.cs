@@ -16,6 +16,7 @@ namespace ProjectTA.Module.SaveSystem
             Subscribe<DeleteSaveDataMessage>(_saveSystem.DeleteSaveData);
             Subscribe<UpdateQuestDataMessage>(_saveSystem.SaveQuestData);
             Subscribe<AddLevelPlayedMessage>(_saveSystem.AddLevelPlayed);
+            Subscribe<ActivateGameInductionMessage>(_saveSystem.ActivateGameInduction);
         }
 
         protected override void Disconnect()
@@ -27,6 +28,7 @@ namespace ProjectTA.Module.SaveSystem
             Unsubscribe<DeleteSaveDataMessage>(_saveSystem.DeleteSaveData);
             Unsubscribe<UpdateQuestDataMessage>(_saveSystem.SaveQuestData);
             Unsubscribe<AddLevelPlayedMessage>(_saveSystem.AddLevelPlayed);
+            Unsubscribe<ActivateGameInductionMessage>(_saveSystem.ActivateGameInduction);
         }
     }
 }

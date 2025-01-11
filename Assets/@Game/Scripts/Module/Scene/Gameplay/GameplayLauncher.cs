@@ -31,7 +31,7 @@ using ProjectTA.Module.Settings;
 using ProjectTA.Module.GameSettings;
 using ProjectTA.Module.SpatialDirection;
 using ProjectTA.Module.QuestData;
-using ProjectTA.Module.CollectibleList;
+using ProjectTA.Module.GameInduction;
 
 namespace ProjectTA.Scene.Gameplay
 {
@@ -63,6 +63,7 @@ namespace ProjectTA.Scene.Gameplay
         private readonly TutorialController _tutorial = new();
         private readonly SettingsController _settings = new();
         private readonly SpatialDirectionController _spatialDirection = new();
+        private readonly GameInductionController _gameInduction = new();
 
         protected override IController[] GetSceneDependencies()
         {
@@ -85,6 +86,7 @@ namespace ProjectTA.Scene.Gameplay
                 new TutorialController(),
                 new SettingsController(),
                 new SpatialDirectionController(),
+                new GameInductionController(),
             };
         }
 
@@ -173,6 +175,9 @@ namespace ProjectTA.Scene.Gameplay
             _settings.SetView(_view.SettingsView);
 
             _spatialDirection.SetView(_view.SpatialDirectionView);
+
+            _gameInduction.SetIsGameInductionActive(_saveSystem.Model.SaveData.IsGameInductionActive);
+            _gameInduction.SetView(_view.GameInductionView);
 
             Publish(new GameStateMessage(EnumManager.GameState.Playing));
 

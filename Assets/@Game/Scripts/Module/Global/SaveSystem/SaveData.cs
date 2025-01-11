@@ -22,5 +22,7 @@ namespace ProjectTA.Module.SaveSystem
         public List<ChoicesRecord> ChoicesRecords { get; set; } = new() { new ChoicesRecord(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty)};
         [field: SerializeField]
         public QuestData.QuestData CurrentQuestData { get; set; } = new();
+        [field: SerializeField]
+        public bool IsGameInductionActive { get; set; } = true;
     }
 }

@@ -15,6 +15,7 @@ using ProjectTA.Module.PuzzleBoard;
 using ProjectTA.Module.Tutorial;
 using UnityEngine;
 using ProjectTA.Module.SpatialDirection;
+using ProjectTA.Module.GameInduction;
 
 namespace ProjectTA.Scene.Gameplay
 {
@@ -35,6 +36,7 @@ namespace ProjectTA.Scene.Gameplay
         [SerializeField] private TutorialView _tutorialView;
         [SerializeField] private SettingsView _settingsView;
         [SerializeField] private SpatialDirectionView _spatialDirectionView;
+        [SerializeField] private GameInductionView _gameInductionView;
 
         public GamePauseView GamePauseView => _gamePauseView;
         public GameWinView GameWinView => _gameWinView;
@@ -51,5 +53,6 @@ namespace ProjectTA.Scene.Gameplay
         public TutorialView TutorialView => _tutorialView;
         public SettingsView SettingsView => _settingsView;
         public SpatialDirectionView SpatialDirectionView => _spatialDirectionView;
+        public GameInductionView GameInductionView => _gameInductionView;
     }
 }
