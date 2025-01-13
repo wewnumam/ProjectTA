@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3883382899717998373}
   - component: {fileID: 3555268834469185286}
   - component: {fileID: 439642160595795582}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Prefab_Character_RohApi
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -161,6 +161,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prefab_PS_EnemyHit
       objectReference: {fileID: 0}
+    - target: {fileID: 4565968342917528128, guid: 0fa3f5550da33834b821fb5e7dc74d91,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8156696912294211954, guid: 0fa3f5550da33834b821fb5e7dc74d91,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -240,6 +245,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Prefab_PS_EnemySpawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565968342917528128, guid: 590640aba17297f48ac61d0b27ef022a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8156696912294211954, guid: 590640aba17297f48ac61d0b27ef022a,
         type: 3}
@@ -386,15 +396,65 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7964316167790162023, guid: 889b17f42d877504dbeb947b2a7248f7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6607722174044709343, guid: 889b17f42d877504dbeb947b2a7248f7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -5450944691880363376, guid: 889b17f42d877504dbeb947b2a7248f7,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 28298761a54b8dc429892690f007bb99, type: 2}
+    - target: {fileID: -2490230857525180544, guid: 889b17f42d877504dbeb947b2a7248f7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -310914337162082002, guid: 889b17f42d877504dbeb947b2a7248f7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 889b17f42d877504dbeb947b2a7248f7,
         type: 3}
       propertyPath: m_Name
       value: Roh_Api
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 889b17f42d877504dbeb947b2a7248f7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1064429852696402917, guid: 889b17f42d877504dbeb947b2a7248f7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2477218081118429928, guid: 889b17f42d877504dbeb947b2a7248f7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572550458418956639, guid: 889b17f42d877504dbeb947b2a7248f7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7021956373337341638, guid: 889b17f42d877504dbeb947b2a7248f7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703112925717518713, guid: 889b17f42d877504dbeb947b2a7248f7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

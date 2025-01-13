@@ -22,7 +22,6 @@ namespace ProjectTA.Module.PlayerCharacter
         private Vector2 _aim;
         private Vector2 _smoothedAim;
         private bool _isJoystickActive;
-        private Coroutine _knockbackCoroutine;
 
         private UnityAction _onCollideWithEnemy;
         private UnityAction<SOCollectibleData> _onCollideWithCollectibleComponent;
@@ -34,13 +33,26 @@ namespace ProjectTA.Module.PlayerCharacter
         [field: SerializeField, ReadOnly]
         public PlayerConstants PlayerConstants { get; set; } = null;
 
-        void Update()
+        private void FixedUpdate()
         {
             if (PlayerConstants == null)
             {
                 return;
             }
 
+            if (_isJoystickActive)
+                RotatePlayerCharacter(_aim);
+            else
+                RotateTowardsMouse();
+
+            LineRendererTowardEnemy();
+            MovePlayerCharacter();
+            PlayWalkSfx();
+            PlayShootSfx();
+        }
+
+        private void LineRendererTowardEnemy()
+        {
             // Create a ray starting from the player's position with fixed Y and forward direction
             Vector3 rayOrigin = new Vector3(transform.position.x, PlayerConstants.FixedYPosition, transform.position.z);
             Vector3 rayDirection = new Vector3(transform.forward.x, 0, transform.forward.z); // Ensure direction is parallel to the ground
@@ -70,24 +82,17 @@ namespace ProjectTA.Module.PlayerCharacter
                     _lineRenderer.enabled = false;
                 }
             }
-            
-        }
-
-        private void FixedUpdate()
-        {
-            if (_isJoystickActive)
-                RotatePlayerCharacter(_aim);
             else
-                RotateTowardsMouse();
-            
-            MovePlayerCharacter();
-            PlayWalkSfx();
-            PlayShootSfx();
+            {
+                _lineRenderer.enabled = false;
+            }
         }
 
         private void MovePlayerCharacter()
         {
-            _rb.velocity = new Vector3(_direction.x, 0, _direction.y).normalized * PlayerConstants.MovementSpeed;
+            Vector3 newVelocity = new Vector3(_direction.x, _rb.velocity.y, _direction.y).normalized * PlayerConstants.MovementSpeed;
+            newVelocity.y = _rb.velocity.y; // Preserve the Y-axis velocity for gravity
+            _rb.velocity = newVelocity;
             if (_aim == Vector2.zero)
                 RotatePlayerCharacter(_direction);
         }
