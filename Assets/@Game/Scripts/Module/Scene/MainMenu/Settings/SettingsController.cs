@@ -1,40 +1,58 @@
 using Agate.MVC.Base;
 using ProjectTA.Message;
 using ProjectTA.Utility;
-using UnityEngine;
 
 namespace ProjectTA.Module.Settings
 {
     public class SettingsController : ObjectController<SettingsController, SettingsView>
     {
-        private float initialAudioVolume;
-        private bool initialVibrate;
+        private bool _initialSfx, _initialBgm, _initialVibrate;
 
-        public void SetInitialVolume(float audioVolume) => initialAudioVolume = audioVolume;
+        private const float MUTED_VOLUME = -80f;
+        private const float NORMAL_VOLUME = 0f;
 
-        public void SetInitialVibrate(bool isVibrateOn) => initialVibrate = isVibrateOn;
+        public void SetInitialSfx(bool isSfxOn) => _initialSfx = isSfxOn;
+        
+        public void SetInitialBgm(bool isBgmOn) => _initialBgm = isBgmOn;
+        
+        public void SetInitialVibrate(bool isVibrateOn) => _initialVibrate = isVibrateOn;
 
         public override void SetView(SettingsView view)
         {
             base.SetView(view);
-            view.SetCallbacks(OnVolume, OnVibrate);
-            view.audioVolumeSlider.value = initialAudioVolume;
-            view.vibrateToggle.isOn = initialVibrate;
+            view.SetCallbacks(OnSfx, OnBgm, OnVibrate);
+            view.SfxToggle.isOn = _initialSfx;
+            SetSfx(_initialSfx);
+            view.BgmToggle.isOn = _initialBgm;
+            SetBgm(_initialBgm);
+            view.VibrateToggle.isOn = _initialVibrate;
         }
 
-        private void OnVolume(float volume)
+        private void SetSfx(bool isOn)
         {
-            if (volume > 0)
-                _view.audioMixer.SetFloat(TagManager.MIXER_MASTER_VOLUME, Mathf.Log10(volume) * 20);
-            else
-                _view.audioMixer.SetFloat(TagManager.MIXER_MASTER_VOLUME, -80f);
+            _view.AudioMixer.SetFloat(TagManager.MIXER_SFX_VOLUME, isOn ? NORMAL_VOLUME : MUTED_VOLUME);
+        }
 
-            Publish(new GameSettingVolumeMessage(volume));
+        private void SetBgm(bool isOn)
+        {
+            _view.AudioMixer.SetFloat(TagManager.MIXER_BGM_VOLUME, isOn ? NORMAL_VOLUME : MUTED_VOLUME);
+        }
+
+        private void OnSfx(bool sfx)
+        {
+            SetSfx(sfx);
+            Publish(new ToggleSfxMessage(sfx));
+        }
+
+        private void OnBgm(bool bgm)
+        {
+            SetBgm(bgm);
+            Publish(new ToggleBgmMessage(bgm));
         }
 
         private void OnVibrate(bool vibrate)
         {
-            Publish(new GameSettingVibrateMessage(vibrate));
+            Publish(new ToggleVibrationMessage(vibrate));
         }
     }
 }

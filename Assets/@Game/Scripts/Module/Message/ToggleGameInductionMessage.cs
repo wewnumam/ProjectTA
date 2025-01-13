@@ -1,10 +1,10 @@
 ﻿namespace ProjectTA.Message
 {
-    public struct ActivateGameInductionMessage
+    public struct ToggleGameInductionMessage
     {
         public bool IsGameInductionActive { get; }
 
-        public ActivateGameInductionMessage(bool isGameInductionActive) 
+        public ToggleGameInductionMessage(bool isGameInductionActive) 
         { 
             IsGameInductionActive = isGameInductionActive;
         }

@@ -14,7 +14,6 @@ using System;
 using ProjectTA.Module.QuestData;
 using ProjectTA.Module.QuestList;
 using ProjectTA.Module.Settings;
-using ProjectTA.Module.GameSettings;
 
 namespace ProjectTA.Scene.MainMenu
 {
@@ -26,7 +25,6 @@ namespace ProjectTA.Scene.MainMenu
         private readonly CollectibleDataController _collectibleData = new();
         private readonly CollectibleListController _collectibleList = new();
         private readonly QuestDataController _questData = new();
-        private readonly GameSettingsController _gameSettings = new();
 
         private readonly TutorialController _tutorial = new();
         private readonly QuestListController _questList = new();
@@ -77,8 +75,9 @@ namespace ProjectTA.Scene.MainMenu
             _questList.SetQuestData(_questData.Model.CurrentQuestData);
             _questList.SetView(_view.QuestListView);
 
-            _settings.SetInitialVolume(_gameSettings.Model.AudioVolume);
-            _settings.SetInitialVibrate(_gameSettings.Model.IsVibrateOn);
+            _settings.SetInitialSfx(_saveSystem.Model.SaveData.IsSfxOn);
+            _settings.SetInitialBgm(_saveSystem.Model.SaveData.IsBgmOn);
+            _settings.SetInitialVibrate(_saveSystem.Model.SaveData.IsVibrationOn);
             _settings.SetView(_view.SettingsView);
 
             yield return null;

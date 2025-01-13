@@ -1,8 +1,6 @@
 using Agate.MVC.Base;
 using ProjectTA.Module.QuizPlayer;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace ProjectTA.Module.SaveSystem
@@ -91,6 +89,24 @@ namespace ProjectTA.Module.SaveSystem
         public void SetIsGameIndctionActive(bool isGameIndctionActive)
         {
             SaveData.IsGameInductionActive = isGameIndctionActive;
+            SetDataAsDirty();
+        }
+
+        public void SetIsSfxOn(bool isSfxOn)
+        {
+            SaveData.IsSfxOn = isSfxOn;
+            SetDataAsDirty();
+        }
+
+        public void SetIsBgmOn(bool isBgmOn)
+        {
+            SaveData.IsBgmOn = isBgmOn;
+            SetDataAsDirty();
+        }
+
+        public void SetIsVibrationOn(bool isVibrationOn)
+        {
+            SaveData.IsVibrationOn = isVibrationOn;
             SetDataAsDirty();
         }
     }

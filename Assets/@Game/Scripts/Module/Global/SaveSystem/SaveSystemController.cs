@@ -26,6 +26,8 @@ namespace ProjectTA.Module.SaveSystem
             yield return base.Initialize();
         }
 
+        #region WRITE FILE
+
         public void SaveGame(SaveData data)
         {
             string json = JsonUtility.ToJson(data, true);
@@ -79,6 +81,10 @@ namespace ProjectTA.Module.SaveSystem
                 return false;
             }
         }
+
+        #endregion
+
+        #region MESSAGE LISTENER
 
         public void UnlockLevel(UnlockLevelMessage message)
         {
@@ -137,10 +143,30 @@ namespace ProjectTA.Module.SaveSystem
             SaveGame(_model.SaveData);
         }
 
-        public void ActivateGameInduction(ActivateGameInductionMessage message)
+        public void ToggleGameInduction(ToggleGameInductionMessage message)
         {
             _model.SetIsGameIndctionActive(message.IsGameInductionActive);
             SaveGame(_model.SaveData);
         }
+
+        public void ToggleSfx(ToggleSfxMessage message)
+        {
+            _model.SetIsSfxOn(message.Sfx);
+            SaveGame(_model.SaveData);
+        }
+
+        public void ToggleBgm(ToggleBgmMessage message)
+        {
+            _model.SetIsBgmOn(message.Bgm);
+            SaveGame(_model.SaveData);
+        }
+
+        public void ToggleVibration(ToggleVibrationMessage message)
+        {
+            _model.SetIsVibrationOn(message.Vibration);
+            SaveGame(_model.SaveData);
+        }
+
+        #endregion
     }
 }

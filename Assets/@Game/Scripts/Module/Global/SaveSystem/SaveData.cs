@@ -24,5 +24,12 @@ namespace ProjectTA.Module.SaveSystem
         public QuestData.QuestData CurrentQuestData { get; set; } = new();
         [field: SerializeField]
         public bool IsGameInductionActive { get; set; } = true;
+        [field: SerializeField]
+        public bool IsSfxOn { get; set; } = true;
+        [field: SerializeField]
+        public bool IsBgmOn { get; set; } = true;
+        [field: SerializeField]
+        public bool IsVibrationOn { get; set; } = true;
+
     }
 }

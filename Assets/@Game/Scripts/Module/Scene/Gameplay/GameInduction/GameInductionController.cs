@@ -20,7 +20,7 @@ namespace ProjectTA.Module.GameInduction
             if (_isGameInductionActive)
             {
                 view.StartGameInduction();
-                Publish(new ActivateGameInductionMessage(false));
+                Publish(new ToggleGameInductionMessage(false));
             }
         }
 

@@ -305,18 +305,44 @@ MonoBehaviour:
   _titleText: {fileID: 5539326279304073480}
   _descriptionText: {fileID: 707195836257923731}
   _tutorialItems:
-  - _image: {fileID: -1820831637, guid: 677a1f3961d0d014ab4495c040cbfdb4, type: 3}
-    _title: Tutorial 1
-    _description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  - _image: {fileID: -872886351, guid: 677a1f3961d0d014ab4495c040cbfdb4, type: 3}
-    _title: Tutorial 2
-    _description: Donec congue erat vitae volutpat tempus.
-  - _image: {fileID: 966793320, guid: 677a1f3961d0d014ab4495c040cbfdb4, type: 3}
-    _title: Tutorial 3
-    _description: Nam laoreet tincidunt massa, volutpat viverra orci.
-  - _image: {fileID: 242469982, guid: 677a1f3961d0d014ab4495c040cbfdb4, type: 3}
-    _title: Tutorial 4
-    _description: Morbi massa urna, porttitor ut sem at, interdum aliquam felis.
+  - _image: {fileID: 21300000, guid: 83ec03f44fcf01145b199d8d19fa7351, type: 3}
+    _title: Movement
+    _description: Gunakan Joystick berwarna biru diselah kiri untuk menggerakan karakter.
+  - _image: {fileID: 21300000, guid: ca184dad78df5494b83814bc42847733, type: 3}
+    _title: Aim & Shoot
+    _description: Gunakan joystick berwarna merah disebelah kanan untuk membidik
+      dan menembak.
+  - _image: {fileID: 21300000, guid: 72503d3098e7d0441b9362a50a4d2f26, type: 3}
+    _title: Main Quest
+    _description: Kumpulkan 3 keping puzzle yang tersebar di sekitar peta permainan.
+  - _image: {fileID: 21300000, guid: aacbd1e5724bc5b4ab96cdc5082af9c9, type: 3}
+    _title: Main Quest
+    _description: Informasi jumlah puzzle yang telah terkumpul akan tertera pada
+      bagian atas.
+  - _image: {fileID: 21300000, guid: 991ecb63ebb6a084f911cc5480465b0d, type: 3}
+    _title: Main Quest
+    _description: Setelah terkumpul, segeralah menuju bangunan utama dan selesaikan
+      puzzlenya.
+  - _image: {fileID: 21300000, guid: 719267f912d47874ba10a2f1becf3312, type: 3}
+    _title: Puzzle
+    _description: Drag & Drop potongan puzzle ke tempat yang benar untk menyelesaikan
+      puzzlenya.
+  - _image: {fileID: 21300000, guid: c59212e5f8567b0458ef42c6d4ff3c65, type: 3}
+    _title: Side Quest
+    _description: Kumpulkan bangunan tersembunyi di sekitar untuk mengungkap filosofi
+      dibaliknya.
+  - _image: {fileID: 21300000, guid: e6e267b03adfe574290f246f733194b8, type: 3}
+    _title: Side Quest
+    _description: Informasi jumlah bangunan tersembunyi tersebut dapat dilihat di
+      sebelah kanan.
+  - _image: {fileID: 21300000, guid: e1d673c9b5615024aa50d6e9ea43fe2a, type: 3}
+    _title: Interactive Obect
+    _description: Objek yang dapat diinteraksi akan muncul outline berwarna putih
+      disekitar objek tersebut.
+  - _image: {fileID: 21300000, guid: a1103a4045f52e445ae0729f305a3bc0, type: 3}
+    _title: Time Limit
+    _description: Segeralah selesaikan tugasmu, karena terdapat hitung mundur serangan
+      gelombang roh jahat.
 --- !u!1 &8938511608453296260
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,8 +377,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 128}
-  m_SizeDelta: {x: 960, y: 50}
+  m_AnchoredPosition: {x: 0, y: 86.3}
+  m_SizeDelta: {x: 1231, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &3628632369488342901
 CanvasRenderer:

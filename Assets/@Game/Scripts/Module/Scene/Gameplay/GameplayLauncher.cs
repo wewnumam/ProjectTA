@@ -28,7 +28,6 @@ using ProjectTA.Module.BulletPool;
 using ProjectTA.Module.EnemyPool;
 using ProjectTA.Module.Tutorial;
 using ProjectTA.Module.Settings;
-using ProjectTA.Module.GameSettings;
 using ProjectTA.Module.SpatialDirection;
 using ProjectTA.Module.QuestData;
 using ProjectTA.Module.GameInduction;
@@ -42,7 +41,6 @@ namespace ProjectTA.Scene.Gameplay
         private readonly SaveSystemController _saveSystem = new();
         private readonly GameConstantsController _gameConstants = new();
         private readonly LevelDataController _levelData = new();
-        private readonly GameSettingsController _gameSettings = new();
         private readonly QuestDataController _questData = new();
         private readonly CollectibleDataController _collectibleData = new();
 
@@ -133,7 +131,7 @@ namespace ProjectTA.Scene.Gameplay
             _gameOver.SetView(_view.GameOverView);
 
             _playerCharacter.SetPlayerConstants(_gameConstants.Model.GameConstants.PlayerConstants);
-            _playerCharacter.SetInitialVibration(_gameSettings.Model.IsVibrateOn);
+            _playerCharacter.SetInitialVibration(_saveSystem.Model.SaveData.IsVibrationOn);
             _playerCharacter.SetView(_view.PlayerCharacterView);
             _playerCharacter.SetInitialActivateJoystick(_gameConstants.Model.GameConstants.IsJoystickActive);
             
@@ -170,8 +168,9 @@ namespace ProjectTA.Scene.Gameplay
             _cheatFeature.SetView(_view.CheatFeatureView);
             _cheatFeature.SetInitialActivateJoystick(_gameConstants.Model.GameConstants.IsJoystickActive);
 
-            _settings.SetInitialVolume(_gameSettings.Model.AudioVolume);
-            _settings.SetInitialVibrate(_gameSettings.Model.IsVibrateOn);
+            _settings.SetInitialSfx(_saveSystem.Model.SaveData.IsSfxOn);
+            _settings.SetInitialBgm(_saveSystem.Model.SaveData.IsBgmOn);
+            _settings.SetInitialVibrate(_saveSystem.Model.SaveData.IsVibrationOn);
             _settings.SetView(_view.SettingsView);
 
             _spatialDirection.SetView(_view.SpatialDirectionView);

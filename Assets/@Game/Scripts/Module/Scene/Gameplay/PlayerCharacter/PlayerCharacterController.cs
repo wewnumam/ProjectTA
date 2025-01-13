@@ -97,9 +97,9 @@ namespace ProjectTA.Module.PlayerCharacter
             _view.SetIsJoyStickActive(message.IsJoystickActive);
         }
 
-        public void OnVibrate(GameSettingVibrateMessage message)
+        public void OnVibrate(ToggleVibrationMessage message)
         {
-            _isVibrationOn = message.Vibrate;
+            _isVibrationOn = message.Vibration;
         }
     }
 }

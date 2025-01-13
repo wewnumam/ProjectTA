@@ -13,7 +13,7 @@ namespace ProjectTA.Module.PlayerCharacter
             Subscribe<RotatePlayerCharacterMessage>(_playerCharacter.OnRotate);
             Subscribe<ActivateJoystickMessage>(_playerCharacter.OnActivateJoystick);
             Subscribe<GameOverMessage>(_playerCharacter.OnGameOver);
-            Subscribe<GameSettingVibrateMessage>(_playerCharacter.OnVibrate);
+            Subscribe<ToggleVibrationMessage>(_playerCharacter.OnVibrate);
         }
 
         protected override void Disconnect()
@@ -22,7 +22,7 @@ namespace ProjectTA.Module.PlayerCharacter
             Unsubscribe<RotatePlayerCharacterMessage>(_playerCharacter.OnRotate);
             Unsubscribe<ActivateJoystickMessage>(_playerCharacter.OnActivateJoystick);
             Unsubscribe<GameOverMessage>(_playerCharacter.OnGameOver);
-            Unsubscribe<GameSettingVibrateMessage>(_playerCharacter.OnVibrate);
+            Unsubscribe<ToggleVibrationMessage>(_playerCharacter.OnVibrate);
         }
     }
 }

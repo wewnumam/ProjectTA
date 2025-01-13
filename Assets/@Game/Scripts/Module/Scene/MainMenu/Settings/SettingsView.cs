@@ -1,4 +1,5 @@
 using Agate.MVC.Base;
+using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -7,17 +8,26 @@ namespace ProjectTA.Module.Settings
 {
     public class SettingsView : BaseView
     {
-        public Slider audioVolumeSlider;
-        public Toggle vibrateToggle;
-        public AudioMixer audioMixer;
+        [SerializeField] private Toggle _sfxToggle;
+        [SerializeField] private Toggle _bgmToggle;
+        [SerializeField] private Toggle _vibrateToggle;
+        [SerializeField] private AudioMixer _audioMixer;
 
-        public void SetCallbacks(UnityAction<float> volume, UnityAction<bool> vibrate)
+        public Toggle SfxToggle => _sfxToggle;
+        public Toggle BgmToggle => _bgmToggle;
+        public Toggle VibrateToggle => _vibrateToggle;
+        public AudioMixer AudioMixer => _audioMixer;
+
+        public void SetCallbacks(UnityAction<bool> sfx, UnityAction<bool> bgm, UnityAction<bool> vibrate)
         {
-            audioVolumeSlider.onValueChanged.RemoveAllListeners();
-            audioVolumeSlider.onValueChanged.AddListener(volume);
-            
-            vibrateToggle.onValueChanged.RemoveAllListeners();
-            vibrateToggle.onValueChanged.AddListener(vibrate);
+            _vibrateToggle.onValueChanged.RemoveAllListeners();
+            _vibrateToggle.onValueChanged.AddListener(vibrate);
+
+            _sfxToggle.onValueChanged.RemoveAllListeners();
+            _sfxToggle.onValueChanged.AddListener(sfx);
+
+            _bgmToggle.onValueChanged.RemoveAllListeners();
+            _bgmToggle.onValueChanged.AddListener(bgm);
         }
     }
 }
