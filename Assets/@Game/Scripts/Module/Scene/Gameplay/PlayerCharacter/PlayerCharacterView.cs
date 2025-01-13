@@ -87,8 +87,6 @@ namespace ProjectTA.Module.PlayerCharacter
 
         private void MovePlayerCharacter()
         {
-            _rb.isKinematic = _direction == Vector2.zero;
-
             _rb.velocity = new Vector3(_direction.x, 0, _direction.y).normalized * PlayerConstants.MovementSpeed;
             if (_aim == Vector2.zero)
                 RotatePlayerCharacter(_direction);
@@ -161,12 +159,8 @@ namespace ProjectTA.Module.PlayerCharacter
                 // Calculate the knockback direction
                 Vector3 knockbackDirection = (transform.position - collision.transform.position).normalized;
 
-                // Start the knockback coroutine
-                if (_knockbackCoroutine != null)
-                {
-                    StopCoroutine(_knockbackCoroutine);
-                }
-                _knockbackCoroutine = StartCoroutine(ApplyKnockback(knockbackDirection));
+                // Apply the knockback force
+                _rb.AddForce(knockbackDirection * PlayerConstants.KnockbackForce, ForceMode.Impulse);
             }
 
             if (collision.gameObject.CompareTag(TagManager.TAG_PADLOCK))
@@ -183,35 +177,6 @@ namespace ProjectTA.Module.PlayerCharacter
                 Destroy(collectible);
                 collision.gameObject.SetActive(collectible.CollectibleData.Type == EnumManager.CollectibleType.HiddenObject);
             }
-        }
-
-        private IEnumerator ApplyKnockback(Vector3 direction)
-        {
-            float elapsedTime = 0f;
-            Vector3 startPosition = transform.position;
-
-            // Ensure Y position remains constant
-            float fixedYPosition = startPosition.y;
-
-            // Calculate the target position with the frozen Y
-            Vector3 targetPosition = startPosition + direction * PlayerConstants.KnockbackDistance;
-            targetPosition.y = fixedYPosition;
-
-            while (elapsedTime < PlayerConstants.KnockbackDuration)
-            {
-                elapsedTime += Time.deltaTime;
-                float t = elapsedTime / PlayerConstants.KnockbackDuration;
-
-                // Smoothly interpolate the position and freeze Y
-                Vector3 interpolatedPosition = Vector3.Lerp(startPosition, targetPosition, t);
-                interpolatedPosition.y = fixedYPosition; // Keep Y position fixed
-
-                transform.position = interpolatedPosition;
-                yield return null;
-            }
-
-            // Ensure the final position matches exactly
-            transform.position = targetPosition;
         }
 
         public void SetCollideCallbacks(

@@ -39,16 +39,14 @@ namespace ProjectTA.Module.GameConstants
         [SerializeField] private float _rotationSpeed;
         [SerializeField] private float _rayDistance;
         [SerializeField] private float _fixedYPosition;
-        [SerializeField] private float _knockbackDistance;
-        [SerializeField] private float _knockbackDuration;
+        [SerializeField] private float _knockbackForce;
 
         public LayerMask EnemyLayer => _enemyLayer;
         public float MovementSpeed => _movementSpeed;
         public float RotationSpeed => _rotationSpeed;
         public float RayDistance => _rayDistance;
         public float FixedYPosition => _fixedYPosition;
-        public float KnockbackDistance => _knockbackDistance;
-        public float KnockbackDuration => _knockbackDuration;
+        public float KnockbackForce => _knockbackForce;
     }
 
     [Serializable]
