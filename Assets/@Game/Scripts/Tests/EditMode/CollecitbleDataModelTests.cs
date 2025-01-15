@@ -2,8 +2,8 @@ using NUnit.Framework;
 using ProjectTA.Module.CollectibleData;
 using System.Collections.Generic;
 using Unity.PerformanceTesting;
-using UnityEngine.TestTools;
 using UnityEngine;
+using UnityEngine.TestTools;
 
 namespace ProjectTA.Tests
 {
@@ -106,7 +106,7 @@ namespace ProjectTA.Tests
         {
             // Arrange
             var collectibleCollection = ScriptableObject.CreateInstance<SOCollectibleCollection>();
-            
+
             // Use reflection to set the private field
             var fieldInfo = typeof(SOCollectibleCollection).GetField("_collectibleItems", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
             fieldInfo.SetValue(collectibleCollection, new List<SOCollectibleData>

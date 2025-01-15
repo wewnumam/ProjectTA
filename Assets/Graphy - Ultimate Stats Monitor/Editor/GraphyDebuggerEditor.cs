@@ -11,15 +11,13 @@
  * Attribution is not required, but it is always welcomed!
  * -------------------------------------*/
 
-using System;
-using UnityEngine;
 using System.Collections.Generic;
-using System.IO;
 using UnityEditor;
+using UnityEngine;
 
 namespace Tayx.Graphy
 {
-    [CustomEditor( typeof( GraphyDebugger ) )]
+    [CustomEditor(typeof(GraphyDebugger))]
     internal class GraphyDebuggerEditor : Editor
     {
         #region Variables -> Private
@@ -39,7 +37,7 @@ namespace Tayx.Graphy
 
         private void OnEnable()
         {
-            m_target = (GraphyDebugger) target;
+            m_target = (GraphyDebugger)target;
         }
 
         #endregion
@@ -48,7 +46,7 @@ namespace Tayx.Graphy
 
         public override void OnInspectorGUI()
         {
-            if( m_target == null && target == null )
+            if (m_target == null && target == null)
             {
                 base.OnInspectorGUI();
 
@@ -60,22 +58,22 @@ namespace Tayx.Graphy
 
             //===== CONTENT REGION ========================================================================
 
-            GUILayout.Space( 20 );
+            GUILayout.Space(20);
 
             #region Section -> Logo
 
-            if( GraphyEditorStyle.DebuggerLogoTexture != null )
+            if (GraphyEditorStyle.DebuggerLogoTexture != null)
             {
                 GUILayout.Label
                 (
                     image: GraphyEditorStyle.DebuggerLogoTexture,
-                    style: new GUIStyle( GUI.skin.GetStyle( "Label" ) )
+                    style: new GUIStyle(GUI.skin.GetStyle("Label"))
                     {
                         alignment = TextAnchor.UpperCenter
                     }
                 );
 
-                GUILayout.Space( 10 );
+                GUILayout.Space(10);
             }
             else
             {
@@ -88,7 +86,7 @@ namespace Tayx.Graphy
 
             #endregion
 
-            GUILayout.Space( 5 ); //Extra pixels added when the logo is used.
+            GUILayout.Space(5); //Extra pixels added when the logo is used.
 
             #region Section -> Settings
 
@@ -96,12 +94,12 @@ namespace Tayx.Graphy
 
             SerializedProperty
                 debugPacketList =
-                    serObj.FindProperty( "m_debugPackets" ); // Find the List in our script and create a refrence of it
+                    serObj.FindProperty("m_debugPackets"); // Find the List in our script and create a refrence of it
 
             //Update our list
             serObj.Update();
 
-            EditorGUILayout.LabelField( "Current [Debug Packets] list size: " + debugPacketList.arraySize );
+            EditorGUILayout.LabelField("Current [Debug Packets] list size: " + debugPacketList.arraySize);
 
             EditorGUIUtility.fieldWidth = 32;
             EditorGUILayout.BeginHorizontal();
@@ -113,9 +111,9 @@ namespace Tayx.Graphy
                 value: m_newDebugPacketListSize
             );
 
-            if( GUILayout.Button( "Resize List" ) )
+            if (GUILayout.Button("Resize List"))
             {
-                if( EditorUtility.DisplayDialog
+                if (EditorUtility.DisplayDialog
                     (
                         title:
                         "Resize List",
@@ -131,22 +129,22 @@ namespace Tayx.Graphy
                         ok:
                         "Resize",
                         cancel:
-                        "Cancel" )
+                        "Cancel")
                 )
                 {
                     m_currentlySelectedDebugPacketIndex = 0;
 
-                    if( m_newDebugPacketListSize != debugPacketList.arraySize )
+                    if (m_newDebugPacketListSize != debugPacketList.arraySize)
                     {
-                        while( m_newDebugPacketListSize > debugPacketList.arraySize )
+                        while (m_newDebugPacketListSize > debugPacketList.arraySize)
                         {
-                            debugPacketList.InsertArrayElementAtIndex( debugPacketList.arraySize );
-                            SetDefaultDebugPacketValues( debugPacketList );
+                            debugPacketList.InsertArrayElementAtIndex(debugPacketList.arraySize);
+                            SetDefaultDebugPacketValues(debugPacketList);
                         }
 
-                        while( m_newDebugPacketListSize < debugPacketList.arraySize )
+                        while (m_newDebugPacketListSize < debugPacketList.arraySize)
                         {
-                            debugPacketList.DeleteArrayElementAtIndex( debugPacketList.arraySize - 1 );
+                            debugPacketList.DeleteArrayElementAtIndex(debugPacketList.arraySize - 1);
                         }
                     }
                 }
@@ -154,13 +152,13 @@ namespace Tayx.Graphy
 
             EditorGUILayout.EndHorizontal();
 
-            EditorGUILayout.LabelField( "NOT RECOMMENDED (Only use for first initialization)",
-                EditorStyles.centeredGreyMiniLabel );
+            EditorGUILayout.LabelField("NOT RECOMMENDED (Only use for first initialization)",
+                EditorStyles.centeredGreyMiniLabel);
 
             EditorGUILayout.Space();
             EditorGUILayout.Space();
 
-            if( debugPacketList.arraySize < 1 )
+            if (debugPacketList.arraySize < 1)
             {
                 m_previouslySelectedDebugPacketIndex = 0;
                 m_currentlySelectedDebugPacketIndex = 0;
@@ -172,16 +170,16 @@ namespace Tayx.Graphy
 
             GraphyEditorStyle.HeaderStyle2.contentOffset = Vector2.down * 3f;
 
-            EditorGUILayout.LabelField( "Selected debug packet:" );
+            EditorGUILayout.LabelField("Selected debug packet:");
 
             EditorGUILayout.BeginHorizontal();
 
             List<string> debugPacketNames = new List<string>();
-            for( int i = 0; i < debugPacketList.arraySize; i++ )
+            for (int i = 0; i < debugPacketList.arraySize; i++)
             {
-                SerializedProperty listItem = debugPacketList.GetArrayElementAtIndex( i );
+                SerializedProperty listItem = debugPacketList.GetArrayElementAtIndex(i);
                 // NOTE: If the Popup detects two equal strings, it just paints 1, that's why I always add the "i"
-                char checkMark = listItem.FindPropertyRelative( "Active" ).boolValue ? '\u2714' : '\u2718';
+                char checkMark = listItem.FindPropertyRelative("Active").boolValue ? '\u2714' : '\u2718';
                 debugPacketNames.Add
                 (
                     (i + 1) +
@@ -189,17 +187,17 @@ namespace Tayx.Graphy
                     checkMark +
                     ") " +
                     " - ID: " +
-                    listItem.FindPropertyRelative( "Id" ).intValue +
+                    listItem.FindPropertyRelative("Id").intValue +
                     " (Conditions: " +
-                    listItem.FindPropertyRelative( "DebugConditions" ).arraySize +
+                    listItem.FindPropertyRelative("DebugConditions").arraySize +
                     ")"
                 );
             }
 
             m_currentlySelectedDebugPacketIndex =
-                EditorGUILayout.Popup( m_currentlySelectedDebugPacketIndex, debugPacketNames.ToArray() );
+                EditorGUILayout.Popup(m_currentlySelectedDebugPacketIndex, debugPacketNames.ToArray());
 
-            if( m_currentlySelectedDebugPacketIndex != m_previouslySelectedDebugPacketIndex )
+            if (m_currentlySelectedDebugPacketIndex != m_previouslySelectedDebugPacketIndex)
             {
                 m_selectedDebugPacketCondition = 0;
 
@@ -208,29 +206,29 @@ namespace Tayx.Graphy
 
             Color defaultGUIColor = GUI.color;
 
-            GUI.color = new Color( 0.7f, 1f, 0.0f, 1f );
+            GUI.color = new Color(0.7f, 1f, 0.0f, 1f);
 
             //Or add a new item to the List<> with a button
 
-            if( GUILayout.Button( "Add", GUILayout.Width( 60 ) ) )
+            if (GUILayout.Button("Add", GUILayout.Width(60)))
             {
-                debugPacketList.InsertArrayElementAtIndex( debugPacketList.arraySize );
-                SetDefaultDebugPacketValues( debugPacketList );
+                debugPacketList.InsertArrayElementAtIndex(debugPacketList.arraySize);
+                SetDefaultDebugPacketValues(debugPacketList);
             }
 
-            GUI.color = new Color( 1f, 0.7f, 0.0f, 1f );
+            GUI.color = new Color(1f, 0.7f, 0.0f, 1f);
 
             //Remove this index from the List
 
-            if( GUILayout.Button( "Remove", GUILayout.Width( 60 ) ) )
+            if (GUILayout.Button("Remove", GUILayout.Width(60)))
             {
-                debugPacketList.DeleteArrayElementAtIndex( m_currentlySelectedDebugPacketIndex );
-                if( m_currentlySelectedDebugPacketIndex > 0 )
+                debugPacketList.DeleteArrayElementAtIndex(m_currentlySelectedDebugPacketIndex);
+                if (m_currentlySelectedDebugPacketIndex > 0)
                 {
                     m_currentlySelectedDebugPacketIndex--;
                 }
 
-                if( debugPacketList.arraySize < 1 )
+                if (debugPacketList.arraySize < 1)
                 {
                     serializedObject.ApplyModifiedProperties();
                     return;
@@ -248,21 +246,21 @@ namespace Tayx.Graphy
             //Display our list to the inspector window
 
             SerializedProperty listItemSelected =
-                debugPacketList.GetArrayElementAtIndex( m_currentlySelectedDebugPacketIndex );
+                debugPacketList.GetArrayElementAtIndex(m_currentlySelectedDebugPacketIndex);
 
-            SerializedProperty Active = listItemSelected.FindPropertyRelative( "Active" );
-            SerializedProperty Id = listItemSelected.FindPropertyRelative( "Id" );
-            SerializedProperty ExecuteOnce = listItemSelected.FindPropertyRelative( "ExecuteOnce" );
-            SerializedProperty InitSleepTime = listItemSelected.FindPropertyRelative( "InitSleepTime" );
-            SerializedProperty ExecuteSleepTime = listItemSelected.FindPropertyRelative( "ExecuteSleepTime" );
-            SerializedProperty ConditionEvaluation = listItemSelected.FindPropertyRelative( "ConditionEvaluation" );
-            SerializedProperty DebugConditions = listItemSelected.FindPropertyRelative( "DebugConditions" );
-            SerializedProperty MessageType = listItemSelected.FindPropertyRelative( "MessageType" );
-            SerializedProperty Message = listItemSelected.FindPropertyRelative( "Message" );
-            SerializedProperty TakeScreenshot = listItemSelected.FindPropertyRelative( "TakeScreenshot" );
-            SerializedProperty ScreenshotFileName = listItemSelected.FindPropertyRelative( "ScreenshotFileName" );
-            SerializedProperty DebugBreak = listItemSelected.FindPropertyRelative( "DebugBreak" );
-            SerializedProperty UnityEvents = listItemSelected.FindPropertyRelative( "UnityEvents" );
+            SerializedProperty Active = listItemSelected.FindPropertyRelative("Active");
+            SerializedProperty Id = listItemSelected.FindPropertyRelative("Id");
+            SerializedProperty ExecuteOnce = listItemSelected.FindPropertyRelative("ExecuteOnce");
+            SerializedProperty InitSleepTime = listItemSelected.FindPropertyRelative("InitSleepTime");
+            SerializedProperty ExecuteSleepTime = listItemSelected.FindPropertyRelative("ExecuteSleepTime");
+            SerializedProperty ConditionEvaluation = listItemSelected.FindPropertyRelative("ConditionEvaluation");
+            SerializedProperty DebugConditions = listItemSelected.FindPropertyRelative("DebugConditions");
+            SerializedProperty MessageType = listItemSelected.FindPropertyRelative("MessageType");
+            SerializedProperty Message = listItemSelected.FindPropertyRelative("Message");
+            SerializedProperty TakeScreenshot = listItemSelected.FindPropertyRelative("TakeScreenshot");
+            SerializedProperty ScreenshotFileName = listItemSelected.FindPropertyRelative("ScreenshotFileName");
+            SerializedProperty DebugBreak = listItemSelected.FindPropertyRelative("DebugBreak");
+            SerializedProperty UnityEvents = listItemSelected.FindPropertyRelative("UnityEvents");
 
             #endregion
 
@@ -339,69 +337,69 @@ namespace Tayx.Graphy
             EditorGUILayout.Space();
             EditorGUILayout.Space();
 
-            EditorGUILayout.LabelField( "[ CONDITIONS ] (" + DebugConditions.arraySize + ")",
-                GraphyEditorStyle.HeaderStyle2 );
+            EditorGUILayout.LabelField("[ CONDITIONS ] (" + DebugConditions.arraySize + ")",
+                GraphyEditorStyle.HeaderStyle2);
 
             EditorGUILayout.PropertyField
             (
                 ConditionEvaluation,
-                new GUIContent( "Condition evaluation" )
+                new GUIContent("Condition evaluation")
             );
 
             EditorGUILayout.Space();
 
-            if( DebugConditions.arraySize < 1 )
+            if (DebugConditions.arraySize < 1)
             {
-                DebugConditions.InsertArrayElementAtIndex( DebugConditions.arraySize );
+                DebugConditions.InsertArrayElementAtIndex(DebugConditions.arraySize);
                 m_selectedDebugPacketCondition = 0;
             }
 
             EditorGUILayout.BeginHorizontal();
 
             List<string> debugPacketConditionNames = new List<string>();
-            for( int i = 0; i < DebugConditions.arraySize; i++ )
+            for (int i = 0; i < DebugConditions.arraySize; i++)
             {
-                SerializedProperty listItem = DebugConditions.GetArrayElementAtIndex( i );
+                SerializedProperty listItem = DebugConditions.GetArrayElementAtIndex(i);
                 // NOTE: If the Popup detects two equal strings, it just paints 1, that's why I always add the "i"
 
                 string conditionName = (i + 1).ToString() + " - ";
                 conditionName +=
                     GetComparerStringFromDebugVariable(
-                        (GraphyDebugger.DebugVariable) listItem.FindPropertyRelative( "Variable" ).intValue ) + " ";
+                        (GraphyDebugger.DebugVariable)listItem.FindPropertyRelative("Variable").intValue) + " ";
                 conditionName +=
                     GetComparerStringFromDebugComparer(
-                        (GraphyDebugger.DebugComparer) listItem.FindPropertyRelative( "Comparer" ).intValue ) + " ";
-                conditionName += listItem.FindPropertyRelative( "Value" ).floatValue.ToString();
+                        (GraphyDebugger.DebugComparer)listItem.FindPropertyRelative("Comparer").intValue) + " ";
+                conditionName += listItem.FindPropertyRelative("Value").floatValue.ToString();
 
-                debugPacketConditionNames.Add( conditionName );
+                debugPacketConditionNames.Add(conditionName);
             }
 
             m_selectedDebugPacketCondition =
-                EditorGUILayout.Popup( m_selectedDebugPacketCondition, debugPacketConditionNames.ToArray() );
+                EditorGUILayout.Popup(m_selectedDebugPacketCondition, debugPacketConditionNames.ToArray());
 
-            GUI.color = new Color( 0.7f, 1f, 0.0f, 1f );
+            GUI.color = new Color(0.7f, 1f, 0.0f, 1f);
 
-            if( GUILayout.Button( "Add", GUILayout.Width( 60 ) ) )
+            if (GUILayout.Button("Add", GUILayout.Width(60)))
             {
-                DebugConditions.InsertArrayElementAtIndex( DebugConditions.arraySize );
+                DebugConditions.InsertArrayElementAtIndex(DebugConditions.arraySize);
             }
 
-            if( DebugConditions.arraySize > 1 )
+            if (DebugConditions.arraySize > 1)
             {
-                GUI.color = new Color( 1f, 0.7f, 0.0f, 1f );
+                GUI.color = new Color(1f, 0.7f, 0.0f, 1f);
             }
             else
             {
-                GUI.color = new Color( 1f, 0.7f, 0.0f, 0.5f );
+                GUI.color = new Color(1f, 0.7f, 0.0f, 0.5f);
             }
 
             //Remove this index from the List
-            if( GUILayout.Button( "Remove", GUILayout.Width( 60 ) ) )
+            if (GUILayout.Button("Remove", GUILayout.Width(60)))
             {
-                if( DebugConditions.arraySize > 1 )
+                if (DebugConditions.arraySize > 1)
                 {
-                    DebugConditions.DeleteArrayElementAtIndex( m_selectedDebugPacketCondition );
-                    if( m_selectedDebugPacketCondition > 0 )
+                    DebugConditions.DeleteArrayElementAtIndex(m_selectedDebugPacketCondition);
+                    if (m_selectedDebugPacketCondition > 0)
                     {
                         m_selectedDebugPacketCondition--;
                     }
@@ -413,34 +411,34 @@ namespace Tayx.Graphy
             EditorGUILayout.EndHorizontal();
 
             SerializedProperty conditionListItemSelected =
-                DebugConditions.GetArrayElementAtIndex( m_selectedDebugPacketCondition );
+                DebugConditions.GetArrayElementAtIndex(m_selectedDebugPacketCondition);
 
-            SerializedProperty Variable = conditionListItemSelected.FindPropertyRelative( "Variable" );
-            SerializedProperty Comparer = conditionListItemSelected.FindPropertyRelative( "Comparer" );
-            SerializedProperty Value = conditionListItemSelected.FindPropertyRelative( "Value" );
+            SerializedProperty Variable = conditionListItemSelected.FindPropertyRelative("Variable");
+            SerializedProperty Comparer = conditionListItemSelected.FindPropertyRelative("Comparer");
+            SerializedProperty Value = conditionListItemSelected.FindPropertyRelative("Value");
 
             EditorGUILayout.PropertyField
             (
                 Variable,
-                new GUIContent( "Variable" )
+                new GUIContent("Variable")
             );
 
             EditorGUILayout.PropertyField
             (
                 Comparer,
-                new GUIContent( "Comparer" )
+                new GUIContent("Comparer")
             );
 
             EditorGUILayout.PropertyField
             (
                 Value,
-                new GUIContent( "Value" )
+                new GUIContent("Value")
             );
 
             EditorGUILayout.Space();
             EditorGUILayout.Space();
 
-            EditorGUILayout.LabelField( "[ ACTIONS ]", GraphyEditorStyle.HeaderStyle2 );
+            EditorGUILayout.LabelField("[ ACTIONS ]", GraphyEditorStyle.HeaderStyle2);
 
             EditorGUIUtility.labelWidth = 140;
             EditorGUIUtility.fieldWidth = 35;
@@ -448,10 +446,10 @@ namespace Tayx.Graphy
             EditorGUILayout.PropertyField
             (
                 MessageType,
-                new GUIContent( "Message type" )
+                new GUIContent("Message type")
             );
 
-            EditorGUILayout.PropertyField( Message );
+            EditorGUILayout.PropertyField(Message);
 
             TakeScreenshot.boolValue = EditorGUILayout.Toggle
             (
@@ -464,7 +462,7 @@ namespace Tayx.Graphy
                 value: TakeScreenshot.boolValue
             );
 
-            if( TakeScreenshot.boolValue )
+            if (TakeScreenshot.boolValue)
             {
                 EditorGUILayout.PropertyField
                 (
@@ -488,7 +486,7 @@ namespace Tayx.Graphy
                 DebugBreak.boolValue
             );
 
-            EditorGUILayout.PropertyField( UnityEvents );
+            EditorGUILayout.PropertyField(UnityEvents);
 
             EditorGUIUtility.labelWidth = defaultLabelWidth;
             EditorGUIUtility.fieldWidth = defaultFieldWidth;
@@ -500,34 +498,34 @@ namespace Tayx.Graphy
 
         #region Methods -> Private
 
-        private void SetDefaultDebugPacketValues( SerializedProperty debugPacketSerializedProperty )
+        private void SetDefaultDebugPacketValues(SerializedProperty debugPacketSerializedProperty)
         {
             GraphyDebugger.DebugPacket debugPacket = new GraphyDebugger.DebugPacket();
 
-            debugPacketSerializedProperty.GetArrayElementAtIndex( debugPacketSerializedProperty.arraySize - 1 )
-                .FindPropertyRelative( "Active" )
+            debugPacketSerializedProperty.GetArrayElementAtIndex(debugPacketSerializedProperty.arraySize - 1)
+                .FindPropertyRelative("Active")
                 .boolValue = debugPacket.Active;
 
-            debugPacketSerializedProperty.GetArrayElementAtIndex( debugPacketSerializedProperty.arraySize - 1 )
-                .FindPropertyRelative( "Id" )
+            debugPacketSerializedProperty.GetArrayElementAtIndex(debugPacketSerializedProperty.arraySize - 1)
+                .FindPropertyRelative("Id")
                 .intValue = debugPacketSerializedProperty.arraySize;
 
-            debugPacketSerializedProperty.GetArrayElementAtIndex( debugPacketSerializedProperty.arraySize - 1 )
-                .FindPropertyRelative( "ExecuteOnce" )
+            debugPacketSerializedProperty.GetArrayElementAtIndex(debugPacketSerializedProperty.arraySize - 1)
+                .FindPropertyRelative("ExecuteOnce")
                 .boolValue = debugPacket.ExecuteOnce;
 
-            debugPacketSerializedProperty.GetArrayElementAtIndex( debugPacketSerializedProperty.arraySize - 1 )
-                .FindPropertyRelative( "InitSleepTime" )
+            debugPacketSerializedProperty.GetArrayElementAtIndex(debugPacketSerializedProperty.arraySize - 1)
+                .FindPropertyRelative("InitSleepTime")
                 .floatValue = debugPacket.InitSleepTime;
 
-            debugPacketSerializedProperty.GetArrayElementAtIndex( debugPacketSerializedProperty.arraySize - 1 )
-                .FindPropertyRelative( "ExecuteSleepTime" )
+            debugPacketSerializedProperty.GetArrayElementAtIndex(debugPacketSerializedProperty.arraySize - 1)
+                .FindPropertyRelative("ExecuteSleepTime")
                 .floatValue = debugPacket.ExecuteSleepTime;
         }
 
-        private string GetComparerStringFromDebugVariable( GraphyDebugger.DebugVariable debugVariable )
+        private string GetComparerStringFromDebugVariable(GraphyDebugger.DebugVariable debugVariable)
         {
-            switch( debugVariable )
+            switch (debugVariable)
             {
                 case GraphyDebugger.DebugVariable.Fps:
                     return "FPS Current";
@@ -553,9 +551,9 @@ namespace Tayx.Graphy
             }
         }
 
-        private string GetComparerStringFromDebugComparer( GraphyDebugger.DebugComparer debugComparer )
+        private string GetComparerStringFromDebugComparer(GraphyDebugger.DebugComparer debugComparer)
         {
-            switch( debugComparer )
+            switch (debugComparer)
             {
                 case GraphyDebugger.DebugComparer.Less_than:
                     return "<";

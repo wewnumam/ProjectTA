@@ -1,22 +1,21 @@
-using ProjectTA.Boot;
 using Agate.MVC.Base;
 using Agate.MVC.Core;
-using System.Collections;
-using UnityEngine.SceneManagement;
+using ProjectTA.Boot;
 using ProjectTA.Message;
 using ProjectTA.Module.LevelData;
-using ProjectTA.Module.SaveSystem;
-using UnityEngine;
-using ProjectTA.Utility;
 using ProjectTA.Module.LevelSelection;
-using Ink.Parsed;
+using ProjectTA.Module.SaveSystem;
+using ProjectTA.Utility;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace ProjectTA.Scene.LevelSelection
 {
     public class LevelSelectionLauncher : SceneLauncher<LevelSelectionLauncher, LevelSelectionView>
     {
-        public override string SceneName {get {return TagManager.SCENE_LEVELSELECTION;}}
+        public override string SceneName { get { return TagManager.SCENE_LEVELSELECTION; } }
 
         private readonly SaveSystemController _saveSystem = new();
         private readonly LevelDataController _levelData = new();

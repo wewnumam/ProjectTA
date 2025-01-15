@@ -1,5 +1,3 @@
-using ProjectTA.Utility;
-
 namespace ProjectTA.Message
 {
     public struct ToggleBgmMessage

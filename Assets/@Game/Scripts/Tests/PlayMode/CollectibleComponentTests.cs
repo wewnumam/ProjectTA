@@ -1,8 +1,8 @@
 using NUnit.Framework;
+using ProjectTA.Module.CollectibleData;
+using Unity.PerformanceTesting;
 using UnityEngine;
 using UnityEngine.TestTools;
-using Unity.PerformanceTesting;
-using ProjectTA.Module.CollectibleData;
 
 namespace ProjectTA.Tests
 {

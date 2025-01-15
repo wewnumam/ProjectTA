@@ -1,6 +1,5 @@
 using Agate.MVC.Base;
 using ProjectTA.Message;
-using ProjectTA.Module.CollectibleData;
 using ProjectTA.Module.LevelData;
 using ProjectTA.Utility;
 using System.Collections.Generic;
@@ -27,7 +26,7 @@ namespace ProjectTA.Module.PuzzleBoard
             for (int i = 0; i < _levelData.PuzzleObjects.Count; i++)
             {
                 PuzzleObject puzzle = _levelData.PuzzleObjects[i];
-                
+
                 GameObject puzzleDragable = GameObject.Instantiate(view.PuzzleDragableTemplate.gameObject, view.Parent);
 
                 GameObject puzzleTarget = GameObject.Instantiate(view.PuzzleTargetTemplate.gameObject, view.Parent);

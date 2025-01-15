@@ -3,7 +3,6 @@ using ProjectTA.Message;
 using ProjectTA.Module.CollectibleData;
 using ProjectTA.Module.GameConstants;
 using ProjectTA.Utility;
-using System;
 using UnityEngine;
 
 namespace ProjectTA.Module.PlayerCharacter

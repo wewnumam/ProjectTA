@@ -7,7 +7,7 @@ using UnityEngine;
 namespace ProjectTA.Module.GameState
 {
     public class GameStateController : DataController<GameStateController, GameStateModel, IGameStateModel>
-    {        
+    {
         public override IEnumerator Initialize()
         {
             _model.SetGameState(EnumManager.GameState.PreGame);

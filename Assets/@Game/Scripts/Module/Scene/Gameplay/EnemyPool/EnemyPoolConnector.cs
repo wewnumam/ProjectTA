@@ -1,4 +1,4 @@
-    using Agate.MVC.Base;
+using Agate.MVC.Base;
 using ProjectTA.Message;
 
 namespace ProjectTA.Module.EnemyPool

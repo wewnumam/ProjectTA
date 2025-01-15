@@ -12,9 +12,9 @@ namespace ProjectTA.Module.Settings
         private const float NORMAL_VOLUME = 0f;
 
         public void SetInitialSfx(bool isSfxOn) => _initialSfx = isSfxOn;
-        
+
         public void SetInitialBgm(bool isBgmOn) => _initialBgm = isBgmOn;
-        
+
         public void SetInitialVibrate(bool isVibrateOn) => _initialVibrate = isVibrateOn;
 
         public override void SetView(SettingsView view)

@@ -1,7 +1,7 @@
-using System.Collections;
 using NUnit.Framework;
 using ProjectTA.Module.PlayerCharacter;
 using ProjectTA.Utility;
+using System.Collections;
 using Unity.PerformanceTesting;
 using UnityEngine;
 using UnityEngine.InputSystem;

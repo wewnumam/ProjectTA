@@ -7,8 +7,8 @@ namespace ProjectTA.Message
     {
         public List<ChoicesRecord> ChoicesRecords;
 
-        public ChoicesRecordsMessage(List<ChoicesRecord> choicesRecords) 
-        { 
+        public ChoicesRecordsMessage(List<ChoicesRecord> choicesRecords)
+        {
             ChoicesRecords = choicesRecords;
         }
     }

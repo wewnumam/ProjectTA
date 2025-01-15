@@ -1,10 +1,10 @@
 using NUnit.Framework;
+using ProjectTA.Module.GameConstants;
+using System.Collections;
+using Unity.PerformanceTesting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.TestTools;
-using Unity.PerformanceTesting;
-using System.Collections;
-using ProjectTA.Module.GameConstants;
-using UnityEditor;
 
 namespace ProjectTA.Tests
 {
@@ -27,9 +27,9 @@ namespace ProjectTA.Tests
             initialHealth.SetValue(_gameConstants, 100);
             var isJoystickActive = typeof(SOGameConstants).GetField("_isJoystickActive", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
             isJoystickActive.SetValue(_gameConstants, true);
-            
+
             AssetDatabase.CreateAsset(_gameConstants, $"Assets/Resources/{GAMECONSTANTS_NAME}.asset");
-            
+
             _model = new GameConstantsModel();
             _model.SetGameConstants(_gameConstants);
 

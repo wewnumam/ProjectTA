@@ -4,8 +4,8 @@
     {
         public bool IsGameInductionActive { get; }
 
-        public ToggleGameInductionMessage(bool isGameInductionActive) 
-        { 
+        public ToggleGameInductionMessage(bool isGameInductionActive)
+        {
             IsGameInductionActive = isGameInductionActive;
         }
     }

@@ -66,7 +66,7 @@ namespace ProjectTA.Module.Mission
             if (_model.IsPuzzleCompleted())
             {
                 Publish(new GameWinMessage());
-                
+
                 if (_model.NextLevelData != null)
                 {
                     Publish(new UnlockLevelMessage(_model.NextLevelData));

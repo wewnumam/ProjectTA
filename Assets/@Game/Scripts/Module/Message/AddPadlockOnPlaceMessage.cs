@@ -4,8 +4,8 @@
     {
         public int Amount { get; }
 
-        public AddPadlockOnPlaceMessage(int amount) 
-        { 
+        public AddPadlockOnPlaceMessage(int amount)
+        {
             Amount = amount;
         }
     }

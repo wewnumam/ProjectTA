@@ -4,8 +4,8 @@
     {
         public int Amount { get; }
 
-        public SubtractCollectedPuzzlePieceCountMessage(int amount) 
-        { 
+        public SubtractCollectedPuzzlePieceCountMessage(int amount)
+        {
             Amount = amount;
         }
     }

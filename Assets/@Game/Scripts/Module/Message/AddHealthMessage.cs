@@ -4,8 +4,8 @@
     {
         public int Amount { get; }
 
-        public AddHealthMessage(int amount) 
-        { 
+        public AddHealthMessage(int amount)
+        {
             Amount = amount;
         }
     }

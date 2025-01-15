@@ -10,7 +10,7 @@ namespace ProjectTA.Module.QuizPlayer
     public interface IQuizPlayerModel : IBaseModel
     {
         List<QuizItem> QuizItems { get; }
-        QuizItem CurrentQuizItem {  get; }
+        QuizItem CurrentQuizItem { get; }
 
         int WrongCount { get; }
         int AnswersCount { get; }

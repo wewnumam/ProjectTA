@@ -1,5 +1,5 @@
-using ProjectTA.Message;
 using Agate.MVC.Base;
+using ProjectTA.Message;
 
 namespace ProjectTA.Module.Dialogue
 {

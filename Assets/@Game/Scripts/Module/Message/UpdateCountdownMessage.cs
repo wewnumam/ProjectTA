@@ -8,8 +8,8 @@ namespace ProjectTA.Message
         public float CurrentCountdown { get; }
         public bool IsIncrease { get; }
 
-        public UpdateCountdownMessage(float initialHealth, float currentHealth, bool isIncrease) 
-        { 
+        public UpdateCountdownMessage(float initialHealth, float currentHealth, bool isIncrease)
+        {
             InitialCountdown = initialHealth;
             CurrentCountdown = currentHealth;
             IsIncrease = isIncrease;

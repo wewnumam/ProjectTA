@@ -1,7 +1,5 @@
 using Agate.MVC.Base;
 using ProjectTA.Message;
-using ProjectTA.Utility;
-using System;
 
 namespace ProjectTA.Module.Health
 {

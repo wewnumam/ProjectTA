@@ -1,9 +1,6 @@
 using Agate.MVC.Base;
-using DG.Tweening;
-using Ink.Runtime;
 using ProjectTA.Message;
 using ProjectTA.Utility;
-using System;
 
 namespace ProjectTA.Module.Dialogue
 {

@@ -1,7 +1,6 @@
 ﻿using Agate.MVC.Base;
-using NaughtyAttributes;
-using UnityEngine.Events;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace ProjectTA.Module.Countdown
 {

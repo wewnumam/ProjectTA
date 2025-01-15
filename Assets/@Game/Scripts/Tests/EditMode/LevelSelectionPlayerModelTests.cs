@@ -1,7 +1,7 @@
-using System.Collections.Generic;
 using NUnit.Framework;
 using ProjectTA.Module.LevelData;
 using ProjectTA.Module.LevelSelection;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ProjectTA.Tests

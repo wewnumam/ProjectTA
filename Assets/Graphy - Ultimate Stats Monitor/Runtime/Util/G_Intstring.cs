@@ -56,27 +56,27 @@ namespace Tayx.Graphy.Utils.NumString
         /// <param name="maxPositiveValue">
         /// Highest positive value allowed.
         /// </param>
-        public static void Init( int minNegativeValue, int maxPositiveValue )
+        public static void Init(int minNegativeValue, int maxPositiveValue)
         {
-            if( MinValue > minNegativeValue && minNegativeValue <= 0 )
+            if (MinValue > minNegativeValue && minNegativeValue <= 0)
             {
-                int length = Mathf.Abs( minNegativeValue );
+                int length = Mathf.Abs(minNegativeValue);
 
                 m_negativeBuffer = new string[length];
 
-                for( int i = 0; i < length; i++ )
+                for (int i = 0; i < length; i++)
                 {
-                    m_negativeBuffer[ i ] = (-i - 1).ToString();
+                    m_negativeBuffer[i] = (-i - 1).ToString();
                 }
             }
 
-            if( MaxValue < maxPositiveValue && maxPositiveValue >= 0 )
+            if (MaxValue < maxPositiveValue && maxPositiveValue >= 0)
             {
                 m_positiveBuffer = new string[maxPositiveValue + 1];
 
-                for( int i = 0; i < maxPositiveValue + 1; i++ )
+                for (int i = 0; i < maxPositiveValue + 1; i++)
                 {
-                    m_positiveBuffer[ i ] = i.ToString();
+                    m_positiveBuffer[i] = i.ToString();
                 }
             }
         }
@@ -96,16 +96,16 @@ namespace Tayx.Graphy.Utils.NumString
         /// <returns>
         /// A cached number string if within the buffer ranges.
         /// </returns>
-        public static string ToStringNonAlloc( this int value )
+        public static string ToStringNonAlloc(this int value)
         {
-            if( value < 0 && -value <= m_negativeBuffer.Length )
+            if (value < 0 && -value <= m_negativeBuffer.Length)
             {
-                return m_negativeBuffer[ -value - 1 ];
+                return m_negativeBuffer[-value - 1];
             }
 
-            if( value >= 0 && value < m_positiveBuffer.Length )
+            if (value >= 0 && value < m_positiveBuffer.Length)
             {
-                return m_positiveBuffer[ value ];
+                return m_positiveBuffer[value];
             }
 
             // If the value is not within the buffer ranges, just do a normal .ToString()

@@ -4,8 +4,8 @@
     {
         public int Amount { get; }
 
-        public SubtractKillCountMessage(int amount) 
-        { 
+        public SubtractKillCountMessage(int amount)
+        {
             Amount = amount;
         }
     }

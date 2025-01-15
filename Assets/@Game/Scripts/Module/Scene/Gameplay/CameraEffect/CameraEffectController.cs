@@ -1,6 +1,5 @@
 using Agate.MVC.Base;
 using ProjectTA.Message;
-using System;
 
 namespace ProjectTA.Module.CameraEffect
 {

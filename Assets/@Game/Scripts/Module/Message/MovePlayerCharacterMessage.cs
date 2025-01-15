@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ProjectTA.Message
 {
-    public struct MovePlayerCharacterMessage 
+    public struct MovePlayerCharacterMessage
     {
         public Vector2 Direction { get; }
 

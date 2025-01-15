@@ -6,8 +6,8 @@ namespace ProjectTA.Message
     {
         public SOLevelData LevelData { get; }
 
-        public ChooseLevelMessage(SOLevelData levelData) 
-        { 
+        public ChooseLevelMessage(SOLevelData levelData)
+        {
             LevelData = levelData;
         }
     }

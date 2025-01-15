@@ -60,23 +60,23 @@ namespace Tayx.Graphy.Fps
 
         public void UpdateParameters()
         {
-            if( m_shaderGraph == null )
+            if (m_shaderGraph == null)
             {
                 // While Graphy is disabled (e.g. by default via Ctrl+H) and while in Editor after a Hot-Swap,
                 // the OnApplicationFocus calls this while m_shaderGraph == null, throwing a NullReferenceException
                 return;
             }
 
-            switch( m_graphyManager.GraphyMode )
+            switch (m_graphyManager.GraphyMode)
             {
                 case GraphyManager.Mode.FULL:
                     m_shaderGraph.ArrayMaxSize = G_GraphShader.ArrayMaxSizeFull;
-                    m_shaderGraph.Image.material = new Material( ShaderFull );
+                    m_shaderGraph.Image.material = new Material(ShaderFull);
                     break;
 
                 case GraphyManager.Mode.LIGHT:
                     m_shaderGraph.ArrayMaxSize = G_GraphShader.ArrayMaxSizeLight;
-                    m_shaderGraph.Image.material = new Material( ShaderLight );
+                    m_shaderGraph.Image.material = new Material(ShaderLight);
                     break;
             }
 
@@ -95,31 +95,31 @@ namespace Tayx.Graphy.Fps
         {
             // Since we no longer initialize by default OnEnable(), 
             // we need to check here, and Init() if needed
-            if( !m_isInitialized )
+            if (!m_isInitialized)
             {
                 Init();
             }
 
-            short fps = (short) (1 / Time.unscaledDeltaTime);
+            short fps = (short)(1 / Time.unscaledDeltaTime);
 
             int currentMaxFps = 0;
 
-            for( int i = 0; i <= m_resolution - 1; i++ )
+            for (int i = 0; i <= m_resolution - 1; i++)
             {
-                if( i >= m_resolution - 1 )
+                if (i >= m_resolution - 1)
                 {
-                    m_fpsArray[ i ] = fps;
+                    m_fpsArray[i] = fps;
                 }
                 else
                 {
-                    m_fpsArray[ i ] = m_fpsArray[ i + 1 ];
+                    m_fpsArray[i] = m_fpsArray[i + 1];
                 }
 
                 // Store the highest fps to use as the highest point in the graph
 
-                if( currentMaxFps < m_fpsArray[ i ] )
+                if (currentMaxFps < m_fpsArray[i])
                 {
-                    currentMaxFps = m_fpsArray[ i ];
+                    currentMaxFps = m_fpsArray[i];
                 }
             }
 
@@ -127,15 +127,15 @@ namespace Tayx.Graphy.Fps
 
             m_highestFps = m_highestFps > 0 ? m_highestFps : 1;
 
-            if( m_shaderGraph.ShaderArrayValues == null )
+            if (m_shaderGraph.ShaderArrayValues == null)
             {
                 m_fpsArray = new int[m_resolution];
                 m_shaderGraph.ShaderArrayValues = new float[m_resolution];
             }
 
-            for( int i = 0; i <= m_resolution - 1; i++ )
+            for (int i = 0; i <= m_resolution - 1; i++)
             {
-                m_shaderGraph.ShaderArrayValues[ i ] = m_fpsArray[ i ] / (float) m_highestFps;
+                m_shaderGraph.ShaderArrayValues[i] = m_fpsArray[i] / (float)m_highestFps;
             }
 
             // Update the material values
@@ -145,22 +145,22 @@ namespace Tayx.Graphy.Fps
             m_shaderGraph.Average = m_fpsMonitor.AverageFPS / m_highestFps;
             m_shaderGraph.UpdateAverage();
 
-            m_shaderGraph.GoodThreshold = (float) m_graphyManager.GoodFPSThreshold / m_highestFps;
-            m_shaderGraph.CautionThreshold = (float) m_graphyManager.CautionFPSThreshold / m_highestFps;
+            m_shaderGraph.GoodThreshold = (float)m_graphyManager.GoodFPSThreshold / m_highestFps;
+            m_shaderGraph.CautionThreshold = (float)m_graphyManager.CautionFPSThreshold / m_highestFps;
             m_shaderGraph.UpdateThresholds();
         }
 
         protected override void CreatePoints()
         {
-            if( m_shaderGraph.ShaderArrayValues == null || m_fpsArray.Length != m_resolution )
+            if (m_shaderGraph.ShaderArrayValues == null || m_fpsArray.Length != m_resolution)
             {
                 m_fpsArray = new int[m_resolution];
                 m_shaderGraph.ShaderArrayValues = new float[m_resolution];
             }
 
-            for( int i = 0; i < m_resolution; i++ )
+            for (int i = 0; i < m_resolution; i++)
             {
-                m_shaderGraph.ShaderArrayValues[ i ] = 0;
+                m_shaderGraph.ShaderArrayValues[i] = 0;
             }
 
             m_shaderGraph.GoodColor = m_graphyManager.GoodFPSColor;

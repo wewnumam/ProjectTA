@@ -1,20 +1,20 @@
-using ProjectTA.Boot;
 using Agate.MVC.Base;
 using Agate.MVC.Core;
-using System.Collections;
-using UnityEngine.SceneManagement;
+using ProjectTA.Boot;
 using ProjectTA.Message;
-using UnityEngine;
-using ProjectTA.Utility;
-using ProjectTA.Module.QuizPlayer;
-using ProjectTA.Module.GoogleFormUploader;
 using ProjectTA.Module.GameConstants;
+using ProjectTA.Module.GoogleFormUploader;
+using ProjectTA.Module.QuizPlayer;
+using ProjectTA.Utility;
+using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace ProjectTA.Scene.Quiz
 {
     public class QuizLauncher : SceneLauncher<QuizLauncher, QuizView>
     {
-        public override string SceneName {get {return TagManager.SCENE_QUIZ;}}
+        public override string SceneName { get { return TagManager.SCENE_QUIZ; } }
 
         private readonly GameConstantsController _gameConstants = new();
 

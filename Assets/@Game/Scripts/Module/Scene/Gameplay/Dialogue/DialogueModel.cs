@@ -1,8 +1,6 @@
 using Agate.MVC.Base;
-using Cinemachine;
 using Ink.Runtime;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -17,7 +15,7 @@ namespace ProjectTA.Module.Dialogue
         public UnityAction OnTextAnimationComplete { get; private set; } = null;
 
         private string _currentLineText = String.Empty;
-        
+
         public void InitStory(TextAsset textAsset)
         {
             Story = new Story(textAsset.text);
@@ -37,7 +35,7 @@ namespace ProjectTA.Module.Dialogue
         {
             string characterName = string.Empty;
             string message = _currentLineText?.Trim();
-            
+
             // Parse dialogue line
             if (message != null && message.Contains(":"))
             {

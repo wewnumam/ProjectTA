@@ -1,10 +1,7 @@
 using Agate.MVC.Base;
-using DG.Tweening;
 using ProjectTA.Boot;
 using ProjectTA.Message;
-using ProjectTA.Module.GameState;
 using ProjectTA.Utility;
-using System;
 using UnityEngine;
 
 namespace ProjectTA.Module.GamePause

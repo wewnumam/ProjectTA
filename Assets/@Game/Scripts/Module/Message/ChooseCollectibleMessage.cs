@@ -6,8 +6,8 @@ namespace ProjectTA.Message
     {
         public SOCollectibleData CollectibleData { get; }
 
-        public ChooseCollectibleMessage(SOCollectibleData collectibleData) 
-        { 
+        public ChooseCollectibleMessage(SOCollectibleData collectibleData)
+        {
             CollectibleData = collectibleData;
         }
     }

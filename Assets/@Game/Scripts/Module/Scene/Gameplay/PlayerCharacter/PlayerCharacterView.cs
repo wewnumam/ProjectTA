@@ -3,7 +3,6 @@ using NaughtyAttributes;
 using ProjectTA.Module.CollectibleData;
 using ProjectTA.Module.GameConstants;
 using ProjectTA.Utility;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -185,8 +184,8 @@ namespace ProjectTA.Module.PlayerCharacter
         }
 
         public void SetCollideCallbacks(
-            UnityAction onCollideWithEnemy, 
-            UnityAction<SOCollectibleData> onCollideWithCollectibleComponent, 
+            UnityAction onCollideWithEnemy,
+            UnityAction<SOCollectibleData> onCollideWithCollectibleComponent,
             UnityAction onCollideWithPadlock)
         {
             this._onCollideWithEnemy = onCollideWithEnemy;

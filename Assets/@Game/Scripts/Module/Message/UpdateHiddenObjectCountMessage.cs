@@ -5,7 +5,7 @@
         public int HiddenObjectCount { get; }
         public int CollectedHiddenObjectCount { get; }
         public bool IsIncrease { get; }
-        
+
         public UpdateHiddenObjectCountMessage(int puzzlePieceCount, int collectedPuzzlePieceCount, bool isIncrease)
         {
             HiddenObjectCount = puzzlePieceCount;

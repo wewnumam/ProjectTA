@@ -5,7 +5,7 @@ namespace ProjectTA.Module.CollectibleData
     public class CollectibleComponent : MonoBehaviour
     {
         [field: SerializeField]
-        public SOCollectibleData CollectibleData {  get; private set; }
+        public SOCollectibleData CollectibleData { get; private set; }
 
         public void Initialize(SOCollectibleData collectibleData)
         {

@@ -1,7 +1,7 @@
 using NUnit.Framework;
+using ProjectTA.Module.GameConstants;
 using Unity.PerformanceTesting;
 using UnityEngine;
-using ProjectTA.Module.GameConstants;
 
 namespace ProjectTA.Tests
 {

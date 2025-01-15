@@ -1,12 +1,9 @@
 using NUnit.Framework;
 using ProjectTA.Module.LevelData;
-using UnityEngine;
 using System.Collections.Generic;
 using Unity.PerformanceTesting;
 using UnityEditor;
-using ProjectTA.Message;
-using UnityEngine.TestTools;
-using UnityEditor.VersionControl;
+using UnityEngine;
 
 namespace ProjectTA.Tests
 {

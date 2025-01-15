@@ -1,6 +1,6 @@
 using NaughtyAttributes;
-using UnityEngine;
 using ProjectTA.Utility;
+using UnityEngine;
 
 namespace ProjectTA.Module.CollectibleData
 {

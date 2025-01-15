@@ -4,8 +4,8 @@
     {
         public int Amount { get; }
 
-        public AddCollectedHiddenObjectCountMessage(int amount) 
-        { 
+        public AddCollectedHiddenObjectCountMessage(int amount)
+        {
             Amount = amount;
         }
     }

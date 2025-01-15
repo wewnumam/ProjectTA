@@ -4,8 +4,8 @@
     {
         public int Amount { get; }
 
-        public AddKillCountMessage(int amount) 
-        { 
+        public AddKillCountMessage(int amount)
+        {
             Amount = amount;
         }
     }

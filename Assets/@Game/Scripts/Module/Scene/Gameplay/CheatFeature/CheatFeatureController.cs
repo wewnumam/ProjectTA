@@ -21,11 +21,11 @@ namespace ProjectTA.Module.CheatFeature
             view.SetGameStateCallbacks(OnGameWin, OnGameOver);
             view.SetHealthCallbacks(OnAddHealth, OnSubtractHealth);
             view.SetMissionCallbacks(
-                OnAddPuzzlePieceCount, 
+                OnAddPuzzlePieceCount,
                 OnSubtractPuzzlePieceCount,
                 OnAddHiddenObjectCount,
                 OnSubtractHiddenObjectCount,
-                OnAddKillCount, 
+                OnAddKillCount,
                 OnSubtractKillCount);
             view.SetEnvironmentCallbacks(OnTeleportToPuzzle, OnTeleportToCollectible);
             view.SetEffectsCallbacks(OnBlurCamera, OnNormalCamera);

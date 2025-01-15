@@ -1,21 +1,21 @@
 using Agate.MVC.Base;
-using ProjectTA.Module.Settings;
 using ProjectTA.Module.BulletPool;
 using ProjectTA.Module.CameraEffect;
 using ProjectTA.Module.CheatFeature;
 using ProjectTA.Module.Countdown;
 using ProjectTA.Module.Dialogue;
 using ProjectTA.Module.EnemyPool;
+using ProjectTA.Module.GameInduction;
 using ProjectTA.Module.GameOver;
 using ProjectTA.Module.GamePause;
 using ProjectTA.Module.GameWin;
 using ProjectTA.Module.HUD;
 using ProjectTA.Module.PlayerCharacter;
 using ProjectTA.Module.PuzzleBoard;
+using ProjectTA.Module.Settings;
+using ProjectTA.Module.SpatialDirection;
 using ProjectTA.Module.Tutorial;
 using UnityEngine;
-using ProjectTA.Module.SpatialDirection;
-using ProjectTA.Module.GameInduction;
 
 namespace ProjectTA.Scene.Gameplay
 {

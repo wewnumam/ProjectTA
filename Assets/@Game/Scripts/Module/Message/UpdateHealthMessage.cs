@@ -6,8 +6,8 @@
         public int CurrentHealth { get; }
         public bool IsIncrease { get; }
 
-        public UpdateHealthMessage(int initialHealth, int currentHealth, bool isIncrease) 
-        { 
+        public UpdateHealthMessage(int initialHealth, int currentHealth, bool isIncrease)
+        {
             InitialHealth = initialHealth;
             CurrentHealth = currentHealth;
             IsIncrease = isIncrease;

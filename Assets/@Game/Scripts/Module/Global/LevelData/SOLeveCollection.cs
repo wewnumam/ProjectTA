@@ -8,7 +8,7 @@ namespace ProjectTA.Module.LevelData
     {
 
         [SerializeField] private List<SOLevelData> _levelItems;
-        
+
         public List<SOLevelData> LevelItems => _levelItems;
     }
 }

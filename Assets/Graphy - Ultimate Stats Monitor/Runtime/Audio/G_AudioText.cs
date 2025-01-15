@@ -11,9 +11,9 @@
  * Attribution is not required, but it is always welcomed!
  * -------------------------------------*/
 
+using Tayx.Graphy.Utils.NumString;
 using UnityEngine;
 using UnityEngine.UI;
-using Tayx.Graphy.Utils.NumString;
 
 namespace Tayx.Graphy.Audio
 {
@@ -46,13 +46,13 @@ namespace Tayx.Graphy.Audio
 
         private void Update()
         {
-            if( m_audioMonitor.SpectrumDataAvailable )
+            if (m_audioMonitor.SpectrumDataAvailable)
             {
-                if( m_deltaTimeOffset > 1f / m_updateRate )
+                if (m_deltaTimeOffset > 1f / m_updateRate)
                 {
                     m_deltaTimeOffset = 0f;
 
-                    m_DBText.text = Mathf.Clamp( (int) m_audioMonitor.MaxDB, -80, 0 ).ToStringNonAlloc();
+                    m_DBText.text = Mathf.Clamp((int)m_audioMonitor.MaxDB, -80, 0).ToStringNonAlloc();
                 }
                 else
                 {
@@ -76,7 +76,7 @@ namespace Tayx.Graphy.Audio
 
         private void Init()
         {
-            G_IntString.Init( -80, 0 ); // dB range
+            G_IntString.Init(-80, 0); // dB range
 
             m_graphyManager = transform.root.GetComponentInChildren<GraphyManager>();
 

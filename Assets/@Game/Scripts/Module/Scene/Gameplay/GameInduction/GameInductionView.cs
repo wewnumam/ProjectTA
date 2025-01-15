@@ -1,5 +1,4 @@
 using Agate.MVC.Base;
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -13,10 +12,10 @@ namespace ProjectTA.Module.GameInduction
 
         [SerializeField]
         private UnityEvent _onStartGameInduction;
-        
+
         [SerializeField]
         private UnityEvent _onEndGameInduction;
-        
+
         private UnityAction _onCloseGameInduction;
 
         public void SetCallback(UnityAction onCloseGameInduction)

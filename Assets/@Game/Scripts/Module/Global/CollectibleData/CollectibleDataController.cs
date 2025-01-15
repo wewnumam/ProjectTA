@@ -34,7 +34,7 @@ namespace ProjectTA.Module.CollectibleData
                 SOCollectibleCollection collectibleCollection = Resources.Load<SOCollectibleCollection>(@"CollectibleCollection");
                 _model.SetCollectibleCollection(collectibleCollection);
             }
-            catch (Exception e) 
+            catch (Exception e)
             {
                 Debug.LogError("COLLECTIBLE COLLECTION SCRIPTABLE NOT FOUND!");
                 Debug.LogException(e);

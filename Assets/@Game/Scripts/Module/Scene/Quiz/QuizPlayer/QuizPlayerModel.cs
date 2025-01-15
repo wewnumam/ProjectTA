@@ -1,5 +1,4 @@
 using Agate.MVC.Base;
-using Agate.MVC.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,9 +18,9 @@ namespace ProjectTA.Module.QuizPlayer
         public int WrongCount { get; private set; } = 0;
 
         public List<TMP_Text> ButtonsText { get; private set; } = new();
-        public List<Button> Buttons { get; private set; }  = new();
+        public List<Button> Buttons { get; private set; } = new();
         public List<ChoicesRecord> ChoicesRecords { get; private set; } = new();
-        
+
         private string _sessionId = string.Empty;
         private bool _isFirstChoice = true;
         private UnityAction _onWrong = null;
@@ -42,7 +41,7 @@ namespace ProjectTA.Module.QuizPlayer
             {
                 GameObject obj = GameObject.Instantiate(template.gameObject, parent);
                 Button button = obj.GetComponent<Button>();
-                    
+
                 if (button != null)
                 {
                     Buttons.Add(button);
@@ -63,7 +62,8 @@ namespace ProjectTA.Module.QuizPlayer
         private void ResetButton(Button button, int answerIndex)
         {
             button.onClick.RemoveAllListeners();
-            button.onClick.AddListener(() => {
+            button.onClick.AddListener(() =>
+            {
                 button.gameObject.SetActive(false);
                 AnswerCheck(CurrentQuizItem.Answers[answerIndex]);
             });
@@ -103,12 +103,12 @@ namespace ProjectTA.Module.QuizPlayer
             for (int i = 0; i < QuizItems.Count; i++)
             {
                 if (QuizItems[i].VirtualCamera != null)
-                {    
+                {
                     QuizItems[i].VirtualCamera.enabled = i == CurrentQuizItemIndex;
                 }
             }
 
-            for (int i = 0;  i < Buttons.Count; i++)
+            for (int i = 0; i < Buttons.Count; i++)
             {
                 int index = i; // Capture the current index for the listener
                 ResetButton(Buttons[index], index);

@@ -7,17 +7,17 @@ namespace Graphy.Runtime.UI
     {
         [SerializeField] private bool m_conformX = true;  // Conform to screen safe area on X-axis (default true, disable to ignore)
         [SerializeField] private bool m_conformY = true;  // Conform to screen safe area on Y-axis (default true, disable to ignore)
-        
+
         private RectTransform m_rectTransform;
-        private Rect m_lastSafeArea = new Rect (0, 0, 0, 0);
-        
+        private Rect m_lastSafeArea = new Rect(0, 0, 0, 0);
+
 #if UNITY_EDITOR
         private DrivenRectTransformTracker m_rectTransformTracker;
 #endif
 
         private void Awake()
         {
-            m_rectTransform = GetComponent<RectTransform> ();
+            m_rectTransform = GetComponent<RectTransform>();
 
             Refresh();
         }
@@ -26,7 +26,7 @@ namespace Graphy.Runtime.UI
         {
             Refresh();
         }
-        
+
 #if UNITY_EDITOR
         private void OnDisable()
         {
@@ -49,11 +49,11 @@ namespace Graphy.Runtime.UI
                 | DrivenTransformProperties.Pivot
             );
 #endif
-            
+
             Rect safeArea = Screen.safeArea;
 
             if (safeArea != m_lastSafeArea)
-                ApplySafeArea (safeArea);
+                ApplySafeArea(safeArea);
         }
 
         private void ApplySafeArea(Rect r)

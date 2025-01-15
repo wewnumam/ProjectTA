@@ -1,5 +1,4 @@
 using Agate.MVC.Base;
-using NaughtyAttributes;
 using ProjectTA.Utility;
 using UnityEngine;
 using UnityEngine.Events;

@@ -6,8 +6,8 @@ namespace ProjectTA.Message
     {
         public SOCollectibleData CollectibleData { get; }
 
-        public UnlockCollectibleMessage(SOCollectibleData collectibleData) 
-        { 
+        public UnlockCollectibleMessage(SOCollectibleData collectibleData)
+        {
             CollectibleData = collectibleData;
         }
     }

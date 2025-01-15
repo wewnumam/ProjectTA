@@ -1,36 +1,36 @@
-using ProjectTA.Boot;
 using Agate.MVC.Base;
 using Agate.MVC.Core;
-using System.Collections;
-using ProjectTA.Module.LevelData;
-using UnityEngine.SceneManagement;
-using UnityEngine;
-using ProjectTA.Module.GameConstants;
+using ProjectTA.Boot;
 using ProjectTA.Message;
-using ProjectTA.Module.SaveSystem;
-using ProjectTA.Utility;
+using ProjectTA.Module.BulletPool;
+using ProjectTA.Module.CameraEffect;
+using ProjectTA.Module.CheatFeature;
+using ProjectTA.Module.CollectibleData;
+using ProjectTA.Module.Countdown;
+using ProjectTA.Module.Dialogue;
+using ProjectTA.Module.EnemyPool;
+using ProjectTA.Module.GameConstants;
+using ProjectTA.Module.GameInduction;
+using ProjectTA.Module.GameOver;
 using ProjectTA.Module.GamePause;
 using ProjectTA.Module.GameWin;
-using ProjectTA.Module.GameOver;
-using ProjectTA.Module.Input;
-using ProjectTA.Module.PlayerCharacter;
-using ProjectTA.Module.CheatFeature;
 using ProjectTA.Module.Health;
 using ProjectTA.Module.HUD;
+using ProjectTA.Module.Input;
+using ProjectTA.Module.LevelData;
 using ProjectTA.Module.Mission;
-using ProjectTA.Module.Dialogue;
+using ProjectTA.Module.PlayerCharacter;
 using ProjectTA.Module.PuzzleBoard;
-using ProjectTA.Module.CameraEffect;
-using ProjectTA.Module.Countdown;
-using ProjectTA.Module.CollectibleData;
-using System.Collections.Generic;
-using ProjectTA.Module.BulletPool;
-using ProjectTA.Module.EnemyPool;
-using ProjectTA.Module.Tutorial;
+using ProjectTA.Module.QuestData;
+using ProjectTA.Module.SaveSystem;
 using ProjectTA.Module.Settings;
 using ProjectTA.Module.SpatialDirection;
-using ProjectTA.Module.QuestData;
-using ProjectTA.Module.GameInduction;
+using ProjectTA.Module.Tutorial;
+using ProjectTA.Utility;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace ProjectTA.Scene.Gameplay
 {
@@ -134,7 +134,7 @@ namespace ProjectTA.Scene.Gameplay
             _playerCharacter.SetInitialVibration(_saveSystem.Model.SaveData.IsVibrationOn);
             _playerCharacter.SetView(_view.PlayerCharacterView);
             _playerCharacter.SetInitialActivateJoystick(_gameConstants.Model.GameConstants.IsJoystickActive);
-            
+
             _hud.SetView(_view.HudView);
             _hud.SetGateIcon(_levelData.Model.CurrentLevelData.Icon);
 
@@ -196,11 +196,11 @@ namespace ProjectTA.Scene.Gameplay
                 {
                     co.Initialize(collectibleObject.CollectibleData);
                 }
-                else 
-                { 
+                else
+                {
                     obj.AddComponent<CollectibleComponent>().Initialize(collectibleObject.CollectibleData);
                 }
-                
+
                 puzzleObjects.Add(obj.GetComponent<CollectibleComponent>());
             }
         }

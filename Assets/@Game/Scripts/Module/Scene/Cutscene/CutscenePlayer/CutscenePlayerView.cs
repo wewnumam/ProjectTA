@@ -1,10 +1,10 @@
 using Agate.MVC.Base;
+using DG.Tweening;
+using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using DG.Tweening;
-using NaughtyAttributes;
 
 namespace ProjectTA.Module.CutscenePlayer
 {
@@ -13,7 +13,7 @@ namespace ProjectTA.Module.CutscenePlayer
         [SerializeField] private TMP_Text _characterText;
         [SerializeField] private Text _messageText;
         [SerializeField, ResizableTextArea, ReadOnly] private string _log;
-        
+
         private Tween _tween;
         private UnityAction _onNext;
 

@@ -4,7 +4,7 @@ namespace ProjectTA.Module.Health
 {
     public class HealthModel : BaseModel, IHealthModel
     {
-        public int InitialHealth {  get; private set; } = 0;
+        public int InitialHealth { get; private set; } = 0;
 
         public int CurrentHealth { get; private set; } = 0;
 

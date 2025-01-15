@@ -1,10 +1,10 @@
 using Agate.MVC.Base;
-using UnityEngine.Events;
-using ProjectTA.Module.Tutorial;
 using ProjectTA.Module.CollectibleList;
-using UnityEngine;
 using ProjectTA.Module.QuestList;
 using ProjectTA.Module.Settings;
+using ProjectTA.Module.Tutorial;
+using UnityEngine;
+using UnityEngine.Events;
 
 namespace ProjectTA.Scene.MainMenu
 {

@@ -1,10 +1,9 @@
 using Agate.MVC.Base;
 using ProjectTA.Message;
-using System;
 
 namespace ProjectTA.Module.Countdown
 {
-    public class CountdownController : ObjectController<CountdownController , CountdownModel, ICountdownModel, CountdownView>
+    public class CountdownController : ObjectController<CountdownController, CountdownModel, ICountdownModel, CountdownView>
     {
         public void SetInitialCountdown(float countdown) => _model.SetInitialCountdown(countdown);
         public void SetCurrentCountdown(float countdown) => _model.SetCurrentCountdown(countdown);

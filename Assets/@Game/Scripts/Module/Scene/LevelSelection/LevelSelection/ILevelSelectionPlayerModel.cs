@@ -1,7 +1,5 @@
 using Agate.MVC.Base;
 using ProjectTA.Module.LevelData;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace ProjectTA.Module.LevelSelection
 {

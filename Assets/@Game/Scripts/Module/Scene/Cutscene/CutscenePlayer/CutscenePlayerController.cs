@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ProjectTA.Module.CutscenePlayer
 {
-    public class CutscenePlayerController : ObjectController<CutscenePlayerController, CutscenePlayerModel, ICutscenePlayerModel , CutscenePlayerView>
+    public class CutscenePlayerController : ObjectController<CutscenePlayerController, CutscenePlayerModel, ICutscenePlayerModel, CutscenePlayerView>
     {
         public void SetModel(CutscenePlayerModel model)
         {
@@ -33,7 +33,7 @@ namespace ProjectTA.Module.CutscenePlayer
             }
 
             if (_model.IsTextAnimationComplete)
-            {   
+            {
                 _model.SetNextLine();
                 _model.UpdateDialogueLine();
                 _model.SetIsTextAnimationComplete(false);

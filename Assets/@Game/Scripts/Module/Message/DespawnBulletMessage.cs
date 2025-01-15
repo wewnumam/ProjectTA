@@ -1,5 +1,4 @@
-﻿using ProjectTA.Module.LevelData;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ProjectTA.Message
 {
@@ -7,8 +6,8 @@ namespace ProjectTA.Message
     {
         public GameObject Bullet { get; }
 
-        public DespawnBulletMessage(GameObject bullet) 
-        { 
+        public DespawnBulletMessage(GameObject bullet)
+        {
             Bullet = bullet;
         }
     }

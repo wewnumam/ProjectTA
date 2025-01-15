@@ -1,7 +1,6 @@
 using Agate.MVC.Base;
 using ProjectTA.Module.CollectibleData;
 using ProjectTA.Utility;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 

@@ -17,7 +17,7 @@ namespace ProjectTA.Module.CutscenePlayer
         public UnityAction OnTextAnimationComplete { get; private set; } = null;
 
         private string _currentLineText = String.Empty;
-        
+
         private List<CinemachineVirtualCamera> _cameras = new();
         private int _currentCameraIndex = 0;
 
@@ -45,7 +45,7 @@ namespace ProjectTA.Module.CutscenePlayer
         {
             string characterName = string.Empty;
             string message = _currentLineText?.Trim();
-            
+
             // Parse dialogue line
             if (message != null && message.Contains(":"))
             {

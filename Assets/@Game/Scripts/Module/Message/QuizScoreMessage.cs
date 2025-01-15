@@ -4,8 +4,8 @@
     {
         public float Score { get; }
 
-        public QuizScoreMessage(float score) 
-        { 
+        public QuizScoreMessage(float score)
+        {
             Score = score;
         }
     }

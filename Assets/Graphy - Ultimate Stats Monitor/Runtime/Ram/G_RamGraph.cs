@@ -65,9 +65,9 @@ namespace Tayx.Graphy.Ram
 
         public void UpdateParameters()
         {
-            if( m_shaderGraphAllocated == null
+            if (m_shaderGraphAllocated == null
                 || m_shaderGraphReserved == null
-                || m_shaderGraphMono == null )
+                || m_shaderGraphMono == null)
             {
                 /*
                  * Note: this is fine, since we don't much care what granularity we use if the graph
@@ -78,16 +78,16 @@ namespace Tayx.Graphy.Ram
                 return;
             }
 
-            switch( m_graphyManager.GraphyMode )
+            switch (m_graphyManager.GraphyMode)
             {
                 case GraphyManager.Mode.FULL:
                     m_shaderGraphAllocated.ArrayMaxSize = G_GraphShader.ArrayMaxSizeFull;
                     m_shaderGraphReserved.ArrayMaxSize = G_GraphShader.ArrayMaxSizeFull;
                     m_shaderGraphMono.ArrayMaxSize = G_GraphShader.ArrayMaxSizeFull;
 
-                    m_shaderGraphAllocated.Image.material = new Material( ShaderFull );
-                    m_shaderGraphReserved.Image.material = new Material( ShaderFull );
-                    m_shaderGraphMono.Image.material = new Material( ShaderFull );
+                    m_shaderGraphAllocated.Image.material = new Material(ShaderFull);
+                    m_shaderGraphReserved.Image.material = new Material(ShaderFull);
+                    m_shaderGraphMono.Image.material = new Material(ShaderFull);
                     break;
 
                 case GraphyManager.Mode.LIGHT:
@@ -95,9 +95,9 @@ namespace Tayx.Graphy.Ram
                     m_shaderGraphReserved.ArrayMaxSize = G_GraphShader.ArrayMaxSizeLight;
                     m_shaderGraphMono.ArrayMaxSize = G_GraphShader.ArrayMaxSizeLight;
 
-                    m_shaderGraphAllocated.Image.material = new Material( ShaderLight );
-                    m_shaderGraphReserved.Image.material = new Material( ShaderLight );
-                    m_shaderGraphMono.Image.material = new Material( ShaderLight );
+                    m_shaderGraphAllocated.Image.material = new Material(ShaderLight);
+                    m_shaderGraphReserved.Image.material = new Material(ShaderLight);
+                    m_shaderGraphMono.Image.material = new Material(ShaderLight);
                     break;
             }
 
@@ -118,7 +118,7 @@ namespace Tayx.Graphy.Ram
         {
             // Since we no longer initialize by default OnEnable(), 
             // we need to check here, and Init() if needed
-            if( !m_isInitialized )
+            if (!m_isInitialized)
             {
                 Init();
             }
@@ -129,34 +129,34 @@ namespace Tayx.Graphy.Ram
 
             m_highestMemory = 0;
 
-            for( int i = 0; i <= m_resolution - 1; i++ )
+            for (int i = 0; i <= m_resolution - 1; i++)
             {
-                if( i >= m_resolution - 1 )
+                if (i >= m_resolution - 1)
                 {
-                    m_allocatedArray[ i ] = allocatedMemory;
-                    m_reservedArray[ i ] = reservedMemory;
-                    m_monoArray[ i ] = monoMemory;
+                    m_allocatedArray[i] = allocatedMemory;
+                    m_reservedArray[i] = reservedMemory;
+                    m_monoArray[i] = monoMemory;
                 }
                 else
                 {
-                    m_allocatedArray[ i ] = m_allocatedArray[ i + 1 ];
-                    m_reservedArray[ i ] = m_reservedArray[ i + 1 ];
-                    m_monoArray[ i ] = m_monoArray[ i + 1 ];
+                    m_allocatedArray[i] = m_allocatedArray[i + 1];
+                    m_reservedArray[i] = m_reservedArray[i + 1];
+                    m_monoArray[i] = m_monoArray[i + 1];
                 }
 
-                if( m_highestMemory < m_reservedArray[ i ] )
+                if (m_highestMemory < m_reservedArray[i])
                 {
-                    m_highestMemory = m_reservedArray[ i ];
+                    m_highestMemory = m_reservedArray[i];
                 }
             }
 
-            for( int i = 0; i <= m_resolution - 1; i++ )
+            for (int i = 0; i <= m_resolution - 1; i++)
             {
-                m_shaderGraphAllocated.ShaderArrayValues[ i ] = m_allocatedArray[ i ] / m_highestMemory;
+                m_shaderGraphAllocated.ShaderArrayValues[i] = m_allocatedArray[i] / m_highestMemory;
 
-                m_shaderGraphReserved.ShaderArrayValues[ i ] = m_reservedArray[ i ] / m_highestMemory;
+                m_shaderGraphReserved.ShaderArrayValues[i] = m_reservedArray[i] / m_highestMemory;
 
-                m_shaderGraphMono.ShaderArrayValues[ i ] = m_monoArray[ i ] / m_highestMemory;
+                m_shaderGraphMono.ShaderArrayValues[i] = m_monoArray[i] / m_highestMemory;
             }
 
             m_shaderGraphAllocated.UpdatePoints();
@@ -166,8 +166,8 @@ namespace Tayx.Graphy.Ram
 
         protected override void CreatePoints()
         {
-            if( m_shaderGraphAllocated.ShaderArrayValues == null ||
-                m_shaderGraphAllocated.ShaderArrayValues.Length != m_resolution )
+            if (m_shaderGraphAllocated.ShaderArrayValues == null ||
+                m_shaderGraphAllocated.ShaderArrayValues.Length != m_resolution)
             {
                 m_allocatedArray = new float[m_resolution];
                 m_reservedArray = new float[m_resolution];
@@ -178,11 +178,11 @@ namespace Tayx.Graphy.Ram
                 m_shaderGraphMono.ShaderArrayValues = new float[m_resolution];
             }
 
-            for( int i = 0; i < m_resolution; i++ )
+            for (int i = 0; i < m_resolution; i++)
             {
-                m_shaderGraphAllocated.ShaderArrayValues[ i ] = 0;
-                m_shaderGraphReserved.ShaderArrayValues[ i ] = 0;
-                m_shaderGraphMono.ShaderArrayValues[ i ] = 0;
+                m_shaderGraphAllocated.ShaderArrayValues[i] = 0;
+                m_shaderGraphReserved.ShaderArrayValues[i] = 0;
+                m_shaderGraphMono.ShaderArrayValues[i] = 0;
             }
 
             // Initialize the material values

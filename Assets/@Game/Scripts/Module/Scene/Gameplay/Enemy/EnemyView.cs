@@ -1,5 +1,4 @@
 using Agate.MVC.Base;
-using NaughtyAttributes;
 using ProjectTA.Utility;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,12 +8,12 @@ namespace ProjectTA.Module.Enemy
     public class EnemyView : BaseView
     {
         [SerializeField] private float _speed = 5f;
-        [SerializeField] private float _rayDistance = 2f; 
+        [SerializeField] private float _rayDistance = 2f;
         [SerializeField] private float _rayAngle = 30f;
         [SerializeField] private float _rotationSpeed = 5f;
         [SerializeField] ParticleSystem _spawnFX;
         [SerializeField] ParticleSystem _dieFX;
-        
+
         private bool _isPause;
         private bool _isDie;
         private float _destroyDelay;
@@ -53,7 +52,7 @@ namespace ProjectTA.Module.Enemy
 
             if (_isPause || _isDie)
                 return;
-            
+
             FollowPlayer();
             AvoidObstacles();
             Move();

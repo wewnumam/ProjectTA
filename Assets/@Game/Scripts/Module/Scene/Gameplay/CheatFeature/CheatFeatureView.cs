@@ -8,7 +8,7 @@ namespace ProjectTA.Module.CheatFeature
     public class CheatFeatureView : BaseView
     {
         [Header("Utility")]
-        [SerializeField] private Button _deleteSaveDataButton; 
+        [SerializeField] private Button _deleteSaveDataButton;
         [SerializeField] private Toggle _activateJoystickToggle;
         public Toggle ActivateJoystickToggle => _activateJoystickToggle;
 
@@ -19,7 +19,7 @@ namespace ProjectTA.Module.CheatFeature
         [Header("Health")]
         [SerializeField] private Button _addHealthButton;
         [SerializeField] private Button _subtractHealthButton;
-        
+
         [Header("Mission")]
         [SerializeField] private Button _addCollectedPuzzlePieceCountButton;
         [SerializeField] private Button _subtractCollectedPuzzlePieceCountButton;
@@ -66,11 +66,11 @@ namespace ProjectTA.Module.CheatFeature
         }
 
         public void SetMissionCallbacks(
-            UnityAction onAddPuzzlePieceCount, 
-            UnityAction onSubtractPuzzlePieceCount, 
+            UnityAction onAddPuzzlePieceCount,
+            UnityAction onSubtractPuzzlePieceCount,
             UnityAction onAddHiddenObjectCount,
             UnityAction onSubtractHiddenObjectCount,
-            UnityAction onAddKillCount, 
+            UnityAction onAddKillCount,
             UnityAction onSubtractKillCount)
         {
             _addCollectedPuzzlePieceCountButton.onClick.RemoveAllListeners();

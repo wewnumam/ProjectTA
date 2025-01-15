@@ -54,7 +54,7 @@ namespace Tayx.Graphy.Fps
 
             // Update fps and ms
 
-            CurrentFPS = (short) (Mathf.RoundToInt( 1f / m_unscaledDeltaTime ));
+            CurrentFPS = (short)(Mathf.RoundToInt(1f / m_unscaledDeltaTime));
 
             // Update avg fps
 
@@ -62,33 +62,33 @@ namespace Tayx.Graphy.Fps
 
             m_indexSample++;
 
-            if( m_indexSample >= m_fpsSamplesCapacity ) m_indexSample = 0;
+            if (m_indexSample >= m_fpsSamplesCapacity) m_indexSample = 0;
 
-            m_fpsSamples[ m_indexSample ] = CurrentFPS;
+            m_fpsSamples[m_indexSample] = CurrentFPS;
 
-            if( m_fpsSamplesCount < m_fpsSamplesCapacity )
+            if (m_fpsSamplesCount < m_fpsSamplesCapacity)
             {
                 m_fpsSamplesCount++;
             }
 
-            for( int i = 0; i < m_fpsSamplesCount; i++ )
+            for (int i = 0; i < m_fpsSamplesCount; i++)
             {
-                averageAddedFps += (uint) m_fpsSamples[ i ];
+                averageAddedFps += (uint)m_fpsSamples[i];
             }
 
-            AverageFPS = (short) ((float) averageAddedFps / (float) m_fpsSamplesCount);
+            AverageFPS = (short)((float)averageAddedFps / (float)m_fpsSamplesCount);
 
             // Update percent lows
 
-            m_fpsSamples.CopyTo( m_fpsSamplesSorted, 0 );
+            m_fpsSamples.CopyTo(m_fpsSamplesSorted, 0);
 
             /*
              * TODO: Find a faster way to do this.
              *      We can probably avoid copying the full array every time
              *      and insert the new item already sorted in the list.
              */
-            Array.Sort( m_fpsSamplesSorted,
-                ( x, y ) => x.CompareTo( y ) ); // The lambda expression avoids garbage generation
+            Array.Sort(m_fpsSamplesSorted,
+                (x, y) => x.CompareTo(y)); // The lambda expression avoids garbage generation
 
             bool zero1PercentCalculated = false;
 
@@ -102,21 +102,21 @@ namespace Tayx.Graphy.Fps
                 ? m_fpsSamplesCount
                 : m_zero1PercentSamples;
 
-            short sampleToStartIn = (short) (m_fpsSamplesCapacity - m_fpsSamplesCount);
+            short sampleToStartIn = (short)(m_fpsSamplesCapacity - m_fpsSamplesCount);
 
-            for( short i = sampleToStartIn; i < sampleToStartIn + samplesToIterateThroughForOnePercent; i++ )
+            for (short i = sampleToStartIn; i < sampleToStartIn + samplesToIterateThroughForOnePercent; i++)
             {
-                totalAddedFps += (ushort) m_fpsSamplesSorted[ i ];
+                totalAddedFps += (ushort)m_fpsSamplesSorted[i];
 
-                if( !zero1PercentCalculated && i >= samplesToIterateThroughForZero1Percent - 1 )
+                if (!zero1PercentCalculated && i >= samplesToIterateThroughForZero1Percent - 1)
                 {
                     zero1PercentCalculated = true;
 
-                    Zero1PercentFps = (short) ((float) totalAddedFps / (float) m_zero1PercentSamples);
+                    Zero1PercentFps = (short)((float)totalAddedFps / (float)m_zero1PercentSamples);
                 }
             }
 
-            OnePercentFPS = (short) ((float) totalAddedFps / (float) m_onePercentSamples);
+            OnePercentFPS = (short)((float)totalAddedFps / (float)m_onePercentSamples);
         }
 
         #endregion
@@ -125,8 +125,8 @@ namespace Tayx.Graphy.Fps
 
         public void UpdateParameters()
         {
-            m_onePercentSamples = (short) (m_fpsSamplesCapacity / 100);
-            m_zero1PercentSamples = (short) (m_fpsSamplesCapacity / 1000);
+            m_onePercentSamples = (short)(m_fpsSamplesCapacity / 100);
+            m_zero1PercentSamples = (short)(m_fpsSamplesCapacity / 1000);
         }
 
         #endregion

@@ -30,11 +30,11 @@ namespace Tayx.Graphy
         public int ArrayMaxSize = 128;
 
         public float[] ShaderArrayValues;
-        
+
         public Image Image = null;
 
         public float Average = 0;
-        
+
         public float GoodThreshold = 0;
         public float CautionThreshold = 0;
 
@@ -42,17 +42,17 @@ namespace Tayx.Graphy
         public Color CautionColor = Color.white;
         public Color CriticalColor = Color.white;
 
-        private static readonly int AveragePropertyId = Shader.PropertyToID( "Average" );
+        private static readonly int AveragePropertyId = Shader.PropertyToID("Average");
 
-        private static readonly int GoodThresholdPropertyId = Shader.PropertyToID( "_GoodThreshold" );
-        private static readonly int CautionThresholdPropertyId = Shader.PropertyToID( "_CautionThreshold" );
-        
-        private static readonly int GoodColorPropertyId = Shader.PropertyToID( "_GoodColor" );
-        private static readonly int CautionColorPropertyId = Shader.PropertyToID( "_CautionColor" );
-        private static readonly int CriticalColorPropertyId = Shader.PropertyToID( "_CriticalColor" );
-        
-        private static readonly int GraphValues = Shader.PropertyToID( "GraphValues" );
-        private static readonly int GraphValuesLength = Shader.PropertyToID( "GraphValues_Length" );
+        private static readonly int GoodThresholdPropertyId = Shader.PropertyToID("_GoodThreshold");
+        private static readonly int CautionThresholdPropertyId = Shader.PropertyToID("_CautionThreshold");
+
+        private static readonly int GoodColorPropertyId = Shader.PropertyToID("_GoodColor");
+        private static readonly int CautionColorPropertyId = Shader.PropertyToID("_CautionColor");
+        private static readonly int CriticalColorPropertyId = Shader.PropertyToID("_CriticalColor");
+
+        private static readonly int GraphValues = Shader.PropertyToID("GraphValues");
+        private static readonly int GraphValuesLength = Shader.PropertyToID("GraphValues_Length");
 
         #endregion
 
@@ -69,7 +69,7 @@ namespace Tayx.Graphy
         /// </summary>
         public void InitializeShader()
         {
-            Image.material.SetFloatArray( GraphValues, new float[ArrayMaxSize] );
+            Image.material.SetFloatArray(GraphValues, new float[ArrayMaxSize]);
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Tayx.Graphy
         /// </summary>
         public void UpdateArrayValuesLength()
         {
-            Image.material.SetInt( GraphValuesLength, ShaderArrayValues.Length );
+            Image.material.SetInt(GraphValuesLength, ShaderArrayValues.Length);
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace Tayx.Graphy
         /// </summary>
         public void UpdateAverage()
         {
-            Image.material.SetFloat( AveragePropertyId, Average );
+            Image.material.SetFloat(AveragePropertyId, Average);
         }
 
         /// <summary>
@@ -94,8 +94,8 @@ namespace Tayx.Graphy
         /// </summary>
         public void UpdateThresholds()
         {
-            Image.material.SetFloat( GoodThresholdPropertyId, GoodThreshold );
-            Image.material.SetFloat( CautionThresholdPropertyId, CautionThreshold );
+            Image.material.SetFloat(GoodThresholdPropertyId, GoodThreshold);
+            Image.material.SetFloat(CautionThresholdPropertyId, CautionThreshold);
         }
 
         /// <summary>
@@ -103,9 +103,9 @@ namespace Tayx.Graphy
         /// </summary>
         public void UpdateColors()
         {
-            Image.material.SetColor( GoodColorPropertyId, GoodColor );
-            Image.material.SetColor( CautionColorPropertyId, CautionColor );
-            Image.material.SetColor( CriticalColorPropertyId, CriticalColor );
+            Image.material.SetColor(GoodColorPropertyId, GoodColor);
+            Image.material.SetColor(CautionColorPropertyId, CautionColor);
+            Image.material.SetColor(CriticalColorPropertyId, CriticalColor);
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace Tayx.Graphy
         /// </summary>
         public void UpdatePoints()
         {
-            Image.material.SetFloatArray( GraphValues, ShaderArrayValues );
+            Image.material.SetFloatArray(GraphValues, ShaderArrayValues);
         }
 
         #endregion

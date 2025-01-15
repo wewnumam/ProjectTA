@@ -10,7 +10,7 @@ namespace ProjectTA.Module.QuestList
         [SerializeField] private Transform _parent;
         [SerializeField] private QuestComponent _questComponentTemplate;
         [SerializeField] private TMP_Text _pointsText;
-        
+
         public QuestComponent QuestComponentTemplate => _questComponentTemplate;
         public Transform Parent => _parent;
         public TMP_Text PointsText => _pointsText;

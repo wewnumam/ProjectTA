@@ -1,5 +1,4 @@
 using ProjectTA.Module.LevelData;
-using ProjectTA.Utility;
 
 namespace ProjectTA.Message
 {

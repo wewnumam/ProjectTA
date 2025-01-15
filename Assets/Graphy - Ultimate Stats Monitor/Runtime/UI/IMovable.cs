@@ -23,6 +23,6 @@ namespace Tayx.Graphy.UI
         /// <param name="newModulePosition">
         /// The new position of the module.
         /// </param>
-        void SetPosition( GraphyManager.ModulePosition newModulePosition, Vector2 offset );
+        void SetPosition(GraphyManager.ModulePosition newModulePosition, Vector2 offset);
     }
 }

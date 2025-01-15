@@ -1,11 +1,11 @@
-﻿using DG.Tweening;
-using Agate.MVC.Base;
+﻿using Agate.MVC.Base;
+using DG.Tweening;
+using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
-using NaughtyAttributes;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace ProjectTA.Module.Dialogue
 {
@@ -14,17 +14,17 @@ namespace ProjectTA.Module.Dialogue
         [SerializeField] private TMP_Text _characterText;
         [SerializeField] private Text _messageText;
         [SerializeField] private UnityEvent _onStart;
-        [SerializeField] private UnityEvent _onEnd; 
-        [SerializeField] private UnityEvent _onLastLine; 
+        [SerializeField] private UnityEvent _onEnd;
+        [SerializeField] private UnityEvent _onLastLine;
         [SerializeField, ResizableTextArea, ReadOnly] private string _log;
-        
+
         private UnityAction _onNext;
         private Tween _tween;
 
         public UnityEvent OnStart => _onStart;
         public UnityEvent OnEnd => _onEnd;
         public UnityEvent OnLastLine => _onLastLine;
-        
+
         public void DisplayNextLine()
         {
             _onNext?.Invoke();

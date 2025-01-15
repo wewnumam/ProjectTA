@@ -4,8 +4,8 @@
     {
         public string LevelName { get; }
 
-        public AddLevelPlayedMessage(string levelName) 
-        { 
+        public AddLevelPlayedMessage(string levelName)
+        {
             LevelName = levelName;
         }
     }

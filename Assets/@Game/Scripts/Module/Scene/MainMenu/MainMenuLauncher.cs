@@ -1,25 +1,24 @@
-using ProjectTA.Boot;
 using Agate.MVC.Base;
 using Agate.MVC.Core;
-using System.Collections;
-using UnityEngine.SceneManagement;
+using ProjectTA.Boot;
 using ProjectTA.Message;
-using UnityEngine;
-using ProjectTA.Utility;
-using ProjectTA.Module.SaveSystem;
 using ProjectTA.Module.CollectibleData;
-using ProjectTA.Module.Tutorial;
 using ProjectTA.Module.CollectibleList;
-using System;
 using ProjectTA.Module.QuestData;
 using ProjectTA.Module.QuestList;
+using ProjectTA.Module.SaveSystem;
 using ProjectTA.Module.Settings;
+using ProjectTA.Module.Tutorial;
+using ProjectTA.Utility;
+using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace ProjectTA.Scene.MainMenu
 {
     public class MainMenuLauncher : SceneLauncher<MainMenuLauncher, MainMenuView>
     {
-        public override string SceneName {get {return TagManager.SCENE_MAINMENU;}}
+        public override string SceneName { get { return TagManager.SCENE_MAINMENU; } }
 
         private readonly SaveSystemController _saveSystem = new();
         private readonly CollectibleDataController _collectibleData = new();

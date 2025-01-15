@@ -4,9 +4,9 @@ namespace ProjectTA.Message
 {
     public struct UpdateQuestDataMessage
     {
-        public QuestData QuestData {  get; private set; }
+        public QuestData QuestData { get; private set; }
 
-        public UpdateQuestDataMessage(QuestData questData) 
+        public UpdateQuestDataMessage(QuestData questData)
         {
             QuestData = questData;
         }

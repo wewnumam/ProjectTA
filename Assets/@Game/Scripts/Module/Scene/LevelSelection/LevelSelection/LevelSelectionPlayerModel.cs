@@ -43,7 +43,7 @@ namespace ProjectTA.Module.LevelSelection
                 CurrentLevelDataIndex = 0;
             }
             CurrentLevelData = _levelCollection.LevelItems[CurrentLevelDataIndex];
-            
+
             SetDataAsDirty();
         }
 
@@ -70,7 +70,7 @@ namespace ProjectTA.Module.LevelSelection
                 sb.AppendLine($"{nameof(CurrentLevelData.Title)}\t\t: {CurrentLevelData.Title}");
             }
             sb.AppendLine($"{nameof(CurrentLevelDataIndex)}\t\t: {CurrentLevelDataIndex}");
-                
+
 
             sb.AppendLine("\nUnlocked Level:");
             foreach (var levelData in _unlockedLevels)

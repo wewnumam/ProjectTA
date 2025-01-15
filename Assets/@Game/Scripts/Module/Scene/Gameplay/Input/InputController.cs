@@ -34,7 +34,7 @@ namespace ProjectTA.Module.Input
             inputActions.Character.Aim.performed -= OnStartAim;
             inputActions.Character.Aim.canceled -= OnEndAim;
             inputActions.Character.Disable();
-            
+
             yield return base.Terminate();
         }
 
