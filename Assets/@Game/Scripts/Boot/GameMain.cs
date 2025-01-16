@@ -1,5 +1,6 @@
 using Agate.MVC.Base;
 using Agate.MVC.Core;
+using ProjectTA.Module.Analytic;
 using ProjectTA.Module.CollectibleData;
 using ProjectTA.Module.GameConstants;
 using ProjectTA.Module.GameState;
@@ -13,17 +14,6 @@ namespace ProjectTA.Boot
 {
     public class GameMain : BaseMain<GameMain>, IMain
     {
-        protected override IConnector[] GetConnectors()
-        {
-            return new IConnector[] {
-                new SaveSystemConnector(),
-                new LevelDataConnector(),
-                new CollectibleDataConnector(),
-                new GameStateConnector(),
-                new QuestDataConnector(),
-            };
-        }
-
         protected override IController[] GetDependencies()
         {
             return new IController[] {
@@ -33,8 +23,22 @@ namespace ProjectTA.Boot
                 new GameConstantsController(),
                 new GameStateController(),
                 new QuestDataController(),
+                new AnalyticController(),
             };
         }
+
+        protected override IConnector[] GetConnectors()
+        {
+            return new IConnector[] {
+                new SaveSystemConnector(),
+                new LevelDataConnector(),
+                new CollectibleDataConnector(),
+                new GameStateConnector(),
+                new QuestDataConnector(),
+                new AnalyticConnector(),
+            };
+        }
+
 
         protected override IEnumerator StartInit()
         {

@@ -96,6 +96,7 @@ namespace ProjectTA.Scene.MainMenu
 
         private void OnQuit()
         {
+            Publish(new AppQuitMessage());
             Application.Quit();
         }
 
