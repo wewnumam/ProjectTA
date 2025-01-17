@@ -10,11 +10,13 @@ namespace ProjectTA.Module.GoogleFormUploader
         protected override void Connect()
         {
             Subscribe<ChoicesRecordsMessage>(_googleFormUploader.OnSendChoicesRecords);
+            Subscribe<AnalyticRecordMessage>(_googleFormUploader.OnSendAnalyticRecord);
         }
 
         protected override void Disconnect()
         {
             Unsubscribe<ChoicesRecordsMessage>(_googleFormUploader.OnSendChoicesRecords);
+            Unsubscribe<AnalyticRecordMessage>(_googleFormUploader.OnSendAnalyticRecord);
         }
     }
 }

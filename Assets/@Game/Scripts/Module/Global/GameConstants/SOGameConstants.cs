@@ -1,3 +1,4 @@
+using ProjectTA.Module.Analytic;
 using ProjectTA.Module.QuizPlayer;
 using System;
 using UnityEngine;
@@ -23,12 +24,17 @@ namespace ProjectTA.Module.GameConstants
         [Header("Quiz Form Constants")]
         [SerializeField] private QuizFormConstants _quizFormConstants;
 
+        [Header("Analytic Form Constants")]
+        [SerializeField] private AnalyticFormConstants _analyticFormConstants;
+
+
         public bool IsJoystickActive => _isJoystickActive;
         public int InitialHealth => _initialHealth;
         public PlayerConstants PlayerConstants => _playerConstants;
         public ShootingConstants Shooting => _shootingConstants;
         public EnemyConstants Enemy => _enemyConstants;
         public QuizFormConstants QuizFormConstants => _quizFormConstants;
+        public AnalyticFormConstants AnalyticFormConstants => _analyticFormConstants;
     }
 
     [Serializable]
@@ -90,5 +96,13 @@ namespace ProjectTA.Module.GameConstants
 
         public string FormUrl => _formUrl;
         public ChoicesRecord EntryIds => _entryIds;
+    }
+
+    [Serializable]
+    public class AnalyticFormConstants
+    {
+        [field: SerializeField] public float FpsUpdateInterval { get; set; }
+        [field: SerializeField] public string FormUrl { get; set; }
+        [field: SerializeField] public AnalyticRecord EntryIds { get; set; }
     }
 }

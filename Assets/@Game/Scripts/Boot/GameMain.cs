@@ -4,6 +4,7 @@ using ProjectTA.Module.Analytic;
 using ProjectTA.Module.CollectibleData;
 using ProjectTA.Module.GameConstants;
 using ProjectTA.Module.GameState;
+using ProjectTA.Module.GoogleFormUploader;
 using ProjectTA.Module.LevelData;
 using ProjectTA.Module.QuestData;
 using ProjectTA.Module.SaveSystem;
@@ -23,6 +24,7 @@ namespace ProjectTA.Boot
                 new GameConstantsController(),
                 new GameStateController(),
                 new QuestDataController(),
+                new GoogleFormUploaderController(),
                 new AnalyticController(),
             };
         }
@@ -35,6 +37,7 @@ namespace ProjectTA.Boot
                 new CollectibleDataConnector(),
                 new GameStateConnector(),
                 new QuestDataConnector(),
+                new GoogleFormUploaderConnector(),
                 new AnalyticConnector(),
             };
         }
@@ -43,6 +46,7 @@ namespace ProjectTA.Boot
         protected override IEnumerator StartInit()
         {
             Application.targetFrameRate = -1;
+
             yield return null;
         }
 

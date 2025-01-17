@@ -43,3 +43,19 @@ MonoBehaviour:
       <Question>k__BackingField: entry.802313376
       <Choices>k__BackingField: entry.1780135778
       <IsFirstChoice>k__BackingField: entry.755100478
+  _analyticFormConstants:
+    <FpsUpdateInterval>k__BackingField: 5
+    <FormUrl>k__BackingField: https://docs.google.com/forms/u/1/d/e/1FAIpQLSevbCANvyiaLQ3ecktjzB1yXrcBvtsuSnYaMGrEXtxLvhKILA/formResponse
+    <EntryIds>k__BackingField:
+      <SessionId>k__BackingField: entry.140946590
+      <DeviceId>k__BackingField: entry.820415982
+      <ScreenTimeInSeconds>k__BackingField: entry.1897815215
+      <AverageFps>k__BackingField: entry.944444128
+      <MaxFps>k__BackingField: entry.1811626036
+      <MinFps>k__BackingField: entry.206437861
+      <AverageMemory>k__BackingField: entry.819334667
+      <MaxMemory>k__BackingField: entry.149474674
+      <MinMemory>k__BackingField: entry.1130694307
+      <LogWarningCount>k__BackingField: entry.1740174698
+      <LogErrorCount>k__BackingField: entry.1419177361
+      <LogExceptionCount>k__BackingField: entry.1596631153

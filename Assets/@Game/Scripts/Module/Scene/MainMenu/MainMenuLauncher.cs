@@ -64,6 +64,7 @@ namespace ProjectTA.Scene.MainMenu
             SetInitialUnlockedCollectibles();
             SetInitialQuestData();
 
+
             _tutorial.SetView(_view.TutorialView);
 
             _collectibleList.SetCollectibleCollection(_collectibleData.Model.CollectibleCollection);
