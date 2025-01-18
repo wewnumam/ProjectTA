@@ -4,6 +4,7 @@ using ProjectTA.Boot;
 using ProjectTA.Message;
 using ProjectTA.Module.CollectibleData;
 using ProjectTA.Module.CollectibleList;
+using ProjectTA.Module.LevelData;
 using ProjectTA.Module.QuestData;
 using ProjectTA.Module.QuestList;
 using ProjectTA.Module.SaveSystem;
@@ -21,6 +22,7 @@ namespace ProjectTA.Scene.MainMenu
         public override string SceneName { get { return TagManager.SCENE_MAINMENU; } }
 
         private readonly SaveSystemController _saveSystem = new();
+        private readonly LevelDataController _levelData = new();
         private readonly CollectibleDataController _collectibleData = new();
         private readonly CollectibleListController _collectibleList = new();
         private readonly QuestDataController _questData = new();
@@ -59,11 +61,9 @@ namespace ProjectTA.Scene.MainMenu
 
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneName));
 
+            PlayerPrefs.SetString(TagManager.KEY_VERSION, Application.version);
+
             _view.SetCallbacks(OnPlay, OnQuit, OnQuiz);
-
-            SetInitialUnlockedCollectibles();
-            SetInitialQuestData();
-
 
             _tutorial.SetView(_view.TutorialView);
 
@@ -85,7 +85,7 @@ namespace ProjectTA.Scene.MainMenu
 
         private void OnPlay()
         {
-            if (_saveSystem.Model.SaveData.CurrentCutsceneName == TagManager.DEFAULT_CUTSCENENAME)
+            if (_levelData.Model.SavedLevelData.CurrentCutsceneName == TagManager.DEFAULT_CUTSCENENAME)
             {
                 SceneLoader.Instance.LoadScene(TagManager.SCENE_CUTSCENE);
             }
@@ -104,24 +104,6 @@ namespace ProjectTA.Scene.MainMenu
         private void OnQuiz()
         {
             SceneLoader.Instance.LoadScene(TagManager.SCENE_QUIZ);
-        }
-
-        private void SetInitialUnlockedCollectibles()
-        {
-            if (_saveSystem.Model.SaveData.UnlockedCollectibles.Count > 0 && _collectibleData.Model.UnlockedCollectibleItems.Count <= 0)
-            {
-                foreach (var collectibleName in _saveSystem.Model.SaveData.UnlockedCollectibles)
-                {
-                    _collectibleData.AddUnlockedCollectible(collectibleName);
-                }
-            }
-        }
-
-        private void SetInitialQuestData()
-        {
-            _questData.SetCurrentQuestData(_saveSystem.Model.SaveData.CurrentQuestData);
-            _questData.SetCollectibleCollectionAndUnlockedCollectible(_collectibleData.Model.CollectibleCollection, _saveSystem.Model.SaveData.UnlockedCollectibles);
-            _questData.SetCurrentLevelPlayedAmount(_saveSystem.Model.SaveData.LevelPlayed.Count);
         }
     }
 }

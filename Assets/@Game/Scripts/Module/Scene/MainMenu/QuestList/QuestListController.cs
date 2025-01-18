@@ -9,14 +9,14 @@ namespace ProjectTA.Module.QuestList
     public class QuestListController : ObjectController<QuestListController, QuestListView>
     {
         private SOQuestCollection _questCollection = null;
-        private QuestData.QuestData _questData = null;
+        private QuestData.SavedQuestData _questData = null;
 
         public void SetQuestCollection(SOQuestCollection questCollection)
         {
             _questCollection = questCollection;
         }
 
-        public void SetQuestData(QuestData.QuestData questData)
+        public void SetQuestData(QuestData.SavedQuestData questData)
         {
             _questData = questData;
         }
@@ -66,7 +66,7 @@ namespace ProjectTA.Module.QuestList
                     currentAmount = _questData.CurrentHiddenObjectAmount;
                     break;
                 case EnumManager.QuestType.LevelPlayed:
-                    currentAmount = _questData.CurrentLevelPlayedAmount;
+                    currentAmount = _questData.LevelPlayed.Count;
                     break;
                 case EnumManager.QuestType.GameWin:
                     currentAmount = _questData.CurrentGameWinAmount;

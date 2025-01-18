@@ -28,5 +28,14 @@
         public const string MIXER_MASTER_VOLUME = "MasterVolume";
         public const string MIXER_SFX_VOLUME = "SfxVolume";
         public const string MIXER_BGM_VOLUME = "BgmVolume";
+
+        public const string FILENAME_QUESTDATA = "SavedQuestData";
+        public const string FILENAME_SAVEDUNLOCKEDCOLLECTIBLES = "SavedUnlockedCollectibles";
+        public const string FILENAME_SAVEDLEVELDATA = "SavedLevelData";
+
+        public const string SO_QUESTCOLLECTION = "QuestCollection";
+        public const string SO_COLLECTIBLECOLLECTION = "CollectibleCollection";
+        public const string SO_LEVELCOLLECTION = "LevelCollection";
+        public const string SO_GAMECONSTANTS = "GameConstants";
     }
 }

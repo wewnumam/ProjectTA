@@ -36,7 +36,7 @@ namespace ProjectTA.Module.Analytic
             _totalDeltaTime += Time.deltaTime;
 
             // Collect memory data
-            long currentMemory = GC.GetTotalMemory(false) / (1024 * 1024); // Memory in MB
+            int currentMemory = (int)(GC.GetTotalMemory(false) / (1024 * 1024)); // Memory in MB
             _totalMemoryUsage += currentMemory;
             _memorySamples++;
 
@@ -47,14 +47,14 @@ namespace ProjectTA.Module.Analytic
             // Update FPS and log metrics every interval
             if (Time.time - _lastFpsUpdate > _fpsUpdateInterval)
             {
-                _performanceMetricsData.AverageFps = _frameCount / _totalDeltaTime;
+                _performanceMetricsData.AverageFps = (int)(_frameCount / _totalDeltaTime);
 
                 // Update min and max FPS
                 _performanceMetricsData.MinFps = Math.Min(_performanceMetricsData.MinFps, _performanceMetricsData.AverageFps);
                 _performanceMetricsData.MaxFps = Math.Max(_performanceMetricsData.MaxFps, _performanceMetricsData.AverageFps);
 
                 // Calculate average memory usage
-                _performanceMetricsData.AverageMemory = _totalMemoryUsage / _memorySamples;
+                _performanceMetricsData.AverageMemory = (int)(_totalMemoryUsage / _memorySamples);
 
                 _onPerformanceMetrics?.Invoke(_performanceMetricsData);
 

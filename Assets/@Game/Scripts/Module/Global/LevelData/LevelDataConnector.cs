@@ -10,11 +10,15 @@ namespace ProjectTA.Module.LevelData
         protected override void Connect()
         {
             Subscribe<ChooseLevelMessage>(_levelData.OnChooseLevel);
+            Subscribe<UnlockLevelMessage>(_levelData.OnUnlockLevel);
+            Subscribe<DeleteSaveDataMessage>(_levelData.OnDeleteSaveData);
         }
 
         protected override void Disconnect()
         {
             Unsubscribe<ChooseLevelMessage>(_levelData.OnChooseLevel);
+            Unsubscribe<UnlockLevelMessage>(_levelData.OnUnlockLevel);
+            Unsubscribe<DeleteSaveDataMessage>(_levelData.OnDeleteSaveData);
         }
     }
 }

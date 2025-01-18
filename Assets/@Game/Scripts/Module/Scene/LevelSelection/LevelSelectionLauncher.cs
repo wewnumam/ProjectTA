@@ -7,7 +7,6 @@ using ProjectTA.Module.LevelSelection;
 using ProjectTA.Module.SaveSystem;
 using ProjectTA.Utility;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -48,37 +47,11 @@ namespace ProjectTA.Scene.LevelSelection
 
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneName));
 
-            yield return StartCoroutine(_levelData.SetCurrentLevel(_saveSystem.Model.SaveData.CurrentLevelName));
-
-            if (_saveSystem.Model.SaveData.UnlockedLevels.Count <= 0)
-            {
-                SetInitialUnlockedLevels();
-            }
-
             _levelSelection.SetLevelCollection(_levelData.Model.LevelCollection);
-            List<SOLevelData> unlockedLevels = new();
-            foreach (var levelData in _levelData.Model.LevelCollection.LevelItems)
-            {
-                if (_saveSystem.Model.SaveData.UnlockedLevels.Contains(levelData.name))
-                {
-                    unlockedLevels.Add(levelData);
-                }
-            }
-            _levelSelection.SetUnlockedLevels(unlockedLevels);
+            _levelSelection.SetUnlockedLevels(_levelData.Model.GetUnlockedLevels());
             _levelSelection.SetView(_view.levelSelectionView);
 
             yield return null;
-        }
-
-        private void SetInitialUnlockedLevels()
-        {
-            foreach (var levelItem in _levelData.Model.LevelCollection.LevelItems)
-            {
-                if (!levelItem.IsLockedLevel)
-                {
-                    Publish(new UnlockLevelMessage(levelItem));
-                }
-            }
         }
     }
 }

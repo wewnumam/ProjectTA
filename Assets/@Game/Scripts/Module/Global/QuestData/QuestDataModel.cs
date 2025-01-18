@@ -9,19 +9,26 @@ namespace ProjectTA.Module.QuestData
     public class QuestDataModel : BaseModel, IQuestDataModel
     {
         public SOQuestCollection QuestCollection { get; private set; }
-        public QuestData CurrentQuestData { get; private set; }
+        public SavedQuestData CurrentQuestData { get; private set; }
+        public SavedUnlockedCollectibles UnlockedCollectibles { get; private set; }
 
         public float CurrentSessionInMinutes { get; private set; }
 
-        public void SetGameConstants(SOQuestCollection gameConstants)
+        public void SetQuestCollection(SOQuestCollection questCollection)
         {
-            QuestCollection = gameConstants;
+            QuestCollection = questCollection;
             SetDataAsDirty();
         }
 
-        public void SetCurrentQuestData(QuestData questData)
+        public void SetCurrentQuestData(SavedQuestData questData)
         {
             CurrentQuestData = questData;
+            SetDataAsDirty();
+        }
+
+        public void SetUnlockedCollectibles(SavedUnlockedCollectibles unlockedCollectibles)
+        {
+            UnlockedCollectibles = unlockedCollectibles;
             SetDataAsDirty();
         }
 
@@ -59,12 +66,6 @@ namespace ProjectTA.Module.QuestData
             SetDataAsDirty();
         }
 
-        public void SetCurrentLevelPlayedAmount(int amount)
-        {
-            CurrentQuestData.CurrentLevelPlayedAmount = amount;
-            SetDataAsDirty();
-        }
-
         public void AddCurrentGameWinAmount(int amount)
         {
             CurrentQuestData.CurrentGameWinAmount += amount;
@@ -90,6 +91,14 @@ namespace ProjectTA.Module.QuestData
         {
             CurrentSessionInMinutes = seconds / 60f;
             SetDataAsDirty();
+        }
+
+        public void AddLevelPlayed(string levelName)
+        {
+            if (!CurrentQuestData.LevelPlayed.Contains(levelName))
+            {
+                CurrentQuestData.LevelPlayed.Add(levelName);
+            }
         }
     }
 }

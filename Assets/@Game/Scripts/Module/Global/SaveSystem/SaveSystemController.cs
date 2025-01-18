@@ -19,7 +19,6 @@ namespace ProjectTA.Module.SaveSystem
             if (!PlayerPrefs.HasKey(TagManager.KEY_VERSION) || !PlayerPrefs.GetString(TagManager.KEY_VERSION).Equals(Application.version))
                 DeleteSaveFile();
 
-            PlayerPrefs.SetString(TagManager.KEY_VERSION, Application.version);
             _model.SetSaveData(LoadGame());
 
             yield return base.Initialize();
@@ -85,61 +84,10 @@ namespace ProjectTA.Module.SaveSystem
 
         #region MESSAGE LISTENER
 
-        public void UnlockLevel(UnlockLevelMessage message)
-        {
-            if (message.LevelData != null)
-            {
-                _model.AddUnlockedLevel(message.LevelData.name);
-                SaveGame(_model.SaveData);
-            }
-            else
-            {
-                Debug.LogWarning($"LEVEL DATA MESSAGE IS NULL!");
-            }
-        }
-
-        public void UnlockCollectible(UnlockCollectibleMessage message)
-        {
-            if (message.CollectibleData != null)
-            {
-                _model.AddUnlockedCollectible(message.CollectibleData.name);
-                SaveGame(_model.SaveData);
-            }
-            else
-            {
-                Debug.LogWarning($"COLLECTIBLE DATA MESSAGE IS NULL!");
-            }
-        }
-
         public void DeleteSaveData(DeleteSaveDataMessage message)
         {
             DeleteSaveFile();
             _model.SetSaveData(LoadGame());
-        }
-
-        public void ChooseLevel(ChooseLevelMessage message)
-        {
-            _model.SetCurrentLevelName(message.LevelData.name);
-            _model.SetCurrentCutsceneName(message.LevelData.CutsceneData.name);
-            SaveGame(_model.SaveData);
-        }
-
-        public void SaveChoicesRecords(ChoicesRecordsMessage message)
-        {
-            _model.SetChoicesRecords(message.ChoicesRecords);
-            SaveGame(_model.SaveData);
-        }
-
-        public void SaveQuestData(UpdateQuestDataMessage message)
-        {
-            _model.SetCurrentQuestData(message.QuestData);
-            SaveGame(_model.SaveData);
-        }
-
-        public void AddLevelPlayed(AddLevelPlayedMessage message)
-        {
-            _model.AddLevelPlayed(message.LevelName);
-            SaveGame(_model.SaveData);
         }
 
         public void ToggleGameInduction(ToggleGameInductionMessage message)

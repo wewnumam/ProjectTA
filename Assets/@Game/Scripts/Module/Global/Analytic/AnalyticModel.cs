@@ -9,7 +9,7 @@ namespace ProjectTA.Module.Analytic
     {
         public bool IsAppQuit { get; private set; } = false;
         public AnalyticFormConstants AnalyticFormConstants { get; private set; } = null;
-        public float ScreenTimeInSeconds { get; private set; } = 0;
+        public int ScreenTimeInSeconds { get; private set; } = 0;
         public PerformanceMetricsData PerformanceMetricsData { get; private set; } = null;
         public int LogWarningCount { get; private set; } = 0;
         public int LogErrorCount { get; private set; } = 0;
@@ -17,7 +17,7 @@ namespace ProjectTA.Module.Analytic
 
         public void SetScreenTimeInSeconds(float screenTimeInSeconds)
         {
-            ScreenTimeInSeconds = screenTimeInSeconds;
+            ScreenTimeInSeconds = (int)screenTimeInSeconds;
         }
 
         public void SetPerformanceMetrics(PerformanceMetricsData performanceMetricsData)

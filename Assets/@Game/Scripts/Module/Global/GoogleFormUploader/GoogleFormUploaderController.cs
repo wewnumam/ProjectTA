@@ -62,7 +62,7 @@ namespace ProjectTA.Module.GoogleFormUploader
                     { _analyticFormConstants.EntryIds.MaxFps, message.AnalyticRecord.MaxFps },
                     { _analyticFormConstants.EntryIds.MinFps, message.AnalyticRecord.MinFps },
                     { _analyticFormConstants.EntryIds.AverageMemory, message.AnalyticRecord.AverageMemory },
-                    { _analyticFormConstants.EntryIds.MaxMemory, message.AnalyticRecord.MaxFps },
+                    { _analyticFormConstants.EntryIds.MaxMemory, message.AnalyticRecord.MaxMemory },
                     { _analyticFormConstants.EntryIds.MinMemory, message.AnalyticRecord.MinMemory },
                     { _analyticFormConstants.EntryIds.LogWarningCount, message.AnalyticRecord.LogWarningCount },
                     { _analyticFormConstants.EntryIds.LogErrorCount, message.AnalyticRecord.LogErrorCount },

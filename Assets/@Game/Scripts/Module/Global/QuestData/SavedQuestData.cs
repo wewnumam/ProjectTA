@@ -1,10 +1,11 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ProjectTA.Module.QuestData
 {
     [Serializable]
-    public class QuestData
+    public class SavedQuestData
     {
         [field: SerializeField]
         public int CurrentKillAmount { get; set; } = 0;
@@ -19,9 +20,6 @@ namespace ProjectTA.Module.QuestData
         public int CurrentHiddenObjectAmount { get; set; } = 0;
 
         [field: SerializeField]
-        public int CurrentLevelPlayedAmount { get; set; } = 0;
-
-        [field: SerializeField]
         public int CurrentGameWinAmount { get; set; } = 0;
 
         [field: SerializeField]
@@ -29,5 +27,8 @@ namespace ProjectTA.Module.QuestData
 
         [field: SerializeField]
         public float CurrentQuizScoreAmount { get; set; } = 0;
+
+        [field: SerializeField]
+        public List<string> LevelPlayed { get; set; } = new List<string>();
     }
 }

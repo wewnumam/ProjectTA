@@ -44,7 +44,6 @@ namespace ProjectTA.Tests
 
             _controller = new LevelDataController();
             _controller.SetModel(model);
-            _controller.SetLevelCollectionFileName(LEVEL_COLLECTION_NAME);
         }
 
         [TearDown]

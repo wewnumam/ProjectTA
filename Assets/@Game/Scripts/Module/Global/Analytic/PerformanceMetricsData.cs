@@ -2,11 +2,11 @@
 {
     public class PerformanceMetricsData
     {
-        public float AverageFps { get; set; } = 0;
-        public float MaxFps { get; set; } = float.MinValue;
-        public float MinFps { get; set; } = float.MaxValue;
-        public long AverageMemory { get; set; } = 0;
-        public long MaxMemory { get; set; } = long.MinValue;
-        public long MinMemory { get; set; } = long.MaxValue;
+        public int AverageFps { get; set; } = 0;
+        public int MaxFps { get; set; } = int.MinValue;
+        public int MinFps { get; set; } = int.MaxValue;
+        public int AverageMemory { get; set; } = 0;
+        public int MaxMemory { get; set; } = int.MinValue;
+        public int MinMemory { get; set; } = int.MaxValue;
     }
 }

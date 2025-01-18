@@ -10,11 +10,13 @@ namespace ProjectTA.Module.CollectibleData
         protected override void Connect()
         {
             Subscribe<UnlockCollectibleMessage>(_collectibleData.OnUnlockCollectible);
+            Subscribe<DeleteSaveDataMessage>(_collectibleData.OnDeleteSaveData);
         }
 
         protected override void Disconnect()
         {
             Unsubscribe<UnlockCollectibleMessage>(_collectibleData.OnUnlockCollectible);
+            Unsubscribe<DeleteSaveDataMessage>(_collectibleData.OnDeleteSaveData);
         }
     }
 }

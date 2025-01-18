@@ -47,8 +47,6 @@ namespace ProjectTA.Scene.Cutscene
 
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneName));
 
-            yield return StartCoroutine(_levelData.SetCurrentCutscene(_saveSystem.Model.SaveData.CurrentCutsceneName));
-
             GameObject environment = Instantiate(_levelData.Model.CurrentCutsceneData.Environment.gameObject);
 
             if (environment.TryGetComponent<CutsceneComponent>(out var cutsceneComponent))

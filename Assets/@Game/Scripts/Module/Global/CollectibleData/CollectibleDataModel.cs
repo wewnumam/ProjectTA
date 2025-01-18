@@ -8,11 +8,11 @@ namespace ProjectTA.Module.CollectibleData
     {
         public SOCollectibleCollection CollectibleCollection { get; private set; }
         public List<SOCollectibleData> UnlockedCollectibleItems { get; private set; } = new();
+        public SavedUnlockedCollectibles UnlockedCollectiblesName { get; private set; } = new();
 
         public void SetCollectibleCollection(SOCollectibleCollection collectibleCollection)
         {
             CollectibleCollection = collectibleCollection;
-            SetDataAsDirty();
         }
 
         public void AddUnlockedCollectibleCollection(SOCollectibleData collectibleData)
@@ -24,11 +24,13 @@ namespace ProjectTA.Module.CollectibleData
             else
             {
                 UnlockedCollectibleItems.Add(collectibleData);
+                UnlockedCollectiblesName.Items.Add(collectibleData.name);
             }
-
-
-            SetDataAsDirty();
         }
 
+        public void SetUnlockedCollectiblesName(SavedUnlockedCollectibles unlockedCollectiblesName)
+        {
+            UnlockedCollectiblesName = unlockedCollectiblesName;
+        }
     }
 }
