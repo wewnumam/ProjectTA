@@ -2,6 +2,10 @@
 {
     public static class TagManager
     {
+        public const bool DEV_ISDEVELOPMENT = true;
+        public const string DEV_ENCRYPTIONKEY = "ezBH5qCQLvLsq4EWXaZIpL9ZODtSolhc";
+        public const string DEV_ENCRYPTIONIV = "ggKvRG7omWhzGEYe";
+
         public const string SCENE_MAINMENU = "MainMenu";
         public const string SCENE_GAMEPLAY = "Gameplay";
         public const string SCENE_SPLASHSCREEN = "SplashScreen";
@@ -29,9 +33,10 @@
         public const string MIXER_SFX_VOLUME = "SfxVolume";
         public const string MIXER_BGM_VOLUME = "BgmVolume";
 
-        public const string FILENAME_QUESTDATA = "SavedQuestData";
+        public const string FILENAME_SAVEDQUESTDATA = "SavedQuestData";
         public const string FILENAME_SAVEDUNLOCKEDCOLLECTIBLES = "SavedUnlockedCollectibles";
         public const string FILENAME_SAVEDLEVELDATA = "SavedLevelData";
+        public const string FILENAME_SAVEDGAMESETTINGS = "SavedGameSettings";
 
         public const string SO_QUESTCOLLECTION = "QuestCollection";
         public const string SO_COLLECTIBLECOLLECTION = "CollectibleCollection";

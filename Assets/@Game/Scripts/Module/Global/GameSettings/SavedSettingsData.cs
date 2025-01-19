@@ -5,7 +5,7 @@ using UnityEngine;
 namespace ProjectTA.Module.SaveSystem
 {
     [System.Serializable]
-    public class SaveData
+    public class SavedSettingsData
     {
         [field: SerializeField]
         public bool IsGameInductionActive { get; set; } = true;

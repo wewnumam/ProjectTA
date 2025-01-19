@@ -4,37 +4,37 @@ using System.Collections.Generic;
 
 namespace ProjectTA.Module.SaveSystem
 {
-    public class SaveSystemModel : BaseModel, ISaveSystemModel
+    public class GameSettingsModel : BaseModel, IGameSettingsModel
     {
-        public SaveData SaveData { get; private set; } = new();
+        public SavedSettingsData SavedSettingsData { get; private set; } = new();
 
-        public void SetSaveData(SaveData saveData)
+        public void SetSaveData(SavedSettingsData saveData)
         {
-            SaveData = saveData;
+            SavedSettingsData = saveData;
             SetDataAsDirty();
         }
 
         public void SetIsGameIndctionActive(bool isGameIndctionActive)
         {
-            SaveData.IsGameInductionActive = isGameIndctionActive;
+            SavedSettingsData.IsGameInductionActive = isGameIndctionActive;
             SetDataAsDirty();
         }
 
         public void SetIsSfxOn(bool isSfxOn)
         {
-            SaveData.IsSfxOn = isSfxOn;
+            SavedSettingsData.IsSfxOn = isSfxOn;
             SetDataAsDirty();
         }
 
         public void SetIsBgmOn(bool isBgmOn)
         {
-            SaveData.IsBgmOn = isBgmOn;
+            SavedSettingsData.IsBgmOn = isBgmOn;
             SetDataAsDirty();
         }
 
         public void SetIsVibrationOn(bool isVibrationOn)
         {
-            SaveData.IsVibrationOn = isVibrationOn;
+            SavedSettingsData.IsVibrationOn = isVibrationOn;
             SetDataAsDirty();
         }
     }

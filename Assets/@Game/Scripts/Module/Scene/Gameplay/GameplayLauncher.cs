@@ -27,7 +27,6 @@ using ProjectTA.Module.SpatialDirection;
 using ProjectTA.Module.Tutorial;
 using ProjectTA.Utility;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -37,7 +36,7 @@ namespace ProjectTA.Scene.Gameplay
     {
         public override string SceneName { get { return TagManager.SCENE_GAMEPLAY; } }
 
-        private readonly SaveSystemController _saveSystem = new();
+        private readonly GameSettingsController _gameSettings = new();
         private readonly GameConstantsController _gameConstants = new();
         private readonly LevelDataController _levelData = new();
 
@@ -118,13 +117,14 @@ namespace ProjectTA.Scene.Gameplay
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneName));
 
             GameObject environmentObj = Instantiate(_levelData.Model.CurrentEnvironmentPrefab);
+            InitializePuzzleObjects(environmentObj.transform);
 
             _gamePause.SetView(_view.GamePauseView);
             _gameWin.SetView(_view.GameWinView);
             _gameOver.SetView(_view.GameOverView);
 
             _playerCharacter.SetPlayerConstants(_gameConstants.Model.GameConstants.PlayerConstants);
-            _playerCharacter.SetInitialVibration(_saveSystem.Model.SaveData.IsVibrationOn);
+            _playerCharacter.SetInitialVibration(_gameSettings.Model.SavedSettingsData.IsVibrationOn);
             _playerCharacter.SetView(_view.PlayerCharacterView);
             _playerCharacter.SetInitialActivateJoystick(_gameConstants.Model.GameConstants.IsJoystickActive);
 
@@ -135,7 +135,6 @@ namespace ProjectTA.Scene.Gameplay
 
             _dialogue.SetView(_view.DialogueView);
 
-            InitializePuzzleObjects(environmentObj.transform);
             _puzzleBoard.SetLevelData(_levelData.Model.CurrentLevelData);
             _puzzleBoard.SetView(_view.PuzzleBoardView);
 
@@ -161,14 +160,14 @@ namespace ProjectTA.Scene.Gameplay
             _cheatFeature.SetView(_view.CheatFeatureView);
             _cheatFeature.SetInitialActivateJoystick(_gameConstants.Model.GameConstants.IsJoystickActive);
 
-            _settings.SetInitialSfx(_saveSystem.Model.SaveData.IsSfxOn);
-            _settings.SetInitialBgm(_saveSystem.Model.SaveData.IsBgmOn);
-            _settings.SetInitialVibrate(_saveSystem.Model.SaveData.IsVibrationOn);
+            _settings.SetInitialSfx(_gameSettings.Model.SavedSettingsData.IsSfxOn);
+            _settings.SetInitialBgm(_gameSettings.Model.SavedSettingsData.IsBgmOn);
+            _settings.SetInitialVibrate(_gameSettings.Model.SavedSettingsData.IsVibrationOn);
             _settings.SetView(_view.SettingsView);
 
             _spatialDirection.SetView(_view.SpatialDirectionView);
 
-            _gameInduction.SetIsGameInductionActive(_saveSystem.Model.SaveData.IsGameInductionActive);
+            _gameInduction.SetIsGameInductionActive(_gameSettings.Model.SavedSettingsData.IsGameInductionActive);
             _gameInduction.SetView(_view.GameInductionView);
 
             Publish(new GameStateMessage(EnumManager.GameState.Playing));
@@ -178,8 +177,6 @@ namespace ProjectTA.Scene.Gameplay
 
         private void InitializePuzzleObjects(Transform parent)
         {
-            List<CollectibleComponent> puzzleObjects = new();
-
             foreach (var collectibleObject in _levelData.Model.CurrentLevelData.PuzzleObjects)
             {
                 GameObject obj = GameObject.Instantiate(collectibleObject.CollectibleData.Prefab, parent);
@@ -193,8 +190,6 @@ namespace ProjectTA.Scene.Gameplay
                 {
                     obj.AddComponent<CollectibleComponent>().Initialize(collectibleObject.CollectibleData);
                 }
-
-                puzzleObjects.Add(obj.GetComponent<CollectibleComponent>());
             }
         }
     }

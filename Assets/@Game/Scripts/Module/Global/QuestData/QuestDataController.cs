@@ -12,7 +12,6 @@ namespace ProjectTA.Module.QuestData
     public class QuestDataController : DataController<QuestDataController, QuestDataModel, IQuestDataModel>
     {
         private SaveSystem<SavedQuestData> _savedQuestData = null;
-        private SaveSystem<SavedUnlockedCollectibles> _savedUnlockedCollectibles = null;
 
         public void SetCollectibleCollectionAndUnlockedCollectible(SOCollectibleCollection collectibleCollection, List<string> unlockedCollectible)
         {
@@ -23,10 +22,10 @@ namespace ProjectTA.Module.QuestData
 
         public override IEnumerator Initialize()
         {
-            _savedQuestData = new(TagManager.FILENAME_QUESTDATA, true);
+            _savedQuestData = new(TagManager.FILENAME_SAVEDQUESTDATA);
             _model.SetCurrentQuestData(_savedQuestData.Load());
 
-            _savedUnlockedCollectibles = new(TagManager.FILENAME_SAVEDUNLOCKEDCOLLECTIBLES, true);
+            SaveSystem<SavedUnlockedCollectibles> _savedUnlockedCollectibles = new(TagManager.FILENAME_SAVEDUNLOCKEDCOLLECTIBLES);
             _model.SetUnlockedCollectibles(_savedUnlockedCollectibles.Load());
 
             try

@@ -26,7 +26,7 @@ namespace ProjectTA.Module.PlayerCharacter
         {
             base.SetView(view);
             view.SetCollideCallbacks(OnCollideWithEnemy, OnCollideWithCollectibleComponent, OnCollideWithPadlock);
-            view.DisableKinematic();
+            view.DisableFreezePositionY();
             view.PlayerConstants = _playerConstants;
         }
 

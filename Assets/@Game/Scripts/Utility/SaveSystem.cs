@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Security.Cryptography;
+using System.Text;
 using UnityEngine;
 
 namespace ProjectTA.Utility
@@ -11,19 +13,25 @@ namespace ProjectTA.Utility
         private const string BinExtension = ".bin";
 
         private readonly string _dataPath;
+        private readonly byte[] _encryptionKey; // 32 bytes for AES-256
+        private readonly byte[] _encryptionIV;  // 16 bytes for AES
 
-        public SaveSystem(string fileName, bool isDevelopment = true)
+        public SaveSystem(string fileName)
         {
             if (!PlayerPrefs.HasKey(TagManager.KEY_VERSION) || !PlayerPrefs.GetString(TagManager.KEY_VERSION).Equals(Application.version))
                 Delete();
 
-            string extension = isDevelopment ? JsonExtension : BinExtension;
+            string extension = TagManager.DEV_ISDEVELOPMENT ? JsonExtension : BinExtension;
             _dataPath = Path.Combine(Application.persistentDataPath, fileName + extension);
+
+            // Initialize encryption key and IV
+            _encryptionKey = Encoding.UTF8.GetBytes(TagManager.DEV_ENCRYPTIONKEY);
+            _encryptionIV = Encoding.UTF8.GetBytes(TagManager.DEV_ENCRYPTIONIV);
         }
 
-        public void Save(T data, bool isDevelopment = true)
+        public void Save(T data)
         {
-            if (isDevelopment)
+            if (TagManager.DEV_ISDEVELOPMENT)
             {
                 SaveAsJson(data);
             }
@@ -33,11 +41,11 @@ namespace ProjectTA.Utility
             }
         }
 
-        public T Load(bool isDevelopment = true)
+        public T Load()
         {
             if (File.Exists(_dataPath))
             {
-                return isDevelopment ? LoadFromJson() : LoadFromBinary();
+                return TagManager.DEV_ISDEVELOPMENT ? LoadFromJson() : LoadFromBinary();
             }
             return new T();
         }
@@ -94,10 +102,18 @@ namespace ProjectTA.Utility
             try
             {
                 using (FileStream stream = File.Open(_dataPath, FileMode.Create))
+                using (Aes aes = Aes.Create())
                 {
-                    var formatter = new BinaryFormatter();
-                    formatter.Serialize(stream, data);
+                    aes.Key = _encryptionKey;
+                    aes.IV = _encryptionIV;
+
+                    using (CryptoStream cryptoStream = new CryptoStream(stream, aes.CreateEncryptor(), CryptoStreamMode.Write))
+                    {
+                        var formatter = new BinaryFormatter();
+                        formatter.Serialize(cryptoStream, data);
+                    }
                 }
+                Debug.Log($"Data successfully saved and encrypted to {_dataPath}");
             }
             catch (Exception ex)
             {
@@ -110,9 +126,16 @@ namespace ProjectTA.Utility
             try
             {
                 using (FileStream stream = File.Open(_dataPath, FileMode.Open))
+                using (Aes aes = Aes.Create())
                 {
-                    var formatter = new BinaryFormatter();
-                    return formatter.Deserialize(stream) as T;
+                    aes.Key = _encryptionKey;
+                    aes.IV = _encryptionIV;
+
+                    using (CryptoStream cryptoStream = new CryptoStream(stream, aes.CreateDecryptor(), CryptoStreamMode.Read))
+                    {
+                        var formatter = new BinaryFormatter();
+                        return formatter.Deserialize(cryptoStream) as T;
+                    }
                 }
             }
             catch (Exception ex)
@@ -121,5 +144,6 @@ namespace ProjectTA.Utility
                 return new T();
             }
         }
+
     }
 }

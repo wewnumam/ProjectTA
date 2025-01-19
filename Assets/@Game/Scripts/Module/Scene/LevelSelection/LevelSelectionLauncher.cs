@@ -16,9 +16,7 @@ namespace ProjectTA.Scene.LevelSelection
     {
         public override string SceneName { get { return TagManager.SCENE_LEVELSELECTION; } }
 
-        private readonly SaveSystemController _saveSystem = new();
         private readonly LevelDataController _levelData = new();
-
         private readonly LevelSelectionPlayerController _levelSelection = new();
 
         protected override IController[] GetSceneDependencies()

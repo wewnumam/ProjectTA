@@ -3,9 +3,9 @@ using ProjectTA.Message;
 
 namespace ProjectTA.Module.SaveSystem
 {
-    public class SaveSystemConnector : BaseConnector
+    public class GameSettingsConnector : BaseConnector
     {
-        private readonly SaveSystemController _saveSystem = new();
+        private readonly GameSettingsController _saveSystem = new();
 
         protected override void Connect()
         {

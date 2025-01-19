@@ -16,7 +16,7 @@ namespace ProjectTA.Scene.Cutscene
     {
         public override string SceneName { get { return TagManager.SCENE_CUTSCENE; } }
 
-        private readonly SaveSystemController _saveSystem = new();
+        private readonly GameSettingsController _saveSystem = new();
         private readonly LevelDataController _levelData = new();
 
         private readonly CutscenePlayerController _cutscenePlayer = new();

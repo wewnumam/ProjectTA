@@ -21,7 +21,7 @@ namespace ProjectTA.Scene.MainMenu
     {
         public override string SceneName { get { return TagManager.SCENE_MAINMENU; } }
 
-        private readonly SaveSystemController _saveSystem = new();
+        private readonly GameSettingsController _gameSettings = new();
         private readonly LevelDataController _levelData = new();
         private readonly CollectibleDataController _collectibleData = new();
         private readonly CollectibleListController _collectibleList = new();
@@ -75,9 +75,9 @@ namespace ProjectTA.Scene.MainMenu
             _questList.SetQuestData(_questData.Model.CurrentQuestData);
             _questList.SetView(_view.QuestListView);
 
-            _settings.SetInitialSfx(_saveSystem.Model.SaveData.IsSfxOn);
-            _settings.SetInitialBgm(_saveSystem.Model.SaveData.IsBgmOn);
-            _settings.SetInitialVibrate(_saveSystem.Model.SaveData.IsVibrationOn);
+            _settings.SetInitialSfx(_gameSettings.Model.SavedSettingsData.IsSfxOn);
+            _settings.SetInitialBgm(_gameSettings.Model.SavedSettingsData.IsBgmOn);
+            _settings.SetInitialVibrate(_gameSettings.Model.SavedSettingsData.IsVibrationOn);
             _settings.SetView(_view.SettingsView);
 
             yield return null;

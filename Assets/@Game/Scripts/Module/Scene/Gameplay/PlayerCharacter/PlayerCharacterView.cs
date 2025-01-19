@@ -193,9 +193,9 @@ namespace ProjectTA.Module.PlayerCharacter
             this._onCollideWithPadlock = onCollideWithPadlock;
         }
 
-        public void DisableKinematic()
+        public void DisableFreezePositionY()
         {
-            _rb.isKinematic = false;
+            _rb.constraints &= ~RigidbodyConstraints.FreezePositionY;
         }
 
         public void SetDirection(Vector3 direction)

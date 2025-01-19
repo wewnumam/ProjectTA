@@ -18,7 +18,7 @@ namespace ProjectTA.Module.LevelData
 
         public override IEnumerator Initialize()
         {
-            _savedLevelData = new(TagManager.FILENAME_SAVEDLEVELDATA, true);
+            _savedLevelData = new(TagManager.FILENAME_SAVEDLEVELDATA);
             _model.SetUnlockedLevels(_savedLevelData.Load());
             SetCurrentLevel(_model.SavedLevelData.CurrentLevelName);
             SetCurrentCutscene(_model.SavedLevelData.CurrentCutsceneName);

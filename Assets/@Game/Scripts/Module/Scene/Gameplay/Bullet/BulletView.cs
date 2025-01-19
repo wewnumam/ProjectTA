@@ -67,8 +67,8 @@ namespace ProjectTA.Module.Bullet
             _hasHitTarget = true;
 
             // Stop the arrow from continuing to move
-            Rb.isKinematic = true;  // Stop all physics on the arrow
             Rb.velocity = Vector3.zero;  // Zero out its velocity
+            Rb.isKinematic = true;  // Stop all physics on the arrow
 
             // Stick the arrow into the target
             transform.position = collision.contacts[0].point;  // Set arrow to point of contact

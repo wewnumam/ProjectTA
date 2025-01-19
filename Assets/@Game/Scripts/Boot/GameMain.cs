@@ -18,7 +18,7 @@ namespace ProjectTA.Boot
         protected override IController[] GetDependencies()
         {
             return new IController[] {
-                new SaveSystemController(),
+                new GameSettingsController(),
                 new LevelDataController(),
                 new CollectibleDataController(),
                 new GameConstantsController(),
@@ -32,7 +32,7 @@ namespace ProjectTA.Boot
         protected override IConnector[] GetConnectors()
         {
             return new IConnector[] {
-                new SaveSystemConnector(),
+                new GameSettingsConnector(),
                 new LevelDataConnector(),
                 new CollectibleDataConnector(),
                 new GameStateConnector(),

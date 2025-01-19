@@ -44,14 +44,14 @@ namespace ProjectTA.Module.Enemy
 
         private void FixedUpdate()
         {
+            if (_isPause || _isDie)
+                return;
+            
             if (_player == null)
             {
                 Debug.LogError("Player not assigned or found!");
                 return;
             }
-
-            if (_isPause || _isDie)
-                return;
 
             FollowPlayer();
             AvoidObstacles();
