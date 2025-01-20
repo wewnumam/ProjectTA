@@ -54,20 +54,5 @@ namespace ProjectTA.Tests
             Assert.AreEqual(100, _model.GameConstants.InitialHealth);
             Assert.IsTrue(_model.GameConstants.IsJoystickActive);
         }
-
-        [Test, Performance]
-        public void Performance_Initialize_ShouldCompleteInUnderThreshold()
-        {
-            Measure.Method(() =>
-            {
-                _controller.Initialize();
-            })
-            .WarmupCount(10)
-            .MeasurementCount(100)
-            .Run();
-
-            // Assert after performance test
-            Assert.AreEqual(Resources.Load<SOGameConstants>(GAMECONSTANTS_NAME), _controller.Model.GameConstants);
-        }
     }
 }

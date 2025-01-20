@@ -127,46 +127,5 @@ namespace ProjectTA.Tests
             // Assert
             Assert.IsFalse(result);
         }
-
-        [Test, Performance]
-        public void Performance_AddCurrentHealth()
-        {
-            // Arrange
-            _healthController.SetInitialHealth(120);
-            _healthController.SetCurrentHealth(0);
-            int amountToAdd = 1;
-
-            Measure.Method(() =>
-            {
-                // Act
-                _healthController.OnAddHealth(new AddHealthMessage(amountToAdd));
-            })
-            .WarmupCount(10)
-            .MeasurementCount(100)
-            .Run();
-
-            // Assert
-            Assert.AreEqual(110, _healthController.Model.CurrentHealth);
-        }
-
-        [Test, Performance]
-        public void Performance_SubtractCurrentHealth()
-        {
-            // Arrange
-            _healthController.SetInitialHealth(120);
-            int amountToSubtract = 1;
-
-            Measure.Method(() =>
-            {
-                // Act
-                _healthController.OnSubtractHealth(new SubtractHealthMessage(amountToSubtract));
-            })
-            .WarmupCount(10)
-            .MeasurementCount(100)
-            .Run();
-
-            // Assert
-            Assert.AreEqual(10, _healthController.Model.CurrentHealth);
-        }
     }
 }

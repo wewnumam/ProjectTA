@@ -9,29 +9,73 @@ namespace ProjectTA.Module.LevelData
 {
     public class LevelDataController : DataController<LevelDataController, LevelDataModel, ILevelDataModel>
     {
-        private SaveSystem<SavedLevelData> _savedLevelData = null;
+        #region UTILITY
+
+        private ISaveSystem<SavedLevelData> _savedLevelData = null;
+        private IResourceLoader _resourceLoader = null;
+
+        public void SetSaveSystem(ISaveSystem<SavedLevelData> savedLevelData)
+        {
+            _savedLevelData = savedLevelData;
+        }
+
+        public void SetResourceLoader(IResourceLoader resourceLoader)
+        {
+            _resourceLoader = resourceLoader;
+        }
 
         public void SetModel(LevelDataModel model)
         {
             _model = model;
         }
 
+        #endregion
+
         public override IEnumerator Initialize()
         {
-            _savedLevelData = new(TagManager.FILENAME_SAVEDLEVELDATA);
-            _model.SetUnlockedLevels(_savedLevelData.Load());
+            if (_resourceLoader == null)
+            {
+                _resourceLoader = new ResourceLoader();
+            }
+
+            if (_savedLevelData == null)
+            {
+                _savedLevelData = new SaveSystem<SavedLevelData>(TagManager.FILENAME_SAVEDLEVELDATA);
+            }
+            _model.SetSavedLevelData(_savedLevelData.Load());
+
             SetCurrentLevel(_model.SavedLevelData.CurrentLevelName);
             SetCurrentCutscene(_model.SavedLevelData.CurrentCutsceneName);
 
-            try
+            LoadLevelCollection();
+
+            InitUnlockedLevel();
+
+            yield return base.Initialize();
+        }
+
+        #region PRIVATE METHOD
+
+        private void LoadLevelCollection()
+        {
+            SOLevelCollection levelCollection = _resourceLoader.Load<SOLevelCollection>(TagManager.SO_LEVELCOLLECTION);
+            if (levelCollection != null)
             {
-                SOLevelCollection levelCollection = Resources.Load<SOLevelCollection>(TagManager.SO_LEVELCOLLECTION);
                 _model.SetLevelCollection(levelCollection);
             }
-            catch (Exception e)
+            else
             {
                 Debug.LogError($"LEVEL COLLECTION SCRIPTABLE NOT FOUND!");
-                Debug.LogException(e);
+            }
+        }
+
+        private void InitUnlockedLevel()
+        {
+            if (_model.LevelCollection == null ||
+                _model.LevelCollection.LevelItems == null ||
+                _model.LevelCollection.LevelItems.Count <= 0)
+            {
+                return;
             }
 
             foreach (var levelItem in _model.LevelCollection.LevelItems)
@@ -41,38 +85,38 @@ namespace ProjectTA.Module.LevelData
                     OnUnlockLevel(new UnlockLevelMessage(levelItem));
                 }
             }
-
-            yield return base.Initialize();
         }
 
-        public void SetCurrentLevel(string levelName)
+        private void SetCurrentLevel(string levelName)
         {
-            try
+            SOLevelData levelData = _resourceLoader.Load<SOLevelData>(@"LevelData/" + levelName);
+            if (levelData != null)
             {
-                SOLevelData levelData = Resources.Load<SOLevelData>(@"LevelData/" + levelName);
                 _model.SetCurrentLevelData(levelData);
                 _model.SetCurrentEnvironmentPrefab(levelData.EnvironmentPrefab);
             }
-            catch (Exception e)
-            {
+            else
+            { 
                 Debug.LogError($"{levelName} SCRIPTABLE NOT FOUND!");
-                Debug.LogException(e);
             }
         }
 
-        public void SetCurrentCutscene(string cutsceneName)
+        private void SetCurrentCutscene(string cutsceneName)
         {
-            try
+            SOCutsceneData cutsceneData = _resourceLoader.Load<SOCutsceneData>(@"CutsceneData/" + cutsceneName);
+            if (cutsceneData != null)
             {
-                SOCutsceneData cutsceneData = Resources.Load<SOCutsceneData>(@"CutsceneData/" + cutsceneName);
                 _model.SetCurrentCutsceneData(cutsceneData);
             }
-            catch (Exception e)
+            else
             {
                 Debug.LogError($"{cutsceneName} SCRIPTABLE NOT FOUND!");
-                Debug.LogException(e);
             }
         }
+
+        #endregion
+
+        #region MESSAGE LISTENER
 
         public void OnChooseLevel(ChooseLevelMessage message)
         {
@@ -99,5 +143,7 @@ namespace ProjectTA.Module.LevelData
         {
             _savedLevelData.Delete();
         }
+
+        #endregion
     }
 }

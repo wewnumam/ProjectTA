@@ -11,47 +11,103 @@ namespace ProjectTA.Module.QuestData
 {
     public class QuestDataController : DataController<QuestDataController, QuestDataModel, IQuestDataModel>
     {
-        private SaveSystem<SavedQuestData> _savedQuestData = null;
+        #region UTILITY
 
-        public void SetCollectibleCollectionAndUnlockedCollectible(SOCollectibleCollection collectibleCollection, List<string> unlockedCollectible)
+        private ISaveSystem<SavedQuestData> _savedQuestData = null;
+        private ISaveSystem<SavedUnlockedCollectibles> _savedUnlockedCollectibles = null;
+        private IResourceLoader _resourceLoader = null;
+
+        public void SetSaveSystem(ISaveSystem<SavedQuestData> savedQuestData, ISaveSystem<SavedUnlockedCollectibles> savedUnlockedCollectibles)
         {
-            _model.SetCurrentCollectibleAmount(unlockedCollectible.Count);
-            _model.SetCurrentPuzzleAmount(_model.GetCurrentCollectibleByTypeAmount(collectibleCollection.CollectibleItems, unlockedCollectible, EnumManager.CollectibleType.Puzzle));
-            _model.SetCurrentHiddenObjectAmount(_model.GetCurrentCollectibleByTypeAmount(collectibleCollection.CollectibleItems, unlockedCollectible, EnumManager.CollectibleType.HiddenObject));
+            _savedQuestData = savedQuestData;
+            _savedUnlockedCollectibles = savedUnlockedCollectibles;
         }
+
+        public void SetResourceLoader(IResourceLoader resourceLoader)
+        {
+            _resourceLoader = resourceLoader;
+        }
+
+        public void SetModel(QuestDataModel model)
+        {
+            _model = model;
+        }
+
+        #endregion
 
         public override IEnumerator Initialize()
         {
-            _savedQuestData = new(TagManager.FILENAME_SAVEDQUESTDATA);
+            if (_resourceLoader == null)
+            {
+                _resourceLoader = new ResourceLoader();
+            }
+
+            if (_savedQuestData == null)
+            {
+                _savedQuestData = new SaveSystem<SavedQuestData>(TagManager.FILENAME_SAVEDUNLOCKEDCOLLECTIBLES);
+            }
             _model.SetCurrentQuestData(_savedQuestData.Load());
 
-            SaveSystem<SavedUnlockedCollectibles> _savedUnlockedCollectibles = new(TagManager.FILENAME_SAVEDUNLOCKEDCOLLECTIBLES);
+            if (_savedUnlockedCollectibles == null)
+            {
+                _savedUnlockedCollectibles = new SaveSystem<SavedUnlockedCollectibles>(TagManager.FILENAME_SAVEDUNLOCKEDCOLLECTIBLES);
+            }
             _model.SetUnlockedCollectibles(_savedUnlockedCollectibles.Load());
 
-            try
-            {
-                SOQuestCollection gameConstants = Resources.Load<SOQuestCollection>(@"QuestCollection");
-                _model.SetQuestCollection(gameConstants);
-            }
-            catch (Exception e)
-            {
-                Debug.LogError("QUESTCOLLECTION SCRIPTABLE NOT FOUND!");
-                Debug.LogException(e);
-            }
 
-            try
-            {
-                SOCollectibleCollection collectibleCollection = Resources.Load<SOCollectibleCollection>(@"CollectibleCollection");
-                SetCollectibleCollectionAndUnlockedCollectible(collectibleCollection, _model.UnlockedCollectibles.Items);
-            }
-            catch (Exception e)
-            {
-                Debug.LogError("QUESTCOLLECTION SCRIPTABLE NOT FOUND!");
-                Debug.LogException(e);
-            }
+            LoadQuestCollection();
+            SetCollectibleCollectionAndUnlockedCollectible();
 
             yield return base.Initialize();
         }
+
+        #region PRIVATE METHOD
+
+        private void LoadQuestCollection()
+        {
+            SOQuestCollection gameConstants = _resourceLoader.Load<SOQuestCollection>(TagManager.SO_QUESTCOLLECTION);
+            if (gameConstants != null)
+            {
+                _model.SetQuestCollection(gameConstants);
+            }
+            else
+            {
+                Debug.LogError("QUESTCOLLECTION SCRIPTABLE NOT FOUND!");
+            }
+        }
+
+        private void SetCollectibleCollectionAndUnlockedCollectible()
+        {
+            SOCollectibleCollection collectibleCollection = _resourceLoader.Load<SOCollectibleCollection>(TagManager.SO_COLLECTIBLECOLLECTION);
+            if (collectibleCollection == null)
+            {
+                Debug.LogError("COLLECTIBLECOLLECTION SCRIPTABLE NOT FOUND!");
+                return;
+            }
+
+            if (collectibleCollection.CollectibleItems == null ||
+                _model.UnlockedCollectibles == null || 
+                _model.UnlockedCollectibles.Items == null)
+            {
+                return;
+            }
+
+            _model.SetCurrentCollectibleAmount(_model.UnlockedCollectibles.Items.Count);
+
+            _model.SetCurrentPuzzleAmount(_model.GetCurrentCollectibleByTypeAmount(
+                collectibleCollection.CollectibleItems,
+                _model.UnlockedCollectibles.Items,
+                EnumManager.CollectibleType.Puzzle));
+                
+            _model.SetCurrentHiddenObjectAmount(_model.GetCurrentCollectibleByTypeAmount(
+                collectibleCollection.CollectibleItems, 
+                _model.UnlockedCollectibles.Items, 
+                EnumManager.CollectibleType.HiddenObject));
+        }
+
+        #endregion
+
+        #region MESSAGE LISTENER
 
         public void OnAddLevelPlayed(AddLevelPlayedMessage message)
         {
@@ -96,5 +152,7 @@ namespace ProjectTA.Module.QuestData
         {
             _savedQuestData.Delete();
         }
+
+        #endregion
     }
 }

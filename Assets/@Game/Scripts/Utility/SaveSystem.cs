@@ -7,7 +7,14 @@ using UnityEngine;
 
 namespace ProjectTA.Utility
 {
-    public class SaveSystem<T> where T : class, new()
+    public interface ISaveSystem<T> where T : class, new()
+    {
+        T Load();
+        void Save(T data);
+        void Delete();
+    }
+
+    public class SaveSystem<T> : ISaveSystem<T> where T : class, new ()
     {
         private const string JsonExtension = ".json";
         private const string BinExtension = ".bin";

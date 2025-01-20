@@ -9,6 +9,10 @@ namespace ProjectTA.Module.LevelData
 
         [SerializeField] private List<SOLevelData> _levelItems;
 
-        public List<SOLevelData> LevelItems => _levelItems;
+        public List<SOLevelData> LevelItems
+        {
+            get { return _levelItems; }
+            set { _levelItems = value; }
+        }
     }
 }

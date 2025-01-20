@@ -3,65 +3,109 @@ using ProjectTA.Message;
 using ProjectTA.Utility;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ProjectTA.Module.CollectibleData
 {
     public class CollectibleDataController : DataController<CollectibleDataController, CollectibleDataModel, ICollectibleDataModel>
     {
-        private SaveSystem<SavedUnlockedCollectibles> _savedUnlockedCollectiblesName = null;
+        #region UTILITY
+
+        private ISaveSystem<SavedUnlockedCollectibles> _savedUnlockedCollectiblesName = null;
+        private IResourceLoader _resourceLoader = null;
+
+        public void SetSaveSystem(ISaveSystem<SavedUnlockedCollectibles> savedUnlockedCollectibles)
+        {
+            _savedUnlockedCollectiblesName = savedUnlockedCollectibles;
+        }
+
+        public void SetResourceLoader(IResourceLoader resourceLoader)
+        {
+            _resourceLoader = resourceLoader;
+        }
 
         public void SetModel(CollectibleDataModel model)
         {
             _model = model;
         }
 
+        #endregion
+
         public override IEnumerator Initialize()
         {
-            _savedUnlockedCollectiblesName = new SaveSystem<SavedUnlockedCollectibles>(TagManager.FILENAME_SAVEDUNLOCKEDCOLLECTIBLES);
+            if (_resourceLoader == null)
+            {
+                _resourceLoader = new ResourceLoader();
+            }
+
+            if (_savedUnlockedCollectiblesName == null)
+            {
+                _savedUnlockedCollectiblesName = new SaveSystem<SavedUnlockedCollectibles>(TagManager.FILENAME_SAVEDUNLOCKEDCOLLECTIBLES);
+            }
             _model.SetUnlockedCollectiblesName(_savedUnlockedCollectiblesName.Load());
 
-            try
-            {
-                SOCollectibleCollection collectibleCollection = Resources.Load<SOCollectibleCollection>(@"CollectibleCollection");
-                _model.SetCollectibleCollection(collectibleCollection);
-            }
-            catch (Exception e)
-            {
-                Debug.LogError("COLLECTIBLE COLLECTION SCRIPTABLE NOT FOUND!");
-                Debug.LogException(e);
-            }
+            LoadCollectibleCollection();
 
-            if (_model.UnlockedCollectiblesName.Items.Count <= 0)
-            {
-                foreach (var unlockedCollectible in _model.UnlockedCollectiblesName.Items)
-                {
-                    AddUnlockedCollectible(unlockedCollectible);
-                }
-            }
+            InitUnlockedCollectible();
 
             yield return base.Initialize();
         }
 
-        public void AddUnlockedCollectible(string collectibleName)
+        #region PRIVATE METHOD
+
+        private void LoadCollectibleCollection()
         {
-            try
+            var collectibleCollection = _resourceLoader.Load<SOCollectibleCollection>(TagManager.SO_COLLECTIBLECOLLECTION);
+            if (collectibleCollection != null)
             {
-                SOCollectibleData collectibleData = Resources.Load<SOCollectibleData>(@"CollectibleData/" + collectibleName);
-                _model.AddUnlockedCollectibleCollection(collectibleData);
+                _model.SetCollectibleCollection(collectibleCollection);
             }
-            catch (Exception e)
+            else
             {
-                Debug.LogError($"{collectibleName} SCRIPTABLE NOT FOUND!");
-                Debug.LogException(e);
+                Debug.LogError("COLLECTIBLE COLLECTION SCRIPTABLE NOT FOUND!");
             }
         }
+
+        private void InitUnlockedCollectible()
+        {
+            if (_model.UnlockedCollectiblesName == null ||
+                _model.UnlockedCollectiblesName.Items == null ||
+                _model.UnlockedCollectiblesName.Items.Count <= 0)
+            {
+                return;
+            }
+
+            // Create a copy of the list to avoid modification during iteration
+            var unlockedCollectiblesCopy = new List<string>(_model.UnlockedCollectiblesName.Items);
+
+            foreach (var unlockedCollectible in unlockedCollectiblesCopy)
+            {
+                AddUnlockedCollectible(unlockedCollectible);
+            }
+        }
+
+        private void AddUnlockedCollectible(string collectibleName)
+        {
+            var collectibleData = _resourceLoader.Load<SOCollectibleData>($"CollectibleData/{collectibleName}");
+            if (collectibleData != null)
+            {
+                _model.AddUnlockedCollectibleCollection(collectibleData);
+            }
+            else
+            {
+                Debug.LogError($"{collectibleName} SCRIPTABLE NOT FOUND!");
+            }
+        }
+
+        #endregion
+
+        #region MESSAGE LISTENER
 
         public void OnUnlockCollectible(UnlockCollectibleMessage message)
         {
             Debug.Log($"UNLOCK COLLECTIBLE: {message.CollectibleData.Title}");
             _model.AddUnlockedCollectibleCollection(message.CollectibleData);
-
             _savedUnlockedCollectiblesName.Save(_model.UnlockedCollectiblesName);
         }
 
@@ -69,5 +113,7 @@ namespace ProjectTA.Module.CollectibleData
         {
             _savedUnlockedCollectiblesName.Delete();
         }
+
+        #endregion
     }
 }

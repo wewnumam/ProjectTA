@@ -36,7 +36,7 @@ namespace ProjectTA.Module.LevelData
             CurrentEnvironmentPrefab = currentEnvironmentPrefab;
         }
 
-        public void SetUnlockedLevels(SavedLevelData unlockedLevels)
+        public void SetSavedLevelData(SavedLevelData unlockedLevels)
         {
             SavedLevelData = unlockedLevels;
         }

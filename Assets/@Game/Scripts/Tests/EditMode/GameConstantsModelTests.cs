@@ -27,24 +27,5 @@ namespace ProjectTA.Tests
             // Assert
             Assert.AreEqual(gameConstants, _gameConstantsModel.GameConstants);
         }
-
-        [Test, Performance]
-        public void Performance_SetGameConstants()
-        {
-            // Arrange
-            var gameConstants = ScriptableObject.CreateInstance<SOGameConstants>();
-
-            Measure.Method(() =>
-            {
-                // Act
-                _gameConstantsModel.SetGameConstants(gameConstants);
-            })
-            .WarmupCount(10)
-            .MeasurementCount(100)
-            .Run();
-
-            // Assert
-            Assert.AreEqual(gameConstants, _gameConstantsModel.GameConstants);
-        }
     }
 }

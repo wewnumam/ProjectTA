@@ -39,11 +39,11 @@ namespace ProjectTA.Module.LevelData
         public string PuzzleQuestion => _puzzleQuestion;
         public List<PuzzleObject> PuzzleObjects => _puzzleObjects;
         public GameObject EnemyPrefab => _enemyPrefab;
-        public GameObject EnvironmentPrefab => _environmentPrefab;
+        public GameObject EnvironmentPrefab { get => _environmentPrefab; set => _environmentPrefab = value; }
         public float Countdown => _countdown;
         public bool IsLockedLevel => _isLockedLevel;
         public SOLevelData NextLevel => _nextLevel;
-        public SOCutsceneData CutsceneData => _cutsceneData;
+        public SOCutsceneData CutsceneData { get => _cutsceneData; set => _cutsceneData = value; }
         public List<SOCollectibleData> HiddenObjects => _hiddenObjects;
     }
 
