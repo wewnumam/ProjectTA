@@ -2,23 +2,33 @@ using Agate.MVC.Base;
 using ProjectTA.Message;
 using ProjectTA.Utility;
 using System.Collections;
-using System.IO;
-using UnityEngine;
 
 namespace ProjectTA.Module.SaveSystem
 {
     public class GameSettingsController : DataController<GameSettingsController, GameSettingsModel, IGameSettingsModel>
     {
-        private SaveSystem<SavedSettingsData> _savedSettingsData = null;
+        #region UTILITY
+
+        private ISaveSystem<SavedSettingsData> _savedSettingsData = null;
+
+        public void SetSaveSystem(ISaveSystem<SavedSettingsData> savedSettingsData)
+        {
+            _savedSettingsData = savedSettingsData;
+        }
 
         public void SetModel(GameSettingsModel model)
         {
             _model = model;
         }
 
+        #endregion
+
         public override IEnumerator Initialize()
         {
-            _savedSettingsData = new SaveSystem<SavedSettingsData>(TagManager.FILENAME_SAVEDGAMESETTINGS);
+            if (_savedSettingsData == null)
+            {
+                _savedSettingsData = new SaveSystem<SavedSettingsData>(TagManager.FILENAME_SAVEDGAMESETTINGS);
+            }
             _model.SetSaveData(_savedSettingsData.Load());
 
             yield return base.Initialize();

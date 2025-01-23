@@ -4,9 +4,7 @@ using ProjectTA.Message;
 using ProjectTA.Module.CollectibleData;
 using ProjectTA.Module.QuestData;
 using ProjectTA.Utility;
-using System.Collections;
 using UnityEngine;
-using UnityEngine.TestTools;
 
 namespace ProjectTA.Tests
 {

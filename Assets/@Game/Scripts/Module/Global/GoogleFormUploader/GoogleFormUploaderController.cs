@@ -1,38 +1,67 @@
 using Agate.MVC.Base;
-using ProjectTA.Boot;
 using ProjectTA.Message;
 using ProjectTA.Module.GameConstants;
-using System;
+using ProjectTA.Utility;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace ProjectTA.Module.GoogleFormUploader
 {
-    public class GoogleFormUploaderController : ObjectController<GoogleFormUploaderController, GoogleFormUploaderView>
+    public class GoogleFormUploaderController : ObjectController<GoogleFormUploaderController, GoogleFormUploaderModel, GoogleFormUploaderView>
     {
-        private QuizFormConstants _quizFormConstants;
-        private AnalyticFormConstants _analyticFormConstants;
+        #region UTILITY
+
+        private IResourceLoader _resourceLoader = null;
+
+        public void SetResourceLoader(IResourceLoader resourceLoader)
+        {
+            _resourceLoader = resourceLoader;
+        }
+
+        public void SetModel(GoogleFormUploaderModel model)
+        {
+            _model = model;
+        }
+
+        #endregion
 
         public override IEnumerator Initialize()
         {
-            GameMain.Instance.gameObject.AddComponent<GoogleFormUploaderView>();
-            SetView(GameMain.Instance.gameObject.GetComponent<GoogleFormUploaderView>());
-
-            try
+            if (_resourceLoader == null)
             {
-                SOGameConstants gameConstants = Resources.Load<SOGameConstants>(@"GameConstants");
-                _quizFormConstants = gameConstants.QuizFormConstants;
-                _analyticFormConstants = gameConstants.AnalyticFormConstants;
+                _resourceLoader = new ResourceLoader();
             }
-            catch (Exception e)
+
+            if (_view == null)
+            {
+                SetView(GetNewGoogleFormUploaderView());
+            }
+
+            SOGameConstants gameConstants = _resourceLoader.Load<SOGameConstants>(TagManager.SO_GAMECONSTANTS);
+            if (gameConstants != null)
+            {
+                _model.SetAnalyticFormConstants(gameConstants.AnalyticFormConstants);
+                _model.SetQuizFormConstants(gameConstants.QuizFormConstants);
+            }
+            else
             {
                 Debug.LogError("GAMECONSTANT SCRIPTABLE NOT FOUND!");
-                Debug.LogException(e);
             }
 
             yield return base.Initialize();
         }
+
+        public GoogleFormUploaderView GetNewGoogleFormUploaderView()
+        {
+            GameObject obj = GameObject.Instantiate(new GameObject());
+            obj.name = nameof(GoogleFormUploaderView);
+            GameObject.DontDestroyOnLoad(obj);
+            obj.AddComponent<GoogleFormUploaderView>();
+            return obj.GetComponent<GoogleFormUploaderView>();
+        }
+
+        #region MESSAGE LISTENER
 
         public void OnSendChoicesRecords(ChoicesRecordsMessage message)
         {
@@ -40,14 +69,14 @@ namespace ProjectTA.Module.GoogleFormUploader
             {
                 Dictionary<string, string> keyValues = new()
                 {
-                    { _quizFormConstants.EntryIds.SessionId, choicesRecord.SessionId },
-                    { _quizFormConstants.EntryIds.DeviceId, choicesRecord.DeviceId },
-                    { _quizFormConstants.EntryIds.Question, choicesRecord.Question },
-                    { _quizFormConstants.EntryIds.Choices, choicesRecord.Choices },
-                    { _quizFormConstants.EntryIds.IsFirstChoice, choicesRecord.IsFirstChoice }
+                    { _model.QuizFormConstants.EntryIds.SessionId, choicesRecord.SessionId },
+                    { _model.QuizFormConstants.EntryIds.DeviceId, choicesRecord.DeviceId },
+                    { _model.QuizFormConstants.EntryIds.Question, choicesRecord.Question },
+                    { _model.QuizFormConstants.EntryIds.Choices, choicesRecord.Choices },
+                    { _model.QuizFormConstants.EntryIds.IsFirstChoice, choicesRecord.IsFirstChoice }
                 };
 
-                _view.SubmitForm(_quizFormConstants.FormUrl, keyValues);
+                _view.SubmitForm(_model.QuizFormConstants.FormUrl, keyValues);
             }
         }
 
@@ -55,21 +84,23 @@ namespace ProjectTA.Module.GoogleFormUploader
         {
             Dictionary<string, string> keyValues = new()
             {
-                    { _analyticFormConstants.EntryIds.SessionId, message.AnalyticRecord.SessionId },
-                    { _analyticFormConstants.EntryIds.DeviceId, message.AnalyticRecord.DeviceId },
-                    { _analyticFormConstants.EntryIds.ScreenTimeInSeconds, message.AnalyticRecord.ScreenTimeInSeconds },
-                    { _analyticFormConstants.EntryIds.AverageFps, message.AnalyticRecord.AverageFps },
-                    { _analyticFormConstants.EntryIds.MaxFps, message.AnalyticRecord.MaxFps },
-                    { _analyticFormConstants.EntryIds.MinFps, message.AnalyticRecord.MinFps },
-                    { _analyticFormConstants.EntryIds.AverageMemory, message.AnalyticRecord.AverageMemory },
-                    { _analyticFormConstants.EntryIds.MaxMemory, message.AnalyticRecord.MaxMemory },
-                    { _analyticFormConstants.EntryIds.MinMemory, message.AnalyticRecord.MinMemory },
-                    { _analyticFormConstants.EntryIds.LogWarningCount, message.AnalyticRecord.LogWarningCount },
-                    { _analyticFormConstants.EntryIds.LogErrorCount, message.AnalyticRecord.LogErrorCount },
-                    { _analyticFormConstants.EntryIds.LogExceptionCount, message.AnalyticRecord.LogExceptionCount },
+                    { _model.AnalyticFormConstants.EntryIds.SessionId, message.AnalyticRecord.SessionId },
+                    { _model.AnalyticFormConstants.EntryIds.DeviceId, message.AnalyticRecord.DeviceId },
+                    { _model.AnalyticFormConstants.EntryIds.ScreenTimeInSeconds, message.AnalyticRecord.ScreenTimeInSeconds },
+                    { _model.AnalyticFormConstants.EntryIds.AverageFps, message.AnalyticRecord.AverageFps },
+                    { _model.AnalyticFormConstants.EntryIds.MaxFps, message.AnalyticRecord.MaxFps },
+                    { _model.AnalyticFormConstants.EntryIds.MinFps, message.AnalyticRecord.MinFps },
+                    { _model.AnalyticFormConstants.EntryIds.AverageMemory, message.AnalyticRecord.AverageMemory },
+                    { _model.AnalyticFormConstants.EntryIds.MaxMemory, message.AnalyticRecord.MaxMemory },
+                    { _model.AnalyticFormConstants.EntryIds.MinMemory, message.AnalyticRecord.MinMemory },
+                    { _model.AnalyticFormConstants.EntryIds.LogWarningCount, message.AnalyticRecord.LogWarningCount },
+                    { _model.AnalyticFormConstants.EntryIds.LogErrorCount, message.AnalyticRecord.LogErrorCount },
+                    { _model.AnalyticFormConstants.EntryIds.LogExceptionCount, message.AnalyticRecord.LogExceptionCount },
                 };
 
-            _view.SubmitForm(_analyticFormConstants.FormUrl, keyValues);
+            _view.SubmitForm(_model.AnalyticFormConstants.FormUrl, keyValues);
         }
+
+        #endregion
     }
 }

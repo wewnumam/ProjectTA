@@ -2,9 +2,7 @@ using Agate.MVC.Base;
 using ProjectTA.Message;
 using ProjectTA.Module.CollectibleData;
 using ProjectTA.Utility;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ProjectTA.Module.QuestData
@@ -86,7 +84,7 @@ namespace ProjectTA.Module.QuestData
             }
 
             if (collectibleCollection.CollectibleItems == null ||
-                _model.UnlockedCollectibles == null || 
+                _model.UnlockedCollectibles == null ||
                 _model.UnlockedCollectibles.Items == null)
             {
                 return;
@@ -98,10 +96,10 @@ namespace ProjectTA.Module.QuestData
                 collectibleCollection.CollectibleItems,
                 _model.UnlockedCollectibles.Items,
                 EnumManager.CollectibleType.Puzzle));
-                
+
             _model.SetCurrentHiddenObjectAmount(_model.GetCurrentCollectibleByTypeAmount(
-                collectibleCollection.CollectibleItems, 
-                _model.UnlockedCollectibles.Items, 
+                collectibleCollection.CollectibleItems,
+                _model.UnlockedCollectibles.Items,
                 EnumManager.CollectibleType.HiddenObject));
         }
 

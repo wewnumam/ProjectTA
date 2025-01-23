@@ -1,6 +1,4 @@
 using Agate.MVC.Base;
-using ProjectTA.Module.QuizPlayer;
-using System.Collections.Generic;
 
 namespace ProjectTA.Module.SaveSystem
 {

@@ -1,8 +1,7 @@
 using Agate.MVC.Base;
-using ProjectTA.Boot;
 using ProjectTA.Message;
 using ProjectTA.Module.GameConstants;
-using System;
+using ProjectTA.Utility;
 using System.Collections;
 using UnityEngine;
 
@@ -10,24 +9,46 @@ namespace ProjectTA.Module.Analytic
 {
     public class AnalyticController : ObjectController<AnalyticController, AnalyticModel, AnalyticView>
     {
+        #region UTILITY
+
+        private IResourceLoader _resourceLoader = null;
+
+        public void SetResourceLoader(IResourceLoader resourceLoader)
+        {
+            _resourceLoader = resourceLoader;
+        }
+
+        public void SetModel(AnalyticModel model)
+        {
+            _model = model;
+        }
+
+        #endregion
+
         public override IEnumerator Initialize()
         {
+            if (_resourceLoader == null)
+            {
+                _resourceLoader = new ResourceLoader();
+            }
+
             Application.logMessageReceived += HandleLog;
             Application.quitting += HandleQuit;
 
-            GameMain.Instance.gameObject.AddComponent<AnalyticView>();
-            SetView(GameMain.Instance.gameObject.GetComponent<AnalyticView>());
-
-            try
+            if (_view == null)
             {
-                SOGameConstants gameConstants = Resources.Load<SOGameConstants>(@"GameConstants");
+                SetView(GetNewAnalyticView());
+            }
+
+            SOGameConstants gameConstants = _resourceLoader.Load<SOGameConstants>(TagManager.SO_GAMECONSTANTS);
+            if (gameConstants != null)
+            {
                 _model.SetAnalyticFormConstants(gameConstants.AnalyticFormConstants);
                 _view.SetFpsUpdateInterval(gameConstants.AnalyticFormConstants.FpsUpdateInterval);
             }
-            catch (Exception e)
+            else
             {
                 Debug.LogError("GAMECONSTANT SCRIPTABLE NOT FOUND!");
-                Debug.LogException(e);
             }
 
             yield return base.Initialize();
@@ -40,12 +61,23 @@ namespace ProjectTA.Module.Analytic
             view.SetCallback(OnUpdatePerformanceMetrics);
         }
 
-        private void OnUpdatePerformanceMetrics(PerformanceMetricsData performanceMetrics)
+        public AnalyticView GetNewAnalyticView()
+        {
+            GameObject obj = GameObject.Instantiate(new GameObject());
+            obj.name = nameof(AnalyticView);
+            GameObject.DontDestroyOnLoad(obj);
+            obj.AddComponent<AnalyticView>();
+            return obj.GetComponent<AnalyticView>();
+        }
+
+        #region CALLBACKS
+
+        public void OnUpdatePerformanceMetrics(PerformanceMetricsData performanceMetrics)
         {
             _model.SetPerformanceMetrics(performanceMetrics);
         }
 
-        private void HandleQuit()
+        public void HandleQuit()
         {
             if (!_model.IsAppQuit)
             {
@@ -53,10 +85,14 @@ namespace ProjectTA.Module.Analytic
             }
         }
 
-        private void HandleLog(string logString, string stackTrace, LogType type)
+        public void HandleLog(string logString, string stackTrace, LogType type)
         {
             _model.AddLogCounter(type);
         }
+
+        #endregion
+
+        #region MESSAGE LISTENER
 
         public void OnAppQuit(AppQuitMessage message)
         {
@@ -70,5 +106,7 @@ namespace ProjectTA.Module.Analytic
 
             Debug.Log($"APP QUIT {_model.ScreenTimeInSeconds}");
         }
+
+        #endregion
     }
 }

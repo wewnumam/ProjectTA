@@ -3,7 +3,6 @@ using Agate.MVC.Core;
 using ProjectTA.Module.Analytic;
 using ProjectTA.Module.CollectibleData;
 using ProjectTA.Module.GameConstants;
-using ProjectTA.Module.GameState;
 using ProjectTA.Module.GoogleFormUploader;
 using ProjectTA.Module.LevelData;
 using ProjectTA.Module.QuestData;
@@ -22,7 +21,6 @@ namespace ProjectTA.Boot
                 new LevelDataController(),
                 new CollectibleDataController(),
                 new GameConstantsController(),
-                new GameStateController(),
                 new QuestDataController(),
                 new GoogleFormUploaderController(),
                 new AnalyticController(),
@@ -35,7 +33,6 @@ namespace ProjectTA.Boot
                 new GameSettingsConnector(),
                 new LevelDataConnector(),
                 new CollectibleDataConnector(),
-                new GameStateConnector(),
                 new QuestDataConnector(),
                 new GoogleFormUploaderConnector(),
                 new AnalyticConnector(),

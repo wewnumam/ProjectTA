@@ -33,8 +33,8 @@ namespace ProjectTA.Module.GameConstants
         public PlayerConstants PlayerConstants => _playerConstants;
         public ShootingConstants Shooting => _shootingConstants;
         public EnemyConstants Enemy => _enemyConstants;
-        public QuizFormConstants QuizFormConstants => _quizFormConstants;
-        public AnalyticFormConstants AnalyticFormConstants => _analyticFormConstants;
+        public QuizFormConstants QuizFormConstants { get => _quizFormConstants; set => _quizFormConstants = value; }
+        public AnalyticFormConstants AnalyticFormConstants { get => _analyticFormConstants; set => _analyticFormConstants = value; }
     }
 
     [Serializable]

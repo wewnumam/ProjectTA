@@ -19,19 +19,20 @@ namespace ProjectTA.Module.GoogleFormUploader
 
             foreach (var keyValue in keyValues)
             {
+                Debug.Log($"{keyValue.Key}: {keyValue.Value}");
                 form.AddField(keyValue.Key, keyValue.Value);
             }
 
-            UnityWebRequest www = UnityWebRequest.Post(formUrl, form);
-            yield return www.SendWebRequest();
+            UnityWebRequest request = UnityWebRequest.Post(formUrl, form);
+            yield return request.SendWebRequest();
 
-            if (www.result == UnityWebRequest.Result.Success)
+            if (request.result == UnityWebRequest.Result.Success)
             {
                 Debug.Log("Form submitted successfully!");
             }
             else
             {
-                Debug.LogError($"Error submitting form: {www.error}");
+                Debug.LogError($"Error submitting form: {request.error}");
             }
         }
     }

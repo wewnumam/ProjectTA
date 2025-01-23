@@ -1,6 +1,5 @@
 using NUnit.Framework;
 using ProjectTA.Module.Health;
-using Unity.PerformanceTesting;
 
 namespace ProjectTA.Tests
 {

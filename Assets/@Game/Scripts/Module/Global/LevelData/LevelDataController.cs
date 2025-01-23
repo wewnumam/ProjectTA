@@ -1,7 +1,6 @@
 using Agate.MVC.Base;
 using ProjectTA.Message;
 using ProjectTA.Utility;
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -96,7 +95,7 @@ namespace ProjectTA.Module.LevelData
                 _model.SetCurrentEnvironmentPrefab(levelData.EnvironmentPrefab);
             }
             else
-            { 
+            {
                 Debug.LogError($"{levelName} SCRIPTABLE NOT FOUND!");
             }
         }

@@ -1,7 +1,6 @@
 using NUnit.Framework;
 using ProjectTA.Module.CutscenePlayer;
 using System.Collections.Generic;
-using Unity.PerformanceTesting;
 using UnityEngine;
 
 namespace ProjectTA.Tests

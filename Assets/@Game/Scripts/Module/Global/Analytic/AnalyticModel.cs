@@ -57,12 +57,15 @@ namespace ProjectTA.Module.Analytic
             analyticRecord.SessionId = Guid.NewGuid().ToString();
             analyticRecord.DeviceId = SystemInfo.deviceUniqueIdentifier;
             analyticRecord.ScreenTimeInSeconds = ScreenTimeInSeconds.ToString();
-            analyticRecord.AverageFps = PerformanceMetricsData.AverageFps.ToString();
-            analyticRecord.MaxFps = PerformanceMetricsData.MaxFps.ToString();
-            analyticRecord.MinFps = PerformanceMetricsData.MinFps.ToString();
-            analyticRecord.AverageMemory = PerformanceMetricsData.AverageMemory.ToString();
-            analyticRecord.MaxMemory = PerformanceMetricsData.MaxMemory.ToString();
-            analyticRecord.MinMemory = PerformanceMetricsData.MinMemory.ToString();
+            if (PerformanceMetricsData != null)
+            {
+                analyticRecord.AverageFps = PerformanceMetricsData.AverageFps.ToString();
+                analyticRecord.MaxFps = PerformanceMetricsData.MaxFps.ToString();
+                analyticRecord.MinFps = PerformanceMetricsData.MinFps.ToString();
+                analyticRecord.AverageMemory = PerformanceMetricsData.AverageMemory.ToString();
+                analyticRecord.MaxMemory = PerformanceMetricsData.MaxMemory.ToString();
+                analyticRecord.MinMemory = PerformanceMetricsData.MinMemory.ToString();
+            }
             analyticRecord.LogWarningCount = LogWarningCount.ToString();
             analyticRecord.LogErrorCount = LogErrorCount.ToString();
             analyticRecord.LogExceptionCount = LogExceptionCount.ToString();

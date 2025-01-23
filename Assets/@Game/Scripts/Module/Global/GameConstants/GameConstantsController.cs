@@ -1,5 +1,5 @@
 using Agate.MVC.Base;
-using System;
+using ProjectTA.Utility;
 using System.Collections;
 using UnityEngine;
 
@@ -7,11 +7,13 @@ namespace ProjectTA.Module.GameConstants
 {
     public class GameConstantsController : DataController<GameConstantsController, GameConstantsModel, IGameConstantsModel>
     {
-        private string _fileName = "GameConstants";
+        #region UTILITY
 
-        public void SetFileName(string fileName)
+        private IResourceLoader _resourceLoader = null;
+
+        public void SetResourceLoader(IResourceLoader resourceLoader)
         {
-            _fileName = fileName;
+            _resourceLoader = resourceLoader;
         }
 
         public void SetModel(GameConstantsModel model)
@@ -19,17 +21,23 @@ namespace ProjectTA.Module.GameConstants
             _model = model;
         }
 
+        #endregion
+
         public override IEnumerator Initialize()
         {
-            try
+            if (_resourceLoader == null)
             {
-                SOGameConstants gameConstants = Resources.Load<SOGameConstants>(_fileName);
+                _resourceLoader = new ResourceLoader();
+            }
+
+            SOGameConstants gameConstants = _resourceLoader.Load<SOGameConstants>(TagManager.SO_GAMECONSTANTS);
+            if (gameConstants != null)
+            {
                 _model.SetGameConstants(gameConstants);
             }
-            catch (Exception e)
+            else
             {
                 Debug.LogError("GAMECONSTANT SCRIPTABLE NOT FOUND!");
-                Debug.LogException(e);
             }
 
             yield return base.Initialize();

@@ -14,7 +14,7 @@ namespace ProjectTA.Utility
         void Delete();
     }
 
-    public class SaveSystem<T> : ISaveSystem<T> where T : class, new ()
+    public class SaveSystem<T> : ISaveSystem<T> where T : class, new()
     {
         private const string JsonExtension = ".json";
         private const string BinExtension = ".bin";

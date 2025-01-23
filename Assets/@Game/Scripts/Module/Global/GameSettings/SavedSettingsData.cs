@@ -1,5 +1,3 @@
-using ProjectTA.Module.QuizPlayer;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ProjectTA.Module.SaveSystem

@@ -3,10 +3,8 @@ using NUnit.Framework;
 using ProjectTA.Message;
 using ProjectTA.Module.LevelData;
 using ProjectTA.Utility;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.TestTools;
 
 namespace ProjectTA.Tests
 {
@@ -173,7 +171,7 @@ namespace ProjectTA.Tests
             _mockResourceLoader
                 .Setup(x => x.Load<SOCutsceneData>(@"CutsceneData/" + savedLevelData.CurrentCutsceneName))
                 .Returns(ScriptableObject.CreateInstance<SOCutsceneData>());
-            
+
 
             // Replace SaveSystem with Mock
             _controller.SetModel(_model);

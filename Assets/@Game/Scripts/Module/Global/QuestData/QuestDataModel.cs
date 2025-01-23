@@ -41,8 +41,8 @@ namespace ProjectTA.Module.QuestData
         }
 
         public int GetCurrentCollectibleByTypeAmount(
-            List<SOCollectibleData> collectibleItems, 
-            List<string> unlockedCollectible, 
+            List<SOCollectibleData> collectibleItems,
+            List<string> unlockedCollectible,
             EnumManager.CollectibleType type)
         {
             if (collectibleItems == null)

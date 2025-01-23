@@ -5,8 +5,6 @@ using ProjectTA.Module.CollectibleData;
 using ProjectTA.Utility;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.TestTools;
-using static UnityEditor.Progress;
 
 namespace ProjectTA.Tests
 {

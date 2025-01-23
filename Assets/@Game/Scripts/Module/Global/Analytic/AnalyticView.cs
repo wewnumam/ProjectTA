@@ -21,6 +21,8 @@ namespace ProjectTA.Module.Analytic
 
         private UnityAction<PerformanceMetricsData> _onPerformanceMetrics;
 
+        public float FpsUpdateInterval => _fpsUpdateInterval;
+
         private void Start()
         {
             if (_performanceMetricsData == null)
