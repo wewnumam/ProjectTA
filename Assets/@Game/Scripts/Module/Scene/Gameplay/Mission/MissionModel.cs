@@ -1,5 +1,6 @@
 using Agate.MVC.Base;
 using ProjectTA.Module.LevelData;
+using UnityEngine;
 
 namespace ProjectTA.Module.Mission
 {
@@ -18,91 +19,46 @@ namespace ProjectTA.Module.Mission
         {
             CurrentLevelData = levelData;
             NextLevelData = levelData.NextLevel;
-            SetDataAsDirty();
         }
 
         public void SetPuzzleCount(int puzzleCount)
         {
             PuzzlePieceCount = puzzleCount;
-            SetDataAsDirty();
         }
 
         public void SetCollectedPuzzlePieceCount(int collectedPuzzlePieceCount)
         {
             CollectedPuzzlePieceCount = collectedPuzzlePieceCount;
-            SetDataAsDirty();
-        }
-
-        public void AddCollectedPuzzlePieceCount(int amount)
-        {
-            if (CollectedPuzzlePieceCount < PuzzlePieceCount)
-            {
-                CollectedPuzzlePieceCount += amount;
-            }
-            SetDataAsDirty();
-        }
-
-        public void SubtractCollectedPuzzlePieceCount(int amount)
-        {
-            if (CollectedPuzzlePieceCount > 0)
-            {
-                CollectedPuzzlePieceCount -= amount;
-            }
-            SetDataAsDirty();
         }
 
         public void SetHiddenObjectCount(int hiddenObjectCount)
         {
             HiddenObjectCount = hiddenObjectCount;
-            SetDataAsDirty();
         }
 
         public void SetCollectedHiddenObjectCount(int collectedHiddenObjectCount)
         {
             CollectedHiddenObjectCount = collectedHiddenObjectCount;
-            SetDataAsDirty();
         }
 
-        public void AddCollectedHiddenObjectCount(int amount)
+        public void AdjustCollectedPuzzlePieceCount(int amount)
         {
-            if (CollectedHiddenObjectCount < HiddenObjectCount)
-            {
-                CollectedHiddenObjectCount += amount;
-            }
-            SetDataAsDirty();
+            CollectedPuzzlePieceCount = Mathf.Clamp(CollectedPuzzlePieceCount + amount, 0, PuzzlePieceCount);
         }
 
-        public void SubtractHiddenObjectCount(int amount)
+        public void AdjustCollectedHiddenObjectCount(int amount)
         {
-            if (CollectedHiddenObjectCount > 0)
-            {
-                CollectedHiddenObjectCount -= amount;
-            }
-            SetDataAsDirty();
+            CollectedHiddenObjectCount = Mathf.Clamp(CollectedHiddenObjectCount + amount, 0, HiddenObjectCount);
         }
 
-        public void AddKillCount(int amount)
+        public void AdjustKillCount(int amount)
         {
-            KillCount += amount;
-            SetDataAsDirty();
+            KillCount = Mathf.Max(KillCount + amount, 0);
         }
 
-        public void SubtractKillCount(int amount)
+        public void AdjustPadlockOnPlaceCount(int amount)
         {
-            if (KillCount > 0)
-            {
-                KillCount -= amount;
-            }
-            SetDataAsDirty();
-        }
-
-        public void AddPadlockOnPlaceCount(int amount)
-        {
-            if (PadlockOnPlaceCount < PuzzlePieceCount)
-            {
-                PadlockOnPlaceCount += amount;
-            }
-            SetDataAsDirty();
+            PadlockOnPlaceCount = Mathf.Clamp(PadlockOnPlaceCount + amount, 0, PuzzlePieceCount);
         }
 
         public bool IsPuzzleCompleted() => PadlockOnPlaceCount >= PuzzlePieceCount;

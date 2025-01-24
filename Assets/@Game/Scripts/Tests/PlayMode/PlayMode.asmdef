@@ -7,7 +7,11 @@
         "Unity.PerformanceTesting",
         "Unity.InputSystem",
         "Agate.MVC",
-        "ProjectTA"
+        "ProjectTA",
+        "Cinemachine",
+        "Ink-Libraries",
+        "DOTween.Modules",
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -15,7 +19,8 @@
     "overrideReferences": true,
     "precompiledReferences": [
         "nunit.framework.dll",
-        "Moq.dll"
+        "Moq.dll",
+        "DOTween.dll"
     ],
     "autoReferenced": false,
     "defineConstraints": [

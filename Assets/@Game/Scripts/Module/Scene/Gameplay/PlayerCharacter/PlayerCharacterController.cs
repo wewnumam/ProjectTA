@@ -32,7 +32,7 @@ namespace ProjectTA.Module.PlayerCharacter
 
         private void OnCollideWithEnemy()
         {
-            Publish(new SubtractHealthMessage(1));
+            Publish(new AdjustHealthCountMessage(-1));
 #if UNITY_ANDROID
             if (_isVibrationOn)
             {
@@ -52,11 +52,11 @@ namespace ProjectTA.Module.PlayerCharacter
 
             if (collectibleData.Type == EnumManager.CollectibleType.Puzzle)
             {
-                Publish(new AddCollectedPuzzlePieceCountMessage(1));
+                Publish(new AdjustCollectedPuzzlePieceCountMessage(1));
             }
             else if (collectibleData.Type == EnumManager.CollectibleType.HiddenObject)
             {
-                Publish(new AddCollectedHiddenObjectCountMessage(1));
+                Publish(new AdjustCollectedHiddenObjectCountMessage(1));
             }
         }
 

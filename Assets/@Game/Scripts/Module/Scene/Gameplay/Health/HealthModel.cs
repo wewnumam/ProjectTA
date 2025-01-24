@@ -1,8 +1,9 @@
 using Agate.MVC.Base;
+using UnityEngine;
 
 namespace ProjectTA.Module.Health
 {
-    public class HealthModel : BaseModel, IHealthModel
+    public class HealthModel : BaseModel
     {
         public int InitialHealth { get; private set; } = 0;
 
@@ -20,23 +21,9 @@ namespace ProjectTA.Module.Health
             SetDataAsDirty();
         }
 
-        public void AddCurrentHealth(int amount)
+        public void AdjustCurrentHealthCount(int amount)
         {
-            CurrentHealth += amount;
-            if (CurrentHealth > InitialHealth)
-            {
-                CurrentHealth = InitialHealth;
-            }
-            SetDataAsDirty();
-        }
-
-        public void SubtractCurrentHealth(int amount)
-        {
-            CurrentHealth -= amount;
-            if (CurrentHealth < 0)
-            {
-                CurrentHealth = 0;
-            }
+            CurrentHealth = Mathf.Clamp(CurrentHealth + amount, 0, InitialHealth);
             SetDataAsDirty();
         }
 

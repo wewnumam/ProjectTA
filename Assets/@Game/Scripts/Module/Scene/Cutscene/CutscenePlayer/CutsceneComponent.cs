@@ -8,7 +8,7 @@ namespace ProjectTA.Module.CutscenePlayer
     {
         [SerializeField] private List<CinemachineVirtualCamera> _cameras;
 
-        public List<CinemachineVirtualCamera> Cameras => _cameras;
+        public List<CinemachineVirtualCamera> Cameras { get => _cameras; set => _cameras = value; }
 
     }
 }

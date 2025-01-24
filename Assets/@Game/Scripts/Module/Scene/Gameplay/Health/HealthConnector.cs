@@ -9,14 +9,12 @@ namespace ProjectTA.Module.Health
 
         protected override void Connect()
         {
-            Subscribe<AddHealthMessage>(_health.OnAddHealth);
-            Subscribe<SubtractHealthMessage>(_health.OnSubtractHealth);
+            Subscribe<AdjustHealthCountMessage>(_health.OnAdjustHealthCount);
         }
 
         protected override void Disconnect()
         {
-            Unsubscribe<AddHealthMessage>(_health.OnAddHealth);
-            Unsubscribe<SubtractHealthMessage>(_health.OnSubtractHealth);
+            Unsubscribe<AdjustHealthCountMessage>(_health.OnAdjustHealthCount);
         }
     }
 }

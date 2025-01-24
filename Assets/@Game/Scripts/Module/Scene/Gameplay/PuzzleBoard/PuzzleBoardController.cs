@@ -65,7 +65,7 @@ namespace ProjectTA.Module.PuzzleBoard
 
         private void OnPuzzlePlaced(PuzzleDragable puzzleDragable)
         {
-            Publish(new AddPadlockOnPlaceMessage(1));
+            Publish(new AdjustPadlockOnPlaceCountMessage(1));
 
             Debug.Log(puzzleDragable.gameObject.name);
         }

@@ -24,14 +24,6 @@ namespace ProjectTA.Module.QuizPlayer
         [field: SerializeField]
         public List<QuizItem> QuizItems { get; set; }
 
-        private void OnValidate()
-        {
-            if (_answerButtonTemplate.GetComponentInChildren<TMP_Text>() == null)
-            {
-                Debug.LogError("TMP text not found in answer button template child!");
-            }
-        }
-
         private void OnCorrect()
         {
             ButtonsFeedback(_correctColor);

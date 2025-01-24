@@ -129,7 +129,7 @@ namespace ProjectTA.Module.QuestData
             _savedQuestData.Save(_model.CurrentQuestData);
         }
 
-        public void OnAddKillCount(AddKillCountMessage message)
+        public void OnAddKillCount(AdjustKillCountMessage message)
         {
             _model.AddCurrentKillAmount(message.Amount);
         }

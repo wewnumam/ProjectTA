@@ -1,5 +1,6 @@
 using Agate.MVC.Base;
 using ProjectTA.Boot;
+using ProjectTA.Module.LevelData;
 using ProjectTA.Utility;
 using UnityEngine;
 
@@ -12,9 +13,40 @@ namespace ProjectTA.Module.CutscenePlayer
             _model = model;
         }
 
-        public void SetDialogueAsset(TextAsset textAsset) => _model.InitStory(textAsset);
+        public void Init(SOCutsceneData currentCutsceneData)
+        {
 
-        public void InitEnvironment(CutsceneComponent component) => _model.SetCameras(component.Cameras);
+            if (currentCutsceneData == null)
+            {
+                Debug.LogError("SOCUTSCENEDATA IS NULL");
+                return;
+            }
+
+            if (currentCutsceneData.DialogueAsset == null)
+            {
+                Debug.LogError("DIALOGUE ASSET IS NULL");
+                return;
+            }
+
+            _model.InitStory(currentCutsceneData.DialogueAsset);
+
+            if (currentCutsceneData.Environment == null)
+            {
+                Debug.LogError("ENVIRONMENT PREFAB IS NULL");
+                return;
+            }
+
+            GameObject environment = GameObject.Instantiate(currentCutsceneData.Environment.gameObject);
+
+            if (environment.TryGetComponent<CutsceneComponent>(out var cutsceneComponent))
+            {
+                _model.SetCameras(cutsceneComponent.Cameras);
+            }
+            else
+            {
+                Debug.LogWarning("ENVIRONMENT PREFAB HAS NO CUTSCENE COMPONENT");
+            }
+        }
 
         public override void SetView(CutscenePlayerView view)
         {
@@ -26,6 +58,12 @@ namespace ProjectTA.Module.CutscenePlayer
 
         public void DisplayNextLine()
         {
+            if (_model.Story == null)
+            {
+                Debug.LogError("STORY IS NULL");
+                return;
+            }
+
             if (!_model.Story.canContinue)
             {
                 SceneLoader.Instance.LoadScene(TagManager.SCENE_LEVELSELECTION);

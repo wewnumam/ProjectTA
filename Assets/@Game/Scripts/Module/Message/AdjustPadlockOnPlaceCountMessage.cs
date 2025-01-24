@@ -1,10 +1,10 @@
 ﻿namespace ProjectTA.Message
 {
-    public struct AddHealthMessage
+    public struct AdjustPadlockOnPlaceCountMessage
     {
         public int Amount { get; }
 
-        public AddHealthMessage(int amount)
+        public AdjustPadlockOnPlaceCountMessage(int amount)
         {
             Amount = amount;
         }

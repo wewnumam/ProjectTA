@@ -12,9 +12,9 @@ namespace ProjectTA.Module.CutscenePlayer
     {
         public Story Story { get; private set; } = null;
         public string CharacterName { get; private set; } = string.Empty;
-        public string Message { get; private set; } = string.Empty;
+        public string Message { get; set; } = string.Empty;
         public bool IsTextAnimationComplete { get; private set; } = true;
-        public UnityAction OnTextAnimationComplete { get; private set; } = null;
+        public UnityAction OnTextAnimationComplete { get; set; } = null;
 
         private string _currentLineText = String.Empty;
 

@@ -1,10 +1,10 @@
 ﻿namespace ProjectTA.Message
 {
-    public struct AddCollectedPuzzlePieceCountMessage
+    public struct AdjustCollectedPuzzlePieceCountMessage
     {
         public int Amount { get; }
 
-        public AddCollectedPuzzlePieceCountMessage(int amount)
+        public AdjustCollectedPuzzlePieceCountMessage(int amount)
         {
             Amount = amount;
         }

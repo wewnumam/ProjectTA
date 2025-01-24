@@ -17,7 +17,7 @@ namespace ProjectTA.Module.CutscenePlayer
         private Tween _tween;
         private UnityAction _onNext;
 
-        public double CurrentDialogueText { get; set; }
+        public Text MessageText { get; set; }
 
         public void DisplayNextLine()
         {

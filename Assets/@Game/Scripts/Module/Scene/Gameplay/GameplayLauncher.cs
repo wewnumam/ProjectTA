@@ -138,9 +138,7 @@ namespace ProjectTA.Scene.Gameplay
             _puzzleBoard.SetLevelData(_levelData.Model.CurrentLevelData);
             _puzzleBoard.SetView(_view.PuzzleBoardView);
 
-            _mission.SetCurrentLevelData(_levelData.Model.CurrentLevelData);
-            _mission.SetPuzzlePieceCount(_levelData.Model.CurrentLevelData.PuzzleObjects.Count);
-            _mission.SetHiddenObjectCount(_levelData.Model.CurrentLevelData.HiddenObjects.Count);
+            _mission.Init(_levelData.Model.CurrentLevelData);
 
             _cameraEffect.SetView(_view.CameraEffectView);
 

@@ -1,10 +1,10 @@
 ﻿namespace ProjectTA.Message
 {
-    public struct AddKillCountMessage
+    public struct AdjustCollectedHiddenObjectCountMessage
     {
         public int Amount { get; }
 
-        public AddKillCountMessage(int amount)
+        public AdjustCollectedHiddenObjectCountMessage(int amount)
         {
             Amount = amount;
         }

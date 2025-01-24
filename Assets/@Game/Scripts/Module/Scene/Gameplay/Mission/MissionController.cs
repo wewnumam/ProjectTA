@@ -1,6 +1,7 @@
 using Agate.MVC.Base;
 using ProjectTA.Message;
 using ProjectTA.Module.LevelData;
+using UnityEngine;
 
 namespace ProjectTA.Module.Mission
 {
@@ -11,9 +12,36 @@ namespace ProjectTA.Module.Mission
             _model = model;
         }
 
-        public void SetCurrentLevelData(SOLevelData levelData) => _model.SetCurrentLevelData(levelData);
+        public void Init(SOLevelData currentLevelData)
+        {
+            if (currentLevelData == null)
+            {
+                Debug.LogError("SOLEVELDATA IS NULL");
+                return;
+            }
 
-        public void SetPuzzlePieceCount(int puzzlePieceCount)
+            _model.SetCurrentLevelData(currentLevelData);
+
+            if (currentLevelData.PuzzleObjects == null)
+            {
+                Debug.LogError("PUZZLE OBJECTS IS NULL");
+                return;
+            }
+
+            SetPuzzlePieceCount(currentLevelData.PuzzleObjects.Count);
+
+            if (currentLevelData.HiddenObjects == null)
+            {
+                Debug.LogError("HIDDEN OBJECTS IS NULL");
+                return;
+            }
+
+            SetHiddenObjectCount(currentLevelData.HiddenObjects.Count);
+        }
+
+        #region PRIVATE METHOD
+
+        private void SetPuzzlePieceCount(int puzzlePieceCount)
         {
             _model.SetPuzzleCount(puzzlePieceCount);
             _model.SetCollectedPuzzlePieceCount(0);
@@ -21,47 +49,39 @@ namespace ProjectTA.Module.Mission
             Publish(new UpdatePuzzleSolvedCountMessage(_model.PadlockOnPlaceCount, _model.CollectedPuzzlePieceCount, true));
         }
 
-        public void SetHiddenObjectCount(int hiddenObjectCount)
+        private void SetHiddenObjectCount(int hiddenObjectCount)
         {
             _model.SetHiddenObjectCount(hiddenObjectCount);
             _model.SetCollectedHiddenObjectCount(0);
             Publish(new UpdateHiddenObjectCountMessage(_model.HiddenObjectCount, _model.CollectedHiddenObjectCount, true));
         }
 
-        public void OnAddCollectedPuzzlePiece(AddCollectedPuzzlePieceCountMessage message)
+        #endregion
+
+        #region MESSAGE LISTENER
+
+        public void OnAdjustCollectedPuzzlePieceCount(AdjustCollectedPuzzlePieceCountMessage message)
         {
-            _model.AddCollectedPuzzlePieceCount(message.Amount);
-            Publish(new UpdatePuzzleCountMessage(_model.PuzzlePieceCount, _model.CollectedPuzzlePieceCount, true));
+            _model.AdjustCollectedPuzzlePieceCount(message.Amount);
+            Publish(new UpdatePuzzleCountMessage(_model.PuzzlePieceCount, _model.CollectedPuzzlePieceCount, message.Amount > 0));
         }
 
-        public void OnAddCollectedHidenObject(AddCollectedHiddenObjectCountMessage message)
+        public void OnAdjustCollectedHiddenObjectCount(AdjustCollectedHiddenObjectCountMessage message)
         {
-            _model.AddCollectedHiddenObjectCount(message.Amount);
-            Publish(new UpdateHiddenObjectCountMessage(_model.HiddenObjectCount, _model.CollectedHiddenObjectCount, true));
+            _model.AdjustCollectedHiddenObjectCount(message.Amount);
+            Publish(new UpdateHiddenObjectCountMessage(_model.HiddenObjectCount, _model.CollectedHiddenObjectCount, message.Amount > 0));
         }
 
-        public void OnAddKillCount(AddKillCountMessage message)
+        public void OnAdjustKillCount(AdjustKillCountMessage message)
         {
-            _model.AddKillCount(message.Amount);
+            _model.AdjustKillCount(message.Amount);
             Publish(new UpdateKillCountMessage(_model.KillCount, true));
         }
 
-        public void OnSubtractCollectedPuzzlePiece(SubtractCollectedPuzzlePieceCountMessage message)
+        public void OnAdjustPadlockOnPlaceCount(AdjustPadlockOnPlaceCountMessage message)
         {
-            _model.SubtractCollectedPuzzlePieceCount(message.Amount);
-            Publish(new UpdatePuzzleCountMessage(_model.PuzzlePieceCount, _model.CollectedPuzzlePieceCount, false));
-        }
-
-        public void OnSubtractKillCount(SubtractKillCountMessage message)
-        {
-            _model.SubtractKillCount(message.Amount);
-            Publish(new UpdateKillCountMessage(_model.KillCount, false));
-        }
-
-        public void OnAddPadlockOnPlace(AddPadlockOnPlaceMessage message)
-        {
-            _model.AddPadlockOnPlaceCount(message.Amount);
-            Publish(new UpdatePuzzleSolvedCountMessage(_model.PadlockOnPlaceCount, _model.CollectedPuzzlePieceCount, true));
+            _model.AdjustPadlockOnPlaceCount(message.Amount);
+            Publish(new UpdatePuzzleSolvedCountMessage(_model.PadlockOnPlaceCount, _model.CollectedPuzzlePieceCount, message.Amount > 0));
 
             if (_model.IsPuzzleCompleted())
             {
@@ -73,5 +93,7 @@ namespace ProjectTA.Module.Mission
                 }
             }
         }
+
+        #endregion
     }
 }

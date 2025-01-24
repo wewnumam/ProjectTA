@@ -4,7 +4,6 @@ using ProjectTA.Boot;
 using ProjectTA.Message;
 using ProjectTA.Module.CutscenePlayer;
 using ProjectTA.Module.LevelData;
-using ProjectTA.Module.SaveSystem;
 using ProjectTA.Utility;
 using System.Collections;
 using UnityEngine;
@@ -16,7 +15,6 @@ namespace ProjectTA.Scene.Cutscene
     {
         public override string SceneName { get { return TagManager.SCENE_CUTSCENE; } }
 
-        private readonly GameSettingsController _saveSystem = new();
         private readonly LevelDataController _levelData = new();
 
         private readonly CutscenePlayerController _cutscenePlayer = new();
@@ -47,13 +45,7 @@ namespace ProjectTA.Scene.Cutscene
 
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneName));
 
-            GameObject environment = Instantiate(_levelData.Model.CurrentCutsceneData.Environment.gameObject);
-
-            if (environment.TryGetComponent<CutsceneComponent>(out var cutsceneComponent))
-            {
-                _cutscenePlayer.InitEnvironment(cutsceneComponent);
-            }
-            _cutscenePlayer.SetDialogueAsset(_levelData.Model.CurrentCutsceneData.DialogueAsset);
+            _cutscenePlayer.Init(_levelData.Model.CurrentCutsceneData);
             _cutscenePlayer.SetView(_view.CutscenePlayerView);
 
             yield return null;

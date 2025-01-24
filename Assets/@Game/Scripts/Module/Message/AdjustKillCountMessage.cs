@@ -1,10 +1,10 @@
 ﻿namespace ProjectTA.Message
 {
-    public struct SubtractHealthMessage
+    public struct AdjustKillCountMessage
     {
         public int Amount { get; }
 
-        public SubtractHealthMessage(int amount)
+        public AdjustKillCountMessage(int amount)
         {
             Amount = amount;
         }

@@ -19,7 +19,6 @@ namespace ProjectTA.Module.GoogleFormUploader
 
             foreach (var keyValue in keyValues)
             {
-                Debug.Log($"{keyValue.Key}: {keyValue.Value}");
                 form.AddField(keyValue.Key, keyValue.Value);
             }
 

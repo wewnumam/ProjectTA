@@ -14,7 +14,7 @@ namespace ProjectTA.Module.Enemy
 
         private void OnKill()
         {
-            Publish(new AddKillCountMessage(1));
+            Publish(new AdjustKillCountMessage(1));
         }
 
         public void Init(EnemyView view, Transform player, float destroyDelay)

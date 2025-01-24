@@ -2,17 +2,37 @@ using Agate.MVC.Base;
 using ProjectTA.Boot;
 using ProjectTA.Message;
 using ProjectTA.Utility;
+using UnityEngine;
 
 namespace ProjectTA.Module.QuizPlayer
 {
     public class QuizPlayerController : ObjectController<QuizPlayerController, QuizPlayerModel, IQuizPlayerModel, QuizPlayerView>
     {
+        public void SetModel(QuizPlayerModel model)
+        {
+            _model = model;
+        }
+
         public override void SetView(QuizPlayerView view)
         {
+            if (view.QuizItems == null)
+            {
+                Debug.LogError("QUIZITEMS IS NULL");
+                return;
+            }
             _model.InitQuizItem(view.QuizItems);
             _model.AddCallbacks(OnCorrect, OnWrong, OnDone);
             view.SetModel(_model);
             view.UpdateView();
+        }
+
+        public QuizPlayerView GetNewQuizPlayerView()
+        {
+            GameObject obj = GameObject.Instantiate(new GameObject());
+            obj.name = nameof(QuizPlayerView);
+            GameObject.DontDestroyOnLoad(obj);
+            obj.AddComponent<QuizPlayerView>();
+            return obj.GetComponent<QuizPlayerView>();
         }
 
         private void OnCorrect()

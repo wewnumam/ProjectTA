@@ -56,6 +56,10 @@ namespace ProjectTA.Module.QuizPlayer
                     ButtonsText.Add(buttonText);
                     buttonText.SetText(CurrentQuizItem.Answers[i].Message);
                 }
+                else
+                {
+                    Debug.LogError("BUTTON HAS NO TMP_TEXT COMPONENT IN CHILDREN");
+                }
             }
         }
 

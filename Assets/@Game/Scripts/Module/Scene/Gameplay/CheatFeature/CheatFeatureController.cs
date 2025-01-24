@@ -74,42 +74,42 @@ namespace ProjectTA.Module.CheatFeature
 
         private void OnAddHealth()
         {
-            Publish(new AddHealthMessage(1));
+            Publish(new AdjustHealthCountMessage(1));
         }
 
         private void OnSubtractHealth()
         {
-            Publish(new SubtractHealthMessage(1));
+            Publish(new AdjustHealthCountMessage(-1));
         }
 
         private void OnAddPuzzlePieceCount()
         {
-            Publish(new AddCollectedPuzzlePieceCountMessage(1));
+            Publish(new AdjustCollectedPuzzlePieceCountMessage(1));
         }
 
         private void OnSubtractPuzzlePieceCount()
         {
-            Publish(new SubtractCollectedPuzzlePieceCountMessage(1));
+            Publish(new AdjustCollectedPuzzlePieceCountMessage(-1));
         }
 
         private void OnAddHiddenObjectCount()
         {
-            Publish(new AddCollectedHiddenObjectCountMessage(1));
+            Publish(new AdjustCollectedHiddenObjectCountMessage(1));
         }
 
         private void OnSubtractHiddenObjectCount()
         {
-            Publish(new SubtractCollectedPuzzlePieceCountMessage(1));
+            Publish(new AdjustCollectedHiddenObjectCountMessage(-1));
         }
 
         private void OnAddKillCount()
         {
-            Publish(new AddKillCountMessage(1));
+            Publish(new AdjustKillCountMessage(1));
         }
 
         private void OnSubtractKillCount()
         {
-            Publish(new SubtractKillCountMessage(1));
+            Publish(new AdjustKillCountMessage(-1));
         }
 
         private void OnTeleportToPuzzle()
