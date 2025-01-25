@@ -61,6 +61,19 @@ namespace ProjectTA.Tests
             Assert.AreEqual(constants, _model.QuizFormConstants);
         }
 
+        [Test]
+        public void SetReportFormConstants_ShouldUpdateConstants()
+        {
+            // Arrange
+            var constants = new ReportFormConstants();
+
+            // Act
+            _model.SetReportFormConstants(constants);
+
+            // Assert
+            Assert.AreEqual(constants, _model.ReportFormConstants);
+        }
+
         [UnityTest]
         public IEnumerator Initialize_ShouldSetAnalyticFormConstants()
         {
@@ -79,6 +92,7 @@ namespace ProjectTA.Tests
             // Assert
             Assert.AreEqual(gameConstants.AnalyticFormConstants, _model.AnalyticFormConstants);
             Assert.AreEqual(gameConstants.QuizFormConstants, _model.QuizFormConstants);
+            Assert.AreEqual(gameConstants.ReportFormConstants, _model.ReportFormConstants);
         }
 
         [UnityTest]
@@ -87,6 +101,7 @@ namespace ProjectTA.Tests
             // Arrage
             SOGameConstants gameConstants = Resources.Load<SOGameConstants>(TagManager.SO_GAMECONSTANTS);
             _model.SetQuizFormConstants(gameConstants.QuizFormConstants);
+            _model.InitId();
 
             var choicesRecord = new List<ChoicesRecord> {
                 new ChoicesRecord("unit_test_session_id", "unit_test_device_id", "unit_test_question", "unit_test_choices", "unit_test_is_first_choices"),
@@ -109,6 +124,7 @@ namespace ProjectTA.Tests
             // Arrage
             SOGameConstants gameConstants = Resources.Load<SOGameConstants>(TagManager.SO_GAMECONSTANTS);
             _model.SetAnalyticFormConstants(gameConstants.AnalyticFormConstants);
+            _model.InitId();
 
             var analyticRecord = new AnalyticRecord();
             analyticRecord.SessionId = "unit_test";
@@ -133,6 +149,25 @@ namespace ProjectTA.Tests
             // Assert
             LogAssert.Expect(LogType.Log, "Form submitted successfully!");
 
+
+            yield return new WaitForSeconds(5f);
+        }
+
+        [UnityTest]
+        public IEnumerator OnSendReport_ShouldSendReport()
+        {
+            // Arrage
+            SOGameConstants gameConstants = Resources.Load<SOGameConstants>(TagManager.SO_GAMECONSTANTS);
+            _model.SetReportFormConstants(gameConstants.ReportFormConstants);
+            _model.InitId();
+
+            var message = new ReportMessage("unit_test");
+
+            // Act
+            _controller.OnSendReport(message);
+
+            // Assert
+            LogAssert.Expect(LogType.Log, "Form submitted successfully!");
 
             yield return new WaitForSeconds(5f);
         }
