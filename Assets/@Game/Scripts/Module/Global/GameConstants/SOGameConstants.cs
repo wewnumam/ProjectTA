@@ -26,6 +26,9 @@ namespace ProjectTA.Module.GameConstants
 
         [Header("Analytic Form Constants")]
         [SerializeField] private AnalyticFormConstants _analyticFormConstants;
+        
+        [Header("Report Form Constants")]
+        [SerializeField] private ReportFormConstants _reportFormConstants;
 
 
         public bool IsJoystickActive => _isJoystickActive;
@@ -35,6 +38,7 @@ namespace ProjectTA.Module.GameConstants
         public EnemyConstants Enemy => _enemyConstants;
         public QuizFormConstants QuizFormConstants { get => _quizFormConstants; set => _quizFormConstants = value; }
         public AnalyticFormConstants AnalyticFormConstants { get => _analyticFormConstants; set => _analyticFormConstants = value; }
+        public ReportFormConstants ReportFormConstants { get => _reportFormConstants; set => _reportFormConstants = value; }
     }
 
     [Serializable]
@@ -105,4 +109,14 @@ namespace ProjectTA.Module.GameConstants
         [field: SerializeField] public string FormUrl { get; set; }
         [field: SerializeField] public AnalyticRecord EntryIds { get; set; }
     }
+
+    [Serializable]
+    public class ReportFormConstants
+    {
+        [field: SerializeField] public string FormUrl { get; set; }
+        [field: SerializeField] public string SessionId { get; set; }
+        [field: SerializeField] public string DeviceId { get; set; }
+        [field: SerializeField] public string MessageId { get; set; }
+    }
+
 }

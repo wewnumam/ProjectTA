@@ -1,4 +1,5 @@
 using Agate.MVC.Base;
+using ProjectTA.Module.BugReport;
 using ProjectTA.Module.CollectibleList;
 using ProjectTA.Module.QuestList;
 using ProjectTA.Module.Settings;
@@ -14,11 +15,13 @@ namespace ProjectTA.Scene.MainMenu
         [SerializeField] private CollectibleListView _collectibleListView;
         [SerializeField] private QuestListView _questListView;
         [SerializeField] private SettingsView _settingsView;
+        [SerializeField] private BugReportView _bugReportView;
 
         public TutorialView TutorialView => _tutorialView;
         public CollectibleListView CollectibleListView => _collectibleListView;
         public QuestListView QuestListView => _questListView;
         public SettingsView SettingsView => _settingsView;
+        public BugReportView BugReportView => _bugReportView;
 
         private UnityAction _onPlay, _onQuit, _onQuiz;
 

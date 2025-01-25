@@ -2,6 +2,7 @@ using Agate.MVC.Base;
 using ProjectTA.Message;
 using ProjectTA.Module.GameConstants;
 using ProjectTA.Utility;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,6 +29,8 @@ namespace ProjectTA.Module.GoogleFormUploader
 
         public override IEnumerator Initialize()
         {
+            _model.InitId();
+
             if (_resourceLoader == null)
             {
                 _resourceLoader = new ResourceLoader();
@@ -43,6 +46,7 @@ namespace ProjectTA.Module.GoogleFormUploader
             {
                 _model.SetAnalyticFormConstants(gameConstants.AnalyticFormConstants);
                 _model.SetQuizFormConstants(gameConstants.QuizFormConstants);
+                _model.SetReportFormConstants(gameConstants.ReportFormConstants);
             }
             else
             {
@@ -69,8 +73,8 @@ namespace ProjectTA.Module.GoogleFormUploader
             {
                 Dictionary<string, string> keyValues = new()
                 {
-                    { _model.QuizFormConstants.EntryIds.SessionId, choicesRecord.SessionId },
-                    { _model.QuizFormConstants.EntryIds.DeviceId, choicesRecord.DeviceId },
+                    { _model.QuizFormConstants.EntryIds.SessionId, _model.SessionId },
+                    { _model.QuizFormConstants.EntryIds.DeviceId, _model.DeviceId },
                     { _model.QuizFormConstants.EntryIds.Question, choicesRecord.Question },
                     { _model.QuizFormConstants.EntryIds.Choices, choicesRecord.Choices },
                     { _model.QuizFormConstants.EntryIds.IsFirstChoice, choicesRecord.IsFirstChoice }
@@ -84,8 +88,8 @@ namespace ProjectTA.Module.GoogleFormUploader
         {
             Dictionary<string, string> keyValues = new()
             {
-                    { _model.AnalyticFormConstants.EntryIds.SessionId, message.AnalyticRecord.SessionId },
-                    { _model.AnalyticFormConstants.EntryIds.DeviceId, message.AnalyticRecord.DeviceId },
+                    { _model.AnalyticFormConstants.EntryIds.SessionId, _model.SessionId },
+                    { _model.AnalyticFormConstants.EntryIds.DeviceId, _model.DeviceId },
                     { _model.AnalyticFormConstants.EntryIds.ScreenTimeInSeconds, message.AnalyticRecord.ScreenTimeInSeconds },
                     { _model.AnalyticFormConstants.EntryIds.AverageFps, message.AnalyticRecord.AverageFps },
                     { _model.AnalyticFormConstants.EntryIds.MaxFps, message.AnalyticRecord.MaxFps },
@@ -99,6 +103,18 @@ namespace ProjectTA.Module.GoogleFormUploader
                 };
 
             _view.SubmitForm(_model.AnalyticFormConstants.FormUrl, keyValues);
+        }
+
+        public void OnSendReport(ReportMessage message)
+        {
+            Dictionary<string, string> keyValues = new()
+            {
+                    { _model.ReportFormConstants.SessionId, _model.SessionId },
+                    { _model.ReportFormConstants.DeviceId, _model.DeviceId },
+                    { _model.ReportFormConstants.MessageId, message.Message },
+                };
+
+            _view.SubmitForm(_model.ReportFormConstants.FormUrl, keyValues);
         }
 
         #endregion

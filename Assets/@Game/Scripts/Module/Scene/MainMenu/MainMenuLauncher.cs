@@ -2,6 +2,7 @@ using Agate.MVC.Base;
 using Agate.MVC.Core;
 using ProjectTA.Boot;
 using ProjectTA.Message;
+using ProjectTA.Module.BugReport;
 using ProjectTA.Module.CollectibleData;
 using ProjectTA.Module.CollectibleList;
 using ProjectTA.Module.LevelData;
@@ -30,6 +31,7 @@ namespace ProjectTA.Scene.MainMenu
         private readonly TutorialController _tutorial = new();
         private readonly QuestListController _questList = new();
         private readonly SettingsController _settings = new();
+        private readonly BugReportController _bugReport = new();
 
         protected override IController[] GetSceneDependencies()
         {
@@ -38,6 +40,7 @@ namespace ProjectTA.Scene.MainMenu
                 new CollectibleListController(),
                 new QuestListController(),
                 new SettingsController(),
+                new BugReportController(),
             };
         }
 
@@ -79,6 +82,8 @@ namespace ProjectTA.Scene.MainMenu
             _settings.SetInitialBgm(_gameSettings.Model.SavedSettingsData.IsBgmOn);
             _settings.SetInitialVibrate(_gameSettings.Model.SavedSettingsData.IsVibrationOn);
             _settings.SetView(_view.SettingsView);
+
+            _bugReport.SetView(_view.BugReportView);
 
             yield return null;
         }
