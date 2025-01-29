@@ -1,12 +1,41 @@
 using Agate.MVC.Base;
 using ProjectTA.Message;
+using ProjectTA.Module.LevelData;
 using UnityEngine;
 
 namespace ProjectTA.Module.HUD
 {
-    public class HudController : ObjectController<HudController, HudView>
+    public class HudController : ObjectController<HudController, HudModel, HudView>
     {
-        public void SetGateIcon(Sprite sprite) => _view.GateIcon.sprite = sprite;
+        public void InitModel(ILevelDataModel levelData)
+        {
+            if (levelData == null)
+            {
+                Debug.LogError("LEVELDATA IS NULL");
+                return;
+            }
+
+            if (levelData.CurrentLevelData == null)
+            {
+                Debug.LogError("CURRENTLEVELDATA IS NULL");
+                return;
+            }
+
+            if (levelData.CurrentLevelData.Icon == null)
+            {
+                Debug.LogError("CURRENTLEVELDATAICON IS NULL");
+                return;
+            }
+
+            _model.SetGateIcon(levelData.CurrentLevelData.Icon);
+        }
+
+
+        public override void SetView(HudView view)
+        {
+            base.SetView(view);
+            view.GateIcon.sprite = _model.GateIcon;
+        }
 
         public void OnUpdateHealth(UpdateHealthMessage message)
         {

@@ -1,6 +1,9 @@
 using NUnit.Framework;
 using ProjectTA.Message;
 using ProjectTA.Module.Health;
+using ProjectTA.Module.LevelData;
+using ProjectTA.Utility;
+using UnityEngine;
 
 namespace ProjectTA.Tests
 {
@@ -147,9 +150,13 @@ namespace ProjectTA.Tests
         {
             // Arrange
             int initialHealth = 100;
+            var levelDataModel = new LevelDataModel();
+            var currentLevelData = ScriptableObject.CreateInstance<SOLevelData>();
+            TestUtility.SetPrivateField(currentLevelData, "_initialHealth", initialHealth);
+            levelDataModel.SetCurrentLevelData(currentLevelData);
 
             // Act
-            _controller.SetInitialHealth(initialHealth);
+            _controller.InitModel(levelDataModel);
 
             // Assert
             Assert.AreEqual(initialHealth, _model.InitialHealth);

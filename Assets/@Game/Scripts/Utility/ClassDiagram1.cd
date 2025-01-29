@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ProjectTA.Module.LevelData.SOLevelData">
+    <Position X="3" Y="3.25" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAgAIEAMGgQMAECAAQAQAAAAAAIACAgAAAEAFAAQE=</HashCode>
+      <FileName>Assets\@Game\Scripts\Module\Global\LevelData\SOLevelData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectTA.Module.LevelData.SOLevelCollection">
+    <Position X="1.25" Y="3.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\@Game\Scripts\Module\Global\LevelData\SOLeveCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectTA.Module.LevelData.SOCutsceneData">
+    <Position X="3" Y="7.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAADAAAAAAAAAAAAAAAgAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\@Game\Scripts\Module\Global\LevelData\SOCutsceneData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectTA.Module.CollectibleData.SOCollectibleData">
+    <Position X="7.75" Y="3.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQIAgAEQEAhAAAAAAAAAAAAAAAQAAEAAAAAA=</HashCode>
+      <FileName>Assets\@Game\Scripts\Module\Global\CollectibleData\SOCollectibleData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectTA.Module.CollectibleData.SOCollectibleCollection">
+    <Position X="5.25" Y="3.25" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\@Game\Scripts\Module\Global\CollectibleData\SOCollectibleCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectTA.Module.GameConstants.SOGameConstants">
+    <Position X="9.75" Y="3.25" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAgQgIQEAQCAAgAAIQIAABEAAgAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\@Game\Scripts\Module\Global\GameConstants\SOGameConstants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectTA.Module.QuestData.SOQuestCollection">
+    <Position X="5.25" Y="5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Assets\@Game\Scripts\Module\Global\QuestData\SOQuestCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectTA.Module.CollectibleData.SavedUnlockedCollectibles">
+    <Position X="5.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\@Game\Scripts\Module\Global\CollectibleData\SavedUnlockedCollectibles.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectTA.Module.SaveSystem.SavedSettingsData">
+    <Position X="3.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAACAAAAAAAAAAAEAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Assets\@Game\Scripts\Module\Global\GameSettings\SavedSettingsData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectTA.Module.LevelData.SavedLevelData">
+    <Position X="7.25" Y="9.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAEAAAAEAAAA=</HashCode>
+      <FileName>Assets\@Game\Scripts\Module\Global\LevelData\SavedLevelData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectTA.Module.QuestData.SavedQuestData">
+    <Position X="1.25" Y="9.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABCAAAAAAAAAACAECAYABAA=</HashCode>
+      <FileName>Assets\@Game\Scripts\Module\Global\QuestData\SavedQuestData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

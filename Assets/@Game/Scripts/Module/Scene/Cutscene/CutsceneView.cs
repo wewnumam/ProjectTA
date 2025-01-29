@@ -6,8 +6,7 @@ namespace ProjectTA.Scene.Cutscene
 {
     public class CutsceneView : BaseSceneView
     {
-        [SerializeField] private CutscenePlayerView _cutscenePlayerView;
-
-        public CutscenePlayerView CutscenePlayerView => _cutscenePlayerView;
+        [field:SerializeField]
+        public CutscenePlayerView CutscenePlayerView { get; private set; }
     }
 }

@@ -1,23 +1,34 @@
 using Agate.MVC.Base;
 using ProjectTA.Message;
+using ProjectTA.Module.SaveSystem;
 using UnityEngine;
 
 namespace ProjectTA.Module.GameInduction
 {
-    public class GameInductionController : ObjectController<GameInductionController, GameInductionView>
+    public class GameInductionController : ObjectController<GameInductionController, GameInductionModel, GameInductionView>
     {
-        private bool _isGameInductionActive = false;
-
-        public void SetIsGameInductionActive(bool isActive)
+        public void InitModel(IGameSettingsModel gameSettings)
         {
-            _isGameInductionActive = isActive;
+            if (gameSettings == null)
+            {
+                Debug.LogError("GAMESETTINGS IS NULL");
+                return;
+            }
+
+            if (gameSettings.SavedSettingsData == null)
+            {
+                Debug.LogError("SAVEDSETTINGSDATA IS NULL");
+                return;
+            }
+
+            _model.SetIsGameInductionActive(gameSettings.SavedSettingsData.IsGameInductionActive);
         }
 
         public override void SetView(GameInductionView view)
         {
             base.SetView(view);
             view.SetCallback(OnCloseGameInduction);
-            if (_isGameInductionActive)
+            if (_model.IsGameInductionActive)
             {
                 view.StartGameInduction();
                 Publish(new ToggleGameInductionMessage(false));
@@ -26,7 +37,7 @@ namespace ProjectTA.Module.GameInduction
 
         private void OnCloseGameInduction()
         {
-            if (_isGameInductionActive)
+            if (_model.IsGameInductionActive)
             {
                 Time.timeScale = 1;
             }

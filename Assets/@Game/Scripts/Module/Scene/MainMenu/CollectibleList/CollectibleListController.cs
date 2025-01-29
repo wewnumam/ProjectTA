@@ -2,6 +2,7 @@ using Agate.MVC.Base;
 using ProjectTA.Message;
 using ProjectTA.Module.CollectibleData;
 using ProjectTA.Module.CollectibleItem;
+using ProjectTA.Module.LevelData;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,6 +21,28 @@ namespace ProjectTA.Module.CollectibleList
         public void SetUnlockedCollectibles(List<SOCollectibleData> unlockedCollectibles)
         {
             _unlockedCollectibles = unlockedCollectibles;
+        }
+
+        public void Init(ICollectibleDataModel collectibleData)
+        {
+            if (collectibleData == null)
+            {
+                Debug.LogError("COLLECTIBLEDATA IS NULL");
+                return;
+            }
+            if (collectibleData.CollectibleCollection == null)
+            {
+                Debug.LogError("COLLECTIBLECOLLECTION IS NULL");
+                return;
+            }
+            _collectibleCollection = collectibleData.CollectibleCollection;
+
+            if (collectibleData.UnlockedCollectibleItems == null)
+            {
+                Debug.LogError("UNLOCKEDCOLLECTIBLEITEMS IS NULL");
+                return;
+            }
+            _unlockedCollectibles = collectibleData.UnlockedCollectibleItems;
         }
 
         public override void SetView(CollectibleListView view)

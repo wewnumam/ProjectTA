@@ -2,15 +2,21 @@ using Agate.MVC.Base;
 using ProjectTA.Message;
 using ProjectTA.Module.Enemy;
 using ProjectTA.Module.GameConstants;
+using ProjectTA.Module.LevelData;
 using UnityEngine;
 
 namespace ProjectTA.Module.EnemyPool
 {
     public class EnemyPoolController : ObjectController<EnemyPoolController, EnemyPoolModel, EnemyPoolView>
     {
-        public void SetEnemyPrefab(GameObject enemyPrefab) => _model.SetEnemyPrefab(enemyPrefab);
+        public void InitModel(ILevelDataModel levelData, IGameConstantsModel gameConstants)
+        {
+            if (!ValidateLevelData(levelData) || !ValidateGameConstants(gameConstants))
+                return;
 
-        public void SetEnemyConstants(EnemyConstants enemyConstants) => _model.SetEnemyConstants(enemyConstants);
+            _model.SetEnemyPrefab(levelData.CurrentLevelData.EnemyPrefab);
+            _model.SetEnemyConstants(gameConstants.GameConstants.Enemy);
+        }
 
         public override void SetView(EnemyPoolView view)
         {
@@ -18,6 +24,44 @@ namespace ProjectTA.Module.EnemyPool
             SetPoolObject();
             view.SetCallback(OnSpawnEnemy);
         }
+
+        #region PRIVATE METHOD
+
+        private bool ValidateGameConstants(IGameConstantsModel gameConstants)
+        {
+            if (gameConstants == null)
+                return LogError("GAMECONSTANTS IS NULL");
+
+            if (gameConstants.GameConstants == null)
+                return LogError("SOGAMECONSTANTS IS NULL");
+
+            if (gameConstants.GameConstants.Enemy == null)
+                return LogError("ENEMYCONSTANTS IS NULL");
+
+            return true;
+        }
+
+        private bool ValidateLevelData(ILevelDataModel levelData)
+        {
+            if (levelData == null)
+                return LogError("LEVELDATA IS NULL");
+
+            if (levelData.CurrentLevelData == null)
+                return LogError("CURRENTLEVELDATA IS NULL");
+
+            if (levelData.CurrentLevelData.EnemyPrefab == null)
+                return LogError("ENEMYPREFAB IS NULL");
+
+            return true;
+        }
+
+        private bool LogError(string message)
+        {
+            Debug.LogError(message);
+            return false;
+        }
+
+        #endregion
 
         private void OnSpawnEnemy(float deltaTime)
         {

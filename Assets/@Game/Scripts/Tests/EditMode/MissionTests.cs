@@ -85,6 +85,90 @@ namespace ProjectTA.Tests
             Assert.IsTrue(_model.IsPuzzleCompleted());
         }
 
+        [Test]
+        public void AdjustCollectedHiddenObjectCount_ShouldClampBetweenZeroAndHiddenCount()
+        {
+            // Arrange
+            _model.SetHiddenObjectCount(3);
+
+            // Act & Assert
+            _model.AdjustCollectedHiddenObjectCount(2);
+            Assert.AreEqual(2, _model.CollectedHiddenObjectCount);
+
+            _model.AdjustCollectedHiddenObjectCount(2);
+            Assert.AreEqual(3, _model.CollectedHiddenObjectCount);
+
+            _model.AdjustCollectedHiddenObjectCount(-5);
+            Assert.AreEqual(0, _model.CollectedHiddenObjectCount);
+        }
+
+        [Test]
+        public void AdjustKillCount_ShouldNeverGoBelowZero()
+        {
+            // Act & Assert
+            _model.AdjustKillCount(-5);
+            Assert.AreEqual(0, _model.KillCount);
+
+            _model.AdjustKillCount(3);
+            Assert.AreEqual(3, _model.KillCount);
+
+            _model.AdjustKillCount(-1);
+            Assert.AreEqual(2, _model.KillCount);
+
+            _model.AdjustKillCount(-10);
+            Assert.AreEqual(0, _model.KillCount);
+        }
+
+        [Test]
+        public void SetHiddenObjectCount_SetsValue()
+        {
+            // Act
+            _model.SetHiddenObjectCount(5);
+
+            // Assert
+            Assert.AreEqual(5, _model.HiddenObjectCount);
+        }
+
+        [Test]
+        public void SetCollectedHiddenObjectCount_SetsValue()
+        {
+            // Arrange
+            _model.SetHiddenObjectCount(3);
+
+            // Act
+            _model.SetCollectedHiddenObjectCount(5);
+
+            // Assert
+            Assert.AreEqual(5, _model.CollectedHiddenObjectCount);
+        }
+
+        [Test]
+        public void SetCollectedPuzzlePieceCount_SetsValue()
+        {
+            // Arrange
+            _model.SetPuzzleCount(2);
+
+            // Act
+            _model.SetCollectedPuzzlePieceCount(5);
+
+            // Assert
+            Assert.AreEqual(5, _model.CollectedPuzzlePieceCount);
+        }
+
+        [Test]
+        public void AdjustPadlockOnPlaceCount_ShouldClampToZeroWhenNegative()
+        {
+            // Arrange
+            _model.SetPuzzleCount(2);
+            _model.AdjustPadlockOnPlaceCount(1);
+
+            // Act
+            _model.AdjustPadlockOnPlaceCount(-3);
+
+            // Assert
+            Assert.AreEqual(0, _model.PadlockOnPlaceCount);
+        }
+
         #endregion
 
         #region MissionController Tests
@@ -93,7 +177,7 @@ namespace ProjectTA.Tests
         public void Init_WithValidLevelData_SetsModelCountsCorrectly()
         {
             // Act
-            _controller.Init(_testLevelData);
+            _controller.InitModel(_testLevelData);
 
             // Assert
             Assert.AreEqual(2, _model.PuzzlePieceCount);
@@ -105,7 +189,7 @@ namespace ProjectTA.Tests
         public void OnAdjustCollectedPuzzlePieceCountMessage_UpdatesModelCorrectly()
         {
             // Arrange
-            _controller.Init(_testLevelData);
+            _controller.InitModel(_testLevelData);
             var message = new AdjustCollectedPuzzlePieceCountMessage(1);
 
             // Act
@@ -119,7 +203,7 @@ namespace ProjectTA.Tests
         public void OnAdjustHiddenObjectCountMessage_UpdatesModelCorrectly()
         {
             // Arrange
-            _controller.Init(_testLevelData);
+            _controller.InitModel(_testLevelData);
             var message = new AdjustCollectedHiddenObjectCountMessage(1);
 
             // Act
@@ -133,7 +217,7 @@ namespace ProjectTA.Tests
         public void OnAdjustPadlockCount_CompletesPuzzle_SetsCompletionState()
         {
             // Arrange
-            _controller.Init(_testLevelData);
+            _controller.InitModel(_testLevelData);
             var message = new AdjustPadlockOnPlaceCountMessage(2);
 
             // Act
@@ -155,6 +239,38 @@ namespace ProjectTA.Tests
 
             // Assert
             Assert.AreEqual(0, _model.KillCount);
+        }
+
+        [Test]
+        public void OnAdjustHiddenObjectCountMessage_ClampsToMax()
+        {
+            // Arrange
+            _controller.InitModel(_testLevelData); // HiddenObjectCount = 1
+            var message = new AdjustCollectedHiddenObjectCountMessage(5);
+
+            // Act
+            _controller.OnAdjustCollectedHiddenObjectCount(message);
+
+            // Assert
+            Assert.AreEqual(1, _model.CollectedHiddenObjectCount);
+        }
+
+        [Test]
+        public void OnAdjustKillCountMessage_AdjustsCorrectly()
+        {
+            // Arrange
+            var message1 = new AdjustKillCountMessage(3);
+            var message2 = new AdjustKillCountMessage(-1);
+
+            // Act
+            _controller.OnAdjustKillCount(message1);
+            Assert.AreEqual(3, _model.KillCount);
+
+            // Act again
+            _controller.OnAdjustKillCount(message2);
+
+            // Assert
+            Assert.AreEqual(2, _model.KillCount);
         }
 
         #endregion

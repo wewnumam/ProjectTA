@@ -70,17 +70,13 @@ namespace ProjectTA.Scene.MainMenu
 
             _tutorial.SetView(_view.TutorialView);
 
-            _collectibleList.SetCollectibleCollection(_collectibleData.Model.CollectibleCollection);
-            _collectibleList.SetUnlockedCollectibles(_collectibleData.Model.UnlockedCollectibleItems);
+            _collectibleList.Init(_collectibleData.Model);
             _collectibleList.SetView(_view.CollectibleListView);
 
-            _questList.SetQuestCollection(_questData.Model.QuestCollection);
-            _questList.SetQuestData(_questData.Model.CurrentQuestData);
+            _questList.Init(_questData.Model);
             _questList.SetView(_view.QuestListView);
 
-            _settings.SetInitialSfx(_gameSettings.Model.SavedSettingsData.IsSfxOn);
-            _settings.SetInitialBgm(_gameSettings.Model.SavedSettingsData.IsBgmOn);
-            _settings.SetInitialVibrate(_gameSettings.Model.SavedSettingsData.IsVibrationOn);
+            _settings.InitModel(_gameSettings.Model);
             _settings.SetView(_view.SettingsView);
 
             _bugReport.SetView(_view.BugReportView);

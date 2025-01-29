@@ -119,53 +119,42 @@ namespace ProjectTA.Scene.Gameplay
             GameObject environmentObj = Instantiate(_levelData.Model.CurrentEnvironmentPrefab);
             InitializePuzzleObjects(environmentObj.transform);
 
+            _health.InitModel(_levelData.Model);
+            _mission.InitModel(_levelData.Model.CurrentLevelData);
+
             _gamePause.SetView(_view.GamePauseView);
             _gameWin.SetView(_view.GameWinView);
             _gameOver.SetView(_view.GameOverView);
-
-            _playerCharacter.SetPlayerConstants(_gameConstants.Model.GameConstants.PlayerConstants);
-            _playerCharacter.SetInitialVibration(_gameSettings.Model.SavedSettingsData.IsVibrationOn);
-            _playerCharacter.SetView(_view.PlayerCharacterView);
-            _playerCharacter.SetInitialActivateJoystick(_gameConstants.Model.GameConstants.IsJoystickActive);
-
-            _hud.SetView(_view.HudView);
-            _hud.SetGateIcon(_levelData.Model.CurrentLevelData.Icon);
-
-            _health.SetInitialHealth(_gameConstants.Model.GameConstants.InitialHealth);
-
             _dialogue.SetView(_view.DialogueView);
-
-            _puzzleBoard.SetLevelData(_levelData.Model.CurrentLevelData);
-            _puzzleBoard.SetView(_view.PuzzleBoardView);
-
-            _mission.Init(_levelData.Model.CurrentLevelData);
-
             _cameraEffect.SetView(_view.CameraEffectView);
-
-            _countdown.SetView(_view.CountdownView);
-            _countdown.SetInitialCountdown(_levelData.Model.CurrentLevelData.Countdown);
-            _countdown.SetCurrentCountdown(_levelData.Model.CurrentLevelData.Countdown);
-
-            _bulletPool.SetShootingConstants(_gameConstants.Model.GameConstants.Shooting);
-            _bulletPool.SetView(_view.BulletPoolView);
-
-            _enemyPool.SetEnemyPrefab(_levelData.Model.CurrentLevelData.EnemyPrefab);
-            _enemyPool.SetEnemyConstants(_gameConstants.Model.GameConstants.Enemy);
-            _enemyPool.SetView(_view.EnemyPoolView);
-
             _tutorial.SetView(_view.TutorialView);
-
-            _cheatFeature.SetView(_view.CheatFeatureView);
-            _cheatFeature.SetInitialActivateJoystick(_gameConstants.Model.GameConstants.IsJoystickActive);
-
-            _settings.SetInitialSfx(_gameSettings.Model.SavedSettingsData.IsSfxOn);
-            _settings.SetInitialBgm(_gameSettings.Model.SavedSettingsData.IsBgmOn);
-            _settings.SetInitialVibrate(_gameSettings.Model.SavedSettingsData.IsVibrationOn);
-            _settings.SetView(_view.SettingsView);
-
             _spatialDirection.SetView(_view.SpatialDirectionView);
 
-            _gameInduction.SetIsGameInductionActive(_gameSettings.Model.SavedSettingsData.IsGameInductionActive);
+            _playerCharacter.InitModel(_gameConstants.Model, _gameSettings.Model);
+            _playerCharacter.SetView(_view.PlayerCharacterView);
+
+            _hud.InitModel(_levelData.Model);
+            _hud.SetView(_view.HudView);
+
+            _puzzleBoard.InitModel(_levelData.Model);
+            _puzzleBoard.SetView(_view.PuzzleBoardView);
+
+            _countdown.InitModel(_levelData.Model);
+            _countdown.SetView(_view.CountdownView);
+
+            _bulletPool.InitModel(_gameConstants.Model);
+            _bulletPool.SetView(_view.BulletPoolView);
+
+            _enemyPool.InitModel(_levelData.Model, _gameConstants.Model);
+            _enemyPool.SetView(_view.EnemyPoolView);
+
+            _cheatFeature.InitModel(_gameConstants.Model);
+            _cheatFeature.SetView(_view.CheatFeatureView);
+
+            _settings.InitModel(_gameSettings.Model);
+            _settings.SetView(_view.SettingsView);
+
+            _gameInduction.InitModel(_gameSettings.Model);
             _gameInduction.SetView(_view.GameInductionView);
 
             Publish(new GameStateMessage(EnumManager.GameState.Playing));

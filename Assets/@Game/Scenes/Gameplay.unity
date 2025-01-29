@@ -10769,22 +10769,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d610a532f5e1494fb899d139d8ac995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gamePauseView: {fileID: 457723809}
-  _gameWinView: {fileID: 782530902}
-  _gameOverView: {fileID: 408598632}
-  _playerCharacterView: {fileID: 596940351}
-  _cheatFeatureView: {fileID: 1671532411}
-  _hudView: {fileID: 1288700278}
-  _dialogueView: {fileID: 427786995}
-  _puzzleBoardView: {fileID: 242265491}
-  _cameraEffectView: {fileID: 1297055889}
-  _countdownView: {fileID: 491772489}
-  _bulletPoolView: {fileID: 96263379}
-  _enemyPoolView: {fileID: 1449497416}
-  _tutorialView: {fileID: 2096334700}
-  _settingsView: {fileID: 1371555262}
-  _spatialDirectionView: {fileID: 529849461}
-  _gameInductionView: {fileID: 1554276131}
+  <GamePauseView>k__BackingField: {fileID: 457723809}
+  <GameWinView>k__BackingField: {fileID: 782530902}
+  <GameOverView>k__BackingField: {fileID: 408598632}
+  <PlayerCharacterView>k__BackingField: {fileID: 596940351}
+  <CheatFeatureView>k__BackingField: {fileID: 1671532411}
+  <HudView>k__BackingField: {fileID: 1288700278}
+  <DialogueView>k__BackingField: {fileID: 427786995}
+  <PuzzleBoardView>k__BackingField: {fileID: 242265491}
+  <CameraEffectView>k__BackingField: {fileID: 1297055889}
+  <CountdownView>k__BackingField: {fileID: 491772489}
+  <BulletPoolView>k__BackingField: {fileID: 96263379}
+  <EnemyPoolView>k__BackingField: {fileID: 1449497416}
+  <TutorialView>k__BackingField: {fileID: 2096334700}
+  <SettingsView>k__BackingField: {fileID: 1371555262}
+  <SpatialDirectionView>k__BackingField: {fileID: 529849461}
+  <GameInductionView>k__BackingField: {fileID: 1554276131}
 --- !u!1 &1227737872
 GameObject:
   m_ObjectHideFlags: 0

@@ -58,11 +58,9 @@ namespace ProjectTA.Module.GoogleFormUploader
 
         public GoogleFormUploaderView GetNewGoogleFormUploaderView()
         {
-            GameObject obj = GameObject.Instantiate(new GameObject());
-            obj.name = nameof(GoogleFormUploaderView);
+            GameObject obj = new GameObject(nameof(GoogleFormUploaderView));
             GameObject.DontDestroyOnLoad(obj);
-            obj.AddComponent<GoogleFormUploaderView>();
-            return obj.GetComponent<GoogleFormUploaderView>();
+            return obj.AddComponent<GoogleFormUploaderView>();
         }
 
         #region MESSAGE LISTENER

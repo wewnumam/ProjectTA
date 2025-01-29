@@ -11,17 +11,16 @@ namespace ProjectTA.Scene.MainMenu
 {
     public class MainMenuView : BaseSceneView
     {
-        [SerializeField] private TutorialView _tutorialView;
-        [SerializeField] private CollectibleListView _collectibleListView;
-        [SerializeField] private QuestListView _questListView;
-        [SerializeField] private SettingsView _settingsView;
-        [SerializeField] private BugReportView _bugReportView;
-
-        public TutorialView TutorialView => _tutorialView;
-        public CollectibleListView CollectibleListView => _collectibleListView;
-        public QuestListView QuestListView => _questListView;
-        public SettingsView SettingsView => _settingsView;
-        public BugReportView BugReportView => _bugReportView;
+        [field:SerializeField]
+        public TutorialView TutorialView { get; private set; }
+        [field: SerializeField]
+        public CollectibleListView CollectibleListView { get; private set; }
+        [field: SerializeField]
+        public QuestListView QuestListView { get; private set; }
+        [field: SerializeField]
+        public SettingsView SettingsView { get; private set; }
+        [field: SerializeField]
+        public BugReportView BugReportView { get; private set; }
 
         private UnityAction _onPlay, _onQuit, _onQuiz;
 

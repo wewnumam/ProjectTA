@@ -1,18 +1,29 @@
 using Agate.MVC.Base;
 using ProjectTA.Message;
-using ProjectTA.Module.CollectibleData;
+using ProjectTA.Module.GameConstants;
 using ProjectTA.Utility;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ProjectTA.Module.CheatFeature
 {
-    public class CheatFeatureController : ObjectController<CheatFeatureController, CheatFeatureView>
+    public class CheatFeatureController : ObjectController<CheatFeatureController, CheatFeatureModel, CheatFeatureView>
     {
-        private readonly List<Transform> _puzzleTransforms = new();
-        private readonly List<Transform> _hiddenObjectTransforms = new();
-        private int _currentPuzzleIndex = 0;
-        private int _currentHiddenObjectIndex = 0;
+        public void InitModel(IGameConstantsModel gameConstants)
+        {
+            if (gameConstants == null)
+            {
+                Debug.LogError("GAMECONSTANTS IS NULL");
+                return;
+            }
+
+            if (gameConstants.GameConstants == null)
+            {
+                Debug.LogError("SOGAMECONSTANTS IS NULL"); 
+                return;
+            }
+
+            _model.SetIsJoystickActive(gameConstants.GameConstants.IsJoystickActive);
+        }
 
         public override void SetView(CheatFeatureView view)
         {
@@ -27,30 +38,17 @@ namespace ProjectTA.Module.CheatFeature
                 OnSubtractHiddenObjectCount,
                 OnAddKillCount,
                 OnSubtractKillCount);
-            view.SetEnvironmentCallbacks(OnTeleportToPuzzle, OnTeleportToCollectible);
+            view.SetEnvironmentCallbacks(OnTeleportToPuzzle, OnTeleportToHiddenObject);
             view.SetEffectsCallbacks(OnBlurCamera, OnNormalCamera);
             view.SetCountdownCallbacks(OnRestartCountdown, OnResetCountdown);
+            
+            view.ActivateJoystickToggle.isOn = _model.IsJoystickActive;
 
-            foreach (var collectibleObj in GameObject.FindGameObjectsWithTag(TagManager.TAG_COLLECTIBLE))
-            {
-                if (collectibleObj.TryGetComponent<CollectibleComponent>(out var collectibleComponent))
-                {
-                    if (collectibleComponent.CollectibleData.Type == EnumManager.CollectibleType.Puzzle)
-                    {
-                        _puzzleTransforms.Add(collectibleObj.transform);
-                    }
-                    else if (collectibleComponent.CollectibleData.Type == EnumManager.CollectibleType.HiddenObject)
-                    {
-                        _hiddenObjectTransforms.Add(collectibleObj.transform);
-                    }
-                }
-            }
+            _model.SetPlayerCharacter(GameObject.FindGameObjectWithTag(TagManager.TAG_PLAYER).transform);
+            _model.InitCollectibleTransforms();
         }
 
-        public void SetInitialActivateJoystick(bool isJoystickActive)
-        {
-            _view.ActivateJoystickToggle.isOn = isJoystickActive;
-        }
+        #region CALLBACK LISTENER
 
         private void OnDeleteSaveData()
         {
@@ -114,20 +112,12 @@ namespace ProjectTA.Module.CheatFeature
 
         private void OnTeleportToPuzzle()
         {
-            GameObject.FindGameObjectWithTag(TagManager.TAG_PLAYER).transform.position = _puzzleTransforms[_currentPuzzleIndex].position;
-            _currentPuzzleIndex++;
-
-            if (_currentPuzzleIndex >= _puzzleTransforms.Count)
-                _currentPuzzleIndex = 0;
+            _model.TeleportToPuzzle();
         }
 
-        private void OnTeleportToCollectible()
+        private void OnTeleportToHiddenObject()
         {
-            GameObject.FindGameObjectWithTag(TagManager.TAG_PLAYER).transform.position = _hiddenObjectTransforms[_currentHiddenObjectIndex].position;
-            _currentHiddenObjectIndex++;
-
-            if (_currentHiddenObjectIndex >= _hiddenObjectTransforms.Count)
-                _currentHiddenObjectIndex = 0;
+            _model.TeleportToHiddenObject();
         }
 
         private void OnBlurCamera()
@@ -149,5 +139,7 @@ namespace ProjectTA.Module.CheatFeature
         {
             Publish(new CountdownResetMessage());
         }
+
+        #endregion
     }
 }

@@ -10,7 +10,6 @@ namespace ProjectTA.Module.GameConstants
     {
         [Header("General Settings")]
         [SerializeField] private bool _isJoystickActive;
-        [SerializeField] private int _initialHealth;
 
         [Header("Player Constants")]
         [SerializeField] private PlayerConstants _playerConstants;
@@ -32,7 +31,6 @@ namespace ProjectTA.Module.GameConstants
 
 
         public bool IsJoystickActive => _isJoystickActive;
-        public int InitialHealth => _initialHealth;
         public PlayerConstants PlayerConstants => _playerConstants;
         public ShootingConstants Shooting => _shootingConstants;
         public EnemyConstants Enemy => _enemyConstants;

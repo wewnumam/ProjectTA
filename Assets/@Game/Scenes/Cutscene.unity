@@ -852,7 +852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b15287324e280ff42af611d58f08fb48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cutscenePlayerView: {fileID: 1846278171}
+  <CutscenePlayerView>k__BackingField: {fileID: 1846278171}
 --- !u!1 &1250831696
 GameObject:
   m_ObjectHideFlags: 0

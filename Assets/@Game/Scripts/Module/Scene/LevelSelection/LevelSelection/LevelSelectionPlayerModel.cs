@@ -6,8 +6,8 @@ namespace ProjectTA.Module.LevelSelection
 {
     public class LevelSelectionPlayerModel : BaseModel, ILevelSelectionPlayerModel
     {
-        public SOLevelData CurrentLevelData { get; private set; }
-        public int CurrentLevelDataIndex { get; private set; } = 0;
+        public SOLevelData CurrentLevelData { get; set; }
+        public int CurrentLevelDataIndex { get; set; } = 0;
 
         private SOLevelCollection _levelCollection = null;
         private List<SOLevelData> _unlockedLevels = new();

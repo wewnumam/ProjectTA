@@ -16,7 +16,7 @@ namespace ProjectTA.Scene.LevelSelection
         public override string SceneName { get { return TagManager.SCENE_LEVELSELECTION; } }
 
         private readonly LevelDataController _levelData = new();
-        private readonly LevelSelectionPlayerController _levelSelection = new();
+        private readonly LevelSelectionPlayerController _levelSelectionPlayer = new();
 
         protected override IController[] GetSceneDependencies()
         {
@@ -44,9 +44,8 @@ namespace ProjectTA.Scene.LevelSelection
 
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneName));
 
-            _levelSelection.SetLevelCollection(_levelData.Model.LevelCollection);
-            _levelSelection.SetUnlockedLevels(_levelData.Model.GetUnlockedLevels());
-            _levelSelection.SetView(_view.levelSelectionView);
+            _levelSelectionPlayer.Init(_levelData.Model);
+            _levelSelectionPlayer.SetView(_view.LevelSelectionPlayerView);
 
             yield return null;
         }

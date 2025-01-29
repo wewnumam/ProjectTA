@@ -635,8 +635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8b65115a5a636346843675268b35860, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _quizPlayerView: {fileID: 1846278171}
-  _googleFormUploaderView: {fileID: 0}
+  <QuizPlayerView>k__BackingField: {fileID: 1846278171}
 --- !u!1 &1250831696
 GameObject:
   m_ObjectHideFlags: 0
@@ -922,7 +921,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 60.000004
+  field of view: 50
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -948,8 +947,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1328431722}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.30290547, y: 0.00008927568, z: -0.000028375138, w: 0.95302063}
-  m_LocalPosition: {x: 10.605934, y: 10, z: -3.5375185}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2405,7 +2404,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 438486292166175028}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.30290547, y: 0.00008927568, z: -0.000028375138, w: 0.95302063}
+  m_LocalRotation: {x: 0.30290547, y: 0.00008932206, z: -0.000028389883, w: 0.95302063}
   m_LocalPosition: {x: 10.605934, y: 10, z: -3.5375185}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

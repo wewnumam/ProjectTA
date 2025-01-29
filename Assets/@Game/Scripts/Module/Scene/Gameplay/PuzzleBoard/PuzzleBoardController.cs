@@ -8,57 +8,39 @@ using UnityEngine;
 
 namespace ProjectTA.Module.PuzzleBoard
 {
-    public class PuzzleBoardController : ObjectController<PuzzleBoardController, PuzzleBoardView>
+    public class PuzzleBoardController : ObjectController<PuzzleBoardController, PuzzleBoardModel, PuzzleBoardView>
     {
-        private SOLevelData _levelData = null;
-        private readonly List<PuzzleDragable> _puzzleDragables = new();
-
-        public void SetLevelData(SOLevelData levelData)
+        public void InitModel(ILevelDataModel levelData)
         {
-            _levelData = levelData;
+            if (levelData == null)
+            {
+                Debug.LogError("LEVELDATA IS NULL");
+                return;
+            }
+
+            if (levelData.CurrentLevelData == null)
+            {
+                Debug.LogError("CURRENTLEVELDATA IS NULL");
+                return;
+            }
+
+            if (levelData.CurrentLevelData.PuzzleObjects == null)
+            {
+                Debug.LogError("PUZZLEOBJECTS IS NULL");
+                return;
+            }
+
+            _model.SetPuzzleQuestion(levelData.CurrentLevelData.PuzzleQuestion);
+            _model.SetPuzzleObjects(levelData.CurrentLevelData.PuzzleObjects);
         }
 
         public override void SetView(PuzzleBoardView view)
         {
             base.SetView(view);
-            int currentLeftIndex = 0;
-            int currentRightIndex = 0;
-            for (int i = 0; i < _levelData.PuzzleObjects.Count; i++)
-            {
-                PuzzleObject puzzle = _levelData.PuzzleObjects[i];
-
-                GameObject puzzleDragable = GameObject.Instantiate(view.PuzzleDragableTemplate.gameObject, view.Parent);
-
-                GameObject puzzleTarget = GameObject.Instantiate(view.PuzzleTargetTemplate.gameObject, view.Parent);
-                RectTransform target = puzzleTarget.GetComponent<RectTransform>();
-                target.anchoredPosition = puzzle.RectPosition;
-
-                RectTransform rectTransform = puzzleDragable.GetComponent<RectTransform>();
-                rectTransform.anchoredPosition += new Vector2(i % 2 != 0 ? (rectTransform.rect.width * currentRightIndex) : (-rectTransform.rect.width * currentLeftIndex), 1);
-
-                if (i % 2 != 0)
-                    currentLeftIndex++;
-                else
-                    currentRightIndex++;
-
-                PuzzleDragable dragable = puzzleDragable.GetComponent<PuzzleDragable>();
-                dragable.targetPosition = target;
-                dragable.onPlace += OnPuzzlePlaced;
-                dragable.CollectibleData = puzzle.CollectibleData;
-                _puzzleDragables.Add(dragable);
-
-                TMP_Text label = puzzleDragable.GetComponentInChildren<TMP_Text>();
-                if (label != null)
-                {
-                    label.SetText(puzzle.CollectibleData.Title);
-                }
-
-                puzzleDragable.SetActive(true);
-                puzzleTarget.SetActive(true);
-            }
-
             view.SetCallback(OnClose);
-            view.QuestionText.SetText(_levelData.PuzzleQuestion);
+            view.QuestionText.SetText(_model.PuzzleQuestion);
+
+            _model.InitObjects(view.PuzzleDragableTemplate.gameObject, view.PuzzleTargetTemplate.gameObject, view.Parent, OnPuzzlePlaced);
 
             Debug.Log($"<color=green>[{view.GetType()}]</color> installed successfully!");
         }
@@ -90,7 +72,7 @@ namespace ProjectTA.Module.PuzzleBoard
         {
             if (message.CollectibleData.Type == EnumManager.CollectibleType.Puzzle)
             {
-                PuzzleDragable puzzleDragable = _puzzleDragables.Find(dragable => dragable.CollectibleData == message.CollectibleData);
+                PuzzleDragable puzzleDragable = _model.PuzzleDragables.Find(dragable => dragable.CollectibleData == message.CollectibleData);
                 puzzleDragable.SetPuzzleDragableActive();
             }
         }

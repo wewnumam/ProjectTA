@@ -1,6 +1,9 @@
 using Agate.MVC.Base;
 using ProjectTA.Message;
+using ProjectTA.Module.GameConstants;
+using ProjectTA.Module.SaveSystem;
 using ProjectTA.Utility;
+using UnityEngine;
 
 namespace ProjectTA.Module.Settings
 {
@@ -11,48 +14,69 @@ namespace ProjectTA.Module.Settings
         private const float MUTED_VOLUME = -80f;
         private const float NORMAL_VOLUME = 0f;
 
-        public void SetInitialSfx(bool isSfxOn) => _initialSfx = isSfxOn;
+        public void InitModel(IGameSettingsModel gameSettings)
+        {
+            if (!ValidateGameSettings(gameSettings))
+            {
+                return;
+            }
 
-        public void SetInitialBgm(bool isBgmOn) => _initialBgm = isBgmOn;
-
-        public void SetInitialVibrate(bool isVibrateOn) => _initialVibrate = isVibrateOn;
+            _initialSfx = gameSettings.SavedSettingsData.IsSfxOn;
+            _initialBgm = gameSettings.SavedSettingsData.IsBgmOn;
+            _initialVibrate = gameSettings.SavedSettingsData.IsVibrationOn;
+        }
 
         public override void SetView(SettingsView view)
         {
             base.SetView(view);
             view.SetCallbacks(OnSfx, OnBgm, OnVibrate);
             view.SfxToggle.isOn = _initialSfx;
-            SetSfx(_initialSfx);
+            OnSfx(_initialSfx);
             view.BgmToggle.isOn = _initialBgm;
-            SetBgm(_initialBgm);
+            OnBgm(_initialBgm);
             view.VibrateToggle.isOn = _initialVibrate;
         }
 
-        private void SetSfx(bool isOn)
+        #region PRIVATE METHOD
+
+        private bool ValidateGameSettings(IGameSettingsModel gameSettings)
+        {
+            if (gameSettings == null)
+                return LogError("GAMESETTINGS IS NULL");
+
+            if (gameSettings.SavedSettingsData == null)
+                return LogError("SAVEDSETTINGSDATA IS NULL");
+
+            return true;
+        }
+
+        private bool LogError(string message)
+        {
+            Debug.LogError(message);
+            return false;
+        }
+
+        #endregion
+
+        #region CALLBACK LISTENER
+
+        private void OnSfx(bool isOn)
         {
             _view.AudioMixer.SetFloat(TagManager.MIXER_SFX_VOLUME, isOn ? NORMAL_VOLUME : MUTED_VOLUME);
+            Publish(new ToggleSfxMessage(isOn));
         }
 
-        private void SetBgm(bool isOn)
+        private void OnBgm(bool isOn)
         {
             _view.AudioMixer.SetFloat(TagManager.MIXER_BGM_VOLUME, isOn ? NORMAL_VOLUME : MUTED_VOLUME);
-        }
-
-        private void OnSfx(bool sfx)
-        {
-            SetSfx(sfx);
-            Publish(new ToggleSfxMessage(sfx));
-        }
-
-        private void OnBgm(bool bgm)
-        {
-            SetBgm(bgm);
-            Publish(new ToggleBgmMessage(bgm));
+            Publish(new ToggleBgmMessage(isOn));
         }
 
         private void OnVibrate(bool vibrate)
         {
             Publish(new ToggleVibrationMessage(vibrate));
         }
+
+        #endregion
     }
 }

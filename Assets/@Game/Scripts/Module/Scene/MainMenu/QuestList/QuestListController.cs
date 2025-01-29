@@ -1,4 +1,5 @@
 using Agate.MVC.Base;
+using ProjectTA.Module.CollectibleData;
 using ProjectTA.Module.QuestData;
 using ProjectTA.Scene.QuestList;
 using ProjectTA.Utility;
@@ -19,6 +20,28 @@ namespace ProjectTA.Module.QuestList
         public void SetQuestData(QuestData.SavedQuestData questData)
         {
             _questData = questData;
+        }
+
+        public void Init(IQuestDataModel questData)
+        {
+            if (questData == null)
+            {
+                Debug.LogError("QUESTDATA IS NULL");
+                return;
+            }
+            if (questData.QuestCollection == null)
+            {
+                Debug.LogError("QUESTCOLLECTION IS NULL");
+                return;
+            }
+            _questCollection = questData.QuestCollection;
+
+            if (questData.CurrentQuestData == null)
+            {
+                Debug.LogError("CURRENTQUESTDATA IS NULL");
+                return;
+            }
+            _questData = questData.CurrentQuestData;
         }
 
         public override void SetView(QuestListView view)

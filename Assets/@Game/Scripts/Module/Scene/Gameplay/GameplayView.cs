@@ -21,38 +21,37 @@ namespace ProjectTA.Scene.Gameplay
 {
     public class GameplayView : BaseSceneView
     {
-        [SerializeField] private GamePauseView _gamePauseView;
-        [SerializeField] private GameWinView _gameWinView;
-        [SerializeField] private GameOverView _gameOverView;
-        [SerializeField] private PlayerCharacterView _playerCharacterView;
-        [SerializeField] private CheatFeatureView _cheatFeatureView;
-        [SerializeField] private HudView _hudView;
-        [SerializeField] private DialogueView _dialogueView;
-        [SerializeField] private PuzzleBoardView _puzzleBoardView;
-        [SerializeField] private CameraEffectView _cameraEffectView;
-        [SerializeField] private CountdownView _countdownView;
-        [SerializeField] private BulletPoolView _bulletPoolView;
-        [SerializeField] private EnemyPoolView _enemyPoolView;
-        [SerializeField] private TutorialView _tutorialView;
-        [SerializeField] private SettingsView _settingsView;
-        [SerializeField] private SpatialDirectionView _spatialDirectionView;
-        [SerializeField] private GameInductionView _gameInductionView;
-
-        public GamePauseView GamePauseView => _gamePauseView;
-        public GameWinView GameWinView => _gameWinView;
-        public GameOverView GameOverView => _gameOverView;
-        public PlayerCharacterView PlayerCharacterView => _playerCharacterView;
-        public CheatFeatureView CheatFeatureView => _cheatFeatureView;
-        public HudView HudView => _hudView;
-        public DialogueView DialogueView => _dialogueView;
-        public PuzzleBoardView PuzzleBoardView => _puzzleBoardView;
-        public CameraEffectView CameraEffectView => _cameraEffectView;
-        public CountdownView CountdownView => _countdownView;
-        public BulletPoolView BulletPoolView => _bulletPoolView;
-        public EnemyPoolView EnemyPoolView => _enemyPoolView;
-        public TutorialView TutorialView => _tutorialView;
-        public SettingsView SettingsView => _settingsView;
-        public SpatialDirectionView SpatialDirectionView => _spatialDirectionView;
-        public GameInductionView GameInductionView => _gameInductionView;
+        [field: SerializeField]
+        public GamePauseView GamePauseView { get; private set; }
+        [field: SerializeField]
+        public GameWinView GameWinView { get; private set; }
+        [field: SerializeField]
+        public GameOverView GameOverView { get; private set; }
+        [field: SerializeField]
+        public PlayerCharacterView PlayerCharacterView { get; private set; }
+        [field: SerializeField]
+        public CheatFeatureView CheatFeatureView { get; private set; }
+        [field: SerializeField]
+        public HudView HudView { get; private set; }
+        [field: SerializeField]
+        public DialogueView DialogueView { get; private set; }
+        [field: SerializeField]
+        public PuzzleBoardView PuzzleBoardView { get; private set; }
+        [field: SerializeField]
+        public CameraEffectView CameraEffectView { get; private set; }
+        [field: SerializeField]
+        public CountdownView CountdownView { get; private set; }
+        [field: SerializeField]
+        public BulletPoolView BulletPoolView { get; private set; }
+        [field: SerializeField]
+        public EnemyPoolView EnemyPoolView { get; private set; }
+        [field: SerializeField]
+        public TutorialView TutorialView { get; private set; }
+        [field: SerializeField]
+        public SettingsView SettingsView { get; private set; }
+        [field: SerializeField]
+        public SpatialDirectionView SpatialDirectionView { get; private set; }
+        [field: SerializeField]
+        public GameInductionView GameInductionView { get; private set; }
     }
 }

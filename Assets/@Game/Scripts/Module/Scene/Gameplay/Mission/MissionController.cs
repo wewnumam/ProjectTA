@@ -12,7 +12,7 @@ namespace ProjectTA.Module.Mission
             _model = model;
         }
 
-        public void Init(SOLevelData currentLevelData)
+        public void InitModel(SOLevelData currentLevelData)
         {
             if (currentLevelData == null)
             {

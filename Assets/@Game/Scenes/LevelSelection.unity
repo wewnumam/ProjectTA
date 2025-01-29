@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1491920048}
-  m_IndirectSpecularColor: {r: 0.10689353, g: 0.09803712, b: 0.16139784, a: 1}
+  m_IndirectSpecularColor: {r: 0.09341, g: 0.07116199, b: 0.14617485, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3753,6 +3753,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _log: 
 --- !u!1001 &1742327389
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4296,7 +4297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9c19085c8a2b1041aa9904566f9ee5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelSelectionView: {fileID: 1724058069}
+  <LevelSelectionPlayerView>k__BackingField: {fileID: 1724058069}
 --- !u!1 &1795263480
 GameObject:
   m_ObjectHideFlags: 0

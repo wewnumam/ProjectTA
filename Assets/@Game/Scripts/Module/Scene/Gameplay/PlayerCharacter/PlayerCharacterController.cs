@@ -2,24 +2,22 @@ using Agate.MVC.Base;
 using ProjectTA.Message;
 using ProjectTA.Module.CollectibleData;
 using ProjectTA.Module.GameConstants;
+using ProjectTA.Module.SaveSystem;
 using ProjectTA.Utility;
 using UnityEngine;
 
 namespace ProjectTA.Module.PlayerCharacter
 {
-    public class PlayerCharacterController : ObjectController<PlayerCharacterController, PlayerCharacterView>
+    public class PlayerCharacterController : ObjectController<PlayerCharacterController, PlayerCharacterModel, PlayerCharacterView>
     {
-        private PlayerConstants _playerConstants = null;
-        private bool _isVibrationOn = false;
-
-        public void SetPlayerConstants(PlayerConstants playerConstants)
+        public void InitModel(IGameConstantsModel gameConstants, IGameSettingsModel gameSettings)
         {
-            _playerConstants = playerConstants;
-        }
+            if (!ValidateGameConstants(gameConstants) || !ValidateGameSettings(gameSettings))
+                return;
 
-        public void SetInitialVibration(bool isVibrationOn)
-        {
-            _isVibrationOn = isVibrationOn;
+            _model.SetIsJoystickActive(gameConstants.GameConstants.IsJoystickActive);
+            _model.SetPlayerConstants(gameConstants.GameConstants.PlayerConstants);
+            _model.SetIsVibrationOn(gameSettings.SavedSettingsData.IsVibrationOn);
         }
 
         public override void SetView(PlayerCharacterView view)
@@ -27,18 +25,57 @@ namespace ProjectTA.Module.PlayerCharacter
             base.SetView(view);
             view.SetCollideCallbacks(OnCollideWithEnemy, OnCollideWithCollectibleComponent, OnCollideWithPadlock);
             view.DisableFreezePositionY();
-            view.PlayerConstants = _playerConstants;
+            view.PlayerConstants = _model.PlayerConstants;
+            view.SetIsJoyStickActive(_model.IsJoystickActive);
         }
+
+        #region PRIVATE METHOD
+
+        private bool ValidateGameConstants(IGameConstantsModel gameConstants)
+        {
+            if (gameConstants == null)
+                return LogError("GAMECONSTANTS IS NULL");
+
+            if (gameConstants.GameConstants == null)
+                return LogError("SOGAMECONSTANTS IS NULL");
+
+            if (gameConstants.GameConstants.PlayerConstants == null)
+                return LogError("PLAYERCONSTANTS IS NULL");
+
+            return true;
+        }
+
+        private bool ValidateGameSettings(IGameSettingsModel gameSettings)
+        {
+            if (gameSettings == null)
+                return LogError("GAMESETTINGS IS NULL");
+
+            if (gameSettings.SavedSettingsData == null)
+                return LogError("SAVEDSETTINGSDATA IS NULL");
+
+            return true;
+        }
+
+        private bool LogError(string message)
+        {
+            Debug.LogError(message);
+            return false;
+        }
+
+        #endregion
+
+        #region CALLBACK LISTENER
 
         private void OnCollideWithEnemy()
         {
             Publish(new AdjustHealthCountMessage(-1));
-#if UNITY_ANDROID
-            if (_isVibrationOn)
+
+            #if UNITY_ANDROID
+            if (_model.IsVibrationOn)
             {
                 Handheld.Vibrate();
             }
-#endif
+            #endif
         }
 
         private void OnCollideWithCollectibleComponent(SOCollectibleData collectibleData)
@@ -65,10 +102,9 @@ namespace ProjectTA.Module.PlayerCharacter
             Publish(new ShowPadlockMessage());
         }
 
-        public void SetInitialActivateJoystick(bool isJoystickActive)
-        {
-            _view.SetIsJoyStickActive(isJoystickActive);
-        }
+        #endregion
+
+        #region MESSAGE LISTENER
 
         public void OnGameOver(GameOverMessage message)
         {
@@ -93,12 +129,15 @@ namespace ProjectTA.Module.PlayerCharacter
 
         public void OnActivateJoystick(ActivateJoystickMessage message)
         {
+            _model.SetIsJoystickActive(message.IsJoystickActive);
             _view.SetIsJoyStickActive(message.IsJoystickActive);
         }
 
         public void OnVibrate(ToggleVibrationMessage message)
         {
-            _isVibrationOn = message.Vibration;
+            _model.SetIsVibrationOn(message.Vibration);
         }
+
+        #endregion
     }
 }

@@ -3,6 +3,7 @@ using NaughtyAttributes;
 using ProjectTA.Module.CollectibleData;
 using ProjectTA.Module.GameConstants;
 using ProjectTA.Utility;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -211,6 +212,11 @@ namespace ProjectTA.Module.PlayerCharacter
         public void SetIsJoyStickActive(bool isJoyStickActive)
         {
             _isJoystickActive = isJoyStickActive;
+        }
+
+        internal void SetIsJoyStickActive(object isJoystickActive)
+        {
+            throw new NotImplementedException();
         }
     }
 }

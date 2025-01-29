@@ -2,13 +2,36 @@ using Agate.MVC.Base;
 using ProjectTA.Message;
 using ProjectTA.Module.Bullet;
 using ProjectTA.Module.GameConstants;
+using ProjectTA.Module.LevelData;
+using System;
 using UnityEngine;
 
 namespace ProjectTA.Module.BulletPool
 {
     public class BulletPoolController : ObjectController<BulletPoolController, BulletPoolModel, BulletPoolView>
     {
-        public void SetShootingConstants(ShootingConstants shootingConstants) => _model.SetShootingConstants(shootingConstants);
+        public void InitModel(IGameConstantsModel gameConstants)
+        {
+            if (gameConstants == null)
+            {
+                Debug.LogError("GAMECONSTANTS IS NULL");
+                return;
+            }
+
+            if (gameConstants.GameConstants == null)
+            {
+                Debug.LogError("SOGAMECONSTANTS IS NULL");
+                return;
+            }
+
+            if (gameConstants.GameConstants.Shooting == null)
+            {
+                Debug.LogError("SHOOTINGCONSTANTS IS NULL");
+                return;
+            }
+
+            _model.SetShootingConstants(gameConstants.GameConstants.Shooting);
+        }
 
         public override void SetView(BulletPoolView view)
         {

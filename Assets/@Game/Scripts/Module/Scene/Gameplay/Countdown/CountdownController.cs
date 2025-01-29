@@ -1,12 +1,30 @@
 using Agate.MVC.Base;
 using ProjectTA.Message;
+using ProjectTA.Module.LevelData;
+using UnityEngine;
 
 namespace ProjectTA.Module.Countdown
 {
     public class CountdownController : ObjectController<CountdownController, CountdownModel, ICountdownModel, CountdownView>
     {
-        public void SetInitialCountdown(float countdown) => _model.SetInitialCountdown(countdown);
-        public void SetCurrentCountdown(float countdown) => _model.SetCurrentCountdown(countdown);
+        public void InitModel(ILevelDataModel levelData)
+        {
+            if (levelData == null)
+            {
+                Debug.LogError("LEVELDATA IS NULL");
+                return;
+            }
+
+            if (levelData.CurrentLevelData == null)
+            {
+                Debug.LogError("CURRENTLEVELDATA IS NULL");
+                return;
+            }
+
+            _model.SetInitialCountdown(levelData.CurrentLevelData.Countdown);
+            _model.SetCurrentCountdown(levelData.CurrentLevelData.Countdown);
+        }
+
 
         public override void SetView(CountdownView view)
         {

@@ -28,11 +28,9 @@ namespace ProjectTA.Module.QuizPlayer
 
         public QuizPlayerView GetNewQuizPlayerView()
         {
-            GameObject obj = GameObject.Instantiate(new GameObject());
-            obj.name = nameof(QuizPlayerView);
+            GameObject obj = new GameObject(nameof(QuizPlayerView));
             GameObject.DontDestroyOnLoad(obj);
-            obj.AddComponent<QuizPlayerView>();
-            return obj.GetComponent<QuizPlayerView>();
+            return obj.AddComponent<QuizPlayerView>();
         }
 
         private void OnCorrect()

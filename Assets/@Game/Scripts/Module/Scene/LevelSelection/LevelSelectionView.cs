@@ -1,9 +1,12 @@
 using Agate.MVC.Base;
+using ProjectTA.Module.LevelSelection;
+using UnityEngine;
 
 namespace ProjectTA.Scene.LevelSelection
 {
     public class LevelSelectionView : BaseSceneView
     {
-        public ProjectTA.Module.LevelSelection.LevelSelectionPlayerView levelSelectionView;
+        [field: SerializeField]
+        public LevelSelectionPlayerView LevelSelectionPlayerView { get; private set; }
     }
 }

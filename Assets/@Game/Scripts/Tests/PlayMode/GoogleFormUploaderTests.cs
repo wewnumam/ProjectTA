@@ -75,7 +75,7 @@ namespace ProjectTA.Tests
         }
 
         [UnityTest]
-        public IEnumerator Initialize_ShouldSetAnalyticFormConstants()
+        public IEnumerator Initialize_ShouldSetFormConstants()
         {
             // Arrange
             SOGameConstants gameConstants = ScriptableObject.CreateInstance<SOGameConstants>();
