@@ -63,10 +63,10 @@ namespace ProjectTA.Module.BulletPool
             GameObject bullet = GameObject.Instantiate(_view.BulletPrefab, _view.BulletSpawnPoint.position, Quaternion.identity);
             bullet.SetActive(false);
 
-            BulletView bulletView = bullet.GetComponent<BulletView>();
-            if (bulletView == null)
+            BulletView bulletView = null;
+            if (bullet.TryGetComponent<BulletView>(out var view))
             {
-                return null;
+                bulletView = view;
             }
 
             BulletController bulletController = new BulletController();

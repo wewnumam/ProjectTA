@@ -33,6 +33,7 @@ namespace ProjectTA.Tests
             level1.name = "Level1";
             var level2 = ScriptableObject.CreateInstance<SOLevelData>();
             level2.name = "Level2";
+            var cutscene = ScriptableObject.CreateInstance<SOCutsceneData>();
 
             _testLevelCollection = ScriptableObject.CreateInstance<SOLevelCollection>();
             _testLevelCollection.LevelItems = new List<SOLevelData> { level1, level2 };
@@ -43,7 +44,9 @@ namespace ProjectTA.Tests
             _testLevelData = new TestLevelDataModel
             {
                 LevelCollection = _testLevelCollection,
-                UnlockedLevels = _testUnlockedLevels
+                UnlockedLevels = _testUnlockedLevels,
+                CurrentLevelData = level1,
+                CurrentCutsceneData = cutscene
             };
 
             // Initialize controller and model
@@ -104,7 +107,6 @@ namespace ProjectTA.Tests
             _model.SetLevelCollection(_testLevelCollection);
             _model.SetUnlockedLevels(_testUnlockedLevels);
             _model.CurrentLevelData = _testLevelCollection.LevelItems[0];
-
             // Act & Assert
             Assert.IsTrue(_model.IsCurrentLevelUnlocked());
 
@@ -140,7 +142,7 @@ namespace ProjectTA.Tests
         public void Init_WithValidData_SetsModelProperties()
         {
             // Act
-            _controller.Init(_testLevelData);
+            _controller.InitModel(_testLevelData);
 
             // Assert
             Assert.AreEqual(_testLevelCollection, _model.LevelCollection);
@@ -152,14 +154,14 @@ namespace ProjectTA.Tests
         {
             // Act & Assert
             LogAssert.Expect(LogType.Error, "LEVELDATA IS NULL");
-            _controller.Init(null);
+            _controller.InitModel(null);
         }
 
         [Test]
         public void SetView_InitializesCallbacksAndModel()
         {
             // Arrange
-            _controller.Init(_testLevelData);
+            _controller.InitModel(_testLevelData);
 
             // Act
             _controller.SetView(_view);
@@ -176,7 +178,7 @@ namespace ProjectTA.Tests
         public void OnNext_UpdatesCurrentLevelData()
         {
             // Arrange
-            _controller.Init(_testLevelData);
+            _controller.InitModel(_testLevelData);
             var initialIndex = _model.CurrentLevelDataIndex;
 
             // Act
@@ -191,9 +193,8 @@ namespace ProjectTA.Tests
         public void OnNext_WrapsToFirstWhenExceedingCount()
         {
             // Arrange
-            _controller.Init(_testLevelData);
+            _controller.InitModel(_testLevelData);
             _model.CurrentLevelDataIndex = _testLevelCollection.LevelItems.Count - 1;
-
             // Act
             TestUtility.InvokePrivateMethod(_controller, "OnNext", null);
 
@@ -205,7 +206,7 @@ namespace ProjectTA.Tests
         public void OnPrevious_UpdatesCurrentLevelData()
         {
             // Arrange
-            _controller.Init(_testLevelData);
+            _controller.InitModel(_testLevelData);
             _model.CurrentLevelDataIndex = 1;
 
             // Act
@@ -220,7 +221,7 @@ namespace ProjectTA.Tests
         public void OnPrevious_WrapsToLastWhenBelowZero()
         {
             // Arrange
-            _controller.Init(_testLevelData);
+            _controller.InitModel(_testLevelData);
             _model.CurrentLevelDataIndex = 0;
 
             // Act
@@ -252,17 +253,26 @@ namespace ProjectTA.Tests
             public SOLevelCollection LevelCollection { get; set; }
             public List<SOLevelData> UnlockedLevels { get; set; }
 
-            public SOCutsceneData CurrentCutsceneData => throw new System.NotImplementedException();
+            public SOCutsceneData CurrentCutsceneData { get; set; }
 
-            public SOLevelData CurrentLevelData => throw new System.NotImplementedException();
+            public SOLevelData CurrentLevelData { get; set; }
 
-            public SavedLevelData SavedLevelData => throw new System.NotImplementedException();
+            public SavedLevelData SavedLevelData { get; set; }
 
-            public GameObject CurrentEnvironmentPrefab => throw new System.NotImplementedException();
+            public GameObject CurrentEnvironmentPrefab { get; set; }
 
             public event OnDataModified OnDataModified;
 
             public List<SOLevelData> GetUnlockedLevels() => UnlockedLevels;
+
+            public bool IsMemberValid()
+            {
+                return Validator.ValidateNotNull(LevelCollection, "LEVELCOLLECTION IS NULL") &&
+                    Validator.ValidateNotNull(CurrentLevelData, "CURRENTLEVELDATA IS NULL") &&
+                    Validator.ValidateNotNull(CurrentCutsceneData, "CURRENTCUTSCENEDATA IS NULL") &&
+                    Validator.ValidateNotNull(CurrentCutsceneData, "CURRENTCUTSCENEDATA IS NULL") &&
+                    Validator.ValidateCollection(GetUnlockedLevels(), "UNLOCKEDLEVELS IS NULL");
+            }
         }
 
         #endregion

@@ -1,4 +1,5 @@
 using Agate.MVC.Base;
+using ProjectTA.Utility;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -60,6 +61,15 @@ namespace ProjectTA.Module.LevelData
                                     where SavedLevelData.UnlockedLevels.Contains(levelData.name)
                                     select levelData);
             return unlockedLevels;
+        }
+
+        public bool IsMemberValid()
+        {
+            return Validator.ValidateNotNull(LevelCollection, "LEVELCOLLECTION IS NULL") &&
+                Validator.ValidateNotNull(CurrentLevelData, "CURRENTLEVELDATA IS NULL") &&
+                Validator.ValidateNotNull(CurrentCutsceneData, "CURRENTCUTSCENEDATA IS NULL") &&
+                Validator.ValidateNotNull(CurrentCutsceneData, "CURRENTCUTSCENEDATA IS NULL") &&
+                Validator.ValidateCollection(GetUnlockedLevels(), "UNLOCKEDLEVELS IS NULL");
         }
     }
 }

@@ -112,7 +112,7 @@ namespace ProjectTA.Module.GoogleFormUploader
                     { _model.ReportFormConstants.MessageId, message.Message },
                 };
 
-            _view.SubmitForm(_model.ReportFormConstants.FormUrl, keyValues);
+            _view.SubmitForm(_model.ReportFormConstants.FormUrl, keyValues, message.Callback);
         }
 
         #endregion

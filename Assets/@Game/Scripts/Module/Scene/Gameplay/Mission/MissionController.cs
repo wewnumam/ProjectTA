@@ -28,7 +28,8 @@ namespace ProjectTA.Module.Mission
                 return;
             }
 
-            SetPuzzlePieceCount(currentLevelData.PuzzleObjects.Count);
+            _model.SetPuzzleCount(currentLevelData.PuzzleObjects.Count);
+            _model.SetCollectedPuzzlePieceCount(0);
 
             if (currentLevelData.HiddenObjects == null)
             {
@@ -36,27 +37,9 @@ namespace ProjectTA.Module.Mission
                 return;
             }
 
-            SetHiddenObjectCount(currentLevelData.HiddenObjects.Count);
-        }
-
-        #region PRIVATE METHOD
-
-        private void SetPuzzlePieceCount(int puzzlePieceCount)
-        {
-            _model.SetPuzzleCount(puzzlePieceCount);
-            _model.SetCollectedPuzzlePieceCount(0);
-            Publish(new UpdatePuzzleCountMessage(_model.PuzzlePieceCount, _model.CollectedPuzzlePieceCount, true));
-            Publish(new UpdatePuzzleSolvedCountMessage(_model.PadlockOnPlaceCount, _model.CollectedPuzzlePieceCount, true));
-        }
-
-        private void SetHiddenObjectCount(int hiddenObjectCount)
-        {
-            _model.SetHiddenObjectCount(hiddenObjectCount);
+            _model.SetHiddenObjectCount(currentLevelData.HiddenObjects.Count);
             _model.SetCollectedHiddenObjectCount(0);
-            Publish(new UpdateHiddenObjectCountMessage(_model.HiddenObjectCount, _model.CollectedHiddenObjectCount, true));
         }
-
-        #endregion
 
         #region MESSAGE LISTENER
 

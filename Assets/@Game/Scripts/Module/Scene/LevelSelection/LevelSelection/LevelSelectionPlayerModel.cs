@@ -6,43 +6,35 @@ namespace ProjectTA.Module.LevelSelection
 {
     public class LevelSelectionPlayerModel : BaseModel, ILevelSelectionPlayerModel
     {
-        public SOLevelData CurrentLevelData { get; set; }
+        public SOLevelData CurrentLevelData { get; set; } = null;
         public int CurrentLevelDataIndex { get; set; } = 0;
 
-        private SOLevelCollection _levelCollection = null;
-        private List<SOLevelData> _unlockedLevels = new();
-
-        public SOLevelCollection LevelCollection { get => _levelCollection; }
-        public List<SOLevelData> UnlockedLevels { get => _unlockedLevels; }
-
-        public void SetCurrentLevelData(SOLevelData levelData)
-        {
-            CurrentLevelData = levelData;
-        }
+        public SOLevelCollection LevelCollection { get; private set; } = null;
+        public List<SOLevelData> UnlockedLevels { get; private set; } = null;
 
         public void SetLevelCollection(SOLevelCollection levelCollection)
         {
-            _levelCollection = levelCollection;
+            LevelCollection = levelCollection;
         }
 
         public void SetUnlockedLevels(List<SOLevelData> unlockedLevels)
         {
-            _unlockedLevels = unlockedLevels;
+            UnlockedLevels = unlockedLevels;
         }
 
         public bool IsCurrentLevelUnlocked()
         {
-            return _unlockedLevels.Contains(CurrentLevelData);
+            return UnlockedLevels.Contains(CurrentLevelData);
         }
 
         public void SetNextLevelData()
         {
             CurrentLevelDataIndex++;
-            if (CurrentLevelDataIndex >= _levelCollection.LevelItems.Count)
+            if (CurrentLevelDataIndex >= LevelCollection.LevelItems.Count)
             {
                 CurrentLevelDataIndex = 0;
             }
-            CurrentLevelData = _levelCollection.LevelItems[CurrentLevelDataIndex];
+            CurrentLevelData = LevelCollection.LevelItems[CurrentLevelDataIndex];
 
             SetDataAsDirty();
         }
@@ -52,9 +44,9 @@ namespace ProjectTA.Module.LevelSelection
             CurrentLevelDataIndex--;
             if (CurrentLevelDataIndex < 0)
             {
-                CurrentLevelDataIndex = _levelCollection.LevelItems.Count - 1;
+                CurrentLevelDataIndex = LevelCollection.LevelItems.Count - 1;
             }
-            CurrentLevelData = _levelCollection.LevelItems[CurrentLevelDataIndex];
+            CurrentLevelData = LevelCollection.LevelItems[CurrentLevelDataIndex];
 
             SetDataAsDirty();
         }
@@ -73,7 +65,7 @@ namespace ProjectTA.Module.LevelSelection
 
 
             sb.AppendLine("\nUnlocked Level:");
-            foreach (var levelData in _unlockedLevels)
+            foreach (var levelData in UnlockedLevels)
             {
                 sb.AppendLine($"{levelData}\t\t: {levelData.name}");
             }

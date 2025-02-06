@@ -9,30 +9,36 @@ namespace ProjectTA.Module.LevelSelection
 {
     public class LevelSelectionPlayerController : ObjectController<LevelSelectionPlayerController, LevelSelectionPlayerModel, ILevelSelectionPlayerModel, LevelSelectionPlayerView>
     {
+        #region UTILITY
+        
         public void SetModel(LevelSelectionPlayerModel model)
         {
             _model = model;
         }
 
-        public void Init(ILevelDataModel levelData)
+        public LevelSelectionPlayerView GetNewQuizPlayerView()
+        {
+            GameObject obj = new GameObject(nameof(LevelSelectionPlayerView));
+            GameObject.DontDestroyOnLoad(obj);
+            return obj.AddComponent<LevelSelectionPlayerView>();
+        }
+
+        #endregion
+
+        public void InitModel(ILevelDataModel levelData)
         {
             if (levelData == null)
             {
                 Debug.LogError("LEVELDATA IS NULL");
                 return;
             }
-            if (levelData.LevelCollection == null)
-            {
-                Debug.LogError("LEVELCOLLECTION IS NULL");
-                return;
-            }
-            _model.SetLevelCollection(levelData.LevelCollection);
 
-            if (levelData.GetUnlockedLevels() == null)
+            if (!levelData.IsMemberValid())
             {
-                Debug.LogError("LEVELCOLLECTION IS NULL");
                 return;
             }
+
+            _model.SetLevelCollection(levelData.LevelCollection);
             _model.SetUnlockedLevels(levelData.GetUnlockedLevels());
         }
 
@@ -43,12 +49,7 @@ namespace ProjectTA.Module.LevelSelection
             view.SetModel(_model);
         }
 
-        public LevelSelectionPlayerView GetNewQuizPlayerView()
-        {
-            GameObject obj = new GameObject(nameof(LevelSelectionPlayerView));
-            GameObject.DontDestroyOnLoad(obj);
-            return obj.AddComponent<LevelSelectionPlayerView>();
-        }
+        #region CALLBACK LISTENER
 
         private void OnPlay()
         {
@@ -72,5 +73,7 @@ namespace ProjectTA.Module.LevelSelection
             _model.SetPreviousLevelData();
             Publish(new ChooseLevelMessage(_model.CurrentLevelData));
         }
+
+        #endregion
     }
 }

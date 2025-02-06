@@ -19,7 +19,6 @@ namespace ProjectTA.Module.Health
 
             _model.SetInitialHealth(levelData.CurrentLevelData.InitialHealth);
             _model.SetCurrentHealth(levelData.CurrentLevelData.InitialHealth);
-            Publish(new UpdateHealthMessage(_model.InitialHealth, _model.CurrentHealth, true));
         }
 
         #region PRIVATE METHOD

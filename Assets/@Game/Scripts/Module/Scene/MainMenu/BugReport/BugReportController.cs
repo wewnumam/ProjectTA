@@ -1,8 +1,5 @@
 using Agate.MVC.Base;
 using ProjectTA.Message;
-using ProjectTA.Utility;
-using System;
-using UnityEngine;
 
 namespace ProjectTA.Module.BugReport
 {
@@ -16,7 +13,7 @@ namespace ProjectTA.Module.BugReport
 
         private void SendReport(string reportMessage)
         {
-            Publish(new ReportMessage(reportMessage));
+            Publish(new ReportMessage(reportMessage, _view.SetResponse));
         }
     }
 }

@@ -2,18 +2,19 @@ using Agate.MVC.Base;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Networking;
 
 namespace ProjectTA.Module.GoogleFormUploader
 {
     public class GoogleFormUploaderView : BaseView
     {
-        public void SubmitForm(string formUrl, Dictionary<string, string> keyValues)
+        public void SubmitForm(string formUrl, Dictionary<string, string> keyValues, UnityAction<long> callback = null)
         {
-            StartCoroutine(SubmitFormRoutine(formUrl, keyValues));
+            StartCoroutine(SubmitFormRoutine(formUrl, keyValues, callback));
         }
 
-        private IEnumerator SubmitFormRoutine(string formUrl, Dictionary<string, string> keyValues)
+        private IEnumerator SubmitFormRoutine(string formUrl, Dictionary<string, string> keyValues, UnityAction<long> callback)
         {
             WWWForm form = new();
 
@@ -34,6 +35,8 @@ namespace ProjectTA.Module.GoogleFormUploader
             {
                 Debug.LogError($"Error submitting form: {request.error}");
             }
+
+            callback?.Invoke(request.responseCode);
         }
     }
 }

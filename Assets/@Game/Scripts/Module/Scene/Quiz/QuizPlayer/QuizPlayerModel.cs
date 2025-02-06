@@ -155,7 +155,7 @@ namespace ProjectTA.Module.QuizPlayer
         public float GetScore()
         {
             float percentage = (float)(AnswersCount - WrongCount) / AnswersCount;
-            return percentage * 100f;
+            return (float)Math.Round(percentage * 100f, 2); // Round to 2 decimal places
         }
     }
 }

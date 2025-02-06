@@ -44,7 +44,7 @@ namespace ProjectTA.Scene.LevelSelection
 
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneName));
 
-            _levelSelectionPlayer.Init(_levelData.Model);
+            _levelSelectionPlayer.InitModel(_levelData.Model);
             _levelSelectionPlayer.SetView(_view.LevelSelectionPlayerView);
 
             yield return null;

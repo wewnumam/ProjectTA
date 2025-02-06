@@ -45,6 +45,11 @@ namespace ProjectTA.Module.HUD
 
         public void OnUpdatePuzzleCount(UpdatePuzzleCountMessage message)
         {
+            if (_view.PuzzleCountText == null || _view.PuzzleBarItems.Count <= 0)
+            {
+                return;
+            }
+
             _view.PuzzleCountText.SetText(message.PuzzlePieceCount.ToString());
             for (int i = 0; i < message.PuzzlePieceCount; i++)
             {

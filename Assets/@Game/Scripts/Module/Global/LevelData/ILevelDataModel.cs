@@ -14,5 +14,7 @@ namespace ProjectTA.Module.LevelData
         GameObject CurrentEnvironmentPrefab { get; }
 
         List<SOLevelData> GetUnlockedLevels();
+
+        bool IsMemberValid();
     }
 }
