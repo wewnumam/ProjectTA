@@ -25,7 +25,7 @@ namespace ProjectTA.Module.GameConstants
 
         [Header("Analytic Form Constants")]
         [SerializeField] private AnalyticFormConstants _analyticFormConstants;
-        
+
         [Header("Report Form Constants")]
         [SerializeField] private ReportFormConstants _reportFormConstants;
 

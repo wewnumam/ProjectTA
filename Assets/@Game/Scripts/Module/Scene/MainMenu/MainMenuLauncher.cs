@@ -70,10 +70,10 @@ namespace ProjectTA.Scene.MainMenu
 
             _tutorial.SetView(_view.TutorialView);
 
-            _collectibleList.Init(_collectibleData.Model);
+            _collectibleList.InitModel(_collectibleData.Model);
             _collectibleList.SetView(_view.CollectibleListView);
 
-            _questList.Init(_questData.Model);
+            _questList.InitModel(_questData.Model);
             _questList.SetView(_view.QuestListView);
 
             _settings.InitModel(_gameSettings.Model);

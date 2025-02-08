@@ -70,12 +70,12 @@ namespace ProjectTA.Module.PlayerCharacter
         {
             Publish(new AdjustHealthCountMessage(-1));
 
-            #if UNITY_ANDROID
+#if UNITY_ANDROID
             if (_model.IsVibrationOn)
             {
                 Handheld.Vibrate();
             }
-            #endif
+#endif
         }
 
         private void OnCollideWithCollectibleComponent(SOCollectibleData collectibleData)

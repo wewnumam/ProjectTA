@@ -7,20 +7,20 @@ namespace ProjectTA.Module.PuzzleBoard
 {
     public class PuzzleBoardView : BaseView
     {
-        [SerializeField] private Transform _parent;
-        [SerializeField] private PuzzleDragable _puzzleDragableTemplate;
-        [SerializeField] private RectTransform _puzzleTargetTemplate;
-        [SerializeField] private TMP_Text _questionText;
-        [SerializeField] private UnityEvent _onShow;
-        [SerializeField] private UnityEvent _onComplete;
-        private UnityAction onClose;
+        [field: SerializeField]
+        public Transform Parent { get; set; }
+        [field: SerializeField]
+        public PuzzleDragable PuzzleDragableTemplate { get; set; }
+        [field: SerializeField]
+        public RectTransform PuzzleTargetTemplate { get; set; }
+        [field: SerializeField]
+        public TMP_Text QuestionText { get; set; }
+        [field: SerializeField]
+        public UnityEvent OnShow { get; private set; }
+        [field: SerializeField]
+        public UnityEvent OnComplete { get; private set; }
 
-        public Transform Parent { get => _parent; }
-        public PuzzleDragable PuzzleDragableTemplate { get => _puzzleDragableTemplate; }
-        public RectTransform PuzzleTargetTemplate { get => _puzzleTargetTemplate; }
-        public TMP_Text QuestionText => _questionText;
-        public UnityEvent OnShow => _onShow;
-        public UnityEvent OnComplete => _onComplete;
+        private UnityAction onClose;
 
         public void SetCallback(UnityAction onClose)
         {

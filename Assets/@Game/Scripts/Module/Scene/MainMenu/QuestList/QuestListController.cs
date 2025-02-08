@@ -1,28 +1,18 @@
 using Agate.MVC.Base;
-using ProjectTA.Module.CollectibleData;
 using ProjectTA.Module.QuestData;
-using ProjectTA.Scene.QuestList;
 using ProjectTA.Utility;
 using UnityEngine;
 
 namespace ProjectTA.Module.QuestList
 {
-    public class QuestListController : ObjectController<QuestListController, QuestListView>
+    public class QuestListController : ObjectController<QuestListController, QuestDataModel, QuestListView>
     {
-        private SOQuestCollection _questCollection = null;
-        private QuestData.SavedQuestData _questData = null;
-
-        public void SetQuestCollection(SOQuestCollection questCollection)
+        public void SetModel(QuestDataModel model)
         {
-            _questCollection = questCollection;
+            _model = model;
         }
 
-        public void SetQuestData(QuestData.SavedQuestData questData)
-        {
-            _questData = questData;
-        }
-
-        public void Init(IQuestDataModel questData)
+        public void InitModel(IQuestDataModel questData)
         {
             if (questData == null)
             {
@@ -34,23 +24,24 @@ namespace ProjectTA.Module.QuestList
                 Debug.LogError("QUESTCOLLECTION IS NULL");
                 return;
             }
-            _questCollection = questData.QuestCollection;
+
+            _model.SetQuestCollection(questData.QuestCollection);
 
             if (questData.CurrentQuestData == null)
             {
                 Debug.LogError("CURRENTQUESTDATA IS NULL");
                 return;
             }
-            _questData = questData.CurrentQuestData;
+
+            _model.SetCurrentQuestData(questData.CurrentQuestData);
         }
 
         public override void SetView(QuestListView view)
         {
             base.SetView(view);
-
             float points = 0;
 
-            foreach (var questItem in _questCollection.QuestItems)
+            foreach (var questItem in _model.QuestCollection.QuestItems)
             {
                 GameObject obj = GameObject.Instantiate(view.QuestComponentTemplate.gameObject, view.Parent);
                 QuestComponent questComponent = obj.GetComponent<QuestComponent>();
@@ -58,51 +49,32 @@ namespace ProjectTA.Module.QuestList
                 questComponent.Slider.maxValue = questItem.RequiredAmount;
 
                 float currentAmount = GetCurrentAmount(questItem);
-                float progress = currentAmount / questItem.RequiredAmount * 100f;
-
-                points += progress > 100f ? 100f : progress;
+                float progress = Mathf.Min(currentAmount / questItem.RequiredAmount * 100f, 100f); // Cap progress at 100%
+                points += progress;
 
                 questComponent.Slider.value = currentAmount;
                 questComponent.ProgressText.SetText($"{currentAmount}/{questItem.RequiredAmount}");
+
                 obj.SetActive(true);
             }
 
             view.PointsText.SetText($"{(int)points}");
         }
 
-        private float GetCurrentAmount(QuestItem questItem)
+        public float GetCurrentAmount(QuestItem questItem)
         {
-            float currentAmount = 0;
-
-            switch (questItem.Type)
+            return questItem.Type switch
             {
-                case EnumManager.QuestType.Kill:
-                    currentAmount = _questData.CurrentKillAmount;
-                    break;
-                case EnumManager.QuestType.Collectible:
-                    currentAmount = _questData.CurrentCollectibleAmount;
-                    break;
-                case EnumManager.QuestType.Puzzle:
-                    currentAmount = _questData.CurrentPuzzleAmount;
-                    break;
-                case EnumManager.QuestType.HiddenObject:
-                    currentAmount = _questData.CurrentHiddenObjectAmount;
-                    break;
-                case EnumManager.QuestType.LevelPlayed:
-                    currentAmount = _questData.LevelPlayed.Count;
-                    break;
-                case EnumManager.QuestType.GameWin:
-                    currentAmount = _questData.CurrentGameWinAmount;
-                    break;
-                case EnumManager.QuestType.MinutesPlayed:
-                    currentAmount = _questData.CurrentMinutesPlayedAmount;
-                    break;
-                case EnumManager.QuestType.QuizScore:
-                    currentAmount = _questData.CurrentQuizScoreAmount;
-                    break;
-            }
-
-            return currentAmount;
+                EnumManager.QuestType.Kill => _model.CurrentQuestData.CurrentKillAmount,
+                EnumManager.QuestType.Collectible => _model.CurrentQuestData.CurrentCollectibleAmount,
+                EnumManager.QuestType.Puzzle => _model.CurrentQuestData.CurrentPuzzleAmount,
+                EnumManager.QuestType.HiddenObject => _model.CurrentQuestData.CurrentHiddenObjectAmount,
+                EnumManager.QuestType.LevelPlayed => _model.CurrentQuestData.LevelPlayed.Count,
+                EnumManager.QuestType.GameWin => _model.CurrentQuestData.CurrentGameWinAmount,
+                EnumManager.QuestType.MinutesPlayed => _model.CurrentQuestData.CurrentMinutesPlayedAmount,
+                EnumManager.QuestType.QuizScore => _model.CurrentQuestData.CurrentQuizScoreAmount,
+                _ => 0
+            };
         }
     }
 }

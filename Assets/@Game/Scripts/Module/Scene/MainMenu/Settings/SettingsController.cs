@@ -1,6 +1,5 @@
 using Agate.MVC.Base;
 using ProjectTA.Message;
-using ProjectTA.Module.GameConstants;
 using ProjectTA.Module.SaveSystem;
 using ProjectTA.Utility;
 using UnityEngine;

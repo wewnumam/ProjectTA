@@ -10,7 +10,8 @@
         "Cinemachine",
         "Unity.TextMeshPro",
         "DOTween.Modules",
-        "Ink-Libraries"
+        "Ink-Libraries",
+        "Unity.InputSystem"
     ],
     "includePlatforms": [
         "Editor"

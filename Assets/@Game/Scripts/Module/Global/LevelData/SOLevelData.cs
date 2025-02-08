@@ -41,7 +41,7 @@ namespace ProjectTA.Module.LevelData
         public Sprite Icon => _icon;
         public int InitialHealth => _initialHealth;
         public float Countdown => _countdown;
-        public string PuzzleQuestion => _puzzleQuestion;
+        public string PuzzleQuestion { get => _puzzleQuestion; set => _puzzleQuestion = value; }
         public List<PuzzleObject> PuzzleObjects { get => _puzzleObjects; set => _puzzleObjects = value; }
         public GameObject EnemyPrefab => _enemyPrefab;
         public GameObject EnvironmentPrefab { get => _environmentPrefab; set => _environmentPrefab = value; }
@@ -61,5 +61,12 @@ namespace ProjectTA.Module.LevelData
         public SOCollectibleData CollectibleData => _collectibleData;
         public Vector3 ObjectPosition => _objectPosition;
         public Vector3 RectPosition => _rectPosition;
+
+        public PuzzleObject(SOCollectibleData collectibleData, Vector3 objectPosition, Vector3 rectPosition)
+        {
+            _collectibleData = collectibleData;
+            _objectPosition = objectPosition;
+            _rectPosition = rectPosition;
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace ProjectTA.Utility
 
         private CinemachineOrbitalTransposer orbitalTransposer;
 
-        void Start()
+        public void Start()
         {
             // Get the Orbital Transposer component
             if (virtualCamera != null)
@@ -19,7 +19,7 @@ namespace ProjectTA.Utility
             }
         }
 
-        void Update()
+        public void Update()
         {
             if (orbitalTransposer != null)
             {

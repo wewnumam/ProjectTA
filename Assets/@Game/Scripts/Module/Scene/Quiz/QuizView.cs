@@ -6,7 +6,7 @@ namespace ProjectTA.Scene.Quiz
 {
     public class QuizView : BaseSceneView
     {
-        [field:SerializeField]
+        [field: SerializeField]
         public QuizPlayerView QuizPlayerView { get; private set; }
     }
 }

@@ -10,7 +10,7 @@ namespace ProjectTA.Module.LevelSelection
     public class LevelSelectionPlayerController : ObjectController<LevelSelectionPlayerController, LevelSelectionPlayerModel, ILevelSelectionPlayerModel, LevelSelectionPlayerView>
     {
         #region UTILITY
-        
+
         public void SetModel(LevelSelectionPlayerModel model)
         {
             _model = model;

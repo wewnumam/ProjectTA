@@ -2,14 +2,17 @@ using Agate.MVC.Base;
 using ProjectTA.Message;
 using ProjectTA.Module.LevelData;
 using ProjectTA.Utility;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 namespace ProjectTA.Module.PuzzleBoard
 {
     public class PuzzleBoardController : ObjectController<PuzzleBoardController, PuzzleBoardModel, PuzzleBoardView>
     {
+        public void SetModel(PuzzleBoardModel model)
+        {
+            _model = model;
+        }
+
         public void InitModel(ILevelDataModel levelData)
         {
             if (levelData == null)
@@ -41,21 +44,27 @@ namespace ProjectTA.Module.PuzzleBoard
             view.QuestionText.SetText(_model.PuzzleQuestion);
 
             _model.InitObjects(view.PuzzleDragableTemplate.gameObject, view.PuzzleTargetTemplate.gameObject, view.Parent, OnPuzzlePlaced);
-
-            Debug.Log($"<color=green>[{view.GetType()}]</color> installed successfully!");
         }
 
-        private void OnPuzzlePlaced(PuzzleDragable puzzleDragable)
+        public PuzzleBoardView GetNewPuzzleBoardView()
+        {
+            GameObject obj = new GameObject(nameof(PuzzleBoardView));
+            return obj.AddComponent<PuzzleBoardView>();
+        }
+
+        public void OnPuzzlePlaced(PuzzleDragable puzzleDragable)
         {
             Publish(new AdjustPadlockOnPlaceCountMessage(1));
 
             Debug.Log(puzzleDragable.gameObject.name);
         }
 
-        private void OnClose()
+        public void OnClose()
         {
             Time.timeScale = 1;
         }
+
+        #region MESSAGE LISTENER
 
         public void ShowPuzzleBoard(ShowPadlockMessage message)
         {
@@ -76,5 +85,7 @@ namespace ProjectTA.Module.PuzzleBoard
                 puzzleDragable.SetPuzzleDragableActive();
             }
         }
+
+        #endregion
     }
 }

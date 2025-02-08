@@ -11,7 +11,7 @@ namespace ProjectTA.Scene.MainMenu
 {
     public class MainMenuView : BaseSceneView
     {
-        [field:SerializeField]
+        [field: SerializeField]
         public TutorialView TutorialView { get; private set; }
         [field: SerializeField]
         public CollectibleListView CollectibleListView { get; private set; }

@@ -1,11 +1,8 @@
 using Agate.MVC.Base;
 using ProjectTA.Module.CollectibleData;
-using ProjectTA.Module.GameConstants;
 using ProjectTA.Utility;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace ProjectTA.Module.CheatFeature
 {
@@ -49,6 +46,12 @@ namespace ProjectTA.Module.CheatFeature
 
         public void TeleportToPuzzle()
         {
+            if (_puzzleTransforms.Count <= 0)
+            {
+                Debug.LogWarning("PUZZLETRANSFORMS IS NULL");
+                return;
+            }
+
             PlayerCharacter.position = _puzzleTransforms[_currentPuzzleIndex].position;
             _currentPuzzleIndex++;
 
@@ -58,6 +61,12 @@ namespace ProjectTA.Module.CheatFeature
 
         public void TeleportToHiddenObject()
         {
+            if (_hiddenObjectTransforms.Count <= 0)
+            {
+                Debug.LogWarning("HIDDENOBJECTTRANSFORMS IS NULL");
+                return;
+            }
+
             PlayerCharacter.position = _hiddenObjectTransforms[_currentHiddenObjectIndex].position;
             _currentHiddenObjectIndex++;
 
@@ -65,6 +74,6 @@ namespace ProjectTA.Module.CheatFeature
                 _currentHiddenObjectIndex = 0;
         }
 
-        
+
     }
 }

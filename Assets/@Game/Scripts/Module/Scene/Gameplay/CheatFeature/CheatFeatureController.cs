@@ -2,12 +2,37 @@ using Agate.MVC.Base;
 using ProjectTA.Message;
 using ProjectTA.Module.GameConstants;
 using ProjectTA.Utility;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ProjectTA.Module.CheatFeature
 {
     public class CheatFeatureController : ObjectController<CheatFeatureController, CheatFeatureModel, CheatFeatureView>
     {
+        private const int MaxPublishedMessages = 10;
+        private readonly Queue<object> _publishedMessages = new Queue<object>();
+
+        public IEnumerable<object> PublishedMessages => _publishedMessages;
+
+        protected override void Publish<TMessage>(TMessage message)
+        {
+            // Add the new message to the queue
+            _publishedMessages.Enqueue(message);
+
+            // Remove the oldest message if the queue exceeds the maximum size
+            if (_publishedMessages.Count > MaxPublishedMessages)
+            {
+                _publishedMessages.Dequeue();
+            }
+
+            base.Publish(message);
+        }
+
+        public void SetModel(CheatFeatureModel model)
+        {
+            _model = model;
+        }
+
         public void InitModel(IGameConstantsModel gameConstants)
         {
             if (gameConstants == null)
@@ -18,7 +43,7 @@ namespace ProjectTA.Module.CheatFeature
 
             if (gameConstants.GameConstants == null)
             {
-                Debug.LogError("SOGAMECONSTANTS IS NULL"); 
+                Debug.LogError("SOGAMECONSTANTS IS NULL");
                 return;
             }
 
@@ -41,7 +66,7 @@ namespace ProjectTA.Module.CheatFeature
             view.SetEnvironmentCallbacks(OnTeleportToPuzzle, OnTeleportToHiddenObject);
             view.SetEffectsCallbacks(OnBlurCamera, OnNormalCamera);
             view.SetCountdownCallbacks(OnRestartCountdown, OnResetCountdown);
-            
+
             view.ActivateJoystickToggle.isOn = _model.IsJoystickActive;
 
             _model.SetPlayerCharacter(GameObject.FindGameObjectWithTag(TagManager.TAG_PLAYER).transform);

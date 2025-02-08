@@ -49,7 +49,7 @@ namespace ProjectTA.Module.Enemy
 
             if (_player == null)
             {
-                Debug.LogError("Player not assigned or found!");
+                Debug.LogWarning("Player not assigned or found!");
                 return;
             }
 

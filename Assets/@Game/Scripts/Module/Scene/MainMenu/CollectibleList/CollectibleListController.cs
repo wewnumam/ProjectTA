@@ -2,28 +2,18 @@ using Agate.MVC.Base;
 using ProjectTA.Message;
 using ProjectTA.Module.CollectibleData;
 using ProjectTA.Module.CollectibleItem;
-using ProjectTA.Module.LevelData;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ProjectTA.Module.CollectibleList
 {
-    public class CollectibleListController : ObjectController<CollectibleListController, CollectibleListView>
+    public class CollectibleListController : ObjectController<CollectibleListController, CollectibleDataModel, CollectibleListView>
     {
-        private SOCollectibleCollection _collectibleCollection = null;
-        private List<SOCollectibleData> _unlockedCollectibles = new();
-
-        public void SetCollectibleCollection(SOCollectibleCollection collection)
+        public void SetModel(CollectibleDataModel model)
         {
-            _collectibleCollection = collection;
+            _model = model;
         }
 
-        public void SetUnlockedCollectibles(List<SOCollectibleData> unlockedCollectibles)
-        {
-            _unlockedCollectibles = unlockedCollectibles;
-        }
-
-        public void Init(ICollectibleDataModel collectibleData)
+        public void InitModel(ICollectibleDataModel collectibleData)
         {
             if (collectibleData == null)
             {
@@ -35,28 +25,30 @@ namespace ProjectTA.Module.CollectibleList
                 Debug.LogError("COLLECTIBLECOLLECTION IS NULL");
                 return;
             }
-            _collectibleCollection = collectibleData.CollectibleCollection;
+
+            _model.SetCollectibleCollection(collectibleData.CollectibleCollection);
 
             if (collectibleData.UnlockedCollectibleItems == null)
             {
                 Debug.LogError("UNLOCKEDCOLLECTIBLEITEMS IS NULL");
                 return;
             }
-            _unlockedCollectibles = collectibleData.UnlockedCollectibleItems;
+
+            _model.SetUnlockedCollectibleItems(collectibleData.UnlockedCollectibleItems);
         }
 
         public override void SetView(CollectibleListView view)
         {
             base.SetView(view);
 
-            foreach (var collectibleItem in _collectibleCollection.CollectibleItems)
+            foreach (var collectibleItem in _model.CollectibleCollection.CollectibleItems)
             {
                 GameObject obj = GameObject.Instantiate(view.ItemTemplate.gameObject, view.Parent);
 
                 CollectibleItemView collectibleItemView = obj.GetComponent<CollectibleItemView>();
                 CollectibleItemController collectibleItemController = new CollectibleItemController();
                 InjectDependencies(collectibleItemController);
-                collectibleItemController.Init(collectibleItemView, collectibleItem, _unlockedCollectibles.Contains(collectibleItem));
+                collectibleItemController.Init(collectibleItemView, collectibleItem, _model.UnlockedCollectibleItems.Contains(collectibleItem));
 
                 obj.SetActive(true);
             }

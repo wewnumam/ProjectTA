@@ -2,7 +2,6 @@ using Agate.MVC.Base;
 using ProjectTA.Message;
 using ProjectTA.Module.GameConstants;
 using ProjectTA.Utility;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

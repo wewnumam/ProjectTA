@@ -15,6 +15,11 @@ namespace ProjectTA.Module.CollectibleData
             CollectibleCollection = collectibleCollection;
         }
 
+        public void SetUnlockedCollectibleItems(List<SOCollectibleData> unlockedCollectibleItems)
+        {
+            UnlockedCollectibleItems = unlockedCollectibleItems;
+        }
+
         public void AddUnlockedCollectibleCollection(SOCollectibleData collectibleData)
         {
             if (UnlockedCollectibleItems.Contains(collectibleData))

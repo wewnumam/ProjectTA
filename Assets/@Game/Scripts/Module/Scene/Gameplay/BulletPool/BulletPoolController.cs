@@ -2,8 +2,6 @@ using Agate.MVC.Base;
 using ProjectTA.Message;
 using ProjectTA.Module.Bullet;
 using ProjectTA.Module.GameConstants;
-using ProjectTA.Module.LevelData;
-using System;
 using UnityEngine;
 
 namespace ProjectTA.Module.BulletPool

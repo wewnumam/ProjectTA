@@ -2,16 +2,15 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ProjectTA.Scene.QuestList
+namespace ProjectTA.Module.QuestList
 {
     public class QuestComponent : MonoBehaviour
     {
-        [SerializeField] private TMP_Text _labelText;
-        [SerializeField] private TMP_Text _progressText;
-        [SerializeField] private Slider _slider;
-
-        public TMP_Text LabelText => _labelText;
-        public TMP_Text ProgressText => _progressText;
-        public Slider Slider => _slider;
+        [field: SerializeField]
+        public TMP_Text LabelText { get; set; }
+        [field: SerializeField]
+        public TMP_Text ProgressText { get; set; }
+        [field: SerializeField]
+        public Slider Slider { get; set; }
     }
 }

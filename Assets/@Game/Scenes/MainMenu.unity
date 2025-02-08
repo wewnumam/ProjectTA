@@ -248,9 +248,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d3c56e2b90e2d4897f16b20541f0fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _parent: {fileID: 1272992458}
-  _questComponentTemplate: {fileID: 939538459}
-  _pointsText: {fileID: 895489033}
+  <Parent>k__BackingField: {fileID: 1272992458}
+  <QuestComponentTemplate>k__BackingField: {fileID: 939538459}
+  <PointsText>k__BackingField: {fileID: 895489033}
 --- !u!1 &59697853
 GameObject:
   m_ObjectHideFlags: 0
@@ -3665,11 +3665,26 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1069633236}
+    - target: {fileID: 4650997734731985677, guid: 022ccb88d2a3b5740b579b2900c19fa1,
+        type: 3}
+      propertyPath: m_VersionIndex
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5606688156489758564, guid: 022ccb88d2a3b5740b579b2900c19fa1,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1069633236}
     - target: {fileID: 5773407093173007764, guid: 022ccb88d2a3b5740b579b2900c19fa1,
         type: 3}
       propertyPath: m_Name
       value: Prefab_LevelData_TuguGolongGilig
       objectReference: {fileID: 0}
+    - target: {fileID: 6165154099214911386, guid: 022ccb88d2a3b5740b579b2900c19fa1,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1069633236}
     - target: {fileID: 8379325681344764605, guid: 022ccb88d2a3b5740b579b2900c19fa1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5090,9 +5105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0e0c243e544b8242a2f7c76be846f7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _labelText: {fileID: 1050651479}
-  _progressText: {fileID: 1172122305}
-  _slider: {fileID: 814110302}
+  <LabelText>k__BackingField: {fileID: 1050651479}
+  <ProgressText>k__BackingField: {fileID: 1172122305}
+  <Slider>k__BackingField: {fileID: 814110302}
 --- !u!114 &939538460
 MonoBehaviour:
   m_ObjectHideFlags: 0
