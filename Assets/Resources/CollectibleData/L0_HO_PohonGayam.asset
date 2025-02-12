@@ -15,5 +15,5 @@ MonoBehaviour:
   _title: Pohon Gayam
   _description: Mauris volutpat risus turpis
   _type: 1
-  _prefab: {fileID: 0}
+  _prefab: {fileID: 919132149155446097, guid: f0a337aba85f4734fb86fe0f2bc45a73, type: 3}
   _dialogue: {fileID: 4900000, guid: c10e3a27ab80b2949946490710d9a4f2, type: 3}

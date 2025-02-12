@@ -15,5 +15,5 @@ MonoBehaviour:
   _title: Komplek Kepatihan
   _description: Consectetur adipiscing elit
   _type: 1
-  _prefab: {fileID: 0}
+  _prefab: {fileID: 919132149155446097, guid: 17ffbda3e2b1d3649955df40341e916f, type: 3}
   _dialogue: {fileID: 4900000, guid: 70314cb47283b6c419dd6ffa46655fe1, type: 3}

@@ -15,5 +15,5 @@ MonoBehaviour:
   _title: Plang Margo Utomo
   _description: Nunc vel gravida lacus
   _type: 1
-  _prefab: {fileID: 0}
+  _prefab: {fileID: 919132149155446097, guid: f11e73de8f70ec44b8587df590f42457, type: 3}
   _dialogue: {fileID: 4900000, guid: a7f806d69cb444d4da47bc2fd4d989de, type: 3}

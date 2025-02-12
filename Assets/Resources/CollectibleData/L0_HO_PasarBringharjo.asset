@@ -15,5 +15,5 @@ MonoBehaviour:
   _title: Pasar Bringharjo
   _description: In aliquet lorem at posuere condimentum
   _type: 1
-  _prefab: {fileID: 0}
+  _prefab: {fileID: 919132149155446097, guid: 0e40f34683dace748a1633ad63219b05, type: 3}
   _dialogue: {fileID: 4900000, guid: a75f086acf598354cadc7e991d4a5b95, type: 3}

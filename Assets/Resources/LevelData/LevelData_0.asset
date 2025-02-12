@@ -34,14 +34,8 @@ MonoBehaviour:
     _rectPosition: {x: 179, y: -87, z: 0}
   _enemyPrefab: {fileID: 5375070630054367085, guid: 443df28119fa4364689fa70350348208,
     type: 3}
-  _environmentPrefab: {fileID: 5773407093173007764, guid: 022ccb88d2a3b5740b579b2900c19fa1,
-    type: 3}
-  _isLockedLevel: 0
+  _environmentPrefab: {fileID: 0}
+  _isLockedLevel: 1
   _nextLevel: {fileID: 0}
   _cutsceneData: {fileID: 11400000, guid: 34e1482f657ad8a4dbbfb514bba838fd, type: 2}
-  _hiddenObjects:
-  - {fileID: 11400000, guid: 240c67863c968734580f2e0733d83d1f, type: 2}
-  - {fileID: 11400000, guid: 4d46a454ce3d27e4dac43db61722909c, type: 2}
-  - {fileID: 11400000, guid: 3c250486223108d45a5af729108889ca, type: 2}
-  - {fileID: 11400000, guid: 0a8a10ccef77c12489bfef0b952a6411, type: 2}
-  - {fileID: 11400000, guid: a5eb32a2c2bb40a44a2f3556e3ca87ea, type: 2}
+  _hiddenObjects: []
