@@ -37,7 +37,7 @@ MonoBehaviour:
   _environmentPrefab: {fileID: 5773407093173007764, guid: 022ccb88d2a3b5740b579b2900c19fa1,
     type: 3}
   _isLockedLevel: 0
-  _nextLevel: {fileID: 11400000, guid: 550e3315e42db1e4cb8a520996e8f1ac, type: 2}
+  _nextLevel: {fileID: 11400000, guid: b2ea3db9565e14848b09a77546f9bd25, type: 2}
   _cutsceneData: {fileID: 11400000, guid: 34e1482f657ad8a4dbbfb514bba838fd, type: 2}
   _hiddenObjects:
   - {fileID: 11400000, guid: 240c67863c968734580f2e0733d83d1f, type: 2}

@@ -52,6 +52,8 @@ namespace ProjectTA.Module.CollectibleList
 
                 obj.SetActive(true);
             }
+
+            view.CollectionCountText.SetText($"{_model.UnlockedCollectibleItems.Count}/{_model.CollectibleCollection.CollectibleItems.Count}");
         }
 
         public void OnChooseColletible(ChooseCollectibleMessage message)

@@ -13,7 +13,9 @@ namespace ProjectTA.Module.BugReport
         [SerializeField] private Image _responseBg;
         [SerializeField] private Color _succeedColor;
         [SerializeField] private Color _failedColor;
+        [SerializeField] private UnityEvent _onWait;
         [SerializeField] private UnityEvent _onEnd;
+
 
         private UnityAction<string> _reportMessage;
 
@@ -24,6 +26,7 @@ namespace ProjectTA.Module.BugReport
 
         public void SendReport()
         {
+            _onWait?.Invoke();
             _reportMessage?.Invoke(_reportInputField.text);
         }
 

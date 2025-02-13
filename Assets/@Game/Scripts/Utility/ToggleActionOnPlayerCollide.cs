@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 namespace ProjectTA.Utility
 {
-    [RequireComponent(typeof(SphereCollider))]
+    [RequireComponent(typeof(Collider))]
     public class ToggleActionOnPlayerCollide : MonoBehaviour
     {
         [SerializeField] private UnityEvent _onPlayerEnter;
