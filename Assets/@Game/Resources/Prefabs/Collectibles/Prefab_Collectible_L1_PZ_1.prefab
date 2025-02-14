@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 2251344587895755311}
   - component: {fileID: 8034559873762400402}
   m_Layer: 0
-  m_Name: Prefab_Collectible_PZ_1
+  m_Name: Prefab_Collectible_L1_PZ_1
   m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -330,7 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3321fddb8157bb34d9950274e4ea8bf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CollectibleData>k__BackingField: {fileID: 11400000, guid: b43994c793f87f342a4b61fe6d7e89f0,
+  <CollectibleData>k__BackingField: {fileID: 11400000, guid: 0e30418b5fcc3244b8fe448a78fae64a,
     type: 2}
 --- !u!4 &3450374207215391279 stripped
 Transform:

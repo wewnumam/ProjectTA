@@ -23,26 +23,27 @@ MonoBehaviour:
     dasar bangunan tersebut. Golong yaitu bentuk ____________ dan Gilig yaitu bentuk
     ____________. Dan memiliki makna ____________ ____________ dan ____________ .
   _puzzleObjects:
-  - _collectibleData: {fileID: 11400000, guid: b43994c793f87f342a4b61fe6d7e89f0, type: 2}
-    _objectPosition: {x: 25, y: 0.5, z: 35}
+  - _collectibleData: {fileID: 11400000, guid: 5e9b7ac69b051054eacc180c33cb01c5, type: 2}
+    _objectPosition: {x: 17.75198, y: 1.54, z: 29.365707}
     _rectPosition: {x: 390, y: 41, z: 0}
-  - _collectibleData: {fileID: 11400000, guid: 63bb7814f5db9e546b74c43ba0a1588e, type: 2}
-    _objectPosition: {x: -29, y: 0.5, z: -21}
+  - _collectibleData: {fileID: 11400000, guid: 01824b3f05fe3fb48a7354fa3cacd83c, type: 2}
+    _objectPosition: {x: 43.278812, y: 1.79, z: 83.42269}
     _rectPosition: {x: -185, y: -87, z: 0}
   - _collectibleData: {fileID: 11400000, guid: 139837f5715273840b6589cceebde55d, type: 2}
-    _objectPosition: {x: 30, y: 0.5, z: -21}
+    _objectPosition: {x: 114.55131, y: 1.92, z: 115.399826}
     _rectPosition: {x: 179, y: -87, z: 0}
-  _enemyPrefab: {fileID: 5375070630054367085, guid: 443df28119fa4364689fa70350348208,
+  _enemyPrefab: {fileID: 5375070630054367085, guid: de55181138340c942ba24b6984e2afb4,
     type: 3}
   _environmentPrefab: {fileID: 5773407093173007764, guid: be50e93e7bea9e048b51a04d4eddba24,
     type: 3}
-  _isLockedLevel: 1
+  _isLockedLevel: 0
   _nextLevel: {fileID: 11400000, guid: 10804b2476ddedf4abd78b479a612557, type: 2}
-  _cutsceneData: {fileID: 11400000, guid: 34e1482f657ad8a4dbbfb514bba838fd, type: 2}
+  _cutsceneData: {fileID: 11400000, guid: 10d176d58d58c8f43b12d53c6f566e0e, type: 2}
   _hiddenObjects:
-  - {fileID: 11400000, guid: 240c67863c968734580f2e0733d83d1f, type: 2}
-  - {fileID: 11400000, guid: 4d46a454ce3d27e4dac43db61722909c, type: 2}
   - {fileID: 11400000, guid: 47ba0eddf85805942a2006c35e9a1830, type: 2}
-  - {fileID: 11400000, guid: 3c250486223108d45a5af729108889ca, type: 2}
-  - {fileID: 11400000, guid: 0a8a10ccef77c12489bfef0b952a6411, type: 2}
-  - {fileID: 11400000, guid: a5eb32a2c2bb40a44a2f3556e3ca87ea, type: 2}
+  - {fileID: 11400000, guid: 6b0dfd037bba6b44f85be03c4bd13c7d, type: 2}
+  - {fileID: 11400000, guid: b96aec41cf638fd42bec98867d0ba7c7, type: 2}
+  - {fileID: 11400000, guid: f9c46694e20266b459e062e5fef330bb, type: 2}
+  - {fileID: 11400000, guid: bc2cfc3b7b3890b429ebf8c88b3343c8, type: 2}
+  - {fileID: 11400000, guid: 5ef66258d68161147ba95ad9caaced3c, type: 2}
+  - {fileID: 11400000, guid: bab828b16e1d4804fa47c1738424a2a0, type: 2}

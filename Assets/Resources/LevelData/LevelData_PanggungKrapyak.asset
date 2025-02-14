@@ -23,14 +23,14 @@ MonoBehaviour:
     dasar bangunan tersebut. Golong yaitu bentuk ____________ dan Gilig yaitu bentuk
     ____________. Dan memiliki makna ____________ ____________ dan ____________ .
   _puzzleObjects:
-  - _collectibleData: {fileID: 11400000, guid: b43994c793f87f342a4b61fe6d7e89f0, type: 2}
-    _objectPosition: {x: 25, y: 0.5, z: 35}
+  - _collectibleData: {fileID: 11400000, guid: 0e30418b5fcc3244b8fe448a78fae64a, type: 2}
+    _objectPosition: {x: 35.70855, y: 1.3, z: -10.534915}
     _rectPosition: {x: 390, y: 41, z: 0}
-  - _collectibleData: {fileID: 11400000, guid: 63bb7814f5db9e546b74c43ba0a1588e, type: 2}
-    _objectPosition: {x: -29, y: 0.5, z: -21}
+  - _collectibleData: {fileID: 11400000, guid: ac15d139ca64a1d46aa8e5eaeaa0cdae, type: 2}
+    _objectPosition: {x: -37.011837, y: 1.35, z: -10.582505}
     _rectPosition: {x: -185, y: -87, z: 0}
-  - _collectibleData: {fileID: 11400000, guid: 139837f5715273840b6589cceebde55d, type: 2}
-    _objectPosition: {x: 30, y: 0.5, z: -21}
+  - _collectibleData: {fileID: 11400000, guid: b27a77e87bb296e4d843732025407e9f, type: 2}
+    _objectPosition: {x: -14.861713, y: 1.4, z: 35.141453}
     _rectPosition: {x: 179, y: -87, z: 0}
   _enemyPrefab: {fileID: 5375070630054367085, guid: ca48543b59df08e40a92d2825cfbcfa7,
     type: 3}
@@ -38,11 +38,9 @@ MonoBehaviour:
     type: 3}
   _isLockedLevel: 0
   _nextLevel: {fileID: 11400000, guid: 60e045f44f7bee24eb119a79ac580d2d, type: 2}
-  _cutsceneData: {fileID: 11400000, guid: 34e1482f657ad8a4dbbfb514bba838fd, type: 2}
+  _cutsceneData: {fileID: 11400000, guid: 82ec0fed1894f364eb70fd749619eb45, type: 2}
   _hiddenObjects:
-  - {fileID: 11400000, guid: 240c67863c968734580f2e0733d83d1f, type: 2}
-  - {fileID: 11400000, guid: 4d46a454ce3d27e4dac43db61722909c, type: 2}
-  - {fileID: 11400000, guid: 47ba0eddf85805942a2006c35e9a1830, type: 2}
-  - {fileID: 11400000, guid: 3c250486223108d45a5af729108889ca, type: 2}
+  - {fileID: 11400000, guid: 71cbd3eca8b72c24a823810faa111a30, type: 2}
+  - {fileID: 11400000, guid: f27e9c9a61a336e46b29bae9d0c13f6f, type: 2}
   - {fileID: 11400000, guid: 0a8a10ccef77c12489bfef0b952a6411, type: 2}
-  - {fileID: 11400000, guid: a5eb32a2c2bb40a44a2f3556e3ca87ea, type: 2}
+  - {fileID: 11400000, guid: b1e807ee9ee4ed747910b53167dd1be9, type: 2}

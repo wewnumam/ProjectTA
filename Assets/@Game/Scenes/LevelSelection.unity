@@ -526,7 +526,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d37f37452828e1649b748d0b62fecc4c, type: 2}
+  - {fileID: 2100000, guid: 6f5a404af7fd58f4d8e13479c8365bca, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -564,13 +564,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 180689435}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 1, z: 50}
+  m_LocalScale: {x: 25, y: 1, z: 25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1001 &226721972
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2058,7 +2058,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 988698030}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.24345659, y: -0.56703156, z: 0.18022375, w: 0.7659788}
+  m_LocalRotation: {x: 0.2434566, y: -0.5670316, z: 0.18022375, w: 0.7659788}
   m_LocalPosition: {x: 13.525844, y: 11.934677, z: -5.1874647}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2376,7 +2376,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7876d86d26982a44c8d70c16c5dff33b, type: 2}
+  - {fileID: 2100000, guid: 691a1b68140cd1042bb623e0de50be1e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3065,7 +3065,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1328431722}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.24345659, y: -0.56703156, z: 0.18022375, w: 0.7659788}
+  m_LocalRotation: {x: 0.2434566, y: -0.5670316, z: 0.18022375, w: 0.7659788}
   m_LocalPosition: {x: 13.525844, y: 11.934677, z: -5.1874647}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3348,7 +3348,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0
+  m_Intensity: 0.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208

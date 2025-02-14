@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 2251344587895755311}
   - component: {fileID: 6028064767364031964}
   m_Layer: 0
-  m_Name: Prefab_Collectible_PZ_2
+  m_Name: Prefab_Collectible_L1_PZ_2
   m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
+  outlineWidth: 10
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3321fddb8157bb34d9950274e4ea8bf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CollectibleData>k__BackingField: {fileID: 11400000, guid: 63bb7814f5db9e546b74c43ba0a1588e,
+  <CollectibleData>k__BackingField: {fileID: 11400000, guid: ac15d139ca64a1d46aa8e5eaeaa0cdae,
     type: 2}
 --- !u!4 &8941677881072863734 stripped
 Transform:

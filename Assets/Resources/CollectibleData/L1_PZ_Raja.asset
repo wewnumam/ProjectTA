@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1b07f33ea1f36d4c92a647367369ef5, type: 3}
-  m_Name: L1_HO_PohonAsem
+  m_Name: L1_PZ_Raja
   m_EditorClassIdentifier: 
-  _title: Plang Malioboro
-  _description: Nullam risus mi, hendrerit sed bibendum a
-  _type: 1
-  _prefab: {fileID: 919132149155446097, guid: be4e959c1dcafb445bb9e479cd375166, type: 3}
-  _dialogue: {fileID: 0}
+  _title: Raja v2
+  _description: Lorem ipsum dolor sit amet
+  _type: 0
+  _prefab: {fileID: 8793590203011237703, guid: 11ea0b9b5bbb61343905a576069f17c6, type: 3}
+  _dialogue: {fileID: 4900000, guid: 4a958877289def7458f916ab174b6243, type: 3}
