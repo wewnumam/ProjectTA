@@ -1,0 +1,2 @@
+Kemungkinan lain, yang didapat adalah karena lantai atas yang begitu tinggi. Hal ini menimbulkan dugaan bahwa selain sebagai pos untuk mengintai binatang buruan, 
+salah satunya rusa/menjangan. Juga perfungsi sebagai pos pertahanan sisi selatan keraton. 

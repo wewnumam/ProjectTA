@@ -1,0 +1,1 @@
+Keberadaan pohon asem yang memiliki makna anak yang nengsemake, membahagiakan kedua orang tuanya.

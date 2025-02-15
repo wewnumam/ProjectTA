@@ -1,0 +1,1 @@
+Kemungkinan panggung krapyak memiliki fungsi untuk rekreasi oleh anggota kerajaan. Dikenal juga tempat istirahat raja pada saat berburu di hutan krapyak.

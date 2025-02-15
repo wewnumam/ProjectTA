@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1b07f33ea1f36d4c92a647367369ef5, type: 3}
+  m_Name: L2_HO_JlnMalioboro
+  m_EditorClassIdentifier: 
+  _title: Plang Margo Utomo
+  _description: Nunc vel gravida lacus
+  _type: 1
+  _prefab: {fileID: 919132149155446097, guid: 922319cde0f0fb440bdc4464a97b0e6a, type: 3}
+  _dialogue: {fileID: 4900000, guid: 13a772e392627f84bbca6636e352a63b, type: 3}

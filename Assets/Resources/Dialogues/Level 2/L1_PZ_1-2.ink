@@ -1,0 +1,2 @@
+Pada tahun 1755, dibangunlah keraton di Desa Pachetokan di kawasan hutan beringan. Tepat diantara sungai code dan sungai winongo.
+7 Oktober 1756, Sri Sultan HB I mulai menempati kraton yogyakarta. Maka pada tanggal 7 Oktober itu diperingati sebagai hari jadi kota Yogyakarta.

@@ -1,1 +1,0 @@
-Pohon Asem yang ditanam sepanjang Jalan Margoutomo, Jalan Malioboro, dan Jalan Margomulya yang memiliki makna sengsem/menarik

@@ -1,0 +1,1 @@
+Bentuk Golog-gilig memiliki makna ‘Semangat persatuan antara rakyak dengan rajanya’ 

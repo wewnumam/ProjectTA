@@ -1,0 +1,2 @@
+menggambarkan seorang anak yang sudah dewasa dan sudah berani meminang gadis karena sudah akil baligh. 
+Dilambangkan dari pohon kweni yang berbarti wani(berani). Dan pohon pakel yang hanya bisa dimakan saat sudah matang, sangat bergetah saat belum matang.

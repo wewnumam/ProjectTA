@@ -1,0 +1,2 @@
+10 Juni 1867. Terjadi gempa tektonik berskala besar yang mengakibatkan patahnya pilar tugu kurang lebih sepertiga bagian. 
+Pembanguan kembali tugu di dokumentasikan pada empat prasasti yang berada di keempat sisi tugu.

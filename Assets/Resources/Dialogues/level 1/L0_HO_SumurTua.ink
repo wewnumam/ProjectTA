@@ -1,0 +1,1 @@
+Berdasarkan cerita warga setempat, dulu terdapat kolam dan sumur tua, terletak sekitar 400m di sebelah timur Panggung Krapyak.

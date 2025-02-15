@@ -1,0 +1,2 @@
+Dibangun 1756, setahun setelah keraton berdiri. Berbentuk Silinder (Golong) dengan puncak berupa bulatan (Gilig) berwarna putih. 
+Orang belanda dulu menyebutnya White Paal, karna bentuknaya yang panjang dan berwarna putih. Orang lokal menjadikannya sebuatan lain menjadi Tugu Pal Putih.

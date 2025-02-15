@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1b07f33ea1f36d4c92a647367369ef5, type: 3}
+  m_Name: L1_HO_KoriKamandunganKidul
+  m_EditorClassIdentifier: 
+  _title: Kori Kemandungan Kidul
+  _description: Nullam risus mi, hendrerit sed bibendum a
+  _type: 1
+  _prefab: {fileID: 2529621810712685962, guid: c2c003837e245c24787b34cec5f75707, type: 3}
+  _dialogue: {fileID: 4900000, guid: b7223519f3f46174e82886920c6cbd5b, type: 3}

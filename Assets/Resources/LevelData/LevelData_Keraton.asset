@@ -18,20 +18,22 @@ MonoBehaviour:
     sebuah istana, maka bangunan ini digunakan sebagai tempat tinggal Sultan Yogyakarta.
   _icon: {fileID: -1776086993, guid: 137fda608f83b1d4abb0f9898697c6e1, type: 3}
   _initialHealth: 10
-  _countdown: 120
-  _puzzleQuestion: Terdiri dari dua kata, Golong dan Gilig yang diambil dari bentuk
-    dasar bangunan tersebut. Golong yaitu bentuk ____________ dan Gilig yaitu bentuk
-    ____________. Dan memiliki makna ____________ ____________ dan ____________ .
+  _countdown: 180
+  _puzzleQuestion: Selain sebagai bagian dari Sumbu Filosofi, Keraton juga menjadi
+    bagian dari Sumbu Imajiner. Secara urut dari selatan ke utara ____,________,
+    ____________, ____________. Pendiriannya karena keraton ____________ yang sudah
+    banyak bangian yang rusak dan tak layak huni. Didesa ____________ kawasan hutan
+    ____________ didirikanlah keraton yogyakarta.
   _puzzleObjects:
-  - _collectibleData: {fileID: 11400000, guid: 5e9b7ac69b051054eacc180c33cb01c5, type: 2}
-    _objectPosition: {x: 17.75198, y: 1.54, z: 29.365707}
-    _rectPosition: {x: 390, y: 41, z: 0}
-  - _collectibleData: {fileID: 11400000, guid: 01824b3f05fe3fb48a7354fa3cacd83c, type: 2}
-    _objectPosition: {x: 43.278812, y: 1.79, z: 83.42269}
-    _rectPosition: {x: -185, y: -87, z: 0}
-  - _collectibleData: {fileID: 11400000, guid: 139837f5715273840b6589cceebde55d, type: 2}
-    _objectPosition: {x: 114.55131, y: 1.92, z: 115.399826}
-    _rectPosition: {x: 179, y: -87, z: 0}
+  - _collectibleData: {fileID: 11400000, guid: 0e30418b5fcc3244b8fe448a78fae64a, type: 2}
+    _objectPosition: {x: -8.380743, y: 1.524, z: 33.056313}
+    _rectPosition: {x: 0, y: 315, z: 0}
+  - _collectibleData: {fileID: 11400000, guid: ac15d139ca64a1d46aa8e5eaeaa0cdae, type: 2}
+    _objectPosition: {x: -32.941, y: 1.641, z: 89.47}
+    _rectPosition: {x: 0, y: 315, z: 0}
+  - _collectibleData: {fileID: 11400000, guid: b27a77e87bb296e4d843732025407e9f, type: 2}
+    _objectPosition: {x: 14.099968, y: 1.24, z: 149.20717}
+    _rectPosition: {x: 0, y: 315, z: 0}
   _enemyPrefab: {fileID: 5375070630054367085, guid: de55181138340c942ba24b6984e2afb4,
     type: 3}
   _environmentPrefab: {fileID: 5773407093173007764, guid: be50e93e7bea9e048b51a04d4eddba24,

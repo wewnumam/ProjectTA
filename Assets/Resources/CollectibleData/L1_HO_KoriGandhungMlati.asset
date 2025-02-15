@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1b07f33ea1f36d4c92a647367369ef5, type: 3}
+  m_Name: L1_HO_KoriGandhungMlati
+  m_EditorClassIdentifier: 
+  _title: Gapura Gladhag
+  _description: Nullam risus mi, hendrerit sed bibendum a
+  _type: 1
+  _prefab: {fileID: 2526707512404665858, guid: 81d62825cb336d64eb41e84273bfbf84, type: 3}
+  _dialogue: {fileID: 4900000, guid: 111739803ece8df4ebd4a7c705a36136, type: 3}
