@@ -1,6 +1,7 @@
 using Agate.MVC.Base;
 using ProjectTA.Message;
 using ProjectTA.Utility;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -123,6 +124,13 @@ namespace ProjectTA.Module.LevelData
             SetCurrentCutscene(message.LevelData.CutsceneData.name);
             _savedLevelData.Save(_model.SavedLevelData);
             Debug.Log($"CHOOSE LEVEL: {message.LevelData}");
+        }
+
+        public void OnChooseCutscene(ChooseCutsceneMessage message)
+        {
+            SetCurrentCutscene(message.CutsceneData.name);
+            _savedLevelData.Save(_model.SavedLevelData);
+            Debug.Log($"CHOOSE CUTSCENE: {message.CutsceneData}");
         }
 
         public void OnUnlockLevel(UnlockLevelMessage message)

@@ -42,17 +42,11 @@ namespace ProjectTA.Module.QuestData
 
             if (_savedQuestData == null)
             {
-                _savedQuestData = new SaveSystem<SavedQuestData>(TagManager.FILENAME_SAVEDUNLOCKEDCOLLECTIBLES);
+                _savedQuestData = new SaveSystem<SavedQuestData>(TagManager.FILENAME_SAVEDQUESTDATA);
             }
             _model.SetCurrentQuestData(_savedQuestData.Load());
 
-            if (_savedUnlockedCollectibles == null)
-            {
-                _savedUnlockedCollectibles = new SaveSystem<SavedUnlockedCollectibles>(TagManager.FILENAME_SAVEDUNLOCKEDCOLLECTIBLES);
-            }
-            _model.SetUnlockedCollectibles(_savedUnlockedCollectibles.Load());
-
-
+            LoadSavedUnlockedCollectibles();
             LoadQuestCollection();
             SetCollectibleCollectionAndUnlockedCollectible();
 
@@ -60,6 +54,15 @@ namespace ProjectTA.Module.QuestData
         }
 
         #region PRIVATE METHOD
+
+        private void LoadSavedUnlockedCollectibles()
+        {
+            if (_savedUnlockedCollectibles == null)
+            {
+                _savedUnlockedCollectibles = new SaveSystem<SavedUnlockedCollectibles>(TagManager.FILENAME_SAVEDUNLOCKEDCOLLECTIBLES);
+            }
+            _model.SetUnlockedCollectibles(_savedUnlockedCollectibles.Load());
+        }
 
         private void LoadQuestCollection()
         {
@@ -103,6 +106,14 @@ namespace ProjectTA.Module.QuestData
                 EnumManager.CollectibleType.HiddenObject));
         }
 
+        private void UnlockLastCollectible()
+        {
+            if (_model.IsQuestComplete() && _model.QuestCollection.LastCollectible != null)
+            {
+                Publish(new UnlockCollectibleMessage(_model.QuestCollection.LastCollectible));
+            }
+        }
+
         #endregion
 
         #region MESSAGE LISTENER
@@ -118,13 +129,21 @@ namespace ProjectTA.Module.QuestData
         {
             _model.AddCurrentMinutesPlayedAmount(_model.CurrentSessionInMinutes);
 
+            LoadSavedUnlockedCollectibles();
+            SetCollectibleCollectionAndUnlockedCollectible();
+            UnlockLastCollectible();
+
             _savedQuestData.Save(_model.CurrentQuestData);
         }
 
         public void OnGameWin(GameWinMessage message)
         {
             _model.AddCurrentMinutesPlayedAmount(_model.CurrentSessionInMinutes);
+
             _model.AddCurrentGameWinAmount(1);
+            LoadSavedUnlockedCollectibles();
+            SetCollectibleCollectionAndUnlockedCollectible();
+            UnlockLastCollectible();
 
             _savedQuestData.Save(_model.CurrentQuestData);
         }

@@ -1,3 +1,5 @@
+using ProjectTA.Module.CollectibleData;
+using ProjectTA.Module.LevelData;
 using ProjectTA.Utility;
 using System;
 using System.Collections.Generic;
@@ -9,6 +11,10 @@ namespace ProjectTA.Module.QuestData
     public class SOQuestCollection : ScriptableObject
     {
         [SerializeField] List<QuestItem> _questItems;
+        [field:SerializeField]
+        public SOCollectibleData LastCollectible {  get; set; }
+        [field:SerializeField]
+        public SOCutsceneData LastCutscene {  get; set; }
 
         public List<QuestItem> QuestItems { get => _questItems; set => _questItems = value; }
     }

@@ -184,7 +184,7 @@ namespace ProjectTA.Tests
             _model.SetCurrentQuestData(_testQuestData);
 
             // Act
-            float amount = _controller.GetCurrentAmount(questItem);
+            float amount = _model.GetCurrentAmount(questItem);
 
             // Assert
             Assert.AreEqual(7, amount);
@@ -198,7 +198,7 @@ namespace ProjectTA.Tests
             _model.SetCurrentQuestData(_testQuestData);
 
             // Act
-            float amount = _controller.GetCurrentAmount(questItem);
+            float amount = _model.GetCurrentAmount(questItem);
 
             // Assert
             Assert.AreEqual(3, amount);
@@ -212,7 +212,7 @@ namespace ProjectTA.Tests
             _model.SetCurrentQuestData(_testQuestData);
 
             // Act
-            float amount = _controller.GetCurrentAmount(questItem);
+            float amount = _model.GetCurrentAmount(questItem);
 
             // Assert
             Assert.AreEqual(0, amount);

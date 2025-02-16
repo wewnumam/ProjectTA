@@ -1,6 +1,9 @@
 using Agate.MVC.Base;
+using ProjectTA.Boot;
+using ProjectTA.Message;
 using ProjectTA.Module.QuestData;
 using ProjectTA.Utility;
+using System;
 using UnityEngine;
 
 namespace ProjectTA.Module.QuestList
@@ -39,6 +42,8 @@ namespace ProjectTA.Module.QuestList
         public override void SetView(QuestListView view)
         {
             base.SetView(view);
+            view.SetCallback(OnPlayLastCutscene);
+
             float points = 0;
 
             foreach (var questItem in _model.QuestCollection.QuestItems)
@@ -48,7 +53,7 @@ namespace ProjectTA.Module.QuestList
                 questComponent.LabelText.SetText(questItem.Label);
                 questComponent.Slider.maxValue = questItem.RequiredAmount;
 
-                float currentAmount = GetCurrentAmount(questItem);
+                float currentAmount = _model.GetCurrentAmount(questItem);
                 float progress = Mathf.Min(currentAmount / questItem.RequiredAmount * 100f, 100f); // Cap progress at 100%
                 points += progress;
 
@@ -59,22 +64,22 @@ namespace ProjectTA.Module.QuestList
             }
 
             view.PointsText.SetText($"{(int)points}");
+            if (_model.IsQuestComplete())
+            {
+                view.OnQuestComplete?.Invoke();
+            }
         }
 
-        public float GetCurrentAmount(QuestItem questItem)
+        private void OnPlayLastCutscene()
         {
-            return questItem.Type switch
+            if (_model.QuestCollection.LastCutscene == null)
             {
-                EnumManager.QuestType.Kill => _model.CurrentQuestData.CurrentKillAmount,
-                EnumManager.QuestType.Collectible => _model.CurrentQuestData.CurrentCollectibleAmount,
-                EnumManager.QuestType.Puzzle => _model.CurrentQuestData.CurrentPuzzleAmount,
-                EnumManager.QuestType.HiddenObject => _model.CurrentQuestData.CurrentHiddenObjectAmount,
-                EnumManager.QuestType.LevelPlayed => _model.CurrentQuestData.LevelPlayed.Count,
-                EnumManager.QuestType.GameWin => _model.CurrentQuestData.CurrentGameWinAmount,
-                EnumManager.QuestType.MinutesPlayed => _model.CurrentQuestData.CurrentMinutesPlayedAmount,
-                EnumManager.QuestType.QuizScore => _model.CurrentQuestData.CurrentQuizScoreAmount,
-                _ => 0
-            };
+                Debug.LogError("QUESTCOLLECTION LASTCUTSCENE IS NULL");
+                return;
+            }
+
+            Publish(new ChooseCutsceneMessage(_model.QuestCollection.LastCutscene));
+            SceneLoader.Instance.LoadScene(TagManager.SCENE_CUTSCENE);
         }
     }
 }

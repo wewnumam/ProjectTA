@@ -4,6 +4,7 @@ using ProjectTA.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace ProjectTA.Module.QuestData
 {
@@ -56,6 +57,34 @@ namespace ProjectTA.Module.QuestData
                           select item).Count();
 
             return amount;
+        }
+
+        public bool IsQuestComplete()
+        {
+            float points = 0;
+            foreach (var questItem in QuestCollection.QuestItems)
+            {
+                float currentAmount = GetCurrentAmount(questItem);
+                float progress = Mathf.Min(currentAmount / questItem.RequiredAmount * 100f, 100f); // Cap progress at 100%
+                points += progress;
+            }
+            return points >= QuestCollection.QuestItems.Count * 100;
+        }
+
+        public float GetCurrentAmount(QuestItem questItem)
+        {
+            return questItem.Type switch
+            {
+                EnumManager.QuestType.Kill => CurrentQuestData.CurrentKillAmount,
+                EnumManager.QuestType.Collectible => CurrentQuestData.CurrentCollectibleAmount,
+                EnumManager.QuestType.Puzzle => CurrentQuestData.CurrentPuzzleAmount,
+                EnumManager.QuestType.HiddenObject => CurrentQuestData.CurrentHiddenObjectAmount,
+                EnumManager.QuestType.LevelPlayed => CurrentQuestData.LevelPlayed.Count,
+                EnumManager.QuestType.GameWin => CurrentQuestData.CurrentGameWinAmount,
+                EnumManager.QuestType.MinutesPlayed => CurrentQuestData.CurrentMinutesPlayedAmount,
+                EnumManager.QuestType.QuizScore => CurrentQuestData.CurrentQuizScoreAmount,
+                _ => 0
+            };
         }
 
         public void SetCurrentPuzzleAmount(int amount)
