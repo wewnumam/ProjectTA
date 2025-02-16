@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: L2_HO_KomplekKepatihan
   m_EditorClassIdentifier: 
   _title: Komplek Kepatihan
-  _description: Consectetur adipiscing elit
+  _description: Selama dalam porses mensucikan diri, haruslah menghindari godaan
+    duniawi yang berupa kekuasaan dan rasa untuk menguasai.
   _type: 1
   _prefab: {fileID: 919132149155446097, guid: 17ffbda3e2b1d3649955df40341e916f, type: 3}
   _dialogue: {fileID: 4900000, guid: 273cd9f66ee73c742917cf2a83ebadb5, type: 3}

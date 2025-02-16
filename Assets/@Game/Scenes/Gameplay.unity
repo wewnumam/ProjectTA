@@ -18288,9 +18288,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Terdiri dari dua kata, Golong dan Gilig yang diambil dari bentuk dasar
-    bangunan tersebut. Golong yaitu bentuk ____________ dan Gilig yaitu bentuk ____________.
-    Dan memiliki makna ____________ ____________ dan ____________ .
+  m_text: " Terdiri dari dua kata, Golong dan Gilig yang diambil dari bentuk dasar
+    bangunan tersebut. ____________ yaitu bentuk Silinder dan ____________ yaitu
+    bentuk Bulatan. Memiliki makna \u2018Semangat persatuan antara rakyak dengan
+    rajanya\u2019. Sempat hancur karena ____________ dan dibangun kembali pada masa
+    Pemerintahan Sri Sultan Hamengkubuwono VII."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6cef0cfbb6f0c0048b27b8ddb3319440, type: 2}
   m_sharedMaterial: {fileID: 2525857051649746831, guid: 6cef0cfbb6f0c0048b27b8ddb3319440,
@@ -18640,6 +18642,10 @@ MonoBehaviour:
   CollectibleData: {fileID: 0}
   isActive: 0
   targetPosition: {fileID: 6286327855890109302}
+  DraggableRect: {fileID: 0}
+  Canvas: {fileID: 0}
+  CanvasGroup: {fileID: 0}
+  InitialAnchoredPosition: {x: 0, y: 0}
   onActive:
     m_PersistentCalls:
       m_Calls:

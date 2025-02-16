@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b07f33ea1f36d4c92a647367369ef5, type: 3}
   m_Name: L1_PZ_2-2
   m_EditorClassIdentifier: 
-  _title: Rakyat v2
-  _description: Cras tincidunt diam posuere erat tincidunt vulputate
+  _title: Pachetokan
+  _description: 7 Pintu (gapura/kori) dan 7 plataran
   _type: 0
   _prefab: {fileID: 8793590203011237703, guid: 856e45bc3c3aa2d4aac32ee063ebf18e, type: 3}
   _dialogue: {fileID: 4900000, guid: 106b35b593cd3a54fa91af6259ff5207, type: 3}

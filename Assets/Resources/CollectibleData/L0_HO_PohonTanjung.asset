@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: L0_HO_PohonTanjung
   m_EditorClassIdentifier: 
   _title: Pohon Tanjung
-  _description: Nullam risus mi, hendrerit sed bibendum a
+  _description: Pohon Tanjung yang melambangkan seorang anak yang selalu disanjung
+    sanjung karena berbukti pekerti luhur.
   _type: 1
   _prefab: {fileID: 3472689044304787736, guid: 52d0aad3e27a95c4dbce8d3f0300b854, type: 3}
   _dialogue: {fileID: 4900000, guid: 624fd4642558b8d498a466c84d20db6c, type: 3}

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: L1_HO_KoriBrajanala
   m_EditorClassIdentifier: 
   _title: Kori Brajanala
-  _description: Nullam risus mi, hendrerit sed bibendum a
+  _description: Kori Brajanala, penghubung plataran Pagelaran dan Sitihinggil Lor
+    dengan kamandunga Lor.
   _type: 1
   _prefab: {fileID: 3480464077870390826, guid: 6a461096bf673e847b15f7b545d72c0c, type: 3}
   _dialogue: {fileID: 4900000, guid: 0f62893fd49214f43a535a2ec250e80b, type: 3}

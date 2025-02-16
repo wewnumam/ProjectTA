@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: L0_HO_PohonAsem
   m_EditorClassIdentifier: 
   _title: Pohon Asem
-  _description: Nam malesuada in nisi eget mattis
+  _description: Keberadaan pohon asem yang memiliki makna anak yang nengsemake, membahagiakan
+    kedua orang tuanya.
   _type: 1
   _prefab: {fileID: 919132149155446097, guid: ae09943316223af48a32794e2030aad9, type: 3}
   _dialogue: {fileID: 4900000, guid: aa3702ea2d9205643a466ce4c2810ee7, type: 3}

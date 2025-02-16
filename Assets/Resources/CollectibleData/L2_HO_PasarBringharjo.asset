@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: L2_HO_PasarBringharjo
   m_EditorClassIdentifier: 
   _title: Pasar Bringharjo
-  _description: In aliquet lorem at posuere condimentum
+  _description: Selama dalam proses mensucikan diri, haruslah menghindari godaan
+    duniawi yang berupa harta benda dan kekayaan.
   _type: 1
   _prefab: {fileID: 919132149155446097, guid: 0e40f34683dace748a1633ad63219b05, type: 3}
   _dialogue: {fileID: 4900000, guid: e72199783ac0af34d967b161e904266e, type: 3}

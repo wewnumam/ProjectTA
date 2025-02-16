@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: L1_HO_KoriKamandunganLor
   m_EditorClassIdentifier: 
   _title: Kori Kamandungan Lor
-  _description: Nullam risus mi, hendrerit sed bibendum a
+  _description: Kori Kamandungan Lor, penghubung plataran kamandungan lor dengan
+    plataran srimanganti.
   _type: 1
   _prefab: {fileID: 8303456032987173554, guid: 73ae97002af393b4bbddba239d204157, type: 3}
   _dialogue: {fileID: 4900000, guid: df01c9f258b46c04bbb574aee69990ac, type: 3}

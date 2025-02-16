@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b07f33ea1f36d4c92a647367369ef5, type: 3}
   m_Name: L1_HO_KoriGandhungMlati
   m_EditorClassIdentifier: 
-  _title: Gapura Gladhag
-  _description: Nullam risus mi, hendrerit sed bibendum a
+  _title: Gapura Gandhung Mlati
+  _description: Kori Gandhung Mlati, penghubung plataran kemagangan dengan plataran
+    kamandungan kodul.
   _type: 1
   _prefab: {fileID: 2526707512404665858, guid: 81d62825cb336d64eb41e84273bfbf84, type: 3}
   _dialogue: {fileID: 4900000, guid: 111739803ece8df4ebd4a7c705a36136, type: 3}

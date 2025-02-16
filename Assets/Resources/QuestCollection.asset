@@ -13,24 +13,24 @@ MonoBehaviour:
   m_Name: QuestCollection
   m_EditorClassIdentifier: 
   _questItems:
+  - _label: Collect 9 Puzzle
+    _type: 2
+    _requiredAmount: 9
+  - _label: Collect 17 Hidden Object
+    _type: 3
+    _requiredAmount: 17
   - _label: Kill 100 Enemy
     _type: 0
     _requiredAmount: 100
   - _label: Collect 30 Collectible
     _type: 1
     _requiredAmount: 30
-  - _label: Collect 3 Puzzle
-    _type: 2
-    _requiredAmount: 3
-  - _label: Collect 6 Hidden Object
-    _type: 3
-    _requiredAmount: 6
-  - _label: Play 7 Arch
+  - _label: Play 3 Arch
     _type: 4
-    _requiredAmount: 7
-  - _label: Win 5 Times
+    _requiredAmount: 3
+  - _label: Win 6 Times
     _type: 5
-    _requiredAmount: 5
+    _requiredAmount: 6
   - _label: Play for 10 Minutes
     _type: 6
     _requiredAmount: 10

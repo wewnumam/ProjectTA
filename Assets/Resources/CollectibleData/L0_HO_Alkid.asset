@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b07f33ea1f36d4c92a647367369ef5, type: 3}
   m_Name: L0_HO_Alkid
   m_EditorClassIdentifier: 
-  _title: Plengkong Gading
-  _description: Nullam risus mi, hendrerit sed bibendum a
+  _title: Alun-alun Kidul
+  _description: Menggambarkan seorang anak yang sudah dewasa dan sudah berani meminang
+    gadis karena sudah akil baligh. Dilambangkan dari pohon kweni yang berbarti wani(berani).
+    Dan pohon pakel yang hanya bisa dimakan saat sudah matang, sangat bergetah saat
+    belum matang.
   _type: 1
   _prefab: {fileID: 919132149155446097, guid: ad2e517572c8c1c4ca1605a8950d6003, type: 3}
   _dialogue: {fileID: 4900000, guid: d2e7cbd36ada3584e9dabca8521e299e, type: 3}

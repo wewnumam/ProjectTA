@@ -17,7 +17,7 @@ MonoBehaviour:
     yang dipercayai menjadi tempat berburu hewan khususnya rusa. Oleh karena itu,
     bangunan ini dikenal juga sebagai kandang menjangan.
   _icon: {fileID: -453249972, guid: 137fda608f83b1d4abb0f9898697c6e1, type: 3}
-  _initialHealth: 10
+  _initialHealth: 10000
   _countdown: 150
   _puzzleQuestion: Panggung Krapyak memiliki beberapa kemungkinan fungsi di masa
     lalunya. Diantaranya adalah Fungsi ____________ (penanda paling selatan), Funsgi
@@ -26,14 +26,14 @@ MonoBehaviour:
   _puzzleObjects:
   - _collectibleData: {fileID: 11400000, guid: 5e9b7ac69b051054eacc180c33cb01c5, type: 2}
     _objectPosition: {x: 35.842148, y: 1.51, z: -10.756864}
-    _rectPosition: {x: 0, y: 315, z: 0}
+    _rectPosition: {x: 13, y: 259, z: 0}
   - _collectibleData: {fileID: 11400000, guid: aa70e71003fcdf341b6775ad8956f251, type: 2}
     _objectPosition: {x: -36.474792, y: 1.54, z: -10.747835}
-    _rectPosition: {x: 0, y: 315, z: 0}
+    _rectPosition: {x: -275, y: 125, z: 0}
   - _collectibleData: {fileID: 11400000, guid: 01824b3f05fe3fb48a7354fa3cacd83c, type: 2}
     _objectPosition: {x: -0.89025307, y: 2.16, z: 42.572433}
-    _rectPosition: {x: 0, y: 315, z: 0}
-  _enemyPrefab: {fileID: 5375070630054367085, guid: ca48543b59df08e40a92d2825cfbcfa7,
+    _rectPosition: {x: -354, y: -6, z: 0}
+  _enemyPrefab: {fileID: 5375070630054367085, guid: 443df28119fa4364689fa70350348208,
     type: 3}
   _environmentPrefab: {fileID: 5773407093173007764, guid: 46f71830a7b94684aadd91a4930a853e,
     type: 3}

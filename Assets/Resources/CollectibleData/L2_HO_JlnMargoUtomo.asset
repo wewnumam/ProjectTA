@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: L2_HO_JlnMargoUtomo
   m_EditorClassIdentifier: 
   _title: Plang Margo Utomo
-  _description: Nunc vel gravida lacus
+  _description: Berarti bahwa manusia harus memahami hal yang menjadi keutamaan dalam
+    hidupnya, dan berusaha untuk menjalankannya dengan baik.
   _type: 1
   _prefab: {fileID: 919132149155446097, guid: f11e73de8f70ec44b8587df590f42457, type: 3}
   _dialogue: {fileID: 4900000, guid: a3a6a32a051e853448deb546b19e745d, type: 3}

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b07f33ea1f36d4c92a647367369ef5, type: 3}
   m_Name: L0_PZ_1-1
   m_EditorClassIdentifier: 
-  _title: Raja v3
-  _description: Lorem ipsum dolor sit amet
+  _title: Simbolis
+  _description: Sebagai simbol sumbu filosofi paling selatan
   _type: 0
   _prefab: {fileID: 8793590203011237703, guid: 58d1a293b73a04c47b45e8ec6b15269b, type: 3}
   _dialogue: {fileID: 4900000, guid: e6372907929e8b141a9024acfae54c3a, type: 3}

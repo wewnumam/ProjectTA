@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: GameConstants
   m_EditorClassIdentifier: 
   _isJoystickActive: 1
-  _initialHealth: 10
   _playerConstants:
     _enemyLayer:
       serializedVersion: 2
@@ -30,7 +29,7 @@ MonoBehaviour:
     _bulletForce: 25
     _bulletDestroyDelay: 3
   _enemyConstants:
-    _enemyPoolSize: 50
+    _enemyPoolSize: 25
     _enemySpawnDistance: 10
     _enemySpawnInterval: 5
     _enemyMassiveSpawnInterval: 0.25

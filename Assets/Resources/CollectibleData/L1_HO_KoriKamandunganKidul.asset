@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: L1_HO_KoriKamandunganKidul
   m_EditorClassIdentifier: 
   _title: Kori Kemandungan Kidul
-  _description: Nullam risus mi, hendrerit sed bibendum a
+  _description: Kori Kamandungan Kidul, penghubung plataran kamandungan kodul dengan
+    plataran Sitihinggil kodul dan alun-alun kidul.
   _type: 1
   _prefab: {fileID: 2529621810712685962, guid: c2c003837e245c24787b34cec5f75707, type: 3}
   _dialogue: {fileID: 4900000, guid: b7223519f3f46174e82886920c6cbd5b, type: 3}

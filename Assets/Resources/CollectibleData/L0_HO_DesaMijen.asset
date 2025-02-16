@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: L0_HO_DesaMijen
   m_EditorClassIdentifier: 
   _title: Desa Mijen
-  _description: Nullam risus mi, hendrerit sed bibendum a
+  _description: Kampung Mijen di sebelah utara panggung krapyak, Mijen yang berarti
+    benih yang dikandung dalam rahim seorang ibu.
   _type: 1
   _prefab: {fileID: 919132149155446097, guid: 30e98ebb103997941be3eafe40894599, type: 3}
   _dialogue: {fileID: 4900000, guid: 4c6ea90d384a089488e656d387db13f7, type: 3}

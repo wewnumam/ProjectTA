@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b07f33ea1f36d4c92a647367369ef5, type: 3}
   m_Name: L2_PZ_1-3
   m_EditorClassIdentifier: 
-  _title: Raja
-  _description: Lorem ipsum dolor sit amet
+  _title: Golong
+  _description: Asal penamaan dan awal pembangunan tugu jogja
   _type: 0
   _prefab: {fileID: 8793590203011237703, guid: 61073f69c6519834fa37a86911c6b9fe, type: 3}
   _dialogue: {fileID: 4900000, guid: d0c0a710dc2b15a42b07d127992a45fc, type: 3}

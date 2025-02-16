@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1b07f33ea1f36d4c92a647367369ef5, type: 3}
+  m_Name: L2_HO_JlnMargoMulya
+  m_EditorClassIdentifier: 
+  _title: Jalan Margo Mulya
+  _description: Manusia harus berpegang teguh pada kebaikan saat menemui dua pilihan
+    yan gbertolak belakang. Selalu berusaha mensucikan fikiran(cipta), tubuh(raga),
+    dan keyakinan(karsa), sebelum nantinya melewati gapura pangurakan dengan keadaan
+    suci dan masuk ke tujuh gerbang dan tujuh halaman surga.
+  _type: 1
+  _prefab: {fileID: 919132149155446097, guid: 1610536318667f542b23addda37dce0b, type: 3}
+  _dialogue: {fileID: 4900000, guid: 2043059cefa1e1b4bb66e9311ae4a1d2, type: 3}

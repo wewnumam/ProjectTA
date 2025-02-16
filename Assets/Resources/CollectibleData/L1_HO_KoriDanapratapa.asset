@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: L1_HO_KoriDanapratapa
   m_EditorClassIdentifier: 
   _title: Kori Danapratapa
-  _description: Nullam risus mi, hendrerit sed bibendum a
+  _description: Kori Danapratapa, penghubung plataran srimanganti dengan plataran
+    kedathon. Merupakan plataran utama yangmemiliki hirarki tinggi dan menjadi pusat
+    dari kawasan keraton yogyakarta.
   _type: 1
   _prefab: {fileID: 1996002715036371433, guid: 94d60e8e39139314aae89daf24bf7bf8, type: 3}
   _dialogue: {fileID: 4900000, guid: 4cc187e7b4dd9d4499c81b0ed7f4fe45, type: 3}

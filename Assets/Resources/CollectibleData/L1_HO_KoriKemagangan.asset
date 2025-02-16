@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: L1_HO_KoriKemagangan
   m_EditorClassIdentifier: 
   _title: Kori Kemagangan
-  _description: Nullam risus mi, hendrerit sed bibendum a
+  _description: Kori Kemandungan, penghubung plataran kedathon dengan plataran kamagangan.
   _type: 1
   _prefab: {fileID: 8632565441039818492, guid: 208a14dfb2a02d04982847a1644fb724, type: 3}
   _dialogue: {fileID: 4900000, guid: e4e4a07cb5b854b498e92b3129daec19, type: 3}
