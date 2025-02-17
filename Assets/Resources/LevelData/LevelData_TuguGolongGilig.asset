@@ -17,8 +17,8 @@ MonoBehaviour:
     ikon terkenal Yogyakarta. Berada di utara keraton tepatnya di persimpangan Jalan
     Margoutomo, Jalan A.M. Sangaji, Jalan Jendral Sudirman, dan Jalan P. Diponegoro.
   _icon: {fileID: -197576082, guid: 137fda608f83b1d4abb0f9898697c6e1, type: 3}
-  _initialHealth: 10000
-  _countdown: 120
+  _initialHealth: 10
+  _countdown: 60
   _puzzleQuestion: "Terdiri dari dua kata, Golong dan Gilig yang diambil dari bentuk
     dasar bangunan tersebut. ____________ yaitu bentuk Silinder dan ____________
     yaitu bentuk Bulatan. Memiliki makna \u2018Semangat persatuan antara rakyak dengan

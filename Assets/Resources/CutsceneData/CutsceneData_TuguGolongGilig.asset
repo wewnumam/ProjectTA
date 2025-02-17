@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561c44ba66502d344912280f4ffdbc39, type: 3}
   m_Name: CutsceneData_TuguGolongGilig
   m_EditorClassIdentifier: 
-  _dialogueAsset: {fileID: 4900000, guid: 71feba1e4bd34db45a05fc73b5a104d4, type: 3}
+  _dialogueAsset: {fileID: 4900000, guid: cb3cb3b72f797c147a411252ad0c6f08, type: 3}
   _environment: {fileID: 1769442045502470417, guid: 022ccb88d2a3b5740b579b2900c19fa1,
     type: 3}

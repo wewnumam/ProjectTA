@@ -1518,8 +1518,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cameras:
   - {fileID: 2461618416574879848}
-  - {fileID: 3893386842306736534}
   - {fileID: 4264825727966517256}
+  - {fileID: 3893386842306736534}
   - {fileID: 8752036344280008327}
 --- !u!1 &5864694840917283206
 GameObject:

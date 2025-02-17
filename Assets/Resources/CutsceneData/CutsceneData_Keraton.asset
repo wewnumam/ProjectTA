@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561c44ba66502d344912280f4ffdbc39, type: 3}
   m_Name: CutsceneData_Keraton
   m_EditorClassIdentifier: 
-  _dialogueAsset: {fileID: 4900000, guid: 71feba1e4bd34db45a05fc73b5a104d4, type: 3}
+  _dialogueAsset: {fileID: 4900000, guid: 8643be60783ab1744b85da3d8544b5c4, type: 3}
   _environment: {fileID: 3261939709453313543, guid: be50e93e7bea9e048b51a04d4eddba24,
     type: 3}

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561c44ba66502d344912280f4ffdbc39, type: 3}
   m_Name: CutsceneData_PanggungKrapyak
   m_EditorClassIdentifier: 
-  _dialogueAsset: {fileID: 4900000, guid: 71feba1e4bd34db45a05fc73b5a104d4, type: 3}
+  _dialogueAsset: {fileID: 4900000, guid: d93efe284f247fc4d87cadd25a829da1, type: 3}
   _environment: {fileID: 5903414416775812998, guid: 46f71830a7b94684aadd91a4930a853e,
     type: 3}
