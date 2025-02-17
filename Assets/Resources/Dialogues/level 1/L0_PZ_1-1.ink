@@ -1,2 +1,2 @@
-Sebagai Simbolisasi penanda sumbu filosofi bagian selatan. Terletak 2 km dari selatan keraton yogyakarta. Dibangun pada tahun 1760 oleh Pangeran Mangkubumi,dan 
-memiliki dua lantai yang dimana lantai satu terdiri dari 4 ruangan dan 2 lorong.
+Sebagai Simbolisasi penanda sumbu filosofi bagian selatan. 
+Terletak 2 km dari selatan keraton yogyakarta. Dibangun pada tahun 1760 oleh Pangeran Mangkubumi,dan memiliki dua lantai yang dimana lantai satu terdiri dari 4 ruangan dan 2 lorong.

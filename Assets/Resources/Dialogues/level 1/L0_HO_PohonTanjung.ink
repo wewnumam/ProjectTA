@@ -1,1 +1,1 @@
-Pohon Tanjung yang melambangkan seorang anak yang selalu disanjung sanjung karena berbukti pekerti luhur.
+Pohon Tanjung yang melambangkan seorang anak yang selalu disanjung-sanjung karena berbudi pekerti luhur.

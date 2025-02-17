@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1b07f33ea1f36d4c92a647367369ef5, type: 3}
+  m_Name: L2_NA_Sangkan Paraning Dumadi
+  m_EditorClassIdentifier: 
+  _title: Sangkan Paraning Dumadi
+  _description: Narasi lengkap Sangkan Paraning Dumadi
+  _type: 1
+  _prefab: {fileID: 0}
+  _dialogue: {fileID: 4900000, guid: 6e342e11707c26d4eafc417a45f81cdd, type: 3}

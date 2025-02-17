@@ -1,2 +1,2 @@
 Kori Kemangangan
-Penghubung plataran kedathon dengan plataran kamagangan.
+Penghubung plataran kedathon dengan plataran kemagangan.

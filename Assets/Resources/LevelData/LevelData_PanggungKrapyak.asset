@@ -17,7 +17,7 @@ MonoBehaviour:
     yang dipercayai menjadi tempat berburu hewan khususnya rusa. Oleh karena itu,
     bangunan ini dikenal juga sebagai kandang menjangan.
   _icon: {fileID: -453249972, guid: 137fda608f83b1d4abb0f9898697c6e1, type: 3}
-  _initialHealth: 10
+  _initialHealth: 50
   _countdown: 120
   _puzzleQuestion: Panggung Krapyak memiliki beberapa kemungkinan fungsi di masa
     lalunya. Diantaranya adalah Fungsi ____________ (penanda paling selatan), Funsgi
