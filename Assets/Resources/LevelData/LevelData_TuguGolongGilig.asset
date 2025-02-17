@@ -17,7 +17,7 @@ MonoBehaviour:
     ikon terkenal Yogyakarta. Berada di utara keraton tepatnya di persimpangan Jalan
     Margoutomo, Jalan A.M. Sangaji, Jalan Jendral Sudirman, dan Jalan P. Diponegoro.
   _icon: {fileID: -197576082, guid: 137fda608f83b1d4abb0f9898697c6e1, type: 3}
-  _initialHealth: 50
+  _initialHealth: 30
   _countdown: 60
   _puzzleQuestion: "Terdiri dari dua kata, Golong dan Gilig yang diambil dari bentuk
     dasar bangunan tersebut. ____________ yaitu bentuk Silinder dan ____________
@@ -34,7 +34,7 @@ MonoBehaviour:
   - _collectibleData: {fileID: 11400000, guid: 139837f5715273840b6589cceebde55d, type: 2}
     _objectPosition: {x: 33.28716, y: 1.51, z: 34.910942}
     _rectPosition: {x: -448, y: -69, z: 0}
-  _enemyPrefab: {fileID: 5375070630054367085, guid: 443df28119fa4364689fa70350348208,
+  _enemyPrefab: {fileID: 5375070630054367085, guid: ca48543b59df08e40a92d2825cfbcfa7,
     type: 3}
   _environmentPrefab: {fileID: 5773407093173007764, guid: 022ccb88d2a3b5740b579b2900c19fa1,
     type: 3}
