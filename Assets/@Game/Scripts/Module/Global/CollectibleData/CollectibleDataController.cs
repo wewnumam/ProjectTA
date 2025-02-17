@@ -89,7 +89,13 @@ namespace ProjectTA.Module.CollectibleData
             var collectibleData = _resourceLoader.Load<SOCollectibleData>($"CollectibleData/{collectibleName}");
             if (collectibleData != null)
             {
-                _model.AddUnlockedCollectibleCollection(collectibleData);
+                if (_model.UnlockedCollectiblesName.Items.Contains(collectibleName))
+                {
+                    Debug.Log($"{collectibleData.name} is already unlocked!");
+                }
+                {
+                    _model.AddUnlockedCollectibleCollection(collectibleData);
+                }
             }
             else
             {

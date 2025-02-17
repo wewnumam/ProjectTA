@@ -315,7 +315,7 @@ MonoBehaviour:
   _onPlayerEnter:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4650663733761641348}
+      - m_Target: {fileID: 4128846337332030282}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
@@ -330,7 +330,7 @@ MonoBehaviour:
   _onPlayerExit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4650663733761641348}
+      - m_Target: {fileID: 4128846337332030282}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
@@ -1265,11 +1265,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 200863538674690726}
+  - component: {fileID: 939307413036875154}
+  - component: {fileID: 2070222378294831132}
   - component: {fileID: 2109464818240952333}
   - component: {fileID: 8257818659365044603}
   m_Layer: 0
   m_Name: Alkid
-  m_TagString: Untagged
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1292,6 +1294,48 @@ Transform:
   - {fileID: 8953141185961979604}
   m_Father: {fileID: 3956905273368283026}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &939307413036875154
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4998714451395716255}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5, y: 5, z: 5}
+  m_Center: {x: 0, y: 4, z: -2.5}
+--- !u!65 &2070222378294831132
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4998714451395716255}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5, y: 5, z: 5}
+  m_Center: {x: 0, y: -4, z: -2.5}
 --- !u!114 &2109464818240952333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1299,7 +1343,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4998714451395716255}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
@@ -2417,7 +2461,7 @@ MonoBehaviour:
   _onPlayerEnter:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4650663733761641348}
+      - m_Target: {fileID: 2109464818240952333}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
@@ -2432,7 +2476,7 @@ MonoBehaviour:
   _onPlayerExit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4650663733761641348}
+      - m_Target: {fileID: 2109464818240952333}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
@@ -2442,7 +2486,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &9209878062321498506
 GameObject:
@@ -7427,6 +7471,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plang_DesaMijen
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 30e98ebb103997941be3eafe40894599,
+        type: 3}
+      propertyPath: m_TagString
+      value: Collectible
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -7435,6 +7484,10 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 5312307483073805486}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 30e98ebb103997941be3eafe40894599,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1596709384735491543}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 30e98ebb103997941be3eafe40894599,
         type: 3}
       insertIndex: -1
@@ -7450,6 +7503,28 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2139488999100137294}
   m_PrefabAsset: {fileID: 0}
+--- !u!64 &1596709384735491543
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256948744154579487}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4212140171656625100, guid: 30e98ebb103997941be3eafe40894599, type: 3}
 --- !u!114 &1463267957725725058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8692,6 +8767,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sumur_Tua
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: be4e959c1dcafb445bb9e479cd375166,
+        type: 3}
+      propertyPath: m_TagString
+      value: Collectible
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17840,6 +17920,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pohon_Tanjung_2
       objectReference: {fileID: 0}
+    - target: {fileID: 3472689044304787736, guid: 52d0aad3e27a95c4dbce8d3f0300b854,
+        type: 3}
+      propertyPath: m_TagString
+      value: Collectible
+      objectReference: {fileID: 0}
     - target: {fileID: 4285923701185913762, guid: 52d0aad3e27a95c4dbce8d3f0300b854,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -17956,6 +18041,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3472689044304787736, guid: 52d0aad3e27a95c4dbce8d3f0300b854,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1792211028245939385}
+    - targetCorrespondingSourceObject: {fileID: 3472689044304787736, guid: 52d0aad3e27a95c4dbce8d3f0300b854,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 4128846337332030282}
     - targetCorrespondingSourceObject: {fileID: 3472689044304787736, guid: 52d0aad3e27a95c4dbce8d3f0300b854,
         type: 3}
@@ -17974,6 +18063,29 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6577838048562480861}
   m_PrefabAsset: {fileID: 0}
+--- !u!136 &1792211028245939385
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7744032553219194821}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: -0.25, y: 1.5, z: -0.95}
 --- !u!114 &4128846337332030282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17981,7 +18093,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7744032553219194821}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 

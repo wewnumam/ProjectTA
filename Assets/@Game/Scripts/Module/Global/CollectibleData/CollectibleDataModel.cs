@@ -22,9 +22,9 @@ namespace ProjectTA.Module.CollectibleData
 
         public void AddUnlockedCollectibleCollection(SOCollectibleData collectibleData)
         {
-            if (UnlockedCollectibleItems.Contains(collectibleData))
+            if (UnlockedCollectiblesName.Items.Contains(collectibleData.name))
             {
-                Debug.LogWarning($"{collectibleData.name} is already unlocked!");
+                Debug.Log($"{collectibleData.name} is already unlocked!");
             }
             else
             {

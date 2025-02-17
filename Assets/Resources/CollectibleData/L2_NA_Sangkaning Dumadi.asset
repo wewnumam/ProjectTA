@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b07f33ea1f36d4c92a647367369ef5, type: 3}
   m_Name: L2_NA_Sangkaning Dumadi
   m_EditorClassIdentifier: 
-  _title: Pasar Bringharjo
+  _title: Sangkaning Dumadi
   _description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
     varius non velit sit amet porttitor. Vestibulum vel sollicitudin odio. Praesent
     mollis a eros vel facilisis. Aenean id quam facilisis, pulvinar risus sed, pharetra

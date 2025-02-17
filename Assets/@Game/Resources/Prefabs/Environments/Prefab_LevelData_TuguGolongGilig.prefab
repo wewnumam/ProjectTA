@@ -876,7 +876,7 @@ MonoBehaviour:
   _onPlayerEnter:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8483548974643004148}
+      - m_Target: {fileID: 74274070221776603}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
@@ -891,7 +891,7 @@ MonoBehaviour:
   _onPlayerExit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8483548974643004148}
+      - m_Target: {fileID: 74274070221776603}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
@@ -4597,6 +4597,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1610536318667f542b23addda37dce0b,
         type: 3}
+      propertyPath: m_TagString
+      value: Collectible
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1610536318667f542b23addda37dce0b,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -4675,7 +4680,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 734658356747444833}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
@@ -13411,7 +13416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3321fddb8157bb34d9950274e4ea8bf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CollectibleData>k__BackingField: {fileID: 11400000, guid: 47ba0eddf85805942a2006c35e9a1830,
+  <CollectibleData>k__BackingField: {fileID: 11400000, guid: de424c9ca33518b40ba7c04ce4795571,
     type: 2}
 --- !u!114 &8483548974643004148
 MonoBehaviour:
@@ -18270,6 +18275,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Komplek_Kepatihan
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 17ffbda3e2b1d3649955df40341e916f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Collectible
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 17ffbda3e2b1d3649955df40341e916f,
         type: 3}

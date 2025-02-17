@@ -63,7 +63,7 @@ namespace ProjectTA.Module.QuestList
                 obj.SetActive(true);
             }
 
-            view.PointsText.SetText($"{(int)points}");
+            view.PointsText.SetText($"{(int)(points/(_model.QuestCollection.QuestItems.Count *100) * 100)}%");
             if (_model.IsQuestComplete())
             {
                 view.OnQuestComplete?.Invoke();
