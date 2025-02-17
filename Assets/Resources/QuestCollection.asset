@@ -39,4 +39,5 @@ MonoBehaviour:
     _requiredAmount: 100
   <LastCollectible>k__BackingField: {fileID: 11400000, guid: 481c3e0d53754c84f87e2f897a835856,
     type: 2}
-  <LastCutscene>k__BackingField: {fileID: 0}
+  <LastCutscene>k__BackingField: {fileID: 11400000, guid: 307e91c9e08f52742b66ee4e04a166cf,
+    type: 2}
