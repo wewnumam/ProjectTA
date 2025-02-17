@@ -22,13 +22,21 @@ namespace ProjectTA.Module.CollectibleData
 
         public void AddUnlockedCollectibleCollection(SOCollectibleData collectibleData)
         {
-            if (UnlockedCollectiblesName.Items.Contains(collectibleData.name))
+            if (UnlockedCollectibleItems.Contains(collectibleData))
             {
                 Debug.Log($"{collectibleData.name} is already unlocked!");
             }
             else
             {
                 UnlockedCollectibleItems.Add(collectibleData);
+            }
+
+            if (UnlockedCollectiblesName.Items.Contains(collectibleData.name))
+            {
+                Debug.Log($"{collectibleData.name} is already saved!");
+            }
+            else
+            {
                 UnlockedCollectiblesName.Items.Add(collectibleData.name);
             }
         }

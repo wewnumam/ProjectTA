@@ -22,9 +22,9 @@ MonoBehaviour:
   - _label: Kill 100 Enemy
     _type: 0
     _requiredAmount: 100
-  - _label: Collect 27 Collectible
+  - _label: Collect 26 Collectible
     _type: 1
-    _requiredAmount: 27
+    _requiredAmount: 26
   - _label: Play 3 Arch
     _type: 4
     _requiredAmount: 3
