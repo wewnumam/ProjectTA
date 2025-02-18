@@ -11595,6 +11595,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1536710540}
     m_Modifications:
+    - target: {fileID: 2956645996671961450, guid: e88100e3bcfdb574d8a00a63ac4e5699,
+        type: 3}
+      propertyPath: _tutorialItems.Array.data[5]._description
+      value: Drag & Drop potongan puzzle ke tempat yang benar untuk menyelesaikan
+        puzzlenya.
+      objectReference: {fileID: 0}
     - target: {fileID: 4375358405656207759, guid: e88100e3bcfdb574d8a00a63ac4e5699,
         type: 3}
       propertyPath: m_Pivot.x
