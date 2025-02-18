@@ -2,7 +2,7 @@
 Seorang anak laki-laki dengan penuh antusiasnya menyaksikan parade budaya yang cukup meriah. 
 Cahaya lampu, suara gamelan, dan kostum megah para penampil menciptakan suasana yang magis.
 Namun, matanya justru terpaku pada sebuah bangunan yang berdiri gagah di latar belakang. Bangunan itu tampak menyimpan cerita yang belum ia ketahui.
-“Ayah bangunan pap itu?” tanya-nya penasaran.
+“Ayah bangunan apa itu?” tanya-nya penasaran.
 Sang ayah tersenyum lalu menjawab, “itu dulu dibangun sebagai simbol persatuan antara rakyak dan raja.”
 Anak laki-laki itu mengerutkan dahi. “maksudnya bagaimana, Ayah?”
 Melihat kebingungan di wajah putranya, sang ayah pun mulai bercerita dengan genre cerita kesukaan anaknya, dan menghubungkannya tentang Sumbu Filosofi Yogyakarta.

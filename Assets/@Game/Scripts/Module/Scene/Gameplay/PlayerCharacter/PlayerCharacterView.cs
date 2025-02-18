@@ -164,7 +164,7 @@ namespace ProjectTA.Module.PlayerCharacter
                 Vector3 knockbackDirection = (transform.position - collision.transform.position).normalized;
 
                 // Apply the knockback force
-                _rb.AddForce(knockbackDirection * PlayerConstants.KnockbackForce, ForceMode.Impulse);
+                _rb.AddForce(new Vector3(knockbackDirection.x, 0, knockbackDirection.z) * PlayerConstants.KnockbackForce, ForceMode.Impulse);
             }
 
             if (collision.gameObject.CompareTag(TagManager.TAG_PADLOCK))

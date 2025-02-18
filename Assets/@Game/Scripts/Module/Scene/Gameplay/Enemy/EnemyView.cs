@@ -32,6 +32,12 @@ namespace ProjectTA.Module.Enemy
         private void OnEnable()
         {
             _isDie = false;
+            GetComponent<Collider>().enabled = true;
+            if (transform.position.y < -10f)
+            {
+                transform.position = new Vector3(transform.position.x, 2, transform.position.z);
+            }
+
             if (_player == null)
             {
                 _player = GameObject.FindGameObjectWithTag(TagManager.TAG_PLAYER).transform;
@@ -148,6 +154,7 @@ namespace ProjectTA.Module.Enemy
                     _animator.Play("Die");
                 }
 
+                GetComponent<Collider>().enabled = false;
                 Invoke(nameof(Kill), _destroyDelay);
             }
 

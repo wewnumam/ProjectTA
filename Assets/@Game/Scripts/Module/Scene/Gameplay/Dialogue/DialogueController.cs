@@ -19,6 +19,7 @@ namespace ProjectTA.Module.Dialogue
                 Publish(new GameResumeMessage());
                 Publish(new GameStateMessage(EnumManager.GameState.Playing));
                 _view.OnEnd?.Invoke();
+                _model.SetIsTextAnimationComplete(true);
                 return;
             }
 

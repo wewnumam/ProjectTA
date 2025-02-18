@@ -24,12 +24,12 @@ MonoBehaviour:
     _knockbackForce: 100
   _shootingConstants:
     _joystickShootingRange: 0.9
-    _bulletPoolSize: 10
+    _bulletPoolSize: 25
     _bulletShootingRate: 0.25
     _bulletForce: 25
     _bulletDestroyDelay: 3
   _enemyConstants:
-    _enemyPoolSize: 25
+    _enemyPoolSize: 35
     _enemySpawnDistance: 10
     _enemySpawnInterval: 5
     _enemyMassiveSpawnInterval: 0.25
