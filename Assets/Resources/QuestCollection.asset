@@ -13,31 +13,31 @@ MonoBehaviour:
   m_Name: QuestCollection
   m_EditorClassIdentifier: 
   _questItems:
-  - _label: Collect 9 Puzzle
+  - _label: Kumpulkan 9 Puzzle
     _type: 2
     _requiredAmount: 9
-  - _label: Collect 17 Hidden Object
+  - _label: Kumpulkan 17 Objek Tersembunyi
     _type: 3
     _requiredAmount: 17
-  - _label: Kill 100 Enemy
+  - _label: Kalahkan 100 Musuh
     _type: 0
     _requiredAmount: 100
-  - _label: Collect 27 Collectible
+  - _label: Kumpulkan 26 Collectible
     _type: 1
-    _requiredAmount: 27
-  - _label: Play 3 Arch
+    _requiredAmount: 26
+  - _label: Mainkan 3 Level
     _type: 4
     _requiredAmount: 3
-  - _label: Win 6 Times
+  - _label: Menangkan 6 Game
     _type: 5
     _requiredAmount: 6
-  - _label: Play for 10 Minutes
+  - _label: Main Selama 10 Menit
     _type: 6
     _requiredAmount: 10
-  - _label: Score for 100 in Quiz
+  - _label: Dapatkan Nilai 100 di Kuis
     _type: 7
     _requiredAmount: 100
   <LastCollectible>k__BackingField: {fileID: 11400000, guid: 481c3e0d53754c84f87e2f897a835856,
     type: 2}
-  <LastCutscene>k__BackingField: {fileID: 11400000, guid: 307e91c9e08f52742b66ee4e04a166cf,
+  <LastCutscene>k__BackingField: {fileID: 11400000, guid: f96b826b02e3d2a40adec5a94590ada8,
     type: 2}

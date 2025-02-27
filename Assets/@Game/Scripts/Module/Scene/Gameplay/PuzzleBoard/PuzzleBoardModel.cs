@@ -68,7 +68,7 @@ namespace ProjectTA.Module.PuzzleBoard
                 if (puzzleDragable == null) continue;
 
                 // Set the label text for the draggable object
-                SetLabelText(puzzleDragable, puzzle.CollectibleData?.Title);
+                SetLabelText(puzzleDragable, puzzle.CollectibleData.Title);
 
                 // Activate both objects
                 puzzleTarget.SetActive(true);

@@ -81,6 +81,8 @@ namespace ProjectTA.Scene.MainMenu
 
             _bugReport.SetView(_view.BugReportView);
 
+            _view.OnInitDone?.Invoke();
+
             yield return null;
         }
 

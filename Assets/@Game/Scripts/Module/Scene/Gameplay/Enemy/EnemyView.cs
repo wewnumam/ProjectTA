@@ -105,7 +105,8 @@ namespace ProjectTA.Module.Enemy
 
         private void Move()
         {
-            Vector3 newPosition = _rb.position + _movementDirection * _speed * Time.fixedDeltaTime;
+            float speedFactor = _speed * Time.fixedDeltaTime;
+            Vector3 newPosition = _rb.position + _movementDirection * speedFactor;
             _rb.MovePosition(newPosition);
         }
 

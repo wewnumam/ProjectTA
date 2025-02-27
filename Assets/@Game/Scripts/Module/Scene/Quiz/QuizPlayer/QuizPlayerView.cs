@@ -56,7 +56,7 @@ namespace ProjectTA.Module.QuizPlayer
 
             _questionText.SetText(model.CurrentQuizItem.Question);
             float percentage = (float)(model.AnswersCount - model.WrongCount) / model.AnswersCount;
-            _scoreText?.SetText($"{percentage * 100f:F2}%");
+            _scoreText.SetText($"{percentage * 100f:F2}%");
 
             for (int i = 0; i < model.CurrentQuizItem.Answers.Count; i++)
             {

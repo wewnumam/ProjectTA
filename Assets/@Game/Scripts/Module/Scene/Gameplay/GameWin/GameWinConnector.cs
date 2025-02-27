@@ -5,7 +5,7 @@ namespace ProjectTA.Module.GameWin
 {
     public class GameWinConnector : BaseConnector
     {
-        private GameWinController _gameWin;
+        private readonly GameWinController _gameWin = new();
 
         protected override void Connect()
         {

@@ -24,6 +24,9 @@ namespace ProjectTA.Scene.MainMenu
 
         private UnityAction _onPlay, _onQuit, _onQuiz;
 
+        [field: SerializeField]
+        public UnityEvent OnInitDone { get; set; }
+
         public void Play()
         {
             _onPlay.Invoke();

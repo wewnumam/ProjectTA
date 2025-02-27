@@ -3,6 +3,7 @@ using NaughtyAttributes;
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Profiling;
 
 namespace ProjectTA.Module.Analytic
 {
@@ -38,7 +39,7 @@ namespace ProjectTA.Module.Analytic
             _totalDeltaTime += Time.deltaTime;
 
             // Collect memory data
-            int currentMemory = (int)(GC.GetTotalMemory(false) / (1024 * 1024)); // Memory in MB
+            int currentMemory = (int)(Profiler.GetMonoUsedSizeLong() / 1048576f);
             _totalMemoryUsage += currentMemory;
             _memorySamples++;
 

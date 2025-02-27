@@ -98,11 +98,14 @@ namespace ProjectTA.Module.EnemyPool
             GameObject enemy = GameObject.Instantiate(_model.EnemyPrefab, spawnPosition, Quaternion.identity);
             enemy.SetActive(false);
 
-            EnemyView enemyView = enemy.GetComponent<EnemyView>();
+            EnemyView enemyView = null;
+            if (enemy.TryGetComponent<EnemyView>(out var view))
+            {
+                enemyView = view;
+            }
             if (enemyView == null)
             {
-                enemy.AddComponent<EnemyView>();
-                enemyView = enemy.GetComponent<EnemyView>();
+                enemyView = enemy.AddComponent<EnemyView>();
             }
             EnemyController enemyController = new EnemyController();
             InjectDependencies(enemyController);

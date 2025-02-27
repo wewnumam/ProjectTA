@@ -12,8 +12,8 @@ namespace ProjectTA.Module.PuzzleBoard
         [ReadOnly] public bool isActive;
 
         public RectTransform targetPosition; // Reference to the target position (TargetImage's RectTransform)
+        public Canvas Canvas;               // Reference to the canvas
         [ReadOnly] public RectTransform DraggableRect; // Reference to the draggable image's RectTransform
-        [ReadOnly] public Canvas Canvas;               // Reference to the canvas
         [ReadOnly] public CanvasGroup CanvasGroup;
         [ReadOnly] public Vector2 InitialAnchoredPosition;
 
@@ -22,14 +22,25 @@ namespace ProjectTA.Module.PuzzleBoard
 
         void Start()
         {
-            DraggableRect = GetComponent<RectTransform>();
-            Canvas = GetComponentInParent<Canvas>();
+            // Use TryGetComponent to avoid allocation when no component is found
+            if (!TryGetComponent(out DraggableRect))
+            {
+                Debug.LogError("RectTransform not found on this GameObject.");
+            }
 
-            // Ensure a CanvasGroup is attached to the DraggableImage
-            CanvasGroup = GetComponent<CanvasGroup>();
-            if (CanvasGroup == null)
+            if (Canvas == null)
+            {
+                Debug.LogError("Canvas is null reference");
+            }
+
+            // Use TryGetComponent to avoid allocation when no CanvasGroup is found
+            if (!TryGetComponent(out CanvasGroup))
+            {
+                // If no CanvasGroup is found, add one
                 CanvasGroup = gameObject.AddComponent<CanvasGroup>();
+            }
 
+            // Cache the initial anchored position
             InitialAnchoredPosition = DraggableRect.anchoredPosition;
         }
 

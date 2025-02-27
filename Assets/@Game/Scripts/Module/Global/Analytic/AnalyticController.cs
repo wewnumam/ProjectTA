@@ -87,6 +87,11 @@ namespace ProjectTA.Module.Analytic
 
         public void HandleLog(string logString, string stackTrace, LogType type)
         {
+            if (_model.LogMessages.Contains(logString))
+            {
+                return;
+            }
+            _model.LogMessages.Add(logString);
             _model.AddLogCounter(type);
         }
 

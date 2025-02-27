@@ -325,7 +325,7 @@ MonoBehaviour:
       puzzlenya.
   - _image: {fileID: 21300000, guid: 719267f912d47874ba10a2f1becf3312, type: 3}
     _title: Puzzle
-    _description: Drag & Drop potongan puzzle ke tempat yang benar untk menyelesaikan
+    _description: Drag & Drop potongan puzzle ke tempat yang benar untuk menyelesaikan
       puzzlenya.
   - _image: {fileID: 21300000, guid: c59212e5f8567b0458ef42c6d4ff3c65, type: 3}
     _title: Side Quest

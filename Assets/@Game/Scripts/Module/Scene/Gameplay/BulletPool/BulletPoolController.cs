@@ -81,8 +81,10 @@ namespace ProjectTA.Module.BulletPool
             if (bullet != null)
             {
                 bullet.transform.SetParent(null);
-                bullet.transform.position = _view.BulletSpawnPoint.position;
-                bullet.transform.rotation = _view.BulletSpawnPoint.rotation;
+                bullet.transform.SetPositionAndRotation(
+                    _view.BulletSpawnPoint.position,
+                    _view.BulletSpawnPoint.rotation
+                );
                 bullet.SetActive(true);
             }
         }

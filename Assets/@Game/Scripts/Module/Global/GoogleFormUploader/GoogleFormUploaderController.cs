@@ -85,7 +85,7 @@ namespace ProjectTA.Module.GoogleFormUploader
         {
             Dictionary<string, string> keyValues = new()
             {
-                    { _model.AnalyticFormConstants.EntryIds.SessionId, _model.SessionId },
+                    { _model.AnalyticFormConstants.EntryIds.SessionId, message.AnalyticRecord.SessionId },
                     { _model.AnalyticFormConstants.EntryIds.DeviceId, _model.DeviceId },
                     { _model.AnalyticFormConstants.EntryIds.ScreenTimeInSeconds, message.AnalyticRecord.ScreenTimeInSeconds },
                     { _model.AnalyticFormConstants.EntryIds.AverageFps, message.AnalyticRecord.AverageFps },

@@ -35,12 +35,12 @@ namespace ProjectTA.Module.BugReport
             if (responseCode == 200)
             {
                 _responseBg.color = _succeedColor;
-                _responsText?.SetText("BERHASIL DIKIRIM!");
+                _responsText.SetText("BERHASIL DIKIRIM!");
             }
             else
             {
                 _responseBg.color = _failedColor;
-                _responsText?.SetText($"ERROR: {responseCode}");
+                _responsText.SetText($"ERROR: {responseCode}");
             }
 
             _onEnd?.Invoke();

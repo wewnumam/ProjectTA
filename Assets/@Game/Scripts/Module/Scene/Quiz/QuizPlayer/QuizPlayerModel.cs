@@ -40,7 +40,7 @@ namespace ProjectTA.Module.QuizPlayer
             for (int i = 0; i < CurrentQuizItem.Answers.Count; i++)
             {
                 GameObject obj = GameObject.Instantiate(template.gameObject, parent);
-                Button button = obj.GetComponent<Button>();
+                Button button = obj.TryGetComponent<Button>(out var objButton) ? objButton : obj.AddComponent<Button>();
 
                 if (button != null)
                 {
